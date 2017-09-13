@@ -66,7 +66,7 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
           </br>
           <span class="bullet">&#9724;</span><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk9/x86_64/ubuntu16/Dockerfile">Linux 64-bit (x86_64)</a></strong></br>
           <span class="bullet">&#9724;</span><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk9/ppc64le/ubuntu16/Dockerfile">Linux on Power systems 64-bit (ppc64)</a></strong></br>
-          <span class="bullet">&#9724;</span><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk9/s90x/ubuntu16/Dockerfile">Linux on z Systems 64-bit (390_64)</a></strong></br>
+          <span class="bullet">&#9724;</span><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk9/s390x/ubuntu16/Dockerfile">Linux on z Systems 64-bit (390_64)</a></strong></br>
           </br>
           Save the Dockerfile to your current directory and specify these commands to build and run the Docker image:</br>
           <code class="cmd">> docker build -t openj9 -f Dockerfile .</code></br>
@@ -144,9 +144,9 @@ OpenJDK  - 8593b2f based on )</pre>
             <br/><br/>-->
             <strong>Tests from the OpenJDK and AdoptOpenJDK projects</strong><br/></br>
             These tests inspect the Java implementation via the commands and APIs available to the end user. The tests are separated according to their function:<br/><br/>
-			<span class="bullet">&#9724;</span>Functional verification tests from the OpenJDK project, often referred to as the OpenJDK regression tests, most of which are applicable to Eclipse OpenJ9. Both the AdoptOpenJDK project and the Eclipse OpenJ9 project run these tests.  At Eclipse OpenJ9, a curated subset of these regression tests is run. At the AdoptOpenJDK project, the entire suite of tests is run against Eclipse OpenJ9, with the exception of the Hotspot tests. For more information, see <a href="https://github.com/AdoptOpenJDK/openjdk-tests/blob/master/README.md" target="_blank">https://github.com/AdoptOpenJDK/openjdk-tests/blob/master/README.md</a>
+			<span class="bullet">&#9724;</span>Functional verification tests from the OpenJDK project, often referred to as the OpenJDK regression tests, most of which are applicable to Eclipse OpenJ9. Both the AdoptOpenJDK project and the Eclipse OpenJ9 project run these tests.  At Eclipse OpenJ9, a curated subset of these regression tests is run. At the AdoptOpenJDK project, the entire suite of tests is run against Eclipse OpenJ9, with the exception of the Hotspot tests. For more information, see <a href="https://github.com/AdoptOpenJDK/openjdk-tests/blob/master/README.md" target="_blank">https://github.com/AdoptOpenJDK/openjdk-tests/README.md</a>
 			<br/><br/>
-            <span class="bullet">&#9724;</span>System tests from the AdoptOpenJDK project, which consist of load tests and simple user scenarios, such as debugging and dynamic class replacement. Learn how to obtain and run the tests here: <a href="https://github.com/AdoptOpenJDK/openjdk-systemtest/README.md" target="_blank">https://github.com/AdoptOpenJDK/openjdk-systemtest/README.md</a>
+            <span class="bullet">&#9724;</span>System tests from the AdoptOpenJDK project, which consist of load tests and simple user scenarios, such as debugging and dynamic class replacement. Learn how to obtain and run the tests here: <a href="https://github.com/AdoptOpenJDK/openjdk-systemtest/blob/master/README.md" target="_blank">https://github.com/AdoptOpenJDK/openjdk-systemtest/README.md</a>
             <br/><br/>
 			The hierarchy of <code>make</code> targets is as follows:<br/>
 			<span class="bullet">&#9633;</span><code>test</code>: the top-level target<br/>
@@ -158,8 +158,8 @@ OpenJDK  - 8593b2f based on )</pre>
 			
             <strong>Tests from the Eclipse OpenJ9 project</strong><br/></br>
             These tests also inspect the Java implementation via the commands and APIs available to the end user.<br/></br>
-            <span class="bullet">&#9724;</span>Functional verification tests that target the Eclipse OpenJ9 virtual machine, garbage collector, just-in-time compiler, and class libraries. Learn how to obtain and run the tests here: <a href="https://github.com/eclipse/openj9/test/README.md" target="_blank">https://github.com/eclipse/openj9/test/README.md</a>.<br/><br/>
-            <span class="bullet">&#9724;</span>System tests that logically extend the AdoptOpenJDK tests, which are run as a prerequisite. The tests target unique Eclipse OpenJ9 features such as shared classes and extensions to the Java class libraries. Learn how to obtain and run the tests here: <a href="https://github.com/eclipse/openj9/openj9-systemtest/README.md" target="_blank">https://github.com/eclipse/openj9/openj9-systemtest/README.md</a>.
+            <span class="bullet">&#9724;</span>Functional verification tests that target the Eclipse OpenJ9 virtual machine, garbage collector, just-in-time compiler, and class libraries. Learn how to obtain and run the tests here: <a href="https://github.com/eclipse/openj9/blob/master/test/README.md" target="_blank">https://github.com/eclipse/openj9/test/README.md</a>.<br/><br/>
+            <span class="bullet">&#9724;</span>System tests that logically extend the AdoptOpenJDK tests, which are run as a prerequisite. The tests target unique Eclipse OpenJ9 features such as shared classes and extensions to the Java class libraries. Learn how to obtain and run the tests here: <a href="https://github.com/eclipse/openj9/openj9-systemtest/blob/master/README.md" target="_blank">https://github.com/eclipse/openj9/openj9-systemtest/README.md</a>.
             <br/><br/>
 			The hierarchy of <code>make</code> targets is as follows:<br/>
 			<span class="bullet">&#9633;</span><code>test</code>: the top-level target<br/>
