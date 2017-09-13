@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2017 IBM Corp. and others
+
+This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which accompanies this distribution and is available at http://eclipse.org/legal/epl-2.0 or the Apache License, Version 2.0 which accompanies this distribution and is available at https://www.apache.org/licenses/LICENSE-2.0. 
+
+This Source Code may also be made available under the following Secondary Licenses when the conditions for such availability set forth in the Eclipse Public License, v. 2.0 are satisfied: GNU General Public License, version 2 with the GNU Classpath Exception [1] and GNU General Public License, version 2 with the OpenJDK Assembly Exception [2]. 
+
+[1] https://www.gnu.org/software/classpath/license.html  
+[2] http://openjdk.java.net/legal/assembly-exception.html 
+
+SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>OpenJ9 - FAQ</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css">
+  <link rel="stylesheet" href="./css/global.css">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+  <nav class="colourscheme-block">
+    <div id="main-title">
+<!--
+      <a href="./index.html"><img id="nav_home" src="./assets/oj9logo_d.png" alt="OpenJ9 Home"></a>
+-->
+      <a href="./index.html"><img id="nav_home" src="./assets/home.png" alt="OpenJ9 Home"></a>
+      <h1>Eclipse OpenJ9</h1>
+      <a href="http://wiki.eclipse.org/Development_Resources/Process_Guidelines/What_is_Incubation" target="_blank"><img id="nav_egg" src="./assets/egg-incubation.png" alt="Eclipse Incubation"></a>
+    </div>
+  </nav>
+
+  <main>
+    <div id="container">
+
+      <div id="main-content" class="colourscheme-block">
+
+        <div id="faq" class="section-content">
+          <h1>Frequently asked questions</h1>
+
+          <div class="section-item">
+            <span class="intro-text">
+            	This FAQ answers common questions about Eclipse OpenJ9 and how it fits into the OpenJDK ecosystem.</br> If you can't find the answer you're looking for, post a query on our <a href="https://stackoverflow.com/search?q=%23OpenJ9" target="_blank">Stack Overflow forum<i class="fa fa-stack-overflow" aria-hidden="true"></i>
+            	</a>
+            </span>
+          </div>
+          
+          <div class="section-item-faq">
+            <details id="replacement">
+              <summary>Is Eclipse OpenJ9 a replacement for OpenJDK?</summary>
+              <p>No. Eclipse OpenJ9 is a Java virtual machine (JVM), the engine that runs Java applications, whereas OpenJDK is a complete development kit that contains other components, like the Java class libraries, as well as a JVM. By default, OpenJDK builds with a JVM called Hotspot. Put simply, OpenJ9 is an alternative JVM that you can include as part of an OpenJDK binary.
+              </p>
+            </details>
+          </div>
+
+          <div class="section-item-faq">
+            <details id="hotspot">
+              <summary>Is Eclipse OpenJ9 the same as Hotspot?</summary>
+              <p>Hotspot and Eclipse OpenJ9 are both Java virtual machines that can be included in an OpenJDK build, but each has different capabilities. Depending on the build process you follow, you can build an OpenJDK binary that includes either Eclipse OpenJ9 or Hotspot.
+              
+			  </p>
+            </details>
+          </div>
+
+          <div class="section-item-faq">
+            <details id="default-vm">
+              <summary>Why use Eclipse OpenJ9 instead of the default JVM?</summary>
+              <p>If you are looking for an enterprise class runtime environment for your application, build OpenJDK with Eclipse OpenJ9. This high performance, scalable virtual machine is at the core of many IBM enterprise software products, so it has a great pedigree.<br/>
+              You can also tune OpenJ9 to further improve the performance of Java applications for specific scenarios. For example, you can switch garbage collection policies to manage memory for different types of workload.
+              </p>
+            </details>
+          </div>
+
+ 		  
+		  <div class="section-item-faq">
+            <details id="whyopen">
+              <summary>Why did IBM contribute their J9 virtual machine to the Eclipse Foundation?</summary>
+              <p>IBM is publicly committed to bringing innovation into the open source development community. Contributing the J9 virtual machine, which has been at the core of IBM SDK, Java Technology Edition for many years, demonstrates that commitment. The OpenJ9 virtual machine is itself based upon core technology components of the Eclipse OMR project, which was contributed by IBM to the Eclipse Foundation in 2016. IBM continues to invest resources in both Eclipse OpenJ9 and Eclipse OMR to ensure that their enterprise products can take advantage of the latest hardware technologies.</p>
+            </details>
+          </div>
+
+
+          <div class="section-item-faq">
+            <details id="clone">
+              <summary>Why do I clone from https://github.com/ibmruntimes/openj9-openjdk-jdk9?</summary>
+              <p>It is necessary to apply patches on top of OpenJDK for it to function correctly with Eclipse OpenJ9. The <a href="https://github.com/ibmruntimes/openj9-openjdk-jdk9">https://github.com/ibmruntimes/openj9-openjdk-jdk9</a> repository contains a recent version of OpenJDK, taken from the OpenJDK repository with additional fixes applied.</p>
+            </details>
+          </div>
+
+
+
+
+        </div>
+      </div>
+
+  </main>
+
+  <footer>
+    <div>
+      <div class="social-icon">
+        <a href="https://github.com/eclipse/openj9" target="_blank" title="Github">
+          <i class="fa fa-github" aria-hidden="true" style="font-size: 2.3rem;"></i>
+        </a>
+      </div>
+      <div class="social-icon">
+        <a href="https://stackoverflow.com/search?q=%23OpenJ9" target="_blank" title="Stack Overflow">
+          <i class="fa fa-stack-overflow" aria-hidden="true" style="font-size: 2rem;"></i>
+        </a>
+      </div>
+
+      <p>OpenJ9 is an Eclipse Incubator project.</p>
+    
+      <span>&nbsp;<i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i>&nbsp;<a class="dark-link" href="http://www.eclipse.org">Eclipse Foundation website</a>
+      </span>
+      <span">&nbsp;<i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i>&nbsp;<a class="dark-link" href="http://www.eclipse.org/legal/privacy.php">Privacy policy</a>
+      </span>
+      <span">&nbsp;<i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i>&nbsp;<a class="dark-link" href="http://www.eclipse.org/legal/termsofuse.php">Website terms of use</a>
+      </span>
+      <span">&nbsp;<i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i>&nbsp;<a class="dark-link" href="http://www.eclipse.org/legal/copyright.php">Copyright agent</a>
+      </span>
+      <span">&nbsp;<i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i>&nbsp;<a class="dark-link" href="http://www.eclipse.org/legal">Legal</a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>
