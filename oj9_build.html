@@ -22,6 +22,14 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css">
   <link rel="stylesheet" href="./css/global.css">
   <link rel="stylesheet" href="./css/styles.css">
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-105616558-1', 'auto');
+    ga('send', 'pageview');
+  </script>
 </head>
 <body>
 
@@ -159,7 +167,7 @@ OpenJDK  - 8593b2f based on )</pre>
             <strong>Tests from the Eclipse OpenJ9 project</strong><br/></br>
             These tests also inspect the Java implementation via the commands and APIs available to the end user.<br/></br>
             <span class="bullet">&#9724;</span>Functional verification tests that target the Eclipse OpenJ9 virtual machine, garbage collector, just-in-time compiler, and class libraries. Learn how to obtain and run the tests here: <a href="https://github.com/eclipse/openj9/blob/master/test/README.md" target="_blank">https://github.com/eclipse/openj9/test/README.md</a>.<br/><br/>
-            <span class="bullet">&#9724;</span>System tests that logically extend the AdoptOpenJDK tests, which are run as a prerequisite. The tests target unique Eclipse OpenJ9 features such as shared classes and extensions to the Java class libraries. Learn how to obtain and run the tests here: <a href="https://github.com/eclipse/openj9/openj9-systemtest/blob/master/README.md" target="_blank">https://github.com/eclipse/openj9/openj9-systemtest/README.md</a>.
+            <span class="bullet">&#9724;</span>System tests that logically extend the AdoptOpenJDK tests, which are run as a prerequisite. The tests target unique Eclipse OpenJ9 features such as shared classes and extensions to the Java class libraries. Learn how to obtain and run the tests here: <a href="https://github.com/eclipse/openj9-systemtest/blob/master/README.md" target="_blank">https://github.com/eclipse/openj9-systemtest/README.md</a>.
             <br/><br/>
 			The hierarchy of <code>make</code> targets is as follows:<br/>
 			<span class="bullet">&#9633;</span><code>test</code>: the top-level target<br/>
