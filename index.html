@@ -20,8 +20,8 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css">
-  <link rel="stylesheet" href="./css/global.css">
-  <link rel="stylesheet" href="./css/styles.css">  
+  <link rel="stylesheet" href="./css/oj9_media.css">
+  <link rel="stylesheet" href="./css/oj9_common.css">  
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -32,214 +32,208 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
   </script>
 </head>
 <body>
-  <nav class="colourscheme-block">
-    <div id="main-title">
-<!--
-      <img id="nav_home" src="./assets/oj9logo_d.png" alt="OpenJ9">
--->
-      <h1>Eclipse OpenJ9</h1>
-      <a href="http://wiki.eclipse.org/Development_Resources/Process_Guidelines/What_is_Incubation" target="_blank"><img id="nav_egg" src="./assets/egg-incubation.png" alt="Eclipse Incubation"></a>
+  <div id="main-title">
+    <div class="nav">
+      <div><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="nav-item" href="oj9_build.html">Build</a></div>
+      <div><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="nav-item" href="oj9_faq.html">FAQ</a></div>
     </div>
-  </nav>
-
+    <div class="title">
+    	<img id="title_icon" src="./assets/openj9_6.png" alt="Eclipse OpenJ9">
+    </div>  
+    <div class="egg">
+      <a href="http://wiki.eclipse.org/Development_Resources/Process_Guidelines/What_is_Incubation" target="_blank"><img src="./assets/egg-incubation.png" alt="Eclipse Incubation"></a>
+    </div>  
+  </div>
 
   <main>
-    <div id="container">
 
 <!-- INTRO -->
-      <div id="intro-block">
-<h1>Boost your Java application performance</h1>
-        <p style="font-size: 1.2rem;">
+    <div id="intro-block">
+      <h1>Boost your Java application performance</h1>
+      <p>
 <!--
-          <img src="./assets/oj9logo_img9.png" class="product-logo" />
+          <img src="./assets/openj9-hex.png" class="product-logo" />
 -->
-          Low memory footprint. Fast start-up time. High application throughput.<br/>
-          Optimized to run Java applications cost-effectively in the cloud.<br/>
-          Want an OpenJDK build that contains an enterprise grade, open source, Java virtual machine?<br/>
-          Grab a pre-built binary and try it for yourself...<br/><br/>
-              <a class="button external-button" style="width:17em" href="https://adoptopenjdk.net/releases.html?variant=openjdk9-openj9">Download Now
-              <i class="fa fa-download" aria-hidden="true"></i></a>
-            </p>
-          <h1 style="line-height: 1.5; font-size: 1.6rem;">
-          Give your Java application a thrill<br/>
-          Run it on OpenJDK with Eclipse OpenJ9</strong>
-          <br/><br/>
-        </h1>
+        Low memory footprint. Fast start-up time. High application throughput.<br/>
+        Optimized to run Java applications cost-effectively in the cloud.<br/>
+        Want an OpenJDK build that contains an enterprise grade, open source, Java virtual machine?<br/>
+        Grab a pre-built binary and try it for yourself...
+      </p> 
+      <a class="button external-button" style="width:17em; margin-top:1rem;" href="https://adoptopenjdk.net/releases.html?variant=openjdk9-openj9">Download Now
+        <i class="fa fa-download" aria-hidden="true"></i></a>
+      <h2>
+        Give your Java application a thrill<br/>
+        Run it on OpenJDK with Eclipse OpenJ9
+      </h2> 
 
-        <div id="read-more-button">Learn more <i id="read-more-button-icon" class="fa fa-plus-circle" aria-hidden="true"></i></div>
-	
-        <div id="read-more-text" class="closed">
-          <br>
-          <p>Eclipse OpenJ9 is a high performance, scalable, Java virtual machine (JVM) implementation that represents hundreds of person-years of effort. Contributed to the Eclipse project by IBM, the OpenJ9 JVM underpins the IBM SDK, Java Technology Edition product that is a core component of many IBM Enterprise software products. Continued development of OpenJ9 at the Eclipse foundation ensures wider collaboration, fresh innovation, and the opportunity to influence the development of OpenJ9 for the next generation of Java applications.</p>
-		  <br>
-          <h2><strong>Saving costs in the cloud</strong></h2>
-		  <p>OpenJ9 is highly optimized for cloud workloads. The memory footprint is around half the size of other JVM implementations. Whether you are a cloud user or a cloud provider, a smaller footprint generates immediate cost savings when running applications on most cloud services. You can also take advantage of a tuning mechanism that detects when the JVM is idle, releasing free memory pages to keep the footprint as small as possible and keep your running costs to a minimum.</p>
-		  <p>If resources become constrained, OpenJ9 provides a dedicated running mode, -Xtune:virtualized, that reduces CPU consumption and memory footprint. This is useful for scenarios where cloud services become highly overcommitted at peak times.</p>
-
-		  <br>
-          <h2><strong>Better performance</strong></h2>
-		  <p>Benchmark tests demonstrate performance improvements over alternative JVM implementations, including faster start up times and higher application throughput.</p>
-		  <p>Shared classes and Ahead-of-Time (AOT) technologies typically provide a 20-40% reduction in start-up time while improving the overall ramp-up time of applications. This capability is crucial for short-running Java applications or for horizontal scalability solutions that rely on the frequent provisioning and deprovisioning of JVM instances to manage workloads.</p>
-		  <p>OpenJ9 has also been built to exploit hardware features, such as graphics processing units (GPU) that can improve the performance of Java applications for different workloads.</p>
-		  <p>As a developer you can achieve even faster start-up times by using -Xquickstart mode, which enables rapid development&rarr;deployment&rarr;test cycles to improve productivity.</p>
-	
-
-          
-        </div>
-
-        <div class="home-button-row">
-          <a class="button colourscheme-anchor" href="#get-started">Get started</a>
-          <a class="button colourscheme-anchor" href="#contributing">Get involved</a>
-          <a class="button colourscheme-anchor" href="oj9_faq.html">FAQ</a>
-          
-        </div>
-
+      <div id="read-more-button">
+      	Learn more <i id="read-more-button-icon" class="fa fa-plus-circle" aria-hidden="true"></i>
       </div>
+	
+      <div id="read-more-text" class="closed">
+        <p>Eclipse OpenJ9 is a high performance, scalable, Java virtual machine (JVM) implementation that represents hundreds of person-years of effort. Contributed to the Eclipse project by IBM, the OpenJ9 JVM underpins the IBM SDK, Java Technology Edition product that is a core component of many IBM Enterprise software products. Continued development of OpenJ9 at the Eclipse foundation ensures wider collaboration, fresh innovation, and the opportunity to influence the development of OpenJ9 for the next generation of Java applications
+        </p>
+        <h2>Saving costs in the cloud</h2>
+        <p>OpenJ9 is highly optimized for cloud workloads. The memory footprint is around half the size of other JVM implementations. 
+        </p>
+        <p>Whether you are a cloud user or a cloud provider, a smaller footprint generates immediate cost savings when running applications on most cloud services. You can also take advantage of a tuning mechanism that detects when the JVM is idle, releasing free memory pages to keep the footprint as small as possible and keep your running costs to a minimum.
+        </p>
+        <p>If resources become constrained, OpenJ9 provides a dedicated running mode, -Xtune:virtualized, that reduces CPU consumption and memory footprint. This is useful for scenarios where cloud services become highly overcommitted at peak times.
+        </p>
+        <h2>Better performance</h2>
+        <p>Benchmark tests demonstrate performance improvements over alternative JVM implementations, including faster start up times and higher application throughput.
+        </p>
+        <p>Shared classes and Ahead-of-Time (AOT) technologies typically provide a 20-40% reduction in start-up time while improving the overall ramp-up time of applications. This capability is crucial for short-running Java applications or for horizontal scalability solutions that rely on the frequent provisioning and deprovisioning of JVM instances to manage workloads.</p>
+        <p>OpenJ9 has also been built to exploit hardware features, such as graphics processing units (GPU) that can improve the performance of Java applications for different workloads.</p>
+        <p>As a developer you can achieve even faster start-up times by using -Xquickstart mode, which enables rapid development &rarr; deployment &rarr; test cycles to improve productivity.</p>
+      </div> <!-- end: read-more-text -->
 
-      <div id="main-content" class="colourscheme-block">
+      <div class="home-button-row">
+        <a class="button internal-button" href="#get-started">Get started</a>
+        <a class="button internal-button" href="#contributing">Get involved</a>
+        <a class="button internal-button" href="oj9_faq.html">FAQ</a>
+      </div>
+    </div> <!-- end: INTRO -->
+
+
+
+    <div id="main-content">
 
 <!-- GET STARTED -->
-        <div id="get-started" class="section-content">
-          <h1>Get started</h1>
+    <div id="get-started" class="section-content">
+      <h1>Get started</h1>
 
-          <div class="section-item">
-            <span class="intro-text">It's easy to get started with Eclipse OpenJ9 !</span>
-          </div>
+      <div class="f-section-item">
+        <span class="intro-text">It's easy to get started with Eclipse OpenJ9!</span>
+      </div>
           
-          <div class="section-item">
-            <p><span class="first-word">Try it out</span> Grab a pre-built OpenJDK binary from AdoptOpenJDK to install on your system, <!-- or simply pull a Docker image to run your app in a pre-configured container. --> and see how your applications perform with the OpenJ9 JVM at work.
-            </p>
-            <div class="button-container">
-              <a class="button external-button" href="https://adoptopenjdk.net/releases.html?variant=openjdk9-openj9">Download it
-              <i class="fa fa-download" aria-hidden="true"></i></a>
-<!--
-              <a class="button external-button left-half" href="https://adoptopenjdk.net" target="_blank">AdoptOpenJDK</a>
-              <a class="button external-button right-half" href="https://hub.docker.com/r/ibmcom/ibmjava/" target="_blank">Docker</a>
--->
-            </div>
-<!-- <img src="./assets/docker.png" alt="Docker logo" class="social-logo"> -->
-          </div>
-
-          <div class="section-item">
-            <p><span class="first-word">Build your own</span> 
-              If you are familiar with building OpenJDK, you might want to build it with OpenJ9 yourself. For a deeper dive, read the build instructions, which cover all the steps to build an OpenJDK with OpenJ9 and how to test your binary.</p>
-            <div class="button-container">
-              <a class="button external-button" href="oj9_build.html">Build it
-              <i class="fa fa-cogs" aria-hidden="true"></i></a>
-            </div>
-          </div>
-
-          <div class="section-item">
-            <p><span class="first-word">Tune it</span> 
-              OpenJ9 optimizes your Java application out-of-the-box without needing a complicated set of command line options. However, further tuning is possible to improve your application's performance. For example, if your application has an extremely large heap, you might choose a different garbage collection policy to improve memory management. Alternatively, you might want to exploit specific hardware features such as a graphics processing unit (GPU).
-            <br/><br/>
-            To learn more about tuning OpenJ9 for your application runtime environment, read the existing user documentation in the IBM Knowledge Center. Documentation to support OpenJ9 at the Eclipse foundation is a work in progress. Watch this space!</p>
-			<div class="button-container">
-              <a class="button external-button" href="https://www.ibm.com/support/knowledgecenter/SSYKE2_9.0.0/welcome/welcome_javasdk_version.html" target="_blank">Read the docs
-              <!-- <i class="fa fa-book" aria-hidden="true"></i> -->
-              <i class="fa fa-leanpub" aria-hidden="true"></i>
-</a>
-            </div>
-          </div>
-
-          <div class="section-item">
-            <p><span class="first-word">Ask questions</span> We've created an FAQ to answer common questions about OpenJ9 and how it fits into the OpenJDK ecosystem. The list will grow over time, so try there first.<br/>
-            If you have a general question that is not answered by the FAQ, our developers monitor and participate in #OpenJ9 questions on Stack Overflow.</p>
-            <div class="button-container">
-              <!-- <a class="button colourscheme-block" href="oj9_faq.html">FAQ</a><br/> -->
-<!--
-              <a class="button external-button" href="https://stackoverflow.com/search?q=%23OpenJ9" target="_blank">Stack Overflow 
-              <img src="./assets/stackoverflow.png" alt="Stack Overflow logo" class="social-logo"></a><br/>
--->
-              <a class="button external-button left-half" href="oj9_faq.html">FAQ</a>
-              <a class="button external-button right-half" href="https://stackoverflow.com/search?q=%23OpenJ9" target="_blank">Stack Overflow<i class="fa fa-stack-overflow" aria-hidden="true"></i></a>
-            </div>
-          </div>
-
-          <div class="section-item">
-            <p><span class="first-word">Report issues</span> We hope you don't run into any obstacles, but if you do, we want to hear from you. Use the tag #OpenJ9 to discuss problems in Stack Overflow, or raise an issue in our GitHub repository.</p>
-            <div class="button-container">
-              <a class="button external-button" href="https://github.com/eclipse/openj9/issues" target="_blank">Github Issue Tracking 
-              <i class="fa fa-github" aria-hidden="true"></i></a>
-            </div>
-          </div>
+      <div class="f-section-item">
+        <div class="f-content-container">
+          <p><span class="first-word">Try it out</span>
+          Grab a pre-built OpenJDK binary from AdoptOpenJDK to install on your system, <!-- or simply pull a Docker image to run your app in a pre-configured container. --> and see how your applications perform when the OpenJ9 JVM is at work.
+          </p>
         </div>
+        <div class="f-button-container">
+          <a class="button external-button" href="https://adoptopenjdk.net/releases.html?variant=openjdk9-openj9">Download it
+            <i class="fa fa-download" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div class="f-section-item">
+        <div class="f-content-container">
+          <p><span class="first-word">Build your own</span>
+          If you are familiar with building OpenJDK, you might want to build it with OpenJ9 yourself. For a deeper dive, read the build instructions, which cover all the steps to build an OpenJDK with OpenJ9 and how to test your binary.
+          </p>
+        </div>
+        <div class="f-button-container">
+          <a class="button external-button" href="oj9_build.html">Build it
+            <i class="fa fa-cogs" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div class="f-section-item">
+        <div class="f-content-container">
+          <p><span class="first-word">Tune it</span>
+          OpenJ9 optimizes your Java application out-of-the-box without needing a complicated set of command line options. However, further tuning is possible to improve your application's performance. For example, if your application has an extremely large heap, you might choose a different garbage collection policy to improve memory management. Alternatively, you might want to exploit specific hardware features such as a graphics processing unit (GPU).
+          </p>
+          <p>To learn more about tuning OpenJ9 for your application runtime environment, read the existing user documentation in the IBM Knowledge Center. Documentation to support OpenJ9 at the Eclipse foundation is a work in progress. Watch this space!
+          </p>
+        </div>
+        <div class="f-button-container">
+          <a class="button external-button" href="https://www.ibm.com/support/knowledgecenter/SSYKE2_9.0.0/welcome/welcome_javasdk_version.html">Read the docs
+            <i class="fa fa-leanpub" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div class="f-section-item">
+        <div class="f-content-container">
+          <p><span class="first-word">Ask questions</span>
+          If you get stuck trying to do something, our developers monitor and participate in <code class="stack">#OpenJ9</code> questions on Stack Overflow. For more general questions about OpenJ9 and how it fits into the OpenJDK ecosystem, we've created an FAQ, which will grow over time.
+          </p>
+        </div>
+        <div class="f-button-container">
+          <a class="button external-button left-half" href="oj9_faq.html">FAQ</a>
+          <a class="button external-button right-half" href="https://stackoverflow.com/search?q=%23OpenJ9" target="_blank">Stack Overflow<i class="fa fa-stack-overflow" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div class="f-section-item">
+        <div class="f-content-container">
+          <p><span class="first-word">Report issues</span>
+          We hope you don't run into any obstacles, but if you do, we want to hear from you. Use the <code class="stack">#OpenJ9</code> tag to discuss problems in Stack Overflow, or raise an issue in our GitHub repository.
+          </p>
+        </div>
+        <div class="f-button-container">
+          <a class="button external-button" href="https://github.com/eclipse/openj9/issues">Github Issue Tracking
+            <i class="fa fa-github" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+    </div> <!-- end: GET STARTED -->
 
 <!-- CONTRIBUTING -->
-        <div id="contributing" class="section-content">
-          <h1>Get involved</h1>
+    <div id="contributing" class="section-content">
+      <h1>Get involved</h1>
 
+      <div class="f-section-item">
+        <span class="intro-text">The Eclipse OpenJ9 project welcomes participation at many levels.</span>
+      </div>
 
-          <div class="section-item">
-            <span class="intro-text">The Eclipse OpenJ9 project welcomes participation at many levels.</span>
+     <div class="f-section-item">
+        <div class="f-content-container">
+          <p><span class="first-word">Make suggestions</span>
+          If you are using OpenJ9 within a Java runtime environment and you have ideas for improvements, share them. We'd love to hear from you.
+          </p>
+        </div>
+      </div>
 
-          </div>
-          
-          <div class="section-item">
-            <p><span class="first-word">Make suggestions</span>If you are using OpenJ9 within a Java runtime environment and you have ideas for improvements, share them. We'd love to hear from you.
-              </b></p>
-<!--
-            <div class="button-container">
-              <a class="button external-button" href="https://dev.eclipse.org/mailman/listinfo/openj9-dev" target="_blank">Eclipse mailing list 
-              <img src="./assets/eclipse.png" alt="Eclipse logo" class="social-logo"></a>
-            </div>
--->
-          </div>
+      <div class="f-section-item">
+        <div class="f-content-container">
+          <p><span class="first-word">Contribute</span>
+          If you are interested in contributing to the development of this open-source project, check out the contribution guide in our GitHub repository.
+          </p>
+        </div>
+      </div>
 
-          <div class="section-item">
-          <p><span class="first-word">Contribute</span>If you are interested in contributing to the development of this open-source project, <!-- joining our team of highly skilled and knowledgeable open-source developers, --> check out the contribution guide in our GitHub repository.
-          <br/><br/>
-        </p>
-          </div>
-
-          <div class="section-item">
-
-            <div class="button-container" style="padding:.2rem;">
-              <a class="button external-button" href="https://dev.eclipse.org/mailman/listinfo/openj9-dev" target="_blank">Eclipse mailing list 
-              <i class="fa fa-envelope-o" aria-hidden="true"></i>
-              <!-- <i class="fa fa-envelope" aria-hidden="true"></i> -->
-              </a>
-            </div>
-
-            <div class="button-container" style="padding:.2rem;">
-              <a class="button external-button" href="https://github.com/eclipse/openj9/blob/master/CONTRIBUTING.md" target="_blank">Contribute on GitHub 
-              <i class="fa fa-github" aria-hidden="true"></i></a>
-            </div>
-
-          </div>
-
+      <div class="f-section-item">
+        <div class="f-button-container">
+          <a class="button external-button" href="https://dev.eclipse.org/mailman/listinfo/openj9-dev" target="_blank">Eclipse mailing list 
+          <i class="fa fa-envelope-o" aria-hidden="true"></i>
+          </a>
         </div>
 
+        <div class="f-button-container">
+          <a class="button external-button" href="https://github.com/eclipse/openj9/blob/master/CONTRIBUTING.md" target="_blank">Contribute on GitHub 
+          <i class="fa fa-github" aria-hidden="true"></i></a>
+        </div>
       </div>
-    </div>
+
+    </div> <!-- end: GET INVOLVED -->
+          
+</div> <!-- end: main-content -->
+
   </main>
 
   <footer>
-    <div>
-      <div class="social-icon">
-        <a href="https://github.com/eclipse/openj9" target="_blank" title="Github">
-          <i class="fa fa-github" aria-hidden="true" style="font-size: 2.3rem;"></i>
-        </a>
-      </div>
-      <div class="social-icon">
-        <a href="https://stackoverflow.com/search?q=%23OpenJ9" target="_blank" title="Stack Overflow">
-          <i class="fa fa-stack-overflow" aria-hidden="true" style="font-size: 2rem;"></i>
-        </a>
-      </div>
-
-      <p>OpenJ9 is an Eclipse Incubator project.</p>
-    
-      <span>&nbsp;<i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i>&nbsp;<a class="dark-link" href="http://www.eclipse.org">Eclipse Foundation website</a>
-      </span>
-      <span">&nbsp;<i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i>&nbsp;<a class="dark-link" href="http://www.eclipse.org/legal/privacy.php">Privacy policy</a>
-      </span>
-      <span">&nbsp;<i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i>&nbsp;<a class="dark-link" href="http://www.eclipse.org/legal/termsofuse.php">Website terms of use</a>
-      </span>
-      <span">&nbsp;<i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i>&nbsp;<a class="dark-link" href="http://www.eclipse.org/legal/copyright.php">Copyright agent</a>
-      </span>
-      <span">&nbsp;<i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i>&nbsp;<a class="dark-link" href="http://www.eclipse.org/legal">Legal</a>
-      </span>
+    <div class="social-icon">
+      <a href="https://github.com/eclipse/openj9" target="_blank" title="Github">
+        <i class="fa fa-github" aria-hidden="true" style="font-size: 2.3rem;"></i>
+      </a>
     </div>
+    <div class="social-icon">
+      <a href="https://stackoverflow.com/search?q=%23OpenJ9" target="_blank" title="Stack Overflow">
+        <i class="fa fa-stack-overflow" aria-hidden="true" style="font-size: 2rem;"></i>
+      </a>
+    </div>
+
+    <p>OpenJ9 is an Eclipse Incubator project.</p>
+
+    <span class="no-wrap"><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="dark-link" href="http://www.eclipse.org">Eclipse Foundation website</a></span>
+    <span class="no-wrap"><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="dark-link" href="http://www.eclipse.org/legal/privacy.php">Privacy policy</a></span>
+    <span class="no-wrap"><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="dark-link" href="http://www.eclipse.org/legal/termsofuse.php">Website terms&nbsp;of use</a></span>
+    <span class="no-wrap"><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="dark-link" href="http://www.eclipse.org/legal/copyright.php">Copyright agent</a></span>
+    <span class="no-wrap"><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="dark-link" href="http://www.eclipse.org/legal">Legal</a></span>
+
   </footer>
 
   <script src="./js/app.js"></script>
