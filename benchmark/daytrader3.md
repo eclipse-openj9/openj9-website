@@ -1,4 +1,4 @@
-Daytrader 3 performance testing
+DayTrader 3 performance testing
 ===============================
 
 This experiment was designed to determine how well an OpenJDK V9 built with Eclipse OpenJ9 performs against an OpenJDK V9 built with HotSpot.
@@ -16,8 +16,8 @@ Detailed information about the hardware systems, software, and configuration set
 
 **Benchmark application:**
 
-Tests were performed using the [Daytrader 3  application](https://github.com/WASdev/sample.daytrader3), which models an online stock trading system. Daytrader 3 was installed on top of
-[OpenLiberty](http://openliberty.io/downloads). However, due to a missing dependency, the public version of OpenLiberty is not capable of running Daytrader 3 with Java 9. This dependency, the ASM V6 library, which provides low-level bytecode manipulation capabilities, is expected to be included soon. For this experiment we used a private version of OpenLiberty with a beta version of ASM V6.
+Tests were performed using the [DayTrader 3  application](https://github.com/WASdev/sample.daytrader3), which models an online stock trading system. DayTrader 3 was installed on top of
+[OpenLiberty](http://openliberty.io/downloads). However, due to a missing dependency, the public version of OpenLiberty is not capable of running DayTrader 3 with Java 9. This dependency, the ASM V6 library, which provides low-level bytecode manipulation capabilities, is expected to be included soon. For this experiment we used a private version of OpenLiberty with a beta version of ASM V6.
 
 **OpenJDK binaries:**
 
@@ -43,7 +43,7 @@ OpenJDK 64-Bit Server VM (build 9-internal+0-adhoc.jenkins.openjdk, mixed mode)
 **Test environment:**
 
 - The persistence layer was ensured by **Db2**, which was running on a separate machine.
-- The workload generator, **jmeter**, was set up on a further machine.
+- The workload generator, **JMeter**, was set up on a further machine.
 - The two machines were connected to the system under test by 10 GB Ethernet.
 
 ## Test process
@@ -75,7 +75,7 @@ When AOT was enabled, the values set reflect the default settings in OpenLiberty
 
 ![The explanation for this graph is provided in the surrounding text.](../assets/perf_rss_ramp_xmx1g_2.png)
 
-**Figure.1** Daytrader 3 footprint size during ramp up with a maximum Java heap size set to 1 GB. Comparison between **OpenJDK 9 with Hotspot** and **OpenJDK 9 with OpenJ9**.
+**Figure.1** DayTrader 3 footprint size during ramp up with a maximum Java heap size set to 1 GB. Comparison between **OpenJDK 9 with Hotspot** and **OpenJDK 9 with OpenJ9**.
 
 In all three scenarios, memory footprint (Resident Set Size) increased abruptly when load was applied to the system (time = 0), but more or less settled after about 3 minutes. OpenJDK with HotSpot was found to use approximately 80% more physical memory than OpenJDK with OpenJ9. Enabling AOT on the OpenJ9 VM made almost no difference to the results.
 
@@ -83,7 +83,7 @@ In all three scenarios, memory footprint (Resident Set Size) increased abruptly 
 
 ![The explanation for this graph is provided in the surrounding text.](../assets/perf_startup_footprint_xmx1g_2.png)
 
-**Figure 2.** Daytrader 3 footprint after startup with a maximum Java heap size set to 1 GB. Comparison between **OpenJDK 9 with Hotspot** and **OpenJDK 9 with OpenJ9**.
+**Figure 2.** DayTrader 3 footprint after startup with a maximum Java heap size set to 1 GB. Comparison between **OpenJDK 9 with Hotspot** and **OpenJDK 9 with OpenJ9**.
 
 Immediately after startup OpenJ9 shows a footprint size of around 60% less than Hotspot. When OpenJ9 was tested with AOT enabled, and with AOT and -Xquickstart enabled, the footprint size remained at around 60% less than Hotspot.
 
@@ -91,7 +91,7 @@ Immediately after startup OpenJ9 shows a footprint size of around 60% less than 
 
 ![The explanation for this graph is provided in the surrounding text.](../assets/perf_startup_xmx1g_2.png)
 
-**Figure 3.** Daytrader 3 startup time with a maximum Java heap size set to 1 GB. Comparison between **OpenJDK 9 with Hotspot** and **OpenJDK 9 with OpenJ9**.
+**Figure 3.** DayTrader 3 startup time with a maximum Java heap size set to 1 GB. Comparison between **OpenJDK 9 with Hotspot** and **OpenJDK 9 with OpenJ9**.
 
 With no command line options OpenJ9 shows a slightly longer startup time than Hotspot. However, with AOT enabled, startup time for OpenJ9 is almost 40% lower than Hotspot. Moreover, with AOT enabled and -Xquickstart, startup time for OpenJ9 is almost 50% lower than Hotspot.
 
@@ -99,7 +99,7 @@ With no command line options OpenJ9 shows a slightly longer startup time than Ho
 
 ![The explanation for this graph is provided in the surrounding text.](../assets/perf_thr_ramp_xmx1g_2.png)
 
-**Figure 4.** Daytrader 3 throughput during ramp up with a maximum Java heap size set to 1 GB. Comparison between **OpenJDK 9 with Hotspot** and **OpenJDK 9 with OpenJ9**.
+**Figure 4.** DayTrader 3 throughput during ramp up with a maximum Java heap size set to 1 GB. Comparison between **OpenJDK 9 with Hotspot** and **OpenJDK 9 with OpenJ9**.
 
 Although both OpenJ9 and Hotspot reach a similar peak throughput, OpenJ9 reaches the peak about 7 minutes faster. The small amount of AOT code (8 MB) does not make a difference in this case. 
 
