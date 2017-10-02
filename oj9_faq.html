@@ -32,15 +32,19 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
   </script>
 </head>
 <body>
-
-
   <div id="main-title">
     <div class="nav">
-      <div><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="nav-item" href="index.html">Home</a></div>
-      <div><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="nav-item" href="oj9_build.html">Build</a></div>
+      <span><i class="fa fa-bars" aria-hidden="true"></i></span>
+      <div class="nav-content">
+        <p><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="nav-item" href="index.html">Home</a></p>
+        <p><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="nav-item" href="oj9_build.html">Build</a></p>
+        <p><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i>FAQ</p>
+        <p><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="nav-item" href="oj9_resources.html">Resources</a></p>
+      </div>
     </div>
     <div class="title">
-    	<img id="title_icon" src="./assets/openj9_6.png" alt="Eclipse OpenJ9">
+    	<!--<img class="title_icon" src="./assets/openj9_6a.png" alt="Eclipse OpenJ9">-->
+    	<img class="title_icon" src="./assets/openj9_6b.png" alt="Eclipse OpenJ9">
     </div>  
     <div class="egg">
       <a href="http://wiki.eclipse.org/Development_Resources/Process_Guidelines/What_is_Incubation" target="_blank"><img src="./assets/egg-incubation.png" alt="Eclipse Incubation"></a>
@@ -90,7 +94,7 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
         </details>
       </div>
 
-	  <div class="section-item-faq">
+      <div class="section-item-faq">
         <details id="license">
           <summary>What license is Eclipse OpenJ9 made available under?</summary>
           <p>The project license is Eclipse Public License 2.0 and Apache License, Version 2.0 (you can choose), but the EPLv2 license has a secondary compatibility for the GPL v2 that is used by OpenJDK. You can combine the two projects and use them together (as OpenJDK's GPL v2 of course). The full license is documented in the <a href="https://github.com/eclipse/openj9/blob/master/LICENSE">LICENSE file</a> and also summarized at the top of virtually every file in the <a href="http://github.com/eclipse/openj9">Eclipse OpenJ9 GitHub repository</a>.
@@ -112,27 +116,35 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
         </details>
       </div>
 
-	  <div class="section-item-faq">
+      <div class="section-item-faq">
         <details id="performance">
           <summary>Why does my Java application perform worse with Eclipse OpenJ9?</summary>
-          <p>So you've found that your Java application performs worse with an OpenJDK that contains Eclipse OpenJ9 than with an OpenJDK that contains another JVM implementation? 
-		  Firstly, we appreciate you taking the time to evaluate the performance. We would like to encourage you to open a <a href="https://github.com/eclipse/openj9/issues">Github issue</a> if you notice an area where you think we can improve. Please tell us about your application, the Java command-line options that you used, and any other relevant information to help us re-create and investigate the issue.
-		  </p>
-		  <p>While we are constantly striving for good performance in as many cases as possible, there are reasons why performance characteristics might be different when running OpenJDK with the OpenJ9 JVM, compared to other JVM implementations.
-		  </p>
-		  <p>One important reason is because <i>performance</i> is not such a simple thing; <i>performance</i> is a generic phrase that can be used to refer to different metrics such as throughput, footprint, startup time, ramp up time, response time, scalability, and so on. When faced with multiple metrics, tradeoffs must often be made. Unsurprisingly, independently developed JVMs can engineer towards very different tradeoffs. For example, better footprint or startup might come at a cost to throughput, or vice versa.
-		  </p>
-		  <p>Most traditional Java benchmark suites focus on application throughput or elapsed time to the exclusion of everything else. While these are undoubtedly important things to measure, changing industry trends, like the growing use of cloud computing platforms, mean that other metrics such as footprint, startup, or throughput with security enabled are also gaining importance. Hence, to evaluate the <i>performance</i> of a JVM, a broader view across different metrics should be taken. We also think it is important when evaluating enhancements to JVM technologies that we don't focus too much on a single metric without accounting for the impact to other metrics.
-		  </p>
-		  <p>There is a second, more pragmatic reason why performance characteristics might be different when running OpenJDK with the OpenJ9 JVM, compared to other JVM implementations. For nearly two decades, the OpenJ9 development team has focused on the broad performance requirements of large enterprise applications. As a result, less development time has been invested in tuning the JVM for many of the common Java benchmark suites, compared to other JVM implementations. We are aware that performance gaps for OpenJDK with OpenJ9 are being reported when running some of these benchmark programs.
-		  </p>
-		  <p>Microbenchmarks, by their nature, are designed to accentuate performance gaps by narrowly focusing on the area they are testing. Because of this tight focus, even one missed opportunity can lead to a substantial performance difference. Optimizing a  JVM for these kinds of programs is often a balancing act between delivering maximum performance and being careful not to develop optimizations that might turn out to be irrelevant, or even potentially harmful, for the performance of real world applications. 
-		  </p>
-		  <p>At the end of the day, whether we need to revisit a particular tradeoff decision, optimize a microbenchmark pattern, or just fix a plain old performance bug, these are all opportunities to improve our JVM. We welcome reports of performance problems you encounter in Java programs, no matter how large or small. And since we're an open source project, you can also suggest improvements or contribute patches yourself!
-		  </p>
+          <p>So you've found that your Java application performs worse with an OpenJDK that contains Eclipse OpenJ9 than with an OpenJDK that contains another JVM implementation?</p>
+          <p>Firstly, we appreciate you taking the time to evaluate the performance. We would like to encourage you to open a <a href="https://github.com/eclipse/openj9/issues">Github issue</a> if you notice an area where you think we can improve. Please tell us about your application, the Java command-line options that you used, and any other relevant information to help us re-create and investigate the issue.
+          </p>
+          <p>While we are constantly striving for good performance in as many cases as possible, there are reasons why performance characteristics might be different when running OpenJDK with the OpenJ9 JVM, compared to other JVM implementations.
+          </p>
+          <p>One important reason is because <i>performance</i> is not such a simple thing; <i>performance</i> is a generic phrase that can be used to refer to different metrics such as throughput, footprint, startup time, ramp up time, response time, scalability, and so on. When faced with multiple metrics, tradeoffs must often be made. Unsurprisingly, independently developed JVMs can engineer towards very different tradeoffs. For example, better footprint or startup might come at a cost to throughput, or vice versa.
+          </p>
+          <p>Most traditional Java benchmark suites focus on application throughput or elapsed time to the exclusion of everything else. While these are undoubtedly important things to measure, changing industry trends, like the growing use of cloud computing platforms, mean that other metrics such as footprint, startup, or throughput with security enabled are also gaining importance. Hence, to evaluate the <i>performance</i> of a JVM, a broader view across different metrics should be taken. We also think it is important when evaluating enhancements to JVM technologies that we don't focus too much on a single metric without accounting for the impact to other metrics.
+          </p>
+          <p>There is a second, more pragmatic reason why performance characteristics might be different when running OpenJDK with the OpenJ9 JVM, compared to other JVM implementations. For nearly two decades, the OpenJ9 development team has focused on the broad performance requirements of large enterprise applications. As a result, less development time has been invested in tuning the JVM for many of the common Java benchmark suites, compared to other JVM implementations. We are aware that performance gaps for OpenJDK with OpenJ9 are being reported when running some of these benchmark programs.
+          </p>
+          <p>Microbenchmarks, by their nature, are designed to accentuate performance gaps by narrowly focusing on the area they are testing. Because of this tight focus, even one missed opportunity can lead to a substantial performance difference. Optimizing a  JVM for these kinds of programs is often a balancing act between delivering maximum performance and being careful not to develop optimizations that might turn out to be irrelevant, or even potentially harmful, for the performance of real world applications. 
+          </p>
+          <p>At the end of the day, whether we need to revisit a particular tradeoff decision, optimize a microbenchmark pattern, or just fix a plain old performance bug, these are all opportunities to improve our JVM. We welcome reports of performance problems you encounter in Java programs, no matter how large or small. And since we're an open source project, you can also suggest improvements or contribute patches yourself!
+          </p>
         </details>
       </div>
-	  
+
+      <div class="section-item-faq">
+        <details id="more">
+          <summary>Where can I learn more about OpenJ9?</summary>
+          <p>You'll find a list of links to recent articles, blog posts, and slides on the separate <a href="oj9_resources.html">Resources</a> page.
+          </p>
+        </details>
+      </div>
+
     </div> <!-- end: build -->
 
   </main>

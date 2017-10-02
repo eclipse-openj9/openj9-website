@@ -129,7 +129,62 @@ a.button.external-button.right-half {
   width: 69%;
 }
 
+/*** FIGURE ***/
 
+.figure {
+  display: flex;  
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+	/*border:1px solid yellow;*/
+}
+.caption {
+  text-align:center;
+  font-style: italic;
+  max-width: 25rem;
+  line-height: 1.3rem;
+  font-size: 1rem;
+	color: #4c4c4c;                      /* gray - dark */
+	padding-top: 1rem;
+	padding: 1rem 0 1.5rem 0;
+	/*border:1px solid blue;*/
+}
+ 
+.thumb > img { 
+	border:1px solid #ff5424;            /* orange - bright */
+	height: 10rem;
+	/*border:1px solid red;*/
+}
+.thumb span { 
+	visibility:hidden;
+}
+.thumb:hover, .thumb:hover span { 
+	visibility:visible;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+	z-index:1;
+	border:0px;
+	background-color: #efefef;           /* gray - light */
+	color: #4c4c4c;                      /* gray - dark */
+  box-shadow: .5rem .5rem 3rem #4c4c4c;/* gray - dark */
+  box-shadow: 10px 10px 50px rgba(0,0,0,0.5);
+}
+.thumb:hover, .thumb:hover span img { 
+  border: 0px;
+  
+}
+.hover-caption { 
+  text-align:center;
+  font-style: italic;
+  line-height: 1.1rem;
+  font-size: 1rem;
+	color: #4c4c4c;                      /* gray - dark */
+	padding: .5rem 2rem 1rem 2rem;
+  border: 2rem;
+}
 
 
 /*** TITLE BAR ***/
@@ -141,41 +196,69 @@ div#main-title {
 }
 
 div#main-title .nav {
-  display: flex;
-  flex-direction: column;
+  display: flex;  
+  justify-content: flex-start;
+  align-items: center;
   color: #aaaabb;
+  margin-left: 2rem;
+  width: 3rem;
+}
+div#main-title .nav p {
+	font-size: 1.1rem;
 }
 div#main-title .nav a.nav-item {
-	font-size: 1.1rem;
   color: #69c1bd;                      /* cyan */
 }
 div#main-title .nav a.nav-item:hover {
   color: #ff5424;                      /* orange - bright */
 }
 div#main-title .nav .fa {
+  font-size: 2rem;
+}
+div#main-title .nav-content .fa {
   font-size: 1.1rem;
+	padding: 0 .5rem 0 0;
+}
+.nav-content {
+  display: none;
+  position: absolute;
+  align-self: flex-start;
+  min-width: 5rem;
+  margin: 0 0 0 -1rem;
+  padding: 1rem 1rem;
+  z-index: 1;
+  background-color: #443f5c;           /* blue - dark */
+  border: 1px solid #302d42;           /* blue - very dark */
+  box-shadow: .5rem .5rem 1rem rgba(0,0,0,0.5);
+}
+.nav:hover .nav-content {
+    display: block;
 }
 
-/* div#main-title .title {
-	font-size: 2.2rem;
+div#main-title .title {
   display: flex;
+  justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 } 
-div#main-title .title #title_icon {
+/* div#main-title .title #title_icon {
   height: 4rem;
 }
  */
-#title_icon {
-  height: 3.2rem;
+.title_icon {
+  height: 4rem;
+  padding: 0 .4rem 0 .4rem;
 }
 
 div#main-title .egg {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
+  width: 3rem;
+  margin-right: 2rem;
 }
 .egg img {
   height: 3rem;
-  padding: 0rem 2rem 0rem 2rem;
 }
 
 
@@ -358,7 +441,7 @@ div.section-content h1 {
   background-color: #69c1bd;           /* cyan */
   background-image: url("../assets/bg-l.png");
   color: #efefef;                      /* gray - light */
-  padding: 2rem;
+  padding: 1.5rem;
   margin: 0;
   text-align:center;
 }
@@ -378,7 +461,7 @@ span.intro-text1 {
   text-align:center;
 }
 
-div#get-started p, div#contributing p, div#build p, div#faq p {
+div#get-started p, div#contributing p, div#build p, div#faq p, div#resources p {
   font-size:1rem;
   display: inline-block;
 }
@@ -386,6 +469,7 @@ div#get-started p  { max-width: 45rem; }
 div#contributing p { max-width: 35rem; }
 div#build p        { width: 100%; }
 div#faq p          { max-width: 35rem; }
+div#resources p    { max-width: 45rem; }
 
 .f-section-item {
 	display: flex;
@@ -409,7 +493,7 @@ div#faq p          { max-width: 35rem; }
 
 
 .f-content-container {
-	max-width: 35rem;
+	max-width: 45rem;
   padding: 0rem 1rem;
   font-size:1rem;
   color: #4c4c4c;                      /* gray - dark */
@@ -499,6 +583,16 @@ div.section-item-faq details p:last-child {
   background-color:#e1ecf4;            /* stack overflow tile blue */
   padding:.1rem .3rem;
 }
+
+/*** RESOURCES ***/
+#resources li {
+	margin-bottom:1rem;
+}
+#resources li > ul li {
+  margin-bottom:0rem;
+
+}
+
 
 /*** FOOTER ***/
 footer {
