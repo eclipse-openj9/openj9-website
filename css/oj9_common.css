@@ -590,7 +590,9 @@ div.section-item-faq details p:last-child {
 }
 #resources li > ul li {
   margin-bottom:0rem;
-
+}
+#resources li i {
+	margin-right: .5rem;
 }
 
 
