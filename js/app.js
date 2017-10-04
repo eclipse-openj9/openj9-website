@@ -17,4 +17,17 @@ var readMoreText = document.getElementById('read-more-text');
 readMoreButton.onclick = function() {
   readMoreButtonIcon.classList.toggle('rotate45');
   readMoreText.classList.toggle('closed');
-};
+ };
+
+var h_id = window.location.hash;
+if(h_id != "") {
+  var e_id = h_id.substr(1); // remove.. #
+  document.write("<br/><br/><p style='color:white'>" + e_id + "</p>")
+  readMoreButtonIcon.classList.toggle('rotate45');
+  readMoreText.classList.toggle('closed');
+
+  var elem = document.getElementById(e_id);
+  document.write("<p style='color:white'>" + elem + "__"+ elem.offsetLeft + "__"+ elem.offsetTop +"</p>")
+  elem.scrollIntoView();
+}
+

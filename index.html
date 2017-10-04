@@ -30,6 +30,9 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
     ga('create', 'UA-105616558-1', 'auto');
     ga('send', 'pageview');
   </script>
+
+
+
 </head>
 <body>
   <div id="main-title">
@@ -67,98 +70,134 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
       </p> 
       <a class="button external-button" style="width:17em; margin-top:1rem;" href="https://adoptopenjdk.net/releases.html?variant=openjdk9-openj9">Download Now
         <i class="fa fa-download" aria-hidden="true"></i></a>
-      <h2>
+      <h2 id="performance">
         Give your Java application a thrill<br/>
         Run it on OpenJDK with Eclipse OpenJ9
       </h2> 
       <div id="read-more-button">
-      	Learn more <i id="read-more-button-icon" class="fa fa-plus-circle" aria-hidden="true"></i>
+        Learn more <i id="read-more-button-icon" class="fa fa-plus-circle" aria-hidden="true"></i>
       </div>
 	
       <div id="read-more-text" class="closed">
-        <p>Eclipse OpenJ9 is a high performance, scalable, Java virtual machine (JVM) implementation that represents hundreds of person-years of effort. Contributed to the Eclipse project by IBM, the OpenJ9 JVM underpins the IBM SDK, Java Technology Edition product that is a core component of many IBM Enterprise software products. Continued development of OpenJ9 at the Eclipse foundation ensures wider collaboration, fresh innovation, and the opportunity to influence the development of OpenJ9 for the next generation of Java applications.
+        <p id="performance"about OpenJ9 performance >Eclipse OpenJ9 is a high performance, scalable, Java virtual machine (JVM) implementation that represents hundreds of person-years of effort. Contributed to the Eclipse project by IBM, the OpenJ9 JVM underpins the IBM SDK, Java Technology Edition product that is a core component of many IBM Enterprise software products. Continued development of OpenJ9 at the Eclipse foundation ensures wider collaboration, fresh innovation, and the opportunity to influence the development of OpenJ9 for the next generation of Java applications.
         </p>
-        <h2>Saving costs in the cloud</h2>
+        <h2 id="smaller">Saving costs in the cloud</h2>
         <p>OpenJ9 is highly optimized for cloud workloads. The memory footprint is around half the size of other JVM implementations. 
         </p>
         <p>The following charts compare the performance of OpenJDK 9 with Hotspot and OpenJDK 9 with OpenJ9 when the DayTrader 3 benchmark application is run:
         </p>
 
-        <div class="figure">
-          <div style=" height:10rem;">
-            <a id="fig1" class="thumb" href="#fig1">
-            	<img src="assets/perf_rss_ramp_xmx1g_2.png" style="height:10rem;" alt="The explanation for this graph is provided in 'DayTrader 3 benchmark testing' (link below)."/>
-              <span>
-              	<img src="assets/perf_rss_ramp_xmx1g_2.png" alt=""/>
-                <p class="hover-caption">DayTrader 3 footprint size during ramp up with a maximum Java heap size set to 1 GB.
+        <div class="figures">
+        
+          <div class="figure">
+            <div class="box">
+              <a class="pop" href="#fig1">
+                <img src="assets/perf_rss_ramp_xmx1g_2.png" alt="Footprint size during ramp up (see link below)."/>
+                <span>Click to enlarge</span>
+              </a>
+            </div>
+            <p class="caption1">Fig 1. DayTrader 3 footprint size during ramp up with a maximum Java heap size set to 1 GB.
+            </p>
+            <div id="fig1" class="pop-box">
+              <a class="close" href="#">&times;</a>
+              <div class="content">
+                <img src="assets/perf_rss_ramp_xmx1g_2.png" alt=""/>
+                <p class="caption2">Fig 1. DayTrader 3 footprint size during ramp up with a maximum Java heap size set to 1 GB.
                 </p>
-              </span>
-            </a>
-          </div>
-          <p class="caption">Footprint size during ramp up with a maximum Java heap size set to 1 GB.
-          </p>
-        </div>  
+              </div>
+            </div>
+          </div>  <!-- end: figure -->
 
-        <div class="figure">
-          <div style=" height:10rem;">
-            <a id="fig2" class="thumb" href="#fig2">
-            	<img src="assets/perf_startup_footprint_xmx1g_2.png" style="height:10rem;" alt="The explanation for this graph is provided in 'DayTrader 3 benchmark testing' (link below)."/>
-              <span>
-              	<img src="assets/perf_startup_footprint_xmx1g_2.png" alt=""/>
-                <p class="hover-caption">DayTrader 3 footprint size after start up with a maximum Java heap size set to 1 GB.
+          <div class="figure">
+            <div class="box">
+              <a class="pop" href="#fig2">
+                <img src="assets/perf_startup_footprint_xmx1g_2.png" alt="Footprint size after start up (see link below)."/>
+                <span>Click to enlarge</span>
+              </a>
+            </div>
+            <p class="caption1">Fig 2. DayTrader 3 footprint size after start up with a maximum Java heap size set to 1 GB.
+            </p>
+            <div id="fig2" class="pop-box">
+              <a class="close" href="#">&times;</a>
+              <div class="content">
+                <img src="assets/perf_startup_footprint_xmx1g_2.png" alt=""/>
+                <p class="caption2">Fig 2. DayTrader 3 footprint size after start up with a maximum Java heap size set to 1 GB.
                 </p>
-              </span>
-            </a>
-          </div>
-          <p class="caption">Footprint size after start up with a maximum Java heap size set to 1 GB.
-          </p>
-          <p class="caption">For more details, see 
-          	<a href="https://git.eclipse.org/r/plugins/gitiles/www.eclipse.org/openj9/+/master/benchmark/daytrader3.md">DayTrader 3 benchmark testing</a>.
-          </p>
-        </div>
+              </div>
+            </div>
+          </div>  <!-- end: figure -->
+  
+        </div>  <!-- end: figures -->
+
+        <p class="caption2">For more details, see 
+<!--
+        <a href="https://git.eclipse.org/r/plugins/gitiles/www.eclipse.org/openj9/+/master/benchmark/daytrader3.md">DayTrader 3 benchmark testing</a>.
+-->
+         <a href="https://github.ibm.com/runtimes/openj9-website/blob/master/benchmark/daytrader3.md">DayTrader 3 benchmark testing</a>.
+        </p>
 
         <p>Whether you are a cloud user or a cloud provider, a smaller footprint generates immediate cost savings when running applications on most cloud services. You can also take advantage of a tuning mechanism that detects when the JVM is idle, releasing free memory pages to keep the footprint as small as possible and keep your running costs to a minimum.
         </p>
         <p>If resources become constrained, OpenJ9 provides a dedicated running mode, <code>-Xtune:virtualized</code>, that reduces CPU consumption and memory footprint. This is useful for scenarios where cloud services become highly overcommitted at peak times.
         </p>
-        <h2>Better performance</h2>
+
+        <h2 id="faster">Better performance</h2>
+
         <p>Benchmark tests demonstrate performance improvements over alternative JVM implementations, including faster start up times and comparable application throughput.
         </p>
         <p>The following charts compare the performance of OpenJDK 9 with Hotspot and OpenJDK 9 with OpenJ9 when the DayTrader 3 benchmark application is run:
         </p>
 
-        <div class="figure">
-          <div style=" height:10rem;">
-            <a id="fig3" class="thumb" href="#fig3">
-            	<img src="assets/perf_startup_xmx1g_2.png" style="height:10rem;" alt="The explanation for this graph is provided in 'DayTrader 3 benchmark testing' (link below)."/>
-            	<span>
-            		<img src="assets/perf_startup_xmx1g_2.png" alt=""/>
-                <p class="hover-caption">DayTrader 3 startup time with a maximum Java heap size set to 1 GB.
-                </p>
-              </span>
-            </a>
-          </div>
-          <p class="caption">Startup time with a maximum Java heap size set to 1 GB.
-          </p>
-        </div>
 
-        <div class="figure">
-          <div style=" height:10rem;">
-            <a id="fig4" class="thumb" href="#fig4">
-            	<img src="assets/perf_thr_ramp_xmx1g_2.png" style="height:10rem;" alt="The explanation for this graph is provided in 'DayTrader 3 benchmark testing' (link below)."/>
-            	<span>
-            		<img src="assets/perf_thr_ramp_xmx1g_2.png" alt=""/>
-                <p class="hover-caption">DayTrader 3 throughput during ramp up with a maximum Java heap size set to 1 GB.
+        <div class="figures">
+        
+          <div class="figure">
+            <div class="box">
+              <a class="pop" href="#fig3">
+                <img src="assets/perf_startup_xmx1g_2.png" alt="Startup time (see link below)."/>
+                <span>Click to enlarge</span>
+              </a>
+            </div>
+            <p class="caption1">Fig 3. DayTrader 3 startup time with a maximum Java heap size set to 1 GB.
+            </p>
+            <div id="fig3" class="pop-box">
+              <a class="close" href="#">&times;</a>
+              <div class="content">
+                <img src="assets/perf_startup_xmx1g_2.png" alt=""/>
+                <p class="caption2">Fig 3. DayTrader 3 startup time with a maximum Java heap size set to 1 GB.
                 </p>
-              </span>
-            </a>
-          </div>
-          <p class="caption">Throughput during ramp up with a maximum Java heap size set to 1 GB.
-          </p>
-          <p class="caption">For more details, see 
-          	<a href="https://git.eclipse.org/r/plugins/gitiles/www.eclipse.org/openj9/+/master/benchmark/daytrader3.md">DayTrader 3 benchmark testing</a>.
-          </p>
-        </div>
+              </div>
+            </div>
+          </div>  <!-- end: figure -->
+
+          <div class="figure">
+            <div class="box">
+              <a class="pop" href="#fig4">
+                <img src="assets/perf_thr_ramp_xmx1g_2.png" alt="Throughput during ramp (see link below)."/>
+                <span>Click to enlarge</span>
+              </a>
+            </div>
+            <p class="caption1">Fig 4. DayTrader 3 throughput during ramp up with a maximum Java heap size set to 1 GB.
+            </p>
+            <div id="fig4" class="pop-box">
+              <a class="close" href="#">&times;</a>
+              <div class="content">
+                <img src="assets/perf_thr_ramp_xmx1g_2.png" alt=""/>
+                <p class="caption2">Fig 4. DayTrader 3 throughput during ramp up with a maximum Java heap size set to 1 GB.
+                </p>
+              </div>
+            </div>
+          </div>  <!-- end: figure -->
+  
+        </div>  <!-- end: figures -->
+
+        <p class="caption2">For more details, see 
+<!--
+        <a href="https://git.eclipse.org/r/plugins/gitiles/www.eclipse.org/openj9/+/master/benchmark/daytrader3.md">DayTrader 3 benchmark testing</a>.
+-->
+         <a href="https://github.ibm.com/runtimes/openj9-website/blob/master/benchmark/daytrader3.md">DayTrader 3 benchmark testing</a>.
+        </p>
+
 
         <p>Shared classes and Ahead-of-Time (AOT) technologies typically provide a 20-40% reduction in startup time while improving the overall ramp-up time of applications. This capability is crucial for short-running Java applications or for horizontal scalability solutions that rely on the frequent provisioning and de-provisioning of JVM instances to manage workloads.</p>
 
@@ -315,5 +354,6 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
   </footer>
 
   <script src="./js/app.js"></script>
-</body>
+  
+  </body>
 </html>
