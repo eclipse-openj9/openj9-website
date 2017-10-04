@@ -113,7 +113,7 @@ Additional runs were performed for OpenJDK9 with OpenJ9 with additional JVM tuni
 1.	Ahead-Of-Time (AOT) enabled: Options `-Xshareclasses -Xscmx60M -Xscmaxaot8M`
 2.	AOT and JIT compiler optimizations: Options `-Xshareclasses -Xscmx60M -Xscmaxaot8M -Xquickstart`
 
-When AOT was enabled, the values set reflect the default settings in OpenLiberty. All performance numbers with AOT enabled were collected with a shared class cache populated by a previous 'cold' run, which was excluded from the measurements.
+When AOT was enabled, the values set reflect the default settings in OpenLiberty. All performance numbers with AOT enabled were collected with a shared class cache populated by a previous 'cold' run, which is not included in the measurements.
 
 To run OpenLiberty with OpenJDK9 (either with HotSpot or OpenJ9) the following options were added to the Java command line:
 
@@ -121,6 +121,9 @@ To run OpenLiberty with OpenJDK9 (either with HotSpot or OpenJ9) the following o
 
 **Note:** Because Daytrader is a Java EE 6 application and the public package of OpenLiberty does not include all the features needed to run the Java EE 6 spec, we had to change the Liberty [server.xml](server.xml) configuration file.
 
+Copyright (c) 2017 IBM Corp. and others
+
 ---
 
 Click [here](http://www.eclipse.org/openj9) for the Eclipse OpenJ9 website.
+
