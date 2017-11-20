@@ -333,6 +333,17 @@ main div#intro-block div#read-more-button {
   font-weight: bold;
   color: #5c5b92;                      /* blue - light */
 }
+.read-more-link {
+  line-height: 1.4rem;
+  font-size: 1.2rem;
+  display: inline-block;
+  font-style: italic;
+  font-weight: bold;
+  color: #5c5b92;                      /* blue - light */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
 main div#intro-block div#read-more-button i {
   vertical-align:middle;
@@ -392,16 +403,17 @@ div.section-content h1 {
   text-align:center;
 }
 
-span.intro-text {
-  font-size:1.4rem;
+.intro-text {
+  font-size:1.5rem;
   padding:2rem 2rem 1rem 2rem ;
   padding:2rem 5rem 1.5rem 5rem ;
   color: #69c1bd;                      /* cyan */
   text-align:center;
 }
-span.intro-text1 {
+.intro-text1 {
   font-size:1.3rem;
-  padding:0rem 5rem 1.5rem 5rem ;
+  padding-bottom: 2rem;
+  padding: 0 5rem 2rem 5rem;
   color: #407471;                      /*cyan - dark */
   color: #69c1bd;                      /* cyan */
   text-align:center;
@@ -411,11 +423,15 @@ div#get-started p, div#contributing p, div#build p, div#faq p, div#resources p {
   font-size:1rem;
   display: inline-block;
 }
+div#performance p {
+  display: inline-block;
+}
 div#get-started p  { max-width: 45rem; }
 div#contributing p { max-width: 35rem; }
-div#build p        { width: 100%; }
+div#build p        { width: 100%;      }
 div#faq p          { max-width: 35rem; }
 div#resources p    { max-width: 45rem; }
+div#performance p  { width: 100%;      }
 
 .f-section-item {
 	display: flex;
@@ -688,7 +704,7 @@ footer {
   line-height: 1.1rem;
   font-size: .9rem;
 	color: #4c4c4c;                      /* gray - dark */
-	padding: .5rem 2rem .5rem 2rem;
+	padding-top: .5rem;
 }
 @media screen and (max-width: 700px){
   .box{
