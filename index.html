@@ -22,6 +22,7 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css">
   <link rel="stylesheet" href="./css/oj9_media.css">
   <link rel="stylesheet" href="./css/oj9_common.css">  
+  <script type="text/javascript" src="./js/oj9_common.js"></script>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -36,15 +37,7 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
 </head>
 <body>
   <div id="main-title">
-    <div class="nav">
-      <span><i class="fa fa-bars" aria-hidden="true"></i></span>
-      <div class="nav-content">
-        <p><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i>Home</p>
-        <p><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="nav-item" href="oj9_build.html">Build</a></p>
-        <p><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="nav-item" href="oj9_faq.html">FAQ</a></p>
-        <p><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="nav-item" href="oj9_resources.html">Resources</a></p>
-      </div>
-    </div>
+    <script type="text/javascript">navigation(document.location.href);</script>	
     <div class="title">
     	<!--<img class="title_icon" src="./assets/openj9_6a.png" alt="Eclipse OpenJ9">-->
     	<img class="title_icon" src="./assets/openj9_6b.png" alt="Eclipse OpenJ9">
@@ -63,76 +56,46 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
 <!--
           <img src="./assets/openj9-hex.png" class="product-logo" />
 -->
-        Low memory footprint. Fast startup time. High application throughput.<br/>
-        Optimized to run Java applications cost-effectively in the cloud.<br/>
+      <span style="font-size:1.4rem; color:#69c1bd;">Low memory footprint<br/>Fast startup time<br/>High application throughput</span>
+      </p>
+      <p style="font-size:1.2rem;">
+        Eclipse OpenJ9 is optimized to run Java applications cost-effectively in the cloud.<br/>
         Want an OpenJDK build that contains an enterprise grade, open source, Java virtual machine?<br/>
         Grab a pre-built binary and try it for yourself...
       </p> 
       <a class="button external-button" style="width:17em; margin-top:1rem;" href="https://adoptopenjdk.net/releases.html?variant=openjdk9-openj9">Download Now
         <i class="fa fa-download" aria-hidden="true"></i></a>
+	  <a class="button external-button" style="width:17em; margin-top:1rem;" href="oj9_whatsnew.html">What's new?
+        <i class="fa fa-bullhorn" aria-hidden="true"></i></a>
+		
       <h2 id="performance">
         Give your Java application a thrill<br/>
         Run it on OpenJDK with Eclipse OpenJ9
       </h2> 
+
+<!--
+      <div style="text-align:left; max-width: 23rem; margin: 0 auto; margin-bottom:5rem; line-height: 1.9rem; font-size:1.1rem;">
+        <ul>
+          <li>Around 50% smaller memory footprint</li>
+          <li>Over 40% faster startup time</li>
+          <li>5&times; faster to full throughput</li>
+        </ul> 
+
+        <p class="read-more-link">Read more about <a href="oj9_performance.html">OpenJ9 performance</a>.
+        </p>
+      </div>
+-->
+
       <div id="read-more-button">
         Learn more <i id="read-more-button-icon" class="fa fa-plus-circle" aria-hidden="true"></i>
       </div>
 	
       <div id="read-more-text" class="closed">
-        <p id="performance"about OpenJ9 performance >Eclipse OpenJ9 is a high performance, scalable, Java virtual machine (JVM) implementation that represents hundreds of person-years of effort. Contributed to the Eclipse project by IBM, the OpenJ9 JVM underpins the IBM SDK, Java Technology Edition product that is a core component of many IBM Enterprise software products. Continued development of OpenJ9 at the Eclipse foundation ensures wider collaboration, fresh innovation, and the opportunity to influence the development of OpenJ9 for the next generation of Java applications.
+        <p id="performance">Eclipse OpenJ9 is a high performance, scalable, Java virtual machine (JVM) implementation that represents hundreds of person-years of effort. Contributed to the Eclipse project by IBM, the OpenJ9 JVM underpins the IBM SDK, Java Technology Edition product that is a core component of many IBM Enterprise software products. Continued development of OpenJ9 at the Eclipse foundation ensures wider collaboration, fresh innovation, and the opportunity to influence the development of OpenJ9 for the next generation of Java applications.
         </p>
         <h2 id="smaller">Saving costs in the cloud</h2>
         <p>OpenJ9 is highly optimized for cloud workloads. The memory footprint is around half the size of other JVM implementations. 
         </p>
-        <p>The following charts compare the performance of OpenJDK 9 with Hotspot and OpenJDK 9 with OpenJ9 when the DayTrader 3 benchmark application is run:
-        </p>
-
-        <div class="figures">
-        
-          <div class="figure">
-            <div class="box">
-              <a class="pop" href="#fig1">
-                <img src="assets/perf_rss_ramp_xmx1g_2.png" alt="Footprint size during ramp up (see link below)."/>
-                <span>Click to enlarge</span>
-              </a>
-            </div>
-            <p class="caption1">Fig 1. DayTrader 3 footprint size during ramp up with a maximum Java heap size set to 1 GB.
-            </p>
-            <div id="fig1" class="pop-box">
-              <a class="close" href="#">&times;</a>
-              <div class="content">
-                <img src="assets/perf_rss_ramp_xmx1g_2.png" alt=""/>
-                <p class="caption2">Fig 1. DayTrader 3 footprint size during ramp up with a maximum Java heap size set to 1 GB.
-                </p>
-              </div>
-            </div>
-          </div>  <!-- end: figure -->
-
-          <div class="figure">
-            <div class="box">
-              <a class="pop" href="#fig2">
-                <img src="assets/perf_startup_footprint_xmx1g_2.png" alt="Footprint size after start up (see link below)."/>
-                <span>Click to enlarge</span>
-              </a>
-            </div>
-            <p class="caption1">Fig 2. DayTrader 3 footprint size after start up with a maximum Java heap size set to 1 GB.
-            </p>
-            <div id="fig2" class="pop-box">
-              <a class="close" href="#">&times;</a>
-              <div class="content">
-                <img src="assets/perf_startup_footprint_xmx1g_2.png" alt=""/>
-                <p class="caption2">Fig 2. DayTrader 3 footprint size after start up with a maximum Java heap size set to 1 GB.
-                </p>
-              </div>
-            </div>
-          </div>  <!-- end: figure -->
-  
-        </div>  <!-- end: figures -->
-
-        <p class="caption2">For more details, see 
-        <a href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader3.md">DayTrader 3 benchmark testing</a>.
-        </p>
-
         <p>Whether you are a cloud user or a cloud provider, a smaller footprint generates immediate cost savings when running applications on most cloud services. You can also take advantage of a tuning mechanism that detects when the JVM is idle, releasing free memory pages to keep the footprint as small as possible and keep your running costs to a minimum.
         </p>
         <p>If resources become constrained, OpenJ9 provides a dedicated running mode, <code>-Xtune:virtualized</code>, that reduces CPU consumption and memory footprint. This is useful for scenarios where cloud services become highly overcommitted at peak times.
@@ -142,67 +105,21 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
 
         <p>Benchmark tests demonstrate performance improvements over alternative JVM implementations, including faster start up times and comparable application throughput.
         </p>
-        <p>The following charts compare the performance of OpenJDK 9 with Hotspot and OpenJDK 9 with OpenJ9 when the DayTrader 3 benchmark application is run:
+        <p>Shared classes and Ahead-of-Time (AOT) technologies typically provide a 20-40% reduction in startup time while improving the overall ramp-up time of applications. This capability is crucial for short-running Java applications or for horizontal scalability solutions that rely on the frequent provisioning and de-provisioning of JVM instances to manage workloads.
         </p>
-
-
-        <div class="figures">
-        
-          <div class="figure">
-            <div class="box">
-              <a class="pop" href="#fig3">
-                <img src="assets/perf_startup_xmx1g_2.png" alt="Startup time (see link below)."/>
-                <span>Click to enlarge</span>
-              </a>
-            </div>
-            <p class="caption1">Fig 3. DayTrader 3 startup time with a maximum Java heap size set to 1 GB.
-            </p>
-            <div id="fig3" class="pop-box">
-              <a class="close" href="#">&times;</a>
-              <div class="content">
-                <img src="assets/perf_startup_xmx1g_2.png" alt=""/>
-                <p class="caption2">Fig 3. DayTrader 3 startup time with a maximum Java heap size set to 1 GB.
-                </p>
-              </div>
-            </div>
-          </div>  <!-- end: figure -->
-
-          <div class="figure">
-            <div class="box">
-              <a class="pop" href="#fig4">
-                <img src="assets/perf_thr_ramp_xmx1g_2.png" alt="Throughput during ramp (see link below)."/>
-                <span>Click to enlarge</span>
-              </a>
-            </div>
-            <p class="caption1">Fig 4. DayTrader 3 throughput during ramp up with a maximum Java heap size set to 1 GB.
-            </p>
-            <div id="fig4" class="pop-box">
-              <a class="close" href="#">&times;</a>
-              <div class="content">
-                <img src="assets/perf_thr_ramp_xmx1g_2.png" alt=""/>
-                <p class="caption2">Fig 4. DayTrader 3 throughput during ramp up with a maximum Java heap size set to 1 GB.
-                </p>
-              </div>
-            </div>
-          </div>  <!-- end: figure -->
-  
-        </div>  <!-- end: figures -->
-
-        <p class="caption2">For more details, see 
-        <a href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader3.md">DayTrader 3 benchmark testing</a>.
+        <p>OpenJ9 has also been built to exploit hardware features, such as graphics processing units (GPU) that can improve the performance of Java applications for different workloads.
         </p>
-
-
-        <p>Shared classes and Ahead-of-Time (AOT) technologies typically provide a 20-40% reduction in startup time while improving the overall ramp-up time of applications. This capability is crucial for short-running Java applications or for horizontal scalability solutions that rely on the frequent provisioning and de-provisioning of JVM instances to manage workloads.</p>
-
-        <p>OpenJ9 has also been built to exploit hardware features, such as graphics processing units (GPU) that can improve the performance of Java applications for different workloads.</p>
-        <p>As a developer you can achieve even faster startup times by using <code>-Xquickstart</code> mode, which enables rapid development &rarr; deployment &rarr; test cycles to improve productivity.</p>
+        <p >As a developer you can achieve even faster startup times by using <code>-Xquickstart</code> mode, which enables rapid development &rarr; deployment &rarr; test cycles to improve productivity.<br/><br/>
+        </p>
+        <p class="read-more-link">Learn more about <a href="oj9_performance.html">OpenJ9 performance</a>.
+        </p>
+        <p>&nbsp;
+        </p>
       </div> <!-- end: read-more-text -->
 
       <div class="home-button-row">
         <a class="button internal-button" href="#get-started">Get started</a>
         <a class="button internal-button" href="#contributing">Get involved</a>
-        <a class="button internal-button" href="oj9_faq.html">FAQ</a>
       </div>
     </div> <!-- end: INTRO -->
 
@@ -233,7 +150,7 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
       <div class="f-section-item">
         <div class="f-content-container">
           <p><span class="first-word">Build your own</span>
-          If you are familiar with building OpenJDK, you might want to build it with OpenJ9 yourself. For a deeper dive, read the build instructions, which cover all the steps to build an OpenJDK with OpenJ9 and how to test your binary.
+          If you are familiar with building OpenJDK, you might want to build it with OpenJ9 yourself. For a deeper dive, read the build instructions, which cover all the steps to build a version 8 or version 9 OpenJDK with OpenJ9 and how to test your binary.
           </p>
         </div>
         <div class="f-button-container">

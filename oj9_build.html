@@ -22,6 +22,37 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css">
   <link rel="stylesheet" href="./css/oj9_media.css">
   <link rel="stylesheet" href="./css/oj9_common.css">  
+  <script type="text/javascript" src="./js/oj9_common.js"></script>
+  <script>
+    function version(state) {
+      var i;
+      if(state == "a") {
+        var els = document.getElementsByClassName("v-8");
+        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display: block;");
+        var els = document.getElementsByClassName("v-9");
+        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:none;");
+        
+        var els = document.getElementsByClassName("v-alt8");
+        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:none;");
+        var els = document.getElementsByClassName("v-alt9");
+        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:block;");
+      }
+
+      if(state == "b") {
+        var els = document.getElementsByClassName("v-8");
+        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:none;");
+        var els = document.getElementsByClassName("v-9");
+        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display: block;");
+      
+        var els = document.getElementsByClassName("v-alt8");
+        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:block;");
+        var els = document.getElementsByClassName("v-alt9");
+        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:none;");
+      }
+
+    }
+  </script>
+
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -30,22 +61,65 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
     ga('create', 'UA-105616558-1', 'auto');
     ga('send', 'pageview');
   </script>
+
+<style>
+.version-menu input {
+  display: none;
+}
+
+.version-menu {
+  position:fixed;
+  top:120px;
+  left:20px;
+}
+
+.version-menu label {
+  display: block;
+  width: 7rem;
+  height: 1.7rem;
+  margin: 0rem 0rem .1rem 0rem ;
+  padding: 0rem 0rem 0rem 0rem ;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-align: center;
+  color:#ffffff;
+  background-color: #69c1bd;           /* cyan */
+  background-color: #e95a32;           /* orange */
+  border: 1px solid #888888;
+}
+
+.version-menu label:hover {
+  background-color: #407471;           /*cyan - dark */
+  background-color: #ff5424;           /* orange - bright */
+}
+
+input[type="radio"]:checked + label {
+  background-color: #e95a32;           /* orange */
+  background-color: #36354f;           /* blue - dark */
+  background-color: #69c1bd;           /* cyan */
+  box-shadow: 3px 3px 15px #999;
+}
+</style>
+
 </head>
-<body>
+<body onload="version('a')">
+
+<div class="version-menu">
+    <input type="radio" id="version-a" name="version-choice" onclick="version('a')" checked>
+    <label for="version-a"><p class="v-8">JDK 8</p> <p class="v-alt8">Build JDK 8</p></label>
+    <input type="radio" id="version-b" name="version-choice" onclick="version('b')">
+    <label for="version-b"><p class="v-9">JDK 9</p> <p class="v-alt9">Build JDK 9</p></label>
+</div>
+
   <div id="main-title">
-    <div class="nav">
-      <span><i class="fa fa-bars" aria-hidden="true"></i></span>
-      <div class="nav-content">
-        <p><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="nav-item" href="index.html">Home</a></p>
-        <p><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i>Build</p>
-        <p><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="nav-item" href="oj9_faq.html">FAQ</a></p>
-        <p><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="nav-item" href="oj9_resources.html">Resources</a></p>
-      </div>
-    </div>
+    <script type="text/javascript">navigation(document.location.href);</script>  
     <div class="title">
       <a href="index.html">
         <!--<img class="title_icon" src="./assets/openj9_6a.png" alt="Eclipse OpenJ9">-->
-    	  <img class="title_icon" src="./assets/openj9_6b.png" alt="Eclipse OpenJ9">
+        <img class="title_icon" src="./assets/openj9_6b.png" alt="Eclipse OpenJ9">
       </a>
     </div>  
     <div class="egg">
@@ -53,16 +127,18 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
     </div>  
   </div>
 
-  <main>
+
+  <main class="switch-wrap">
 
     <div id="build" class="section-content">
-      <h1>Build your own</h1>
+      <h1 class="v-8">Build your own OpenJDK version 8</h1>
+      <h1 class="v-9">Build your own OpenJDK version 9</h1>
 
       <div class="f-section-item">
         <span class="intro-text">Building OpenJDK with OpenJ9 will be familiar to anyone who has already built OpenJDK.</span>
       </div>
       <div class="f-section-item">
-        <span class="intro-text1">We're going to use a Docker file to create a Docker container where you'll build a binary from source code and run some tests on it. Just follow these steps:</span>
+        <span class="intro-text1" style="margin:0 4rem;">We're going to use a Docker file* to create a Docker container where you'll build a binary from source code and run some tests on it. Just follow these steps:</span>
       </div>
           
       <div class="f-section-item">
@@ -75,21 +151,34 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
         </ol> 
       </div>
 
+      <div class="f-section-item">
+        <span class="v-8 intro-text1" style="margin:0 19rem;"><span style="font-size:2rem;">*</span> <i>If you don't want to use Docker or you want to build a binary for another platform,<br/>read the <a href="https://github.com/eclipse/openj9/blob/master/buildenv/Build_Instructions_V8.md" target="-blank">full set of build instructions for JDK 8</a>.</i>
+        </span>
+        <span class="v-9 intro-text1" style="margin:0 19rem;"><span style="font-size:2rem;">*</span> <i>If you don't want to use Docker or you want to build a binary for another platform,<br/>read the <a href="https://github.com/eclipse/openj9/blob/master/buildenv/Build_Instructions_V9.md" target="-blank">full set of build instructions for JDK 9</a>.</i>
+        </span>
+      </div>
+
       <div class="f-section-item" id="prepare">
         <div class="f-content-container">
           <h3>Prepare your system</h3>
-          <p>If you don't already have Docker on your system, <a href="https://docs.docker.com/engine/installation/">download</a> and install it now.
+          <p>
+          We'll start by building a Dockerfile. If you don't already have Docker on your system, <a href="https://docs.docker.com/engine/installation/">download</a> and install it now.
           </p>
-          <p>We'll start by building a Dockerfile. Pick one of the following Dockerfiles for the platform you want to work on:
-          </p>
-          <ul>
-            <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk9/x86_64/ubuntu16/Dockerfile">Linux 64-bit (x86_64)</a></strong></li>
-            <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk9/ppc64le/ubuntu16/Dockerfile">Linux on Power systems 64-bit (ppc64)</a></strong></li>
-            <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk9/s390x/ubuntu16/Dockerfile">Linux on z Systems 64-bit (390_64)</a></strong></li>
+          <p class="v-8">Pick one of the following JDK v8 Dockerfiles for the platform you want to work on:</p>
+          <p class="v-9">Pick one of the following JDK v9 Dockerfiles for the platform you want to work on:</p>
+          <ul class="v-8">
+            <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk8/x86_64/ubuntu16/Dockerfile" target="_blank">Linux 64-bit (x86_64)</a></strong></li>
+            <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk8/ppc64le/ubuntu16/Dockerfile" target="_blank">Linux on Power systems 64-bit (ppc64)</a></strong></li>
+            <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk8/s390x/ubuntu16/Dockerfile" target="_blank">Linux on z Systems 64-bit (390_64)</a></strong></li>
+          </ul>
+          <ul class="v-9">
+            <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk9/x86_64/ubuntu16/Dockerfile" target="_blank">Linux 64-bit (x86_64)</a></strong></li>
+            <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk9/ppc64le/ubuntu16/Dockerfile" target="_blank">Linux on Power systems 64-bit (ppc64)</a></strong></li>
+            <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk9/s390x/ubuntu16/Dockerfile" target="_blank">Linux on z Systems 64-bit (390_64)</a></strong></li>
           </ul>
           <p>Save the Dockerfile to your current directory and specify these commands to build and run the Docker image:
           </p>
-<pre><code>docker build -t openj9 .</code>
+<pre><code>docker build -t openj9 -f Dockerfile .</code>
 <code>docker run -it openj9</code></pre>
         <p>Depending on your <a href="https://docs.docker.com/engine/reference/commandline/cli/#description" target="_blank">Docker system configuration</a>, you might need to prefix these commands with <code>sudo</code>.
           </p>
@@ -101,12 +190,16 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
       <div class="f-section-item" id="get">
         <div class="f-content-container">
           <h3>Get the source</h3>
-          <p>First you need to clone the <strong>Extensions for OpenJDK for OpenJ9</strong> project. This repository is a git mirror of OpenJDK without the HotSpot JVM, but with an <strong>openj9</strong> branch that contains a few necessary patches. Run the following command:
+          <p>First you need to clone the <strong>Extensions for OpenJDK for Eclipse OpenJ9</strong> project.
           </p>
-          <pre><code>git clone https://github.com/ibmruntimes/openj9-openjdk-jdk9</code></pre>
+          <p>This repository is a git mirror of OpenJDK without the HotSpot JVM, but with an <strong>openj9</strong> branch that contains a few necessary patches. Run the following command:
+          </p>
+          <pre class="v-8"><code>git clone https://github.com/ibmruntimes/openj9-openjdk-jdk8</code></pre>
+          <pre class="v-9"><code>git clone https://github.com/ibmruntimes/openj9-openjdk-jdk9</code></pre>
           <p>Cloning this repository can take a while because OpenJDK is a large project! When the process is complete, change directory into the cloned repository:
           </p>
-          <pre><code>cd openj9-openjdk-jdk9</code></pre>
+          <pre class="v-8"><code>cd openj9-openjdk-jdk8</code></pre>
+          <pre class="v-9"><code>cd openj9-openjdk-jdk9</code></pre>
           <p>Now fetch additional sources from the <strong>Eclipse OpenJ9</strong> project and its clone of <strong>Eclipse OMR</strong>:
           </p>
           <pre><code>bash ./get_source.sh</code></pre>
@@ -153,14 +246,28 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
 <code>./bin/java -version</code></pre>
           <p>Here is a sample of the output from a Linux x-86 binary:
           </p>
-          <pre class="output">openjdk version "9-internal"
+<pre class="output v-8">openjdk version "1.8.0-internal"
+OpenJDK Runtime Environment (build 1.8.0-internal-admin_2017_10_31_10_46-b00)
+Eclipse OpenJ9 VM (build 2.9, JRE 1.8.0 Linux amd64-64 Compressed References 20171031_000000 (JIT enabled, AOT enabled)
+OpenJ9   - 68d6fdb
+OMR      - 7c3d3d7
+OpenJDK  - 27f5b8f based on jdk8u152-b03)
+</pre>
+<pre class="output v-9">openjdk version "9-internal"
+OpenJDK Runtime Environment (build 9-internal+0-adhoc.anon.openj9-openjdk-jdk9)
+Eclipse OpenJ9 VM (build 2.9, JRE 9 Linux amd64-64 Compressed References 20171030_000000 (JIT enabled, AOT enabled)
+OpenJ9   - 731f323
+OMR      - 7c3d3d7
+OpenJDK  - 1983043 based on jdk-9+181)
+</pre>
+<!--
 OpenJDK Runtime Environment (build 9-internal+0-adhoc..openj9-openjdk-jdk9)
 Eclipse OpenJ9 VM (build 2.9, JRE 9 Linux amd64-64 Compressed References 20170912_000000 (JIT enabled, AOT enabled)
 J9VM - e6ca543
 JIT  - e6ca543
 OMR  - a0813c2
 OpenJDK  - 8593b2f based on )
-</pre>
+-->
           <p>There are a large number of test cases that you can run to test your binaries and to support continuous integration. All of these tests are run automatically as part of the Eclipse OpenJ9 build and test pipeline. The tests are triggered by pull requests and by successful OpenJ9 builds. You can see the latest results on this Jenkins instance:  <a href="https://ci.eclipse.org/openj9/" target="_blank">https://ci.eclipse.org/openj9/</a>.
           </p>
           <p>You can also download and run some or all of these tests manually on your own machine.

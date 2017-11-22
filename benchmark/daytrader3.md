@@ -5,10 +5,20 @@ Measuring the strengths of OpenJDK with Eclipse OpenJ9
 
 Many different metrics exist to measure the performance of an application including startup time, ramp up time, footprint, response time, as well as throughput. At Eclipse OpenJ9, we keep a watchful eye on all of these metrics, making sensible tradeoffs and providing tuning options that allow the JVM to be optimized for different workloads.
 
-To showcase our performance pedigree we set about measuring the strengths of OpenJDK with Eclipse OpenJ9 compared to an OpenJDK with Hotspot. We chose the Daytrader3 application because it is meaningful to measure different performance metrics, unlike many microbenchmarks that focus almost exclusively on throughput. The metrics we focused on include startup time, the JVM footprint size during the experiment, and of course, throughput.
+To showcase our performance pedigree we set about measuring the strengths of OpenJDK with Eclipse OpenJ9 compared to an OpenJDK with Hotspot. We chose the DayTrader 3 application because it is meaningful to measure different performance metrics, unlike many microbenchmarks that focus almost exclusively on throughput. The metrics we focused on include startup time, the JVM footprint size during the experiment, and of course, throughput.
 
-Take a look at these charts, which speak for themselves!
+Take a look at these charts:
 
+- [40% less footprint during ramp up](#footprint-during-ramp-up)
+- [60% less footprint after startup](#footprint-after-startup)
+- [2x faster startup time](#startup-time)
+- [Comparable throughput](#throughput)
+
+In a further experiment we tuned Eclipse OpenJ9 for an environment with constrained resources, much like you'd find in a standard cloud deployment. In this scenario, OpenJ9 ramped up 4x faster than Hotspot, performing far more work during the first 8 minutes. An excellent option for short-lived applications in the cloud that are sensitive to response times!
+
+Read more about this experiment:
+
+- [4x faster ramp up time - Tuning OpenJ9 for a CPU-constrained environment in the cloud ](#tuning-openj9-for-a-cpu-constrained-environment-in-the-cloud)
 
 ### Footprint during ramp up
 
@@ -43,13 +53,40 @@ With no command line options OpenJ9 shows a slightly longer startup time than Ho
 
 Although both OpenJ9 and Hotspot reach a similar peak throughput, OpenJ9 reaches the peak about 7 minutes faster. The small amount of AOT code (8 MB) does not make a difference in this case.
 
-## So how did we do overall?
+### So how did we do overall?
 
 While the specific levels of performance shown in the graphs might change from benchmark to benchmark or even from machine to machine, the same trends are expected to hold for a large class of server type applications.
 
 OpenJ9 achieves a good balance between (often conflicting) performance metrics. As seen above, it offers excellent footprint savings and faster start-up time with the help of AOT technology while also delivering throughput performance that is competitive with Hotspot.
 
 Due to its low memory footprint, OpenJ9 is particularly well suited for cloud computing environments where memory savings translate into cost savings for cloud users and providers alike.
+
+## Tuning OpenJ9 for a CPU-constrained environment in the cloud
+
+Virtualization is heavily used in the cloud to split big computing machines into many smaller VM guests. These guests are typically provisioned with a small number of virtual CPUs in order to achieve a high application density and to control the resources dedicated to applications. One side-effect is that Java applications can take longer to ramp-up because JIT compilation threads compete with application threads over the more limited computing resources. OpenJ9 offers a couple of solutions to this problem:
+
+**Use a large shared class cache and dynamic Ahead-of-Time (AOT) compilation**
+
+Loading AOT compiled code from the shared classes cache is typically 100x faster than compiling the same methods with the JIT compilation process. Although this achieves a very fast ramp up, some throughput loss (10-30%) would normally be expected because the code quality of an AOT compiled method is lower. However, the OpenJ9 JIT compiler has two tricks to counteract this problem:
+
+1. JIT heuristics limit the generation of AOT code only to the start-up phase of an application.
+2. The JIT detects the AOT compiled methods that are important to performance and upgrades them through the normal JIT recompilation process.
+
+**Use -Xtune:virtualized on the Java command line**
+
+When `-Xtune:virtualized` is enabled, the JIT compiler is less aggressive in its optimizations, which uses fewer CPU resources. In addition, the mechanism that is responsible for recompiling important methods at higher optimization levels is significantly subdued. The net effect is a 20-30% reduction in the amount of CPU used by the JIT compiler at the expense of a small 2-3% loss in throughput. On the positive side there is also a small reduction in footprint (1-3%).
+
+Here are the results of our tests:
+
+![The explanation for this graph is provided in the surrounding text.](../assets/perf_ramp_cloud_AOT_xtune.png)
+
+**Figure 5.** DayTrader 3 throughput during ramp up. Comparison between **OpenJDK 9 with Hotspot**, **OpenJDK 9 with OpenJ9** (default settings), and **OpenJDK 9 with OpenJ9** with AOT and `-Xtune:virtualized`.
+
+Without any additional configuration set, OpenJ9 already ramps-up much better than HotSpot. Although we haven't shown it on the graph, HotSpot needs about 30 minutes to reach its peak throughput; in contrast, OpenJ9 needs only 7.5 minutes!
+
+With our recommended configuration for the cloud, the ramp-up curve for OpenJ9 improves substantially compared to its default settings. Whilst OpenJ9 with default settings obtains a higher throughput in the end, it takes a full 3 minutes to equal the peak throughput of our configured OpenJ9. The lower peak throughput seen in the chart results from the use of a lot of AOT-compiled code, which is less optimized, and the presence of `-Xtune:virtualized` prevents most recompilations.
+
+The total work done by the JVM since load was applied is represented by the area under the curve. The results show that our cloud configuration performs more work than the default OpenJ9 configuration and much more work than Hotspot in the first 8 minutes of the run. Therefore, configuring OpenJ9 to use AOT and `-Xtune:virtualized` is an excellent solution for short lived JVMs running in a CPU constrained environment.
 
 Click [here](http://www.eclipse.org/openj9) for the Eclipse OpenJ9 website.
 ___
@@ -117,13 +154,21 @@ When AOT was enabled, the values set reflect the default settings in OpenLiberty
 
 To run OpenLiberty with OpenJDK9 (either with HotSpot or OpenJ9) the following options were added to the Java command line:
 
-`--add-modules java.se.ee --add-exports jdk.management.agent/jdk.internal.agent=ALL-UNNAMED --add-exports java.base/jdk.internal.vm=ALL-UNNAMED --add-exports java.base/sun.security.action=ALL-UNNAMED --add-exports java.naming/com.sun.jndi.ldap=ALL-UNNAMED --add-exports java.xml.bind/com.sun.xml.internal.bind=ALL-UNNAMED --add-exports jdk.attach/sun.tools.attach=ALL-UNNAMED --add-reads java.base=ALL-UNNAMED --add-reads java.logging=ALL-UNNAMED --add-reads java.management=ALL-UNNAMED --add-reads java.naming=ALL-UNNAMED --add-reads java.rmi=ALL-UNNAMED --add-reads java.sql=ALL-UNNAMED --add-reads java.xml=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.util.concurrent=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED --add-opens java.naming/javax.naming.spi=ALL-UNNAMED --add-opens java.naming/javax.naming=ALL-UNNAMED --add-opens java.rmi/java.rmi=ALL-UNNAMED --add-opens java.sql/java.sql=ALL-UNNAMED --add-opens java.xml.bind/javax.xml.bind=ALL-UNNAMED --add-opens java.management/javax.management=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.desktop/java.awt.image=ALL-UNNAMED --add-opens java.base/java.security=ALL-UNNAMED`
+```
+--add-modules java.se.ee --add-exports jdk.management.agent/jdk.internal.agent=ALL-UNNAMED --add-exports java.base/jdk.internal.vm=ALL-UNNAMED --add-exports java.base/sun.security.action=ALL-UNNAMED --add-exports java.naming/com.sun.jndi.ldap=ALL-UNNAMED --add-exports java.xml.bind/com.sun.xml.internal.bind=ALL-UNNAMED --add-exports jdk.attach/sun.tools.attach=ALL-UNNAMED --add-reads java.base=ALL-UNNAMED --add-reads java.logging=ALL-UNNAMED --add-reads java.management=ALL-UNNAMED --add-reads java.naming=ALL-UNNAMED --add-reads java.rmi=ALL-UNNAMED --add-reads java.sql=ALL-UNNAMED --add-reads java.xml=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.util.concurrent=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED --add-opens java.naming/javax.naming.spi=ALL-UNNAMED --add-opens java.naming/javax.naming=ALL-UNNAMED --add-opens java.rmi/java.rmi=ALL-UNNAMED --add-opens java.sql/java.sql=ALL-UNNAMED --add-opens java.xml.bind/javax.xml.bind=ALL-UNNAMED --add-opens java.management/javax.management=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.desktop/java.awt.image=ALL-UNNAMED --add-opens java.base/java.security=ALL-UNNAMED
+```
 
-**Note:** Because Daytrader is a Java EE 6 application and the public package of OpenLiberty does not include all the features needed to run the Java EE 6 spec, we had to change the Liberty [server.xml](server.xml) configuration file.
+**Note:** Because DayTrader 3 is a Java EE 6 application and the public package of OpenLiberty does not include all the features needed to run the Java EE 6 spec, we had to change the Liberty [server.xml](server.xml) configuration file.
+
+### Additional test information for tuning OpenJ9 for CPU-constrained environments in the cloud
+
+To simulate a CPU constrained environment, the JVM process was pinned to a single core. The following command line options were set for OpenJ9 with AOT and `-Xtune:virtualized`:
+```
+-Xscmx150M -Xscmaxaot120m -Xtune:virtualized
+```
 
 Copyright (c) 2017 IBM Corp. and others
 
 ---
 
 Click [here](http://www.eclipse.org/openj9) for the Eclipse OpenJ9 website.
-
