@@ -419,11 +419,11 @@ div.section-content h1 {
   text-align:center;
 }
 
-div#get-started p, div#contributing p, div#build p, div#faq p, div#resources p {
+div#get-started p, div#contributing p, div#build p, div#faq p, div#resources p, div#whatsnew p {
   font-size:1rem;
   display: inline-block;
 }
-div#performance p {
+div#performance p, div#whatsnew p {
   display: inline-block;
 }
 div#get-started p  { max-width: 45rem; }
@@ -432,6 +432,7 @@ div#build p        { width: 100%;      }
 div#faq p          { max-width: 35rem; }
 div#resources p    { max-width: 45rem; }
 div#performance p  { width: 100%;      }
+div#whatsnew p     { width: 100%;      }
 
 .f-section-item {
 	display: flex;
@@ -445,6 +446,19 @@ div#performance p  { width: 100%;      }
   margin: .1rem;
 */
 }
+
+#whatsnew .f-content-container {
+  margin-bottom: 1rem;
+  background-color: #f7f7f7;
+  border:1px solid #aaa;
+}
+#whatsnew h3 {
+  font-size: 1.6rem;
+  -webkit-margin-before: .6rem;
+  -webkit-margin-after: .2rem;
+  padding: 0 0 0 0;
+}
+
 #get-started .f-section-item {
   margin-bottom: 3rem;
 }
@@ -714,6 +728,9 @@ footer {
     width: 70%;
   }
 }
+
+
+
 
 
 
