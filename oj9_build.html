@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-Copyright (c) 2017 IBM Corp. and others
+Copyright (c) 2017, 2018 IBM Corp. and others
 
 This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which accompanies this distribution and is available at http://eclipse.org/legal/epl-2.0 or the Apache License, Version 2.0 which accompanies this distribution and is available at https://www.apache.org/licenses/LICENSE-2.0. 
 
@@ -9,7 +9,7 @@ This Source Code may also be made available under the following Secondary Licens
 [1] https://www.gnu.org/software/classpath/license.html  
 [2] http://openjdk.java.net/legal/assembly-exception.html 
 
-SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
+SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
 -->
 <html lang="en">
 <head>
@@ -225,7 +225,11 @@ input[type="radio"]:checked + label {
           <pre><code>make all</code></pre>
           <p>Two Java builds are produced: a full developer kit (<code>jdk</code>) and a runtime environment (<code>jre</code>):
           </p>
-          <ul>
+          <ul class="v-8">
+            <li><code>build/&lt;platform&gt;/images/j2sdk-image</code></li>
+            <li><code>build/&lt;platform&gt;/images/j2re-image</code></li>
+          </ul>
+		  <ul class="v-9">
             <li><code>build/&lt;platform&gt;/images/jdk</code></li>
             <li><code>build/&lt;platform&gt;/images/jre</code></li>
           </ul>
@@ -242,7 +246,9 @@ input[type="radio"]:checked + label {
           <h3>Test</h3>
           <p>For a simple test, try running the <code>java -version</code> command.
           </p>
-          <pre><code>cd build/&lt;platform&gt;/images/jre</code>
+          <pre class="v-8"><code>cd build/&lt;platform&gt;/images/j2re-image</code>
+<code>./bin/java -version</code></pre>
+		  <pre class="v-9"><code>cd build/&lt;platform&gt;/images/jre</code>
 <code>./bin/java -version</code></pre>
           <p>Here is a sample of the output from a Linux x-86 binary:
           </p>
