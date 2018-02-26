@@ -19,7 +19,7 @@ OpenJDK Assembly Exception [2].
 
 SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
 -->
- 
+
 Measuring the strengths of OpenJDK with Eclipse OpenJ9
 ======================================================
 
@@ -100,7 +100,7 @@ When `-Xtune:virtualized` is enabled, the JIT compiler is less aggressive in its
 
 Here are the results of our tests:
 
-![The explanation for this graph is provided in the surrounding text.](../assets/perf_ramp_cloud_AOT_xtune.png)
+![The explanation for this graph is provided in the surrounding text.](../assets/perf_thr_ramp_xmx1g_1core.png)
 
 **Figure 5.** DayTrader 3 throughput during ramp up. Comparison between **OpenJDK 9 with Hotspot**, **OpenJDK 9 with OpenJ9** (default settings), and **OpenJDK 9 with OpenJ9** with AOT and `-Xtune:virtualized`.
 
