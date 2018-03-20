@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-Copyright (c) 2017, 2018 IBM Corp. and others
+Copyright (c) 2017 IBM Corp. and others
 
 This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which accompanies this distribution and is available at http://eclipse.org/legal/epl-2.0 or the Apache License, Version 2.0 which accompanies this distribution and is available at https://www.apache.org/licenses/LICENSE-2.0. 
 
@@ -9,7 +9,7 @@ This Source Code may also be made available under the following Secondary Licens
 [1] https://www.gnu.org/software/classpath/license.html  
 [2] http://openjdk.java.net/legal/assembly-exception.html 
 
-SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
+SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
 -->
 <html lang="en">
 <head>
@@ -51,17 +51,22 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
     <div id="resources" class="section-content">
       <h1>Resources</h1>
       <div class="f-section-item">
-        <span class="intro-text">Where can I learn more about Eclipse OpenJ9?</span>
+        <span class="intro-text">Where can I read more about Eclipse OpenJ9?</span>
       </div>
       <div class="f-section-item">
-        <span class="intro-text1">Follow the links to read recent articles, blog posts, and slides that contain useful information about OpenJ9.</span>
+        <span class="intro-text1">Follow the links to read recent articles, blog posts, and slides that contain useful information about OpenJ9.<br/>
+        <a href="#contributors"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a> Articles from the OpenJ9 community <br/>
+        <a href="#other"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a> What others are saying about OpenJ9</span>
       </div>
 
-      <div class="f-section-item">
+      <div class="f-section-item" id="contributors">
         <div class="f-content-container">
-          <p style="line-height:1rem; margin-bottom:2rem;">(Note that in these articles, you'll find some references to IBM<sup>&reg;</sup> J9 where content was published before IBM contributed the JVM to the Eclipse Foundation.)</p>
 
           <ul>
+            <li><i><a href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader7.md" target="_blank">
+              OpenJDK 8 performance with Eclipse OpenJ9</a></i> by Vijay Sundaresan and Marius Pirvu<br/>
+              "Benchmark testing demonstrates significantly better performance for OpenJDK 8 when using the Eclipse OpenJ9 VM, than with the Hotspot VM - just as for OpenJDK 9."</li>
+
             <li><i><a href="https://www.slideshare.net/MarkStoodley/javaone-2017-mark-stoodley-open-sourcing-ibm-j9-jvm" target="_blank">
               JavaOne 2017: Open Sourcing the IBM J9 Java Virtual Machine</a></i> by Mark Stoodley and Steve Wallin</li>
 
@@ -69,7 +74,7 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
               JavaOne 2017: How to build a debuggable runtime</a></i> by Tobi Ajila and Bjorn Vardal</li>
 
             <li><i><a href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader3.md" target="_blank">
-              Measuring the strengths of OpenJDK with Eclipse OpenJ9</a></i> by Vijay Sundaresan, Marius Pirvu, and Mark Stoodley</li>
+              Measuring the strengths of OpenJDK 9 with Eclipse OpenJ9</a></i> by Vijay Sundaresan, Marius Pirvu, and Mark Stoodley</li>
 
             <li><i>Measuring Java performance (or Jack starts a taxi business)</i> by Vijay Sundaresan and Peter Hayward
               <ul>
@@ -106,7 +111,7 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
             <li><i><a href="https://www.slideshare.net/MarkStoodley/under-the-hood-of-the-testarossa-jit-compiler" target="_blank">
               Under the hood of the Testarossa JIT Compiler</a></i> by Mark Stoodley</li>
 
-      <li><i><a href="https://developer.ibm.com/javasdk/2016/10/14/ibm-java-runtime-release-to-release-performance-improvements/" target="_blank">
+            <li><i><a href="https://developer.ibm.com/javasdk/2016/10/14/ibm-java-runtime-release-to-release-performance-improvements/" target="_blank">
               IBM Java runtime: Release-to-release performance improvements</a></i> by Vijay Sundaresan</li>
         
             <li><i><a href="https://www.ibm.com/developerworks/java/library/j-ibmjava4/index.html" target="_blank">
@@ -115,7 +120,40 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
             <li><i><a href="https://www.ibm.com/developerworks/java/library/j-sharedclasses/" target="_blank">
               Enhance performance with class sharing</a></i> by Adam Pilkington and Graham Rawson</li>
 
+          </ul>
+          <p style="line-height:1rem; margin-bottom:2rem;">(Note that in these articles, you'll find some references to IBM<sup>&reg;</sup> J9 where content was published before IBM contributed the JVM to the Eclipse Foundation.)</p>
+        </div>
+      </div>
+
+      <div class="f-section-item" id="other">
+        <span class="intro-text1"><br/>Read what others are saying about OpenJ9...</span>
+      </div>
+
+      <div class="f-section-item">
+        <div class="f-content-container">
+
+          <ul>
+            <li><i><a href="https://dzone.com/articles/hello-openj9-on-windows-i-didnt-expect-you-so-soon" target="_blank">Hello OpenJ9 on Windows, I didn’t expect you so soon!</a></i> by Holger Voormann<br/>
+            "Move over HotSpot, there's a new JVM on the block. See how to get OpenJ9 running on Windows and how it can help with your Java projects."</li>
+
+            <li><i><a href="http://psamolysov.blogspot.ca/2018/02/how-to-build-openj9-jdk-from-sources-docker-ansible.html" target="_blank">IBM open sources itself: Build the OpenJ9 JVM into Docker image from sources using Ansible</a></i> by Pavel Samolysov</li>
+
+            <li>Articles by Leonardo Zanivan
+              <ul>
+                <li><i><a href="https://medium.com/criciumadev/new-open-source-jvm-optimized-for-cloud-and-microservices-c75a41aa987d" target="_blank">New open source JVM optimized for cloud and microservices</a></i></li>
+
+                <li><i><a href="https://medium.com/criciumadev/using-openj9-for-running-microservices-in-docker-ebb0b5da1e00" target="_blank">Using OpenJ9 for running microservices in Docker</a></i></li>
+              </ul>
+            </li>
+
+            <li><i><a href="https://www.infoq.com/news/2018/03/OMR-OpenJ9" target="_blank">Eclipse OpenJ9 – an open source Java virtual machine based on the Eclipse OMR project</a></i> by Monica Beckwith</li>
+
            </ul>
+          <p style="line-height:1rem; text-align:center;">
+        	(Spotted us mentioned elsewhere? <a href="https://github.com/eclipse/openj9-website/issues/new">Please tell us by raising an issue</a> so we can update this page.)
+        	</p>
+
+
         </div>
       </div>
 
@@ -130,12 +168,12 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
         <i class="fa fa-github" aria-hidden="true" style="font-size: 2.3rem;"></i>
       </a>
     </div>
-	<div class="social-icon">
+	  <div class="social-icon">
       <a href="https://openj9.slack.com/" target="_blank" title="Slack">
       	<i class="fa fa-slack" aria-hidden="true" style="font-size:2rem;"></i>
       </a>
     </div>
-	<div class="social-icon">
+	  <div class="social-icon">
       <a href="https://twitter.com/openj9/" target="_blank" title="Twitter">
       	<i class="fa fa-twitter" aria-hidden="true" style="font-size:2rem;"></i>
       </a>

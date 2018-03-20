@@ -1,4 +1,4 @@
-<!--
+﻿<!--
 Copyright (c) 2017, 2018 IBM Corp. and others
 
 This program and the accompanying materials are made available under
@@ -20,14 +20,13 @@ OpenJDK Assembly Exception [2].
 SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
 -->
 
-Measuring the strengths of OpenJDK with Eclipse OpenJ9
-======================================================
+# Measuring the strengths of OpenJDK 9 with Eclipse OpenJ9
 
 ***Performance is not just throughput!***
 
 Many different metrics exist to measure the performance of an application including startup time, ramp up time, footprint, response time, as well as throughput. At Eclipse OpenJ9, we keep a watchful eye on all of these metrics, making sensible tradeoffs and providing tuning options that allow the JVM to be optimized for different workloads.
 
-To showcase our performance pedigree we set about measuring the strengths of OpenJDK with Eclipse OpenJ9 compared to an OpenJDK with Hotspot. We chose the DayTrader 3 application because it is meaningful to measure different performance metrics, unlike many microbenchmarks that focus almost exclusively on throughput. The metrics we focused on include startup time, the JVM footprint size during the experiment, and of course, throughput.
+To showcase our performance pedigree we set about measuring the strengths of OpenJDK 9 with Eclipse OpenJ9 compared to an OpenJDK 9 with Hotspot. We chose the DayTrader 3 application because it is meaningful to measure different performance metrics, unlike many microbenchmarks that focus almost exclusively on throughput. The metrics we focused on include startup time, the JVM footprint size during the experiment, and of course, throughput.
 
 Take a look at these charts:
 
@@ -41,6 +40,12 @@ In a further experiment we tuned Eclipse OpenJ9 for an environment with constrai
 Read more about this experiment:
 
 - [4x faster ramp up time - Tuning OpenJ9 for a CPU-constrained environment in the cloud ](#tuning-openj9-for-a-cpu-constrained-environment-in-the-cloud)
+
+
+Since we published these results using OpenJDK 9 with Eclipse OpenJ9, we have repeated the [same tests using OpenJDK version 8](daytrader7.md) and obtained results that are very much in line with those described here.
+
+
+
 
 ### Footprint during ramp up
 
