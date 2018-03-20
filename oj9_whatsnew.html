@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <!--
 Copyright (c) 2017, 2018 IBM Corp. and others
-
-This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which accompanies this distribution and is available at http://eclipse.org/legal/epl-2.0 or the Apache License, Version 2.0 which accompanies this distribution and is available at https://www.apache.org/licenses/LICENSE-2.0. 
-
-This Source Code may also be made available under the following Secondary Licenses when the conditions for such availability set forth in the Eclipse Public License, v. 2.0 are satisfied: GNU General Public License, version 2 with the GNU Classpath Exception [1] and GNU General Public License, version 2 with the OpenJDK Assembly Exception [2]. 
-
-[1] https://www.gnu.org/software/classpath/license.html  
-[2] http://openjdk.java.net/legal/assembly-exception.html 
-
+This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which accompanies this distribution and is available at http://eclipse.org/legal/epl-2.0 or the Apache License, Version 2.0 which accompanies this distribution and is available at https://www.apache.org/licenses/LICENSE-2.0. 
+This Source Code may also be made available under the following Secondary Licenses when the conditions for such availability set forth in the Eclipse Public License, v. 2.0 are satisfied: GNU General Public License, version 2 with the GNU Classpath Exception [1] and GNU General Public License, version 2 with the OpenJDK Assembly Exception [2]. 
+[1] https://www.gnu.org/software/classpath/license.html  
+[2] http://openjdk.java.net/legal/assembly-exception.html 
 SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
 -->
 <html lang="en">
@@ -36,12 +32,10 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
   js.id = id;
   js.src = "https://platform.twitter.com/widgets.js";
   fjs.parentNode.insertBefore(js, fjs);
-
   t._e = [];
   t.ready = function(f) {
     t._e.push(f);
   };
-
   return t;
 }(document, "script", "twitter-wjs"));</script>
   <script>
@@ -56,7 +50,7 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 <body>
 <script>twttr.widgets.load()</script>
   <div id="main-title">
-    <script type="text/javascript">navigation(document.location.href);</script>	
+    <script type="text/javascript">navigation(document.location.href);</script>  
     <div class="title">
       <a href="index.html">
         <!--<img class="title_icon" src="./assets/openj9_6a.png" alt="Eclipse OpenJ9">-->
@@ -69,71 +63,123 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
   </div>
 
   <main>
-
     <div id="whatsnew" class="section-content">
       <h1>What's new?</h1>
+
       <div class="f-section-item">
-        <span class="intro-text">Covering anything from project news, events, milestones, and of course... new and cool stuff!</span>
+        <span class="intro-text">Covering project news, events, milestones, and of course... new and cool stuff!</span>
       </div>
 
-	  <div class="f-section-item" id="v0.8">
+      <div class="f-section-item" id="otherblogs">
+        <div class="f-content-container">
+          <h3>What are others saying about OpenJ9?</h3>
+          <p><i>20th March 2018</i></p>
+          <p>We've been keeping track of what people are saying about OpenJ9, and you'll find several interesting articles and blogs listed on our <a href="oj9_resources.html#other">Resources</a> page.
+          </p>
+          <p>We're on the lookout for more, so if you spot a mention of OpenJ9 (or you've written an article yourself!), <a href="https://github.com/eclipse/openj9-website/issues/new">please tell us by raising an issue</a> so we can share it with everyone.
+          </p>
+
+<!-- Keep as-is except edit ID in URL and change "text=" -->
+<a href="https://twitter.com/share?
+url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23otherblogs&
+via=openj9&
+hashtags=openj9,java&
+text=What%20are%20others%20saying%20about%20OpenJ9%3F"
+class="twitter-share-button"
+data-show-count="false">Tweet</a>
+        </div>
+      </div>
+
+
+      <div class="f-section-item" id="perf8">
+        <div class="f-content-container">
+          <h3>New performance tests with OpenJDK 8</h3>
+          <p><i>19th March 2018</i></p>
+          <p>We've already demonstrated the performance advantages of OpenJDK 9 with OpenJ9, but you might be wondering what you get with OpenJDK 8. So we have taken the opportunity to re-evaluate the performance of OpenJ9 when running OpenJDK 8, using the same metrics as we used when we tested OpenJDK 9.
+          </p>
+          <p>OpenJDK 8 with OpenJ9 resulted in a <b>42% faster startup</b> and a <b>footprint at least 60% smaller</b>, than OpenJDK 8 with HotSpot: results that are very much in line with our previous tests.
+          </p>
+          <p>You can see the full range of tests and their results on the updated <a href="oj9_performance.html">Performance</a> page.
+          </p>
+
+<!-- Keep as-is except edit ID in URL and change "text=" -->
+<a href="https://twitter.com/share?
+url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23perf8&
+via=openj9&
+hashtags=openj9,java&
+text=Both%20OpenJDK%208%20and%209%20perform%20better%20with%20Eclipse%20OpenJ9%21"
+class="twitter-share-button"
+data-show-count="false">Tweet</a>
+        </div>
+      </div>
+
+
+      <div class="f-section-item" id="v0.8">
         <div class="f-content-container">
           <h3>Eclipse OpenJ9 version 0.8.0 released</h3>
           <p><i>14th March 2018</i></p>
-          <p>We're pleased to announce that we have just released our first official version of Eclipse OpenJ9.</p>
-		  <p>Version 0.8.0 supports OpenJ9 embedded in an OpenJDK version 8 binary on all platforms available at
-		  <a href="https://adoptopenjdk.net/releases.html?variant=openjdk8-openj9">AdoptOpenJDK</a>. If you haven't
-		  given it a test drive yet, why not download a build and let us know what you think.</p>
-		  <p>Our <a href="https://projects.eclipse.org/projects/technology.openj9/releases/0.8/plan">release plan</a> 
-		  provides more information about the scope of this release, with any current limitations detailed in the 
-		  <a href="https://github.com/eclipse/openj9/blob/master/doc/release-notes/0.8/0.8.md">release 
-		  notes</a>.</p>
-		  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw
-			url=https%3A%2F%2Fwww.eclipse.com%2Fopenj9%2Foj9_whatsnew.html%v0.8&
-			via=openj9&
-			hashtags=openj9,java&
-			text=Our%20first%20release%20is%20out.%20Why%20not%20give%20it%20a%20test%20drive!" class="twitter-share-button" data-show-count="false">
-			<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-			Tweet</a>
+          <p>We're pleased to announce that we have just released our first official version of Eclipse OpenJ9.
+          </p>
+          <p>Version 0.8.0 supports OpenJ9 embedded in an OpenJDK version 8 binary on all platforms available at <a href="https://adoptopenjdk.net/releases.html?variant=openjdk8-openj9">AdoptOpenJDK</a>. If you haven't given it a test drive yet, why not download a build and let us know what you think.
+          </p>
+          <p>Our <a href="https://projects.eclipse.org/projects/technology.openj9/releases/0.8/plan">release plan</a> provides more information about the scope of this release, with any current limitations detailed in the <a href="https://github.com/eclipse/openj9/blob/master/doc/release-notes/0.8/0.8.md">release notes</a>.
+          </p>
+
+<!-- Keep as-is except edit ID in URL and change "text=" -->
+<a href="https://twitter.com/share?
+url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23v0.8&
+via=openj9&
+hashtags=openj9,java&
+text=Our%20first%20release%20is%20out.%20Why%20not%20give%20it%20a%20test%20drive!"
+class="twitter-share-button"
+data-show-count="false">Tweet</a>
         </div>
       </div>
-	  
-	  <div class="f-section-item" id="hangout">
+
+
+    <div class="f-section-item" id="hangout">
         <div class="f-content-container">
           <h3>Come <q>hangout</q> with the OpenJ9 community</h3>
           <p><i>1st February 2018</i></p>
           <p>Our regular community hangouts are a great place to meet the team and find out what is going on in the OpenJ9 project. 
-		  Everyone is welcome and the agenda is pretty flexible. Generally we discuss hot topics like release plans, issues, ideas, 
-		  and working processes, but we're open to requests. If you'd like to get involved at some level, why not come along? 
-		  Maybe you have some suggestions, or maybe you'd like to provide some feedback about your experiences using an OpenJDK 
-		  with OpenJ9. If you just want to come and listen, well that's fine too!</p>
-		  <p>Schedules, agendas, minutes, and recordings are posted in the OpenJ9 slack workspace, in the #planning channel.
-		  <p>To update your Google calendar: <a target="_blank" href="https://calendar.google.com/calendar?cid=YjBnYjB0ZzNxaTZhb3NhZGZnbG0wa3BjY29AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ">add OpenJ9 hangouts</a>.</p>
-		  To join slack:  <a href="oj9_joinslack.html">request an invitation</a>.
+      Everyone is welcome and the agenda is pretty flexible. Generally we discuss hot topics like release plans, issues, ideas, 
+      and working processes, but we're open to requests. If you'd like to get involved at some level, why not come along? 
+      Maybe you have some suggestions, or maybe you'd like to provide some feedback about your experiences using an OpenJDK 
+      with OpenJ9. If you just want to come and listen, well that's fine too!</p>
+      <p>Schedules, agendas, minutes, and recordings are posted in the OpenJ9 slack workspace, in the #planning channel.
+      <p>To update your Google calendar: <a target="_blank" href="https://calendar.google.com/calendar?cid=YjBnYjB0ZzNxaTZhb3NhZGZnbG0wa3BjY29AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ">add OpenJ9 hangouts</a>.</p>
+      To join slack:  <a href="oj9_joinslack.html">request an invitation</a>.
           </p>
-		  <a href="https://twitter.com/share?
-			url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23hangout&
-			via=openj9&
-			hashtags=openj9,java&
-			text=Come%20hangout%20with%20the%20OpenJ9%20community.%20We%20meet%20every%20week%20to%20chat%20and%20would%20love%20you%20to%20join%20us!" class="twitter-share-button" data-show-count="false">
-			Tweet</a>
+
+<!-- Keep as-is except edit ID in URL and change "text=" -->
+<a href="https://twitter.com/share?
+url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23hangout&
+via=openj9&
+hashtags=openj9,java&
+text=Come%20hangout%20with%20the%20OpenJ9%20community.%20We%20meet%20every%20week%20to%20chat%20and%20would%20love%20you%20to%20join%20us!"
+class="twitter-share-button"
+data-show-count="false">Tweet</a>
         </div>
       </div>
-	  
+
+
       <div class="f-section-item" id="slack_ga">
         <div class="f-content-container">
           <h3>Join us on slack</h3>
           <p><i>5th December 2017</i></p>
-          <p>We're pleased to announce the introduction of a new slack workspace, which we hope will become a popular medium for collaborating with the OpenJ9 project team in addition to our Eclipse mailing list. Whether you have questions to ask or experiences to	share, we'd love to hear from you.
+          <p>We're pleased to announce the introduction of a new slack workspace, which we hope will become a popular medium for collaborating with the OpenJ9 project team in addition to our Eclipse mailing list. Whether you have questions to ask or experiences to  share, we'd love to hear from you.
           </p>
           <p>Join slack:  <a href="oj9_joinslack.html">request an invitation</a>.
           </p>
-		  <a href="https://twitter.com/share?
-			url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23slack_ga&
-			via=openj9&
-			hashtags=openj9,java&
-			text=Join%20the%20OpenJ9%20community%20on%20Slack%20and%20collaborate%20directly%20with%20our%20developers." class="twitter-share-button" data-show-count="false">
-			Tweet</a>
+
+<!-- Keep as-is except edit ID in URL and change "text=" -->
+<a href="https://twitter.com/share?
+url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23slack_ga&
+via=openj9&
+hashtags=openj9,java&
+text=Join%20the%20OpenJ9%20community%20on%20Slack%20and%20collaborate%20directly%20with%20our%20developers." 
+class="twitter-share-button" 
+data-show-count="false">Tweet</a>
         </div>
       </div>
 
@@ -152,7 +198,7 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
           </p>
           <p>If you want to build OpenJDK8 with OpenJ9 yourself, you can follow the instructions on our <a href="oj9_build.html">build page</a>. Right now, you can build it for Linux on x86-64, ppc64le, s390x, and AIX. More platforms to follow!
           </p>
-          <p>Did we already tell you that the Eclipse OpenJ9 project uses a single code stream to implement the JVM across all supported Java releases, from Java 8 to Java 9 and beyond? That means users should get the same            excellent performance, features, and new processor support from OpenJ9 no matter which Java level you're            using to run your applications.
+          <p>Did we already tell you that the Eclipse OpenJ9 project uses a single code stream to implement the JVM across all supported Java releases, from Java 8 to Java 9 and beyond? That means users should get the same excellent performance, features, and new processor support from OpenJ9 no matter which Java level you're using to run your applications.
           </p>
           <p>Interested in what performance you can expect for OpenJDK8 with OpenJ9? The data is not on our website 
           at the moment, but for applications we've tried, OpenJDK8 with OpenJ9 performs the same or better than 
@@ -164,17 +210,21 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
           on <a href="https://stackoverflow.com/search?q=%23OpenJ9">stackoverflow</a> using the <code class="stack">#OpenJ9</code> tag. 
           We look forward to hearing from you!
           </p>
-          <br>
           <p><strong>The OpenJ9 project leads:</strong>
           <i>Mark, Dan, Peter, and Jonathan</i></p>
-            <a class="twitter-share-button" href="https://twitter.com/share?url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openjdk8_ga&
-			via=openj9&
-			hashtags=openj9,java&
-			text=Run%20OpenJDK8%20with%20the%20OpenJ9%20VM%20and%20discover%20the%20difference!" data-show-count="false">
-			Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<!-- Keep as-is except edit ID in URL and change "text=" -->
+<a href="https://twitter.com/share?
+url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openjdk8_ga&
+via=openj9&
+hashtags=openj9,java&
+text=Run%20OpenJDK8%20with%20the%20OpenJ9%20VM%20and%20discover%20the%20difference!"
+class="twitter-share-button"
+data-show-count="false">Tweet</a>
         </div>
     </div>
 
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
  
     </div> <!-- end: whatsnew -->
@@ -187,14 +237,14 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
         <i class="fa fa-github" aria-hidden="true" style="font-size: 2.3rem;"></i>
       </a>
     </div>
-	<div class="social-icon">
+  <div class="social-icon">
       <a href="https://openj9.slack.com/" target="_blank" title="Slack">
-      	<i class="fa fa-slack" aria-hidden="true" style="font-size:2rem;"></i>
+        <i class="fa fa-slack" aria-hidden="true" style="font-size:2rem;"></i>
       </a>
     </div>
-	<div class="social-icon">
+  <div class="social-icon">
       <a href="https://twitter.com/openj9/" target="_blank" title="Twitter">
-      	<i class="fa fa-twitter" aria-hidden="true" style="font-size:2rem;"></i>
+        <i class="fa fa-twitter" aria-hidden="true" style="font-size:2rem;"></i>
       </a>
     </div>
     <div class="social-icon">
