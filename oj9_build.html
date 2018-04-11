@@ -31,10 +31,14 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
         for (i = 0; i < els.length; i++) els[i].setAttribute("style","display: block;");
         var els = document.getElementsByClassName("v-9");
         for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:none;");
+        var els = document.getElementsByClassName("v-10");
+        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:none;");
         
         var els = document.getElementsByClassName("v-alt8");
         for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:none;");
         var els = document.getElementsByClassName("v-alt9");
+        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:block;");
+        var els = document.getElementsByClassName("v-alt10");
         for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:block;");
       }
 
@@ -42,11 +46,33 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
         var els = document.getElementsByClassName("v-8");
         for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:none;");
         var els = document.getElementsByClassName("v-9");
-        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display: block;");
+        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:block;");
+        var els = document.getElementsByClassName("v-10");
+        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:none;");
+
       
         var els = document.getElementsByClassName("v-alt8");
         for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:block;");
         var els = document.getElementsByClassName("v-alt9");
+        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:none;");
+        var els = document.getElementsByClassName("v-alt10");
+        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:block;");
+      }
+
+      if(state == "c") {
+        var els = document.getElementsByClassName("v-8");
+        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:none;");
+        var els = document.getElementsByClassName("v-9");
+        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:none;");
+        var els = document.getElementsByClassName("v-10");
+        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:block;");
+
+      
+        var els = document.getElementsByClassName("v-alt8");
+        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:block;");
+        var els = document.getElementsByClassName("v-alt9");
+        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:block;");
+        var els = document.getElementsByClassName("v-alt10");
         for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:none;");
       }
 
@@ -112,6 +138,8 @@ input[type="radio"]:checked + label {
     <label for="version-a"><p class="v-8">JDK 8</p> <p class="v-alt8">Build JDK 8</p></label>
     <input type="radio" id="version-b" name="version-choice" onclick="version('b')">
     <label for="version-b"><p class="v-9">JDK 9</p> <p class="v-alt9">Build JDK 9</p></label>
+    <input type="radio" id="version-c" name="version-choice" onclick="version('c')">
+    <label for="version-c"><p class="v-10">JDK 10</p> <p class="v-alt10">Build JDK 10</p></label>
 </div>
 
   <div id="main-title">
@@ -133,6 +161,7 @@ input[type="radio"]:checked + label {
     <div id="build" class="section-content">
       <h1 class="v-8">Build your own OpenJDK version 8</h1>
       <h1 class="v-9">Build your own OpenJDK version 9</h1>
+      <h1 class="v-10">Build your own OpenJDK version 10</h1>
 
       <div class="f-section-item">
         <span class="intro-text">Building OpenJDK with OpenJ9 will be familiar to anyone who has already built OpenJDK.</span>
@@ -156,6 +185,8 @@ input[type="radio"]:checked + label {
         </span>
         <span class="v-9 intro-text1" style="margin:0 19rem;"><span style="font-size:2rem;">*</span> <i>If you don't want to use Docker or you want to build a binary for another platform,<br/>read the <a href="https://github.com/eclipse/openj9/blob/master/buildenv/Build_Instructions_V9.md" target="-blank">full set of build instructions for JDK 9</a>.</i>
         </span>
+        <span class="v-10 intro-text1" style="margin:0 19rem;"><span style="font-size:2rem;">*</span> <i>If you don't want to use Docker or you want to build a binary for another platform,<br/>read the <a href="https://github.com/eclipse/openj9/blob/master/buildenv/Build_Instructions_V10.md" target="-blank">full set of build instructions for JDK 10</a>.</i>
+        </span>
       </div>
 
       <div class="f-section-item" id="prepare">
@@ -164,8 +195,9 @@ input[type="radio"]:checked + label {
           <p>
           We'll start by building a Dockerfile. If you don't already have Docker on your system, <a href="https://docs.docker.com/engine/installation/">download</a> and install it now.
           </p>
-          <p class="v-8">Pick one of the following JDK v8 Dockerfiles for the platform you want to work on:</p>
-          <p class="v-9">Pick one of the following JDK v9 Dockerfiles for the platform you want to work on:</p>
+          <p class="v-8">Pick one of the following <strong>JDK v8</strong> Dockerfiles for the platform you want to work on:</p>
+          <p class="v-9">Pick one of the following <strong>JDK v9</strong> Dockerfiles for the platform you want to work on:</p>
+          <p class="v-10">Pick one of the following <strong>JDK v10</strong> Dockerfiles for the platform you want to work on:</p>
           <ul class="v-8">
             <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk8/x86_64/ubuntu16/Dockerfile" target="_blank">Linux 64-bit (x86_64)</a></strong></li>
             <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk8/ppc64le/ubuntu16/Dockerfile" target="_blank">Linux on Power systems 64-bit (ppc64)</a></strong></li>
@@ -175,6 +207,11 @@ input[type="radio"]:checked + label {
             <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk9/x86_64/ubuntu16/Dockerfile" target="_blank">Linux 64-bit (x86_64)</a></strong></li>
             <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk9/ppc64le/ubuntu16/Dockerfile" target="_blank">Linux on Power systems 64-bit (ppc64)</a></strong></li>
             <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk9/s390x/ubuntu16/Dockerfile" target="_blank">Linux on z Systems 64-bit (390_64)</a></strong></li>
+          </ul>
+          <ul class="v-10">
+            <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk10/x86_64/ubuntu16/Dockerfile" target="_blank">Linux 64-bit (x86_64)</a></strong></li>
+            <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk10/ppc64le/ubuntu16/Dockerfile" target="_blank">Linux on Power systems 64-bit (ppc64)</a></strong></li>
+            <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk10/s390x/ubuntu16/Dockerfile" target="_blank">Linux on z Systems 64-bit (390_64)</a></strong></li>
           </ul>
           <p>Save the Dockerfile to your current directory and specify these commands to build and run the Docker image:
           </p>
@@ -196,10 +233,12 @@ input[type="radio"]:checked + label {
           </p>
           <pre class="v-8"><code>git clone https://github.com/ibmruntimes/openj9-openjdk-jdk8</code></pre>
           <pre class="v-9"><code>git clone https://github.com/ibmruntimes/openj9-openjdk-jdk9</code></pre>
+          <pre class="v-10"><code>git clone https://github.com/ibmruntimes/openj9-openjdk-jdk10</code></pre>
           <p>Cloning this repository can take a while because OpenJDK is a large project! When the process is complete, change directory into the cloned repository:
           </p>
           <pre class="v-8"><code>cd openj9-openjdk-jdk8</code></pre>
           <pre class="v-9"><code>cd openj9-openjdk-jdk9</code></pre>
+          <pre class="v-10"><code>cd openj9-openjdk-jdk10</code></pre>
           <p>Now fetch additional sources from the <strong>Eclipse OpenJ9</strong> project and its clone of <strong>Eclipse OMR</strong>:
           </p>
           <pre><code>bash ./get_source.sh</code></pre>
@@ -229,7 +268,11 @@ input[type="radio"]:checked + label {
             <li><code>build/&lt;platform&gt;/images/j2sdk-image</code></li>
             <li><code>build/&lt;platform&gt;/images/j2re-image</code></li>
           </ul>
-		  <ul class="v-9">
+          <ul class="v-9">
+            <li><code>build/&lt;platform&gt;/images/jdk</code></li>
+            <li><code>build/&lt;platform&gt;/images/jre</code></li>
+          </ul>
+          <ul class="v-10">
             <li><code>build/&lt;platform&gt;/images/jdk</code></li>
             <li><code>build/&lt;platform&gt;/images/jre</code></li>
           </ul>
@@ -248,7 +291,9 @@ input[type="radio"]:checked + label {
           </p>
           <pre class="v-8"><code>cd build/&lt;platform&gt;/images/j2re-image</code>
 <code>./bin/java -version</code></pre>
-		  <pre class="v-9"><code>cd build/&lt;platform&gt;/images/jre</code>
+          <pre class="v-9"><code>cd build/&lt;platform&gt;/images/jre</code>
+<code>./bin/java -version</code></pre>
+          <pre class="v-10"><code>cd build/&lt;platform&gt;/images/jre</code>
 <code>./bin/java -version</code></pre>
           <p>Here is a sample of the output from a Linux x-86 binary:
           </p>
@@ -265,6 +310,13 @@ Eclipse OpenJ9 VM (build 2.9, JRE 9 Linux amd64-64 Compressed References 2017103
 OpenJ9   - 731f323
 OMR      - 7c3d3d7
 OpenJDK  - 1983043 based on jdk-9+181)
+</pre>
+<pre class="output v-10">openjdk version "10-internal" 2018-03-20
+OpenJDK Runtime Environment (build 10-internal+0-adhoc..openj9-openjdk-jdk10)
+Eclipse OpenJ9 VM (build master-4ecf784, JRE 10 Linux amd64-64 Compressed References 20180411_000000 (JIT enabled, AOT enabled)
+OpenJ9   - 4ecf784
+OMR      - cb9e24d
+JCL      - eaa06eb based on jdk-10+46)
 </pre>
 <!--
 OpenJDK Runtime Environment (build 9-internal+0-adhoc..openj9-openjdk-jdk9)
