@@ -2,12 +2,12 @@
 <!--
 Copyright (c) 2017, 2018 IBM Corp. and others
 
-This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which accompanies this distribution and is available at http://eclipse.org/legal/epl-2.0 or the Apache License, Version 2.0 which accompanies this distribution and is available at https://www.apache.org/licenses/LICENSE-2.0. 
+This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which accompanies this distribution and is available at http://eclipse.org/legal/epl-2.0 or the Apache License, Version 2.0 which accompanies this distribution and is available at https://www.apache.org/licenses/LICENSE-2.0. 
 
-This Source Code may also be made available under the following Secondary Licenses when the conditions for such availability set forth in the Eclipse Public License, v. 2.0 are satisfied: GNU General Public License, version 2 with the GNU Classpath Exception [1] and GNU General Public License, version 2 with the OpenJDK Assembly Exception [2]. 
+This Source Code may also be made available under the following Secondary Licenses when the conditions for such availability set forth in the Eclipse Public License, v. 2.0 are satisfied: GNU General Public License, version 2 with the GNU Classpath Exception [1] and GNU General Public License, version 2 with the OpenJDK Assembly Exception [2]. 
 
-[1] https://www.gnu.org/software/classpath/license.html  
-[2] http://openjdk.java.net/legal/assembly-exception.html 
+[1] https://www.gnu.org/software/classpath/license.html  
+[2] http://openjdk.java.net/legal/assembly-exception.html 
 
 SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
 -->
@@ -23,35 +23,6 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
   <link rel="stylesheet" href="./css/oj9_media.css">
   <link rel="stylesheet" href="./css/oj9_common.css">  
   <script type="text/javascript" src="./js/oj9_common.js"></script>
-  <script>
-    function version(state) {
-      var i;
-      if(state == "a") {
-        var els = document.getElementsByClassName("v-8");
-        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display: block;");
-        var els = document.getElementsByClassName("v-9");
-        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:none;");
-        
-        var els = document.getElementsByClassName("v-alt8");
-        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:none;");
-        var els = document.getElementsByClassName("v-alt9");
-        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:block;");
-      }
-
-      if(state == "b") {
-        var els = document.getElementsByClassName("v-8");
-        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:none;");
-        var els = document.getElementsByClassName("v-9");
-        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display: block;");
-      
-        var els = document.getElementsByClassName("v-alt8");
-        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:block;");
-        var els = document.getElementsByClassName("v-alt9");
-        for (i = 0; i < els.length; i++) els[i].setAttribute("style","display:none;");
-      }
-
-    }
-  </script>
 
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -62,57 +33,62 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
     ga('send', 'pageview');
   </script>
 
-<style>
-.version-menu input {
+<style> /* for version tabs */
+
+.tabs_bg {
+  background-color: #407471;           /*cyan - dark */
+  background-image: url("assets/bg-l.png");
+}
+section {
+  background-color: #fff;
+  display: none;
+  padding: 20px 0 0;
+  border-top: 1px solid #000;
+}
+input {
   display: none;
 }
-
-.version-menu {
-  position:fixed;
-  top:120px;
-  left:20px;
-}
-
-.version-menu label {
-  display: block;
-  width: 7rem;
-  height: 1.7rem;
-  margin: 0rem 0rem .1rem 0rem ;
-  padding: 0rem 0rem 0rem 0rem ;
-  -webkit-border-radius: 50px;
-  -moz-border-radius: 50px;
-  border-radius: 50px;
-  font-size: 1.2rem;
-  cursor: pointer;
+label {
+  display: inline-block;
+  margin: 0 0 -1px;
+  padding: 10px 25px 10px 25px;
+  font-weight: 600;
   text-align: center;
-  color:#ffffff;
+  color: #aaa;
+  color: #fff;
+  border: 1px solid transparent;
+  border-bottom: 1px solid #000;
+}
+label:hover {
+  color: #ff5424;                      /* orange - bright */
+  cursor: pointer;
+}
+input + label {
   background-color: #69c1bd;           /* cyan */
-  background-color: #e95a32;           /* orange */
-  border: 1px solid #888888;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  box-shadow: 4px -4px 5px 0px #539894,  inset 0px -5px 5px 0px #63b5b0;
+}
+input:checked + label {
+  color: #69c1bd;                      /* cyan */
+  background-color: #fff;
+  border: 1px solid black;
+  border-bottom: 1px solid #fff;
+  box-shadow: 4px -4px 5px 0px #539894,  inset 0px 0px 0px 0px #fff;
 }
 
-.version-menu label:hover {
-  background-color: #407471;           /*cyan - dark */
-  background-color: #ff5424;           /* orange - bright */
-}
-
-input[type="radio"]:checked + label {
-  background-color: #e95a32;           /* orange */
-  background-color: #36354f;           /* blue - dark */
-  background-color: #69c1bd;           /* cyan */
-  box-shadow: 3px 3px 15px #999;
+#tab8:checked ~ #content8,
+#tab9:checked ~ #content9,
+#tab10:checked ~ #content10,
+#tab11:checked ~ #content11,
+#tab12:checked ~ #content12 {
+  display: block;
 }
 </style>
 
 </head>
 <body onload="version('a')">
 
-<div class="version-menu">
-    <input type="radio" id="version-a" name="version-choice" onclick="version('a')" checked>
-    <label for="version-a"><p class="v-8">JDK 8</p> <p class="v-alt8">Build JDK 8</p></label>
-    <input type="radio" id="version-b" name="version-choice" onclick="version('b')">
-    <label for="version-b"><p class="v-9">JDK 9</p> <p class="v-alt9">Build JDK 9</p></label>
-</div>
 
   <div id="main-title">
     <script type="text/javascript">navigation(document.location.href);</script>  
@@ -128,53 +104,75 @@ input[type="radio"]:checked + label {
   </div>
 
 
-  <main class="switch-wrap">
+  <main class="tabs_bg">
 
-    <div id="build" class="section-content">
-      <h1 class="v-8">Build your own OpenJDK version 8</h1>
-      <h1 class="v-9">Build your own OpenJDK version 9</h1>
 
+
+
+    <div class="section-content" style="padding-bottom:0;" id="build">
+      <h1 style="padding-bottom: 10px;">Build your own OpenJDK</h1>
+
+    &nbsp; &nbsp;
+    <input id="tab8" type="radio" name="tabs" checked>
+    <label for="tab8">Version 8</label></input>
+
+    <input id="tab9" type="radio" name="tabs">
+    <label for="tab9">Version 9</label></input>
+
+    <input id="tab10" type="radio" name="tabs">
+    <label for="tab10">Version 10</label></input>
+<!-- 
+    <input id="tab11" type="radio" name="tabs">
+    <label for="tab11">Version 11</label></input>
+
+    <input id="tab12" type="radio" name="tabs">
+    <label for="tab12">Version 12</label></input>
+ -->
+
+
+<!-- =========================================================================================== -->
+<!-- CONTENT FOR VERSION 8 -->
+
+    <section id="content8">
       <div class="f-section-item">
-        <span class="intro-text">Building OpenJDK with OpenJ9 will be familiar to anyone who has already built OpenJDK.</span>
+<!-- set version -->
+        <span class="intro-text">Building OpenJDK 8 with OpenJ9 will be familiar to anyone who has already built OpenJDK.</span>
       </div>
       <div class="f-section-item">
         <span class="intro-text1" style="margin:0 4rem;">We're going to use a Docker file* to create a Docker container where you'll build a binary from source code and run some tests on it. Just follow these steps:</span>
       </div>
           
+<!-- set version x5 -->
       <div class="f-section-item">
         <ol class="toc">
-          <li><a href="#prepare">Prepare your system               </a></li>
-          <li><a href="#get"    >Get the source                    </a></li>
-          <li><a href="#config" >Configure your build              </a></li>
-          <li><a href="#build9" >Build OpenJDK with OpenJ9         </a></li>
-          <li><a href="#test"   >Test your binary                  </a></li>
+          <li><a href="#8prepare">Prepare your system               </a></li>
+          <li><a href="#8get"    >Get the source                    </a></li>
+          <li><a href="#8config" >Configure your build              </a></li>
+          <li><a href="#8build9" >Build OpenJDK with OpenJ9         </a></li>
+          <li><a href="#8test"   >Test your binary                  </a></li>
         </ol> 
       </div>
 
       <div class="f-section-item">
-        <span class="v-8 intro-text1" style="margin:0 19rem;"><span style="font-size:2rem;">*</span> <i>If you don't want to use Docker or you want to build a binary for another platform,<br/>read the <a href="https://github.com/eclipse/openj9/blob/master/buildenv/Build_Instructions_V8.md" target="-blank">full set of build instructions for JDK 8</a>.</i>
-        </span>
-        <span class="v-9 intro-text1" style="margin:0 19rem;"><span style="font-size:2rem;">*</span> <i>If you don't want to use Docker or you want to build a binary for another platform,<br/>read the <a href="https://github.com/eclipse/openj9/blob/master/buildenv/Build_Instructions_V9.md" target="-blank">full set of build instructions for JDK 9</a>.</i>
+<!-- set version x2 -->
+        <span class="intro-text1" style="margin:0 19rem;"><span style="font-size:2rem;">*</span> <i>If you don't want to use Docker or you want to build a binary for another platform,<br/>read the <a href="https://github.com/eclipse/openj9/blob/master/buildenv/Build_Instructions_V8.md" target="-blank">full set of build instructions for JDK 8</a>.</i>
         </span>
       </div>
 
-      <div class="f-section-item" id="prepare">
+<!-- set version -->
+      <div class="f-section-item" id="8prepare">
         <div class="f-content-container">
           <h3>Prepare your system</h3>
           <p>
           We'll start by building a Dockerfile. If you don't already have Docker on your system, <a href="https://docs.docker.com/engine/installation/">download</a> and install it now.
           </p>
-          <p class="v-8">Pick one of the following JDK v8 Dockerfiles for the platform you want to work on:</p>
-          <p class="v-9">Pick one of the following JDK v9 Dockerfiles for the platform you want to work on:</p>
-          <ul class="v-8">
+<!-- set version -->
+          <p>Pick one of the following <strong>JDK v8</strong> Dockerfiles for the platform you want to work on:</p>
+<!-- set version x3 -->
+          <ul>
             <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk8/x86_64/ubuntu16/Dockerfile" target="_blank">Linux 64-bit (x86_64)</a></strong></li>
             <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk8/ppc64le/ubuntu16/Dockerfile" target="_blank">Linux on Power systems 64-bit (ppc64)</a></strong></li>
             <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk8/s390x/ubuntu16/Dockerfile" target="_blank">Linux on z Systems 64-bit (390_64)</a></strong></li>
-          </ul>
-          <ul class="v-9">
-            <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk9/x86_64/ubuntu16/Dockerfile" target="_blank">Linux 64-bit (x86_64)</a></strong></li>
-            <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk9/ppc64le/ubuntu16/Dockerfile" target="_blank">Linux on Power systems 64-bit (ppc64)</a></strong></li>
-            <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk9/s390x/ubuntu16/Dockerfile" target="_blank">Linux on z Systems 64-bit (390_64)</a></strong></li>
           </ul>
           <p>Save the Dockerfile to your current directory and specify these commands to build and run the Docker image:
           </p>
@@ -187,26 +185,28 @@ input[type="radio"]:checked + label {
         </div>
       </div>
 
-      <div class="f-section-item" id="get">
+<!-- set version -->
+      <div class="f-section-item" id="8get">
         <div class="f-content-container">
           <h3>Get the source</h3>
           <p>First you need to clone the <strong>Extensions for OpenJDK for Eclipse OpenJ9</strong> project.
           </p>
           <p>This repository is a git mirror of OpenJDK without the HotSpot JVM, but with an <strong>openj9</strong> branch that contains a few necessary patches. Run the following command:
           </p>
-          <pre class="v-8"><code>git clone https://github.com/ibmruntimes/openj9-openjdk-jdk8</code></pre>
-          <pre class="v-9"><code>git clone https://github.com/ibmruntimes/openj9-openjdk-jdk9</code></pre>
+<!-- set version -->
+          <pre><code>git clone https://github.com/ibmruntimes/openj9-openjdk-jdk8</code></pre>
           <p>Cloning this repository can take a while because OpenJDK is a large project! When the process is complete, change directory into the cloned repository:
           </p>
-          <pre class="v-8"><code>cd openj9-openjdk-jdk8</code></pre>
-          <pre class="v-9"><code>cd openj9-openjdk-jdk9</code></pre>
+<!-- set version -->
+          <pre><code>cd openj9-openjdk-jdk8</code></pre>
           <p>Now fetch additional sources from the <strong>Eclipse OpenJ9</strong> project and its clone of <strong>Eclipse OMR</strong>:
           </p>
           <pre><code>bash ./get_source.sh</code></pre>
         </div>
       </div>
 
-      <div class="f-section-item" id="config">
+<!-- set version -->
+      <div class="f-section-item" id="8config">
         <div class="f-content-container">
           <h3>Configure</h3>
           <p>When you have all the source files that you need, run the configure script, which detects how to build in the current build environment. You must specify one extra jar file, which has already been installed into the Docker container.
@@ -217,7 +217,8 @@ input[type="radio"]:checked + label {
         </div>
       </div>
 
-      <div class="f-section-item" id="build9">
+<!-- set version -->
+      <div class="f-section-item" id="8build9">
         <div class="f-content-container">
           <h3>Build</h3>
           <p>Now you're ready to build OpenJDK with OpenJ9:
@@ -225,13 +226,10 @@ input[type="radio"]:checked + label {
           <pre><code>make all</code></pre>
           <p>Two Java builds are produced: a full developer kit (<code>jdk</code>) and a runtime environment (<code>jre</code>):
           </p>
-          <ul class="v-8">
+<!-- set version x2 -->
+          <ul>
             <li><code>build/&lt;platform&gt;/images/j2sdk-image</code></li>
             <li><code>build/&lt;platform&gt;/images/j2re-image</code></li>
-          </ul>
-		  <ul class="v-9">
-            <li><code>build/&lt;platform&gt;/images/jdk</code></li>
-            <li><code>build/&lt;platform&gt;/images/jre</code></li>
           </ul>
           <p>where <code>&lt;platform&gt;</code> reflects the Dockerfile you chose.
           </p>
@@ -241,39 +239,25 @@ input[type="radio"]:checked + label {
         </div>
       </div>
 
-      <div class="f-section-item" id="test">
+<!-- set version -->
+      <div class="f-section-item" id="8test">
         <div class="f-content-container">
           <h3>Test</h3>
           <p>For a simple test, try running the <code>java -version</code> command.
           </p>
-          <pre class="v-8"><code>cd build/&lt;platform&gt;/images/j2re-image</code>
-<code>./bin/java -version</code></pre>
-		  <pre class="v-9"><code>cd build/&lt;platform&gt;/images/jre</code>
+<!-- set version -->
+          <pre><code>cd build/&lt;platform&gt;/images/j2re-image</code>
 <code>./bin/java -version</code></pre>
           <p>Here is a sample of the output from a Linux x-86 binary:
           </p>
-<pre class="output v-8">openjdk version "1.8.0-internal"
+<!-- set version -->
+<pre class="output">openjdk version "1.8.0-internal"
 OpenJDK Runtime Environment (build 1.8.0-internal-admin_2017_10_31_10_46-b00)
 Eclipse OpenJ9 VM (build 2.9, JRE 1.8.0 Linux amd64-64 Compressed References 20171031_000000 (JIT enabled, AOT enabled)
 OpenJ9   - 68d6fdb
 OMR      - 7c3d3d7
 OpenJDK  - 27f5b8f based on jdk8u152-b03)
 </pre>
-<pre class="output v-9">openjdk version "9-internal"
-OpenJDK Runtime Environment (build 9-internal+0-adhoc.anon.openj9-openjdk-jdk9)
-Eclipse OpenJ9 VM (build 2.9, JRE 9 Linux amd64-64 Compressed References 20171030_000000 (JIT enabled, AOT enabled)
-OpenJ9   - 731f323
-OMR      - 7c3d3d7
-OpenJDK  - 1983043 based on jdk-9+181)
-</pre>
-<!--
-OpenJDK Runtime Environment (build 9-internal+0-adhoc..openj9-openjdk-jdk9)
-Eclipse OpenJ9 VM (build 2.9, JRE 9 Linux amd64-64 Compressed References 20170912_000000 (JIT enabled, AOT enabled)
-J9VM - e6ca543
-JIT  - e6ca543
-OMR  - a0813c2
-OpenJDK  - 8593b2f based on )
--->
           <p>There are a large number of test cases that you can run to test your binaries and to support continuous integration. All of these tests are run automatically as part of the Eclipse OpenJ9 build and test pipeline. The tests are triggered by pull requests and by successful OpenJ9 builds. You can see the latest results on this Jenkins instance:  <a href="https://ci.eclipse.org/openj9/" target="_blank">https://ci.eclipse.org/openj9/</a>.
           </p>
           <p>You can also download and run some or all of these tests manually on your own machine.
@@ -323,7 +307,371 @@ OpenJDK  - 8593b2f based on )
         </div>
       </div>
 
-    </div> <!-- end: build -->
+    </section>
+
+
+<!-- =========================================================================================== -->
+<!-- CONTENT FOR VERSION 9 -->
+
+    <section id="content9">
+      <div class="f-section-item">
+<!-- set version -->
+        <span class="intro-text">Building OpenJDK 9 with OpenJ9 will be familiar to anyone who has already built OpenJDK.</span>
+      </div>
+      <div class="f-section-item">
+        <span class="intro-text1" style="margin:0 4rem;">We're going to use a Docker file* to create a Docker container where you'll build a binary from source code and run some tests on it. Just follow these steps:</span>
+      </div>
+          
+<!-- set version x5 -->
+      <div class="f-section-item">
+        <ol class="toc">
+          <li><a href="#9prepare">Prepare your system               </a></li>
+          <li><a href="#9get"    >Get the source                    </a></li>
+          <li><a href="#9config" >Configure your build              </a></li>
+          <li><a href="#9build9" >Build OpenJDK with OpenJ9         </a></li>
+          <li><a href="#9test"   >Test your binary                  </a></li>
+        </ol> 
+      </div>
+
+      <div class="f-section-item">
+<!-- set version x2 -->
+        <span class="intro-text1" style="margin:0 19rem;"><span style="font-size:2rem;">*</span> <i>If you don't want to use Docker or you want to build a binary for another platform,<br/>read the <a href="https://github.com/eclipse/openj9/blob/master/buildenv/Build_Instructions_V9.md" target="-blank">full set of build instructions for JDK 9</a>.</i>
+        </span>
+      </div>
+
+<!-- set version -->
+      <div class="f-section-item" id="9prepare">
+        <div class="f-content-container">
+          <h3>Prepare your system</h3>
+          <p>
+          We'll start by building a Dockerfile. If you don't already have Docker on your system, <a href="https://docs.docker.com/engine/installation/">download</a> and install it now.
+          </p>
+<!-- set version -->
+          <p>Pick one of the following <strong>JDK v9</strong> Dockerfiles for the platform you want to work on:</p>
+<!-- set version x3 -->
+          <ul>
+            <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk9/x86_64/ubuntu16/Dockerfile" target="_blank">Linux 64-bit (x86_64)</a></strong></li>
+            <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk9/ppc64le/ubuntu16/Dockerfile" target="_blank">Linux on Power systems 64-bit (ppc64)</a></strong></li>
+            <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk9/s390x/ubuntu16/Dockerfile" target="_blank">Linux on z Systems 64-bit (390_64)</a></strong></li>
+          </ul>
+          <p>Save the Dockerfile to your current directory and specify these commands to build and run the Docker image:
+          </p>
+<pre><code>docker build -t openj9 -f Dockerfile .</code>
+<code>docker run -it openj9</code></pre>
+        <p>Depending on your <a href="https://docs.docker.com/engine/reference/commandline/cli/#description" target="_blank">Docker system configuration</a>, you might need to prefix these commands with <code>sudo</code>.
+          </p>
+          <p>Now that you have the Docker image running, you are ready to move to the next step.
+          </p>
+        </div>
+      </div>
+
+<!-- set version -->
+      <div class="f-section-item" id="9get">
+        <div class="f-content-container">
+          <h3>Get the source</h3>
+          <p>First you need to clone the <strong>Extensions for OpenJDK for Eclipse OpenJ9</strong> project.
+          </p>
+          <p>This repository is a git mirror of OpenJDK without the HotSpot JVM, but with an <strong>openj9</strong> branch that contains a few necessary patches. Run the following command:
+          </p>
+<!-- set version -->
+          <pre><code>git clone https://github.com/ibmruntimes/openj9-openjdk-jdk9</code></pre>
+          <p>Cloning this repository can take a while because OpenJDK is a large project! When the process is complete, change directory into the cloned repository:
+          </p>
+<!-- set version -->
+          <pre><code>cd openj9-openjdk-jdk9</code></pre>
+          <p>Now fetch additional sources from the <strong>Eclipse OpenJ9</strong> project and its clone of <strong>Eclipse OMR</strong>:
+          </p>
+          <pre><code>bash ./get_source.sh</code></pre>
+        </div>
+      </div>
+
+<!-- set version -->
+      <div class="f-section-item" id="9config">
+        <div class="f-content-container">
+          <h3>Configure</h3>
+          <p>When you have all the source files that you need, run the configure script, which detects how to build in the current build environment. You must specify one extra jar file, which has already been installed into the Docker container.
+          </p>
+          <pre><code>bash ./configure --with-freemarker-jar=/root/freemarker.jar</code></pre>
+          <p>Note that you must give an absolute path to <code>freemarker.jar</code>
+          </p>
+        </div>
+      </div>
+
+<!-- set version -->
+      <div class="f-section-item" id="9build9">
+        <div class="f-content-container">
+          <h3>Build</h3>
+          <p>Now you're ready to build OpenJDK with OpenJ9:
+          </p>
+          <pre><code>make all</code></pre>
+          <p>Two Java builds are produced: a full developer kit (<code>jdk</code>) and a runtime environment (<code>jre</code>):
+          </p>
+<!-- set version x2 -->
+          <ul>
+            <li><code>build/&lt;platform&gt;/images/jdk</code></li>
+            <li><code>build/&lt;platform&gt;/images/jre</code></li>
+          </ul>
+          <p>where <code>&lt;platform&gt;</code> reflects the Dockerfile you chose.
+          </p>
+          <p>For example, the <strong>Linux 64-bit (x86-64)</strong> Dockerfile directory is: <code>linux-x86_64-normal-server-release</code>
+          </p>
+          
+        </div>
+      </div>
+
+<!-- set version -->
+      <div class="f-section-item" id="9test">
+        <div class="f-content-container">
+          <h3>Test</h3>
+          <p>For a simple test, try running the <code>java -version</code> command.
+          </p>
+<!-- set version -->
+          <pre><code>cd build/&lt;platform&gt;/images/jre</code>
+<code>./bin/java -version</code></pre>
+          <p>Here is a sample of the output from a Linux x-86 binary:
+          </p>
+<!-- set version -->
+<pre class="output">openjdk version "9-internal"
+OpenJDK Runtime Environment (build 9-internal+0-adhoc.anon.openj9-openjdk-jdk9)
+Eclipse OpenJ9 VM (build 2.9, JRE 9 Linux amd64-64 Compressed References 20171030_000000 (JIT enabled, AOT enabled)
+OpenJ9   - 731f323
+OMR      - 7c3d3d7
+OpenJDK  - 1983043 based on jdk-9+181)
+</pre>
+          <p>There are a large number of test cases that you can run to test your binaries and to support continuous integration. All of these tests are run automatically as part of the Eclipse OpenJ9 build and test pipeline. The tests are triggered by pull requests and by successful OpenJ9 builds. You can see the latest results on this Jenkins instance:  <a href="https://ci.eclipse.org/openj9/" target="_blank">https://ci.eclipse.org/openj9/</a>.
+          </p>
+          <p>You can also download and run some or all of these tests manually on your own machine.
+          </p>
+          <h4>Tests from the OpenJDK and AdoptOpenJDK projects</h4>
+          <p>These tests inspect the Java implementation via the commands and APIs available to the end user. The tests are separated according to their function:
+          </p>
+          <ul>
+            <li style="margin-bottom: 1rem;">Functional verification tests from the OpenJDK project, often referred to as the OpenJDK regression tests, most of which are applicable to Eclipse OpenJ9. Both the AdoptOpenJDK project and the Eclipse OpenJ9 project run these tests.  At Eclipse OpenJ9, a curated subset of these regression tests is run. At the AdoptOpenJDK project, the entire suite of tests is run against Eclipse OpenJ9, with the exception of the Hotspot tests. For more information, see <a href="https://github.com/AdoptOpenJDK/openjdk-tests/blob/master/README.md" target="_blank">https://github.com/AdoptOpenJDK/openjdk-tests/README.md</a>
+            </li>
+            <li>System tests from the AdoptOpenJDK project, which consist of load tests and simple user scenarios, such as debugging and dynamic class replacement. Learn how to obtain and run the tests here: <a href="https://github.com/AdoptOpenJDK/openjdk-systemtest/blob/master/README.md" target="_blank">https://github.com/AdoptOpenJDK/openjdk-systemtest/README.md</a>
+            </li>
+          </ul>
+          <p>The hierarchy of <code>make</code> targets is as follows:
+          </p>
+          <ul>
+            <li><code>test</code>: the top-level target
+              <ul>
+                <li><code>sanity</code>: a subset of OpenJDK regression tests, some implementation-general functional and system verification tests</li>
+                <li><code>extended</code>: the remaining implementation-general system verification tests</li>
+                <li><code>openjdk</code>: most OpenJDK regression tests, excludes Hotspot tests</li>
+                <li><code>external</code>: third-party application tests</li>
+                <li><code>perf</code>: open source benchmarks<br/></li>
+              </ul>
+            </li>
+          </ul>
+
+          <h4>Tests from the Eclipse OpenJ9 project</h4>
+          <p>These tests also inspect the Java implementation via the commands and APIs available to the end user.
+          </p>
+          <ul>
+            <li style="margin-bottom: 1rem;">Functional verification tests that target the Eclipse OpenJ9 virtual machine, garbage collector, just-in-time compiler, and class libraries. Learn how to obtain and run the tests here: <a href="https://github.com/eclipse/openj9/blob/master/test/README.md" target="_blank">https://github.com/eclipse/openj9/test/README.md</a>.
+            </li>
+            <li>System tests that logically extend the AdoptOpenJDK tests, which are run as a prerequisite. The tests target unique Eclipse OpenJ9 features such as shared classes and extensions to the Java class libraries. Learn how to obtain and run the tests here: <a href="https://github.com/eclipse/openj9-systemtest/blob/master/README.md" target="_blank">https://github.com/eclipse/openj9-systemtest/README.md</a>.
+            </li>
+          </ul>
+          <p>The hierarchy of <code>make</code> targets is as follows:
+          <ul>
+            <li><code>test</code>: the top-level target
+              <ul>
+                <li><code>sanity</code>: most functional verification tests, some OpenJ9-specific system verification tests</li>
+                <li><code>extended</code>: long-running functional verification tests and the remaining system verification tests</li>
+                <li><code>openjdk</code>: a subset of OpenJDK regression tests</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </section>
+
+
+<!-- =========================================================================================== -->
+<!-- CONTENT FOR VERSION 10 -->
+
+    <section id="content10">
+      <div class="f-section-item">
+<!-- set version -->
+        <span class="intro-text">Building OpenJDK 10 with OpenJ9 will be familiar to anyone who has already built OpenJDK.</span>
+      </div>
+      <div class="f-section-item">
+        <span class="intro-text1" style="margin:0 4rem;">We're going to use a Docker file* to create a Docker container where you'll build a binary from source code and run some tests on it. Just follow these steps:</span>
+      </div>
+          
+<!-- set version x5 -->
+      <div class="f-section-item">
+        <ol class="toc">
+          <li><a href="#10prepare">Prepare your system               </a></li>
+          <li><a href="#10get"    >Get the source                    </a></li>
+          <li><a href="#10config" >Configure your build              </a></li>
+          <li><a href="#10build9" >Build OpenJDK with OpenJ9         </a></li>
+          <li><a href="#10test"   >Test your binary                  </a></li>
+        </ol> 
+      </div>
+
+      <div class="f-section-item">
+<!-- set version x2 -->
+        <span class="intro-text1" style="margin:0 19rem;"><span style="font-size:2rem;">*</span> <i>If you don't want to use Docker or you want to build a binary for another platform,<br/>read the <a href="https://github.com/eclipse/openj9/blob/master/buildenv/Build_Instructions_V10.md" target="-blank">full set of build instructions for JDK 10</a>.</i>
+        </span>
+      </div>
+
+<!-- set version -->
+      <div class="f-section-item" id="10prepare">
+        <div class="f-content-container">
+          <h3>Prepare your system</h3>
+          <p>
+          We'll start by building a Dockerfile. If you don't already have Docker on your system, <a href="https://docs.docker.com/engine/installation/">download</a> and install it now.
+          </p>
+<!-- set version -->
+          <p>Pick one of the following <strong>JDK v10</strong> Dockerfiles for the platform you want to work on:</p>
+<!-- set version x3 -->
+         <ul>
+            <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk10/x86_64/ubuntu16/Dockerfile" target="_blank">Linux 64-bit (x86_64)</a></strong></li>
+            <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk10/ppc64le/ubuntu16/Dockerfile" target="_blank">Linux on Power systems 64-bit (ppc64)</a></strong></li>
+            <li><strong><a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/jdk10/s390x/ubuntu16/Dockerfile" target="_blank">Linux on z Systems 64-bit (390_64)</a></strong></li>
+          </ul>
+          <p>Save the Dockerfile to your current directory and specify these commands to build and run the Docker image:
+          </p>
+<pre><code>docker build -t openj9 -f Dockerfile .</code>
+<code>docker run -it openj9</code></pre>
+        <p>Depending on your <a href="https://docs.docker.com/engine/reference/commandline/cli/#description" target="_blank">Docker system configuration</a>, you might need to prefix these commands with <code>sudo</code>.
+          </p>
+          <p>Now that you have the Docker image running, you are ready to move to the next step.
+          </p>
+        </div>
+      </div>
+
+<!-- set version -->
+      <div class="f-section-item" id="10get">
+        <div class="f-content-container">
+          <h3>Get the source</h3>
+          <p>First you need to clone the <strong>Extensions for OpenJDK for Eclipse OpenJ9</strong> project.
+          </p>
+          <p>This repository is a git mirror of OpenJDK without the HotSpot JVM, but with an <strong>openj9</strong> branch that contains a few necessary patches. Run the following command:
+          </p>
+<!-- set version -->
+          <pre><code>git clone https://github.com/ibmruntimes/openj9-openjdk-jdk10</code></pre>
+          <p>Cloning this repository can take a while because OpenJDK is a large project! When the process is complete, change directory into the cloned repository:
+          </p>
+<!-- set version -->
+          <pre><code>cd openj9-openjdk-jdk10</code></pre>
+          <p>Now fetch additional sources from the <strong>Eclipse OpenJ9</strong> project and its clone of <strong>Eclipse OMR</strong>:
+          </p>
+          <pre><code>bash ./get_source.sh</code></pre>
+        </div>
+      </div>
+
+<!-- set version -->
+      <div class="f-section-item" id="10config">
+        <div class="f-content-container">
+          <h3>Configure</h3>
+          <p>When you have all the source files that you need, run the configure script, which detects how to build in the current build environment. You must specify one extra jar file, which has already been installed into the Docker container.
+          </p>
+          <pre><code>bash ./configure --with-freemarker-jar=/root/freemarker.jar</code></pre>
+          <p>Note that you must give an absolute path to <code>freemarker.jar</code>
+          </p>
+        </div>
+      </div>
+
+<!-- set version -->
+      <div class="f-section-item" id="10build9">
+        <div class="f-content-container">
+          <h3>Build</h3>
+          <p>Now you're ready to build OpenJDK with OpenJ9:
+          </p>
+          <pre><code>make all</code></pre>
+          <p>Two Java builds are produced: a full developer kit (<code>jdk</code>) and a runtime environment (<code>jre</code>):
+          </p>
+<!-- set version x2 -->
+          <ul>
+            <li><code>build/&lt;platform&gt;/images/jdk</code></li>
+            <li><code>build/&lt;platform&gt;/images/jre</code></li>
+          </ul>
+          <p>where <code>&lt;platform&gt;</code> reflects the Dockerfile you chose.
+          </p>
+          <p>For example, the <strong>Linux 64-bit (x86-64)</strong> Dockerfile directory is: <code>linux-x86_64-normal-server-release</code>
+          </p>
+          
+        </div>
+      </div>
+
+<!-- set version -->
+      <div class="f-section-item" id="10test">
+        <div class="f-content-container">
+          <h3>Test</h3>
+          <p>For a simple test, try running the <code>java -version</code> command.
+          </p>
+<!-- set version -->
+          <pre><code>cd build/&lt;platform&gt;/images/jre</code>
+<code>./bin/java -version</code></pre>
+          <p>Here is a sample of the output from a Linux x-86 binary:
+          </p>
+<!-- set version -->
+<pre class="output">openjdk version "10-internal" 2018-03-20
+OpenJDK Runtime Environment (build 10-internal+0-adhoc..openj9-openjdk-jdk10)
+Eclipse OpenJ9 VM (build master-4ecf784, JRE 10 Linux amd64-64 Compressed References 20180411_000000 (JIT enabled, AOT enabled)
+OpenJ9   - 4ecf784
+OMR      - cb9e24d
+JCL      - eaa06eb based on jdk-10+46)
+</pre>
+          <p>There are a large number of test cases that you can run to test your binaries and to support continuous integration. All of these tests are run automatically as part of the Eclipse OpenJ9 build and test pipeline. The tests are triggered by pull requests and by successful OpenJ9 builds. You can see the latest results on this Jenkins instance:  <a href="https://ci.eclipse.org/openj9/" target="_blank">https://ci.eclipse.org/openj9/</a>.
+          </p>
+          <p>You can also download and run some or all of these tests manually on your own machine.
+          </p>
+          <h4>Tests from the OpenJDK and AdoptOpenJDK projects</h4>
+          <p>These tests inspect the Java implementation via the commands and APIs available to the end user. The tests are separated according to their function:
+          </p>
+          <ul>
+            <li style="margin-bottom: 1rem;">Functional verification tests from the OpenJDK project, often referred to as the OpenJDK regression tests, most of which are applicable to Eclipse OpenJ9. Both the AdoptOpenJDK project and the Eclipse OpenJ9 project run these tests.  At Eclipse OpenJ9, a curated subset of these regression tests is run. At the AdoptOpenJDK project, the entire suite of tests is run against Eclipse OpenJ9, with the exception of the Hotspot tests. For more information, see <a href="https://github.com/AdoptOpenJDK/openjdk-tests/blob/master/README.md" target="_blank">https://github.com/AdoptOpenJDK/openjdk-tests/README.md</a>
+            </li>
+            <li>System tests from the AdoptOpenJDK project, which consist of load tests and simple user scenarios, such as debugging and dynamic class replacement. Learn how to obtain and run the tests here: <a href="https://github.com/AdoptOpenJDK/openjdk-systemtest/blob/master/README.md" target="_blank">https://github.com/AdoptOpenJDK/openjdk-systemtest/README.md</a>
+            </li>
+          </ul>
+          <p>The hierarchy of <code>make</code> targets is as follows:
+          </p>
+          <ul>
+            <li><code>test</code>: the top-level target
+              <ul>
+                <li><code>sanity</code>: a subset of OpenJDK regression tests, some implementation-general functional and system verification tests</li>
+                <li><code>extended</code>: the remaining implementation-general system verification tests</li>
+                <li><code>openjdk</code>: most OpenJDK regression tests, excludes Hotspot tests</li>
+                <li><code>external</code>: third-party application tests</li>
+                <li><code>perf</code>: open source benchmarks<br/></li>
+              </ul>
+            </li>
+          </ul>
+
+          <h4>Tests from the Eclipse OpenJ9 project</h4>
+          <p>These tests also inspect the Java implementation via the commands and APIs available to the end user.
+          </p>
+          <ul>
+            <li style="margin-bottom: 1rem;">Functional verification tests that target the Eclipse OpenJ9 virtual machine, garbage collector, just-in-time compiler, and class libraries. Learn how to obtain and run the tests here: <a href="https://github.com/eclipse/openj9/blob/master/test/README.md" target="_blank">https://github.com/eclipse/openj9/test/README.md</a>.
+            </li>
+            <li>System tests that logically extend the AdoptOpenJDK tests, which are run as a prerequisite. The tests target unique Eclipse OpenJ9 features such as shared classes and extensions to the Java class libraries. Learn how to obtain and run the tests here: <a href="https://github.com/eclipse/openj9-systemtest/blob/master/README.md" target="_blank">https://github.com/eclipse/openj9-systemtest/README.md</a>.
+            </li>
+          </ul>
+          <p>The hierarchy of <code>make</code> targets is as follows:
+          <ul>
+            <li><code>test</code>: the top-level target
+              <ul>
+                <li><code>sanity</code>: most functional verification tests, some OpenJ9-specific system verification tests</li>
+                <li><code>extended</code>: long-running functional verification tests and the remaining system verification tests</li>
+                <li><code>openjdk</code>: a subset of OpenJDK regression tests</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </section>
+
+
+  </div>
+<!-- =========================================================================================== -->
 
   </main>
 
