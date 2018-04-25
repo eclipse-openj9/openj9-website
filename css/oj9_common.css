@@ -416,7 +416,7 @@ div.section-content h1 {
   text-align:center;
 }
 
-div#get-started p, div#contributing p, div#build p, div#faq p, div#resources p, div#whatsnew p {
+div#get-started p, div#contributing p, div#build p, div.section-content p, div#faq p, div#resources p, div#whatsnew p {
   font-size:1rem;
   display: inline-block;
 }
@@ -475,7 +475,7 @@ div#whatsnew p     { width: 100%;      }
   margin: .1rem;
 */
 }
-#build .f-content-container {
+#build .f-content-container, {
   max-width: 55rem;
   flex: 1;
   min-width: 0
