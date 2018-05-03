@@ -262,6 +262,13 @@ OpenJDK  - 27f5b8f based on jdk8u152-b03)
           </p>
           <p>You can also download and run some or all of these tests manually on your own machine.
           </p>
+		  <p>Running OpenJ9 tests requires a few extra tools and utilities. You can install these 
+		  <a href="https://github.com/eclipse/openj9/blob/master/test/docs/Prerequisites.md">pre-requisites</a> 
+		  on your machine and follow the <a href="https://github.com/eclipse/openj9/blob/master/test/README.md">Quick Start Guide</a>. 
+		  Alternatively, our <a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/test/Dockerfile">test dockerfile</a> extends
+		  the OpenJ9 dockerfile that you selected in <strong>Prepare your system</strong> to include these tools in an OpenJ9 <q>build and test</q> docker image. If
+		  you use this image to build an OpenJDK with OpenJ9, you can find the OpenJ9 functional verification tests in the <code>openj9/test</code> directory.
+          </p>
           <h4>Tests from the OpenJDK and AdoptOpenJDK projects</h4>
           <p>These tests inspect the Java implementation via the commands and APIs available to the end user. The tests are separated according to their function:
           </p>
@@ -442,6 +449,13 @@ OpenJDK  - 1983043 based on jdk-9+181)
           </p>
           <p>You can also download and run some or all of these tests manually on your own machine.
           </p>
+		  <p>Running OpenJ9 tests requires a few extra tools and utilities. You can install these 
+		  <a href="https://github.com/eclipse/openj9/blob/master/test/docs/Prerequisites.md">pre-requisites</a> 
+		  on your machine and follow the <a href="https://github.com/eclipse/openj9/blob/master/test/README.md">Quick Start Guide</a>. 
+		  Alternatively, our <a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/test/Dockerfile">test dockerfile</a> extends
+		  the OpenJ9 dockerfile that you selected in <strong>Prepare your system</strong> to include these tools in an OpenJ9 <q>build and test</q> docker image. If
+		  you use this image to build an OpenJDK with OpenJ9, you can find the OpenJ9 functional verification tests in the <code>openj9/test</code> directory.
+          </p>
           <h4>Tests from the OpenJDK and AdoptOpenJDK projects</h4>
           <p>These tests inspect the Java implementation via the commands and APIs available to the end user. The tests are separated according to their function:
           </p>
@@ -618,9 +632,18 @@ OpenJ9   - 4ecf784
 OMR      - cb9e24d
 JCL      - eaa06eb based on jdk-10+46)
 </pre>
-          <p>There are a large number of test cases that you can run to test your binaries and to support continuous integration. All of these tests are run automatically as part of the Eclipse OpenJ9 build and test pipeline. The tests are triggered by pull requests and by successful OpenJ9 builds. You can see the latest results on this Jenkins instance:  <a href="https://ci.eclipse.org/openj9/" target="_blank">https://ci.eclipse.org/openj9/</a>.
+          <p>There are a large number of test cases that you can run to test your binaries and to support continuous integration. 
+		  All of these tests are run automatically as part of the Eclipse OpenJ9 build and test pipeline. The tests are triggered 
+		  by pull requests and by successful OpenJ9 builds. You can see the latest results on this Jenkins instance:  
+		  <a href="https://ci.eclipse.org/openj9/" target="_blank">https://ci.eclipse.org/openj9/</a>.
           </p>
-          <p>You can also download and run some or all of these tests manually on your own machine.
+          <p>You can also download and run some or all of these tests manually on your own machine.</p>
+		  <p>Running OpenJ9 tests requires a few extra tools and utilities. You can install these 
+		  <a href="https://github.com/eclipse/openj9/blob/master/test/docs/Prerequisites.md">pre-requisites</a> 
+		  on your machine and follow the <a href="https://github.com/eclipse/openj9/blob/master/test/README.md">Quick Start Guide</a>. 
+		  Alternatively, our <a href="https://github.com/eclipse/openj9/blob/master/buildenv/docker/test/Dockerfile">test dockerfile</a> extends
+		  the OpenJ9 dockerfile that you selected in <strong>Prepare your system</strong> to include these tools in an OpenJ9 <q>build and test</q> docker image. If
+		  you use this image to build an OpenJDK with OpenJ9, you can find the OpenJ9 functional verification tests in the <code>openj9/test</code> directory.
           </p>
           <h4>Tests from the OpenJDK and AdoptOpenJDK projects</h4>
           <p>These tests inspect the Java implementation via the commands and APIs available to the end user. The tests are separated according to their function:
