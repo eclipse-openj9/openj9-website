@@ -25,7 +25,7 @@ pipeline {
 
     environment {
         GITHUB_REPO = 'https://github.com/eclipse/openj9-website.git'
-        ECLIPSE_REPO = '/gitroot/www.eclipse.org/openj9.git'
+        ECLIPSE_REPO = 'ssh://genie.openj9@git.eclipse.org:29418/www.eclipse.org/openj9.git'
         BRANCH = 'master'
     }
 
