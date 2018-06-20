@@ -47,7 +47,10 @@ function navigation(url) {
   	
   if(url == "oj9_resources"  ) document.write("<p><i class='fa fa-chevron-circle-right f_mini' aria-hidden='true'></i>Resources</p>");
   else                         document.write("<p><i class='fa fa-chevron-circle-right f_mini' aria-hidden='true'></i><a class='nav-item' href='oj9_resources.html'>Resources</a></p>");
-  	
+ 
+  if(url == "https://blog.openj9.org/"  ) document.write("<p><i class='fa fa-chevron-circle-right f_mini' aria-hidden='true'></i>Blog</p>");
+  else                         document.write("<p><i class='fa fa-chevron-circle-right f_mini' aria-hidden='true'></i><a class='nav-item' href='https://blog.openj9.org/' target='_blank'>Blog</a></p>");
+  
   if(url == "oj9_faq"        ) document.write("<p><i class='fa fa-chevron-circle-right f_mini' aria-hidden='true'></i>FAQ</p>");
   else                         document.write("<p><i class='fa fa-chevron-circle-right f_mini' aria-hidden='true'></i><a class='nav-item' href='oj9_faq.html'>FAQ</a></p>");
 
