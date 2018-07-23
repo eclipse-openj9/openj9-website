@@ -20,44 +20,32 @@
  * SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
  *******************************************************************************/
  
-pipeline {
-    agent {label 'master'}
+GITHUB_REPO = 'https://github.com/eclipse/openj9-website.git'
+ECLIPSE_REPO = 'ssh://genie.openj9@git.eclipse.org:29418/www.eclipse.org/openj9.git'
+BRANCH = 'master'
 
-    environment {
-        GITHUB_REPO = 'https://github.com/eclipse/openj9-website.git'
-        ECLIPSE_REPO = 'ssh://genie.openj9@git.eclipse.org:29418/www.eclipse.org/openj9.git'
-        BRANCH = 'master'
-    }
-
-    stages {
-        stage('Clone') {
-            steps {
-                timestamps {
-                    git branch: BRANCH, url: GITHUB_REPO, poll:true, changelog: true
+timeout(time: 3, unit: 'HOURS') {
+    timestamps {
+        node('master') {
+            try {
+                stage('Clone') {
+                    git branch: BRANCH, url: GITHUB_REPO, poll:false, changelog: true
                     sh "git config remote.upstream.url ${ECLIPSE_REPO}"
-                    sh "git fetch upstream"
-                    script {
-                        LAST_COMMIT = sh (
-                            script: 'git log --oneline -1',
-                            returnStdout: true
+                    LAST_COMMIT = sh (
+                        script: 'git log --oneline -1',
+                        returnStdout: true
                         ).trim()
-                        currentBuild.description = "${LAST_COMMIT}"
-                    }
+                    currentBuild.description = "${LAST_COMMIT}"
                 }
-            }
-        }
-
-        stage('Push') {
-            steps {
-                timestamps {
+                stage('Push') {
                     sh "git push upstream ${BRANCH}"
                 }
+            } catch(e) {
+                slackSend channel: '#jenkins', color: 'danger', message: "Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+                throw e
+            } finally {
+                cleanWs()
             }
-        }
-    }
-    post {
-        failure {
-            slackSend channel: '#jenkins', color: 'danger', message: "Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
         }
     }
 }
