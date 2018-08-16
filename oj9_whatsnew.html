@@ -68,10 +68,67 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div id="whatsnew" class="section-content">
       <h1>What's new?</h1>
 
-      <div class="f-section-item">
+    <div class="f-section-item">
         <span class="intro-text">Covering project news, events, milestones, and of course... new and cool stuff!</span>
       </div>
+	<div class="f-section-item" id="openj9090">
+    
+    <div class="f-content-container">
+          <h3>Eclipse OpenJ9 version 0.9.0 released</h3>
+          <p><i>2nd August 2018</i></p>
+          <p>We're pleased to announce the release of Eclipse OpenJ9 version 0.9.0.</p>
+		  <p>V0.9.0 adds support for OpenJDK 10 builds, OpenJDK 8 Windows 32-bit builds, and OpenJDK large heap builds 
+		  that require Java heap sizes > 57 GB.
+		  Work is underway to make these builds available at  <a href="https://adoptopenjdk.net" target="_blank">AdoptOpenJDK</a>. 
+		  If you want a large heap binary for a platform other than 
+		  <a href="https://adoptopenjdk.net/nightly.html?variant=openjdk8-openj9" target="_blank">OpenJDK 8 
+		  Linux x64</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>, 
+		  you can easily build one by following our <a href="https://github.com/eclipse/openj9/tree/master/buildenv" target="_blank">
+		  detailed build instructions</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>. 
+	      To learn more about our release strategy, plus our supported architectures and operating systems, 
+		see <a href="https://www.eclipse.org/openj9/docs/openj9_support/index.html">Supported environments</a>.</p>
 
+		  <p>Version 0.9.0 also includes some great progress to make the JVM more container-aware. When OpenJ9 is running 
+		  inside a container, checks for memory availability and subsequent Java heap allocation now reflect limits 
+		  that are imposed on the container. You can read more about our enhancement plans and progress around 
+		  container technology in <a href="https://blog.openj9.org/2018/06/12/eclipse-openj9-in-containers/" target="_blank">Eclipse 
+		  OpenJ9 in Containers</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>. </p> 
+		
+		<p>We are also introducing a new garbage collection policy mode to implement <a href="http://openjdk.java.net/jeps/318" target="_blank">JEP 318</a>
+		<i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.
+		When this policy is enabled (<strong>-Xgcpolicy:nogc</strong> or <strong>-XX:+UseNoGC</strong>), the Java 
+		object heap is expanded in the normal way until the limit is reached, but memory is not reclaimed through 
+		garbage collection. This mode is ideal for short-lived applications and useful for test purposes.</p>
+		
+		<p>To read about other enhancements and notable changes in this release, see our <a href="https://www.eclipse.org/openj9/docs/version0.9/"><i>What's new</i></a> topic. 
+		  </p>
+		  
+		  <p>If you are interested in trying the OpenJDK 8 Windows binaries, we've run some Eclipse performance tests to compare OpenJ9 and the Hotspot JVM.
+		Our results indicate that OpenJ9 is <strong>43% faster</strong> and uses <strong>42% less memory</strong>. Read more about these amazing results
+		in <a href="https://blog.openj9.org/2018/06/15/eclipse-openj9-performance-a-bake-off-on-windows/" target="_blank">Eclipse OpenJ9; a
+		bake off on Windows</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>. 
+		In fact, the results are so impressive that the Eclipse Foundation have decided to bundle
+		OpenJ9 with a future release of the Eclipse IDE.</p>
+
+		  
+		  <p>On a final note, <a href="https://www.eclipse.org/openj9/docs/">user documentation</a> is now available to support the configuration, tuning, and diagnosis of JDKs that contain the
+		OpenJ9 JVM. Expect the content here to grow over time as more information is written about our JIT compiler, 
+		garbage collectors, shared classes cache implementation, and diagnostic capabilities.</p>
+
+		  
+		  
+
+<!-- Keep as-is except edit ID in URL and change "text=" -->
+<a href="https://twitter.com/share?
+url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openj9090&
+via=openj9&
+hashtags=openj9,java&
+text=V0.9.0%20released;%20new%2032-bit%20Windows%20builds,%20container-aware%20features,%20and%20much%20more."
+class="twitter-share-button"
+data-show-count="false">Tweet</a>
+        </div>
+	</div>
+	 
 	  <div class="f-section-item" id="openj9blog">
         <div class="f-content-container">
           <h3>Introducing the OpenJ9 blog</h3>
@@ -217,7 +274,7 @@ data-show-count="false">Tweet</a>
           </p>
           <p>The OpenJ9 project is proud to announce that you can now build OpenJDK8 with Eclipse OpenJ9. Downloadable binaries are already available at the AdoptOpenJDK project:
           </p>
-          <p style="text-align:center;"><a class="button external-button" style="width:15em; margin-top:0rem;" href="https://adoptopenjdk.net/releases.html?variant=openjdk8-openj9">Download binaries here <i class="fa fa-download" aria-hidden="true"></i></a>
+          <p style="text-align:center;"><a class="button external-button" style="width:15em; margin-top:0rem;" href="https://adoptopenjdk.net/nightly.html?variant=openjdk8&jvmVariant=openj9">Download binaries here <i class="fa fa-download" aria-hidden="true"></i></a>
           </p>
           <p>If you want to build OpenJDK8 with OpenJ9 yourself, you can follow the instructions on our <a href="oj9_build.html">build page</a>. Right now, you can build it for Linux on x86-64, ppc64le, s390x, and AIX. More platforms to follow!
           </p>
