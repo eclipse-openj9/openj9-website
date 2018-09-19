@@ -11,7 +11,6 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 
 /*** GLOBAL CSS ***/
 body {
-  background-color: #36354f;           /* blue - dark */
   background-color: #404040;
   /* background-image: url("../assets/bg-d.png"); */
   background-image: url("../assets/bg-d.png");
@@ -20,9 +19,6 @@ body {
 
 
 .first-word {
-  color: #4c91b1;  /* teal */
-  color: #3f7b96;  /* teal - dark */
-  color: #bc4321;                      /* orange - dark */
   color: #404040;                      /* dark gray */
   float: left;
   font-size: 2rem;
@@ -33,8 +29,6 @@ span.first-word {
 }
 
 h3 {
-  color: #4c91b1;  /* teal */
-  color: #3f7b96;  /* teal - dark */
   color: #404040;                      /* dark gray */
   float: left;
   font-size: 2rem;
@@ -43,8 +37,6 @@ h3 {
   margin-bottom:1rem;
 }
 h4 {
-  color: #4c91b1;  /* teal */
-  color: #3f7b96;  /* teal - dark */
   color: #404040;                      /* dark gray */
   float: left;
   font-size: 1.3rem;
@@ -70,7 +62,6 @@ h1, h2, h3, h4, button, input, optgroup, select, textarea {
 
 /*** LINKS ***/
 a, a:active, a:visited {
-  color: #bc4321;                      /* orange - dark */
   color: #af6e3d;                      /* dark orange - Eclipse link: visited*/
   text-decoration: none;
 }
@@ -79,12 +70,10 @@ a.dark-link, a.dark-link:active, a.dark-link:visited {
   color: #af6e3d;                      /* dark orange - Eclipse link: visited */
 }
 a.dark-link:hover {
-  color: #ff5424;                      /* orange - bright */
   color: #da7a08;                      /* orange - Eclipse button: hover */
 }
 
 a:hover {
-  color: #ff5424;                      /* orange - bright */
   color: #da7a08;                      /* orange - Eclipse button: hover */
 }
 
@@ -104,7 +93,6 @@ a.button, a.button:active, a.button:visited, a.button:hover {
 
 a.button.internal-button {
   color: #fff;                         /* white */
-  background-color: #49486b;           /* blue - mid */
   background-color: #da7a08;           /* orange - Eclipse cookie compatible */
   text-align: center;
   min-height: 1.6rem;
@@ -114,7 +102,6 @@ a.button.internal-button {
   padding: 1rem;
 }
 a.button.internal-button:hover {
-  background-color: #5c5b92;           /* blue - mid */
   background-color: #ffa02e;           /* orange - Eclipse cookie compatible - hover*/
 }
 
@@ -129,7 +116,6 @@ a.button.external-button {
   padding: 1rem;
 }
 a.button.external-button:hover {
-  background-color: #ff5424;           /* orange - bright */
   background-color: #ffa02e;           /* orange - Eclipse cookie compatible - hover*/
 }
 
@@ -171,14 +157,9 @@ div#main-title .nav p {
 	font-size: 1.1rem;
 }
 div#main-title .nav a.nav-item {
-  color: #3f7b96;
-  color: #4c91b1;
   color: #65c1bd; /* cyan - OpenJ9 logo */
 }
 div#main-title .nav a.nav-item:hover {
-  color: #ff5424;                      /* orange - bright */
-  color: #da7a08;                      /* orange - Eclipse button: hover */
-  color: #f7941e;                      /* orange - Eclipse button */
   color: #ffa02e;                      /* orange - Eclipse cookie compatible - hover*/
 }
 div#main-title .nav .fa {
@@ -196,10 +177,8 @@ div#main-title .nav-content .fa {
   margin: 0 0 0 -1rem;
   padding: 1rem 1rem;
   z-index: 1;
-  background-color: #443f5c;           /* blue - dark */
   background-color: #353434;           /* dark grey - Eclipse background */
 
-  border: 1px solid #302d42;           /* blue - very dark */
   border: 1px solid #000;
   box-shadow: .5rem .5rem 1rem rgba(0,0,0,0.5);
 }
@@ -275,7 +254,6 @@ ul li {
 ul li::before {
   content: "\25FC";
   padding-right:1rem;
-  color: #3f7b96;                      /* cyan */
   color: #aaa;                         /* light gray */
 }
 
@@ -295,7 +273,6 @@ pre {
 pre code::before {
   content: ">";
   padding-right:.5rem;
-  color: #3f7b96;                      /* cyan */
   color: #aaa;                         /* light gray */
   font-weight: 800;
 }
@@ -310,7 +287,6 @@ pre code::before {
 pre.output {
   padding: .5rem;
   font-size: .8rem;
-  background-color: #eee;
   border: 1px solid gray;
   width:90%;
   overflow-x:scroll;
@@ -360,7 +336,6 @@ main div#intro-block div#read-more-button {
   text-align: center;
   font-style: italic;
   font-weight: bold;
-  color: #5c5b92;                      /* blue - light */
   color: #404040; 
 }
 .read-more-link {
@@ -369,7 +344,6 @@ main div#intro-block div#read-more-button {
   display: inline-block;
   font-style: italic;
   font-weight: bold;
-  color: #5c5b92;                      /* blue - light */
   color: #404040; 
   position: absolute;
   left: 50%;
@@ -381,13 +355,10 @@ main div#intro-block div#read-more-button i {
   margin-left: 0.2rem;
   transition-property: transform;
   font-size:2.5rem;
-  color: #49486b;                      /* blue - mid */
-  color: #404040;
   color: #da7a08;                      /* orange - Eclipse cookie compatible */
 }
 
 main div#intro-block div#read-more-button i:hover {
-  color: #5c5b92;                      /* blue - light */
   color: #ffa02e;                      /* orange - Eclipse cookie compatible - hover*/
 }
 
@@ -429,11 +400,9 @@ div.section-content {
 }
 
 div.section-content h1 {
-  background-color: #3f7b96;           /* cyan */
   background-color: #ddd;
   /* background-image: url("../assets/bg-l.png"); */
   /* background-image: url("../assets/bg-lg.png"); */
-  color: #efefef;                      /* gray - light */
   color: #404040;
   padding: 1.5rem;
   margin: 0;
@@ -445,10 +414,6 @@ div.section-content h1 {
   font-size: 1.6rem;
   padding:2rem 2rem 1rem 2rem ;
   padding:2rem 5rem 1.5rem 5rem ;
-  color: #3f7b96;                      /* cyan */
-  color: #404040;
-  color: #c3751a;                      /* orange - brightish */
-  color: #69c1bd;                      /* cyan - ... */
   color: #404040;
   text-align:center;
 }
@@ -456,8 +421,6 @@ div.section-content h1 {
   font-size:1.3rem;
   padding-bottom: 2rem;
   padding: 0 5rem 2rem 5rem;
-  color: #407471;                      /*cyan - dark */
-  color: #3f7b96;                      /* cyan */
   color: #404040;
   text-align:center;
 }
@@ -479,7 +442,9 @@ div#whatsnew p     { width: 100%;      }
 
 .f-section-item {
 	display: flex;
+/*
   flex-wrap: wrap;
+*/
   -webkit-align-items: center;
   align-items: center;
   -webkit-justify-content: center;
@@ -502,6 +467,14 @@ div#whatsnew p     { width: 100%;      }
   padding: 0 0 0 0;
 }
 
+#build h3, #build h4 {
+  padding: 0 0 0 0;
+  margin-bottom:0;
+}
+#build h3 + p, #build h4 + p {
+	padding-top: 5rem;
+}
+
 #get-started .f-section-item {
   margin-bottom: 3rem;
 }
@@ -521,7 +494,7 @@ div#whatsnew p     { width: 100%;      }
   margin: .1rem;
 */
 }
-#build .f-content-container, {
+#build .f-content-container {
   max-width: 55rem;
   flex: 1;
   min-width: 0
@@ -534,7 +507,6 @@ div#whatsnew p     { width: 100%;      }
   flex-wrap: wrap;
 	width: 17rem;
 /*
-border: 2px solid blue;
   margin: .1rem;
 */
 }
@@ -562,7 +534,6 @@ div.section-item-faq {
   flex-wrap: wrap;
   justify-content: left;
   max-width: 52rem;
-  color: #4c4c4c;
   color: black;
   padding: 0rem 2rem;
   align-items: left;
@@ -583,7 +554,6 @@ div.section-item-faq details summary {
   cursor: pointer;
   margin-top: .5rem;
   font-size: 1.2rem;
-  color: #3f7b96;                      /* cyan */
   color: #af6e3d;                      /* dark orange - Eclipse link: visited*/
   font-weight: bold;
   padding-left: 1.2rem;
@@ -625,7 +595,6 @@ div.section-item-faq details p:last-child {
 
 /*** FOOTER ***/
 footer {
-  background-color: #efefef;           /* gray - light */
   background-color: #ddd;
   /* background-image: url("../assets/bg-lg.png"); */
   color: #4c4c4c;                      /* gray - dark */
@@ -654,8 +623,6 @@ footer {
 .social-icon .fa:hover {
   /* filter: brightness(1); */
   opacity: 1;
-  color: #ff5424;                      /* orange */
-  color: #c3751a;                      /* orange - brightish */
   color: #da7a08;                      /* orange - Eclipse button: hover */
 }
 
@@ -792,14 +759,14 @@ footer {
 /* Version tabs */
 
 .tabs_bg {
-  background-color: #407471;           /*cyan - dark */
   background-color: #ddd;
   /* background-image: url("assets/bg-l.png"); */
   /* background-image: url("../assets/bg-lg.png"); */
 }
+
 section {
   background-color: #fff;
-  display: none;
+  /*display: none;*/
   padding: 20px 0 0;
   border-top: 1px solid #000;
   box-shadow: 0px -2px 12px 0px #999;
@@ -836,7 +803,6 @@ input + label {
 
 
 input:checked + label {
-  color: #3f7b96;                      /* cyan */
   color: #404040;
   background-color: #fff;
   border: 1px solid black;
@@ -853,3 +819,49 @@ input:checked + label {
 }
 
 /* End: Version tabs */
+
+/* Tabs - revised*/
+.tabs {
+  list-style: none;
+  margin: 0;
+  padding: 0 1.25em;
+}
+
+.tabs li {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  text-indent: 0;
+}
+
+.tabs li::before {
+  display: none;
+}
+
+.tabs .tab {
+  display: inline-block;
+  margin: 0 0 -1px;
+  padding: 10px 25px 10px 25px;
+  background: #FFF;
+  color: #000;
+  border-radius: 15px 15px 0 0;
+  border: solid 1px #000;
+  border-bottom-color: #FFF;
+  box-shadow: 2px -2px 8px 0px #999;
+}
+
+.tabs .tab.inactive {
+  background-color: #F7941E;                      /* orange - Eclipse home page compatible */
+  color: #FFF;
+  border: none;
+}
+
+.tabs .tab.inactive:hover {
+  color: #fff;
+  cursor: pointer;
+  background-color: #ffa02e;                      /* orange - Eclipse cookie compatible - hover*/
+}
+
+.tabpanel.inactive {
+  display: none;
+}
