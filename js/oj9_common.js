@@ -9,6 +9,7 @@ This Source Code may also be made available under the following Secondary Licens
 [2] http://openjdk.java.net/legal/assembly-exception.html 
 
 SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
+
 The project website pages cannot be redistributed
  */
  
@@ -57,6 +58,95 @@ function navigation(url) {
 
   document.write("</div>");
   document.write("</div>");
+}
+
+
+
+/* Tabs */
+
+function qs(query, context) {
+  return (context || document).querySelector(query);
+}
+
+function qsa(query, context) {
+  return (context || document).querySelectorAll(query);
+}
+
+function ga(el, attribute) {
+  return el ? el.getAttribute(attribute) : undefined;
+}
+
+function sa (el, attribute, value) {
+  if (!el) return;
+
+  if (arguments.length === 2) {
+    for (var attr in attribute) {
+      sa(el, attr, attribute[attr]);
+    }
+  } else if (value === undefined) {
+    el.removeAttribute(attribute);
+  } else {
+    el.setAttribute(attribute, value);
+  }
+}
+
+function tabs(id) {
+  var tabsBlock = qs('#' + id);
+  if (!tabsBlock) return;
+
+  var tabs;
+  var activeTab;
+  var requestedTabValue = location.hash.split(':')[0];
+
+  function selectTab (tab) {
+    for (var i = 0, l = tabs.length; i < l; i++) {
+      var isSelected = (tabs[i] === tab);
+      var panel = qs(ga(tabs[i], 'href'));
+
+      if (isSelected) {
+        tabs[i].classList.remove('inactive');
+        activeTabIndex = i;
+        activeTab = tabs[i];
+        panel && panel.classList.remove('inactive');
+      } else {
+        tabs[i].classList.add('inactive');
+        panel && panel.classList.add('inactive');
+      }
+    }
+  }
+
+  window.addEventListener('hashchange', function() {
+    var hash = location.hash;
+    var newTabValue = hash.split(':')[0];
+
+    if (!newTabValue) {
+      selectTab(tabs[0]);
+    } else {
+      for (var i = 0, l = tabs.length; i < l; i++) {
+        if (ga(tabs[i], 'href') === newTabValue) {
+          selectTab(tabs[i]);
+        }
+      }
+    }
+  })
+
+  tabs = qsa('.tab', tabsBlock);
+
+  for (var i = 0, l = tabs.length; i < l; i++) {
+    if (ga(tabs[i], 'href') === requestedTabValue) {
+      activeTab = tabs[i];
+    }
+
+    setTimeout(function(tab) {
+      var panel = qs(ga(tab, 'href'));
+      if (panel) {
+        panel.classList.add('tabpanel');
+        panel.classList.toggle('inactive', tab !== activeTab);
+      }
+    }, null, tabs[i]);
+  }
+
+  selectTab(activeTab || tabs[0]);
 }
 
 

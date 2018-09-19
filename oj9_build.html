@@ -35,11 +35,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-5WLCZXC');</script>
 <!-- End Google Tag Manager --> 
 
-
-
 </head>
-<body onload="version('a')">
 
+<body onload="version('a')">
 
   <div id="main-title">
     <script type="text/javascript">navigation(document.location.href);</script>  
@@ -54,40 +52,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>  
   </div>
 
+  <main class="tabs_bg" id="build">
 
-  <main class="tabs_bg">
+    <div class="section-content" style="padding-bottom:0;">
+      <h1 style="padding-bottom: 10px;">Build your own OpenJDK</h1>
 
+      <ul class="tabs" id="version-tabs">
+        <li>
+          <a class="tab" href="#version-8">Version 8</a>
+        </li>
+        <li>
+          <a class="tab" href="#version-9">Version 9</a>
+        </li>
+        <li>
+          <a class="tab" href="#version-10">Version 10</a>
+        </li>
+<!--
+        <li>
+          <a class="tab" href="#version-11">Version 11</a>
+        </li>
+        <li>
+          <a class="tab" href="#version-12">Version 12</a>
+        </li>
+-->
+      </ul>
+    </div>
 
-
-
-    <div class="section-content" style="padding-bottom:0;" id="build">
-      <h1 style="padding-bottom: 10px;">Build your own OpenJDK&trade;</h1>
-
-    &nbsp; &nbsp;
-    <input id="tab8" type="radio" name="tabs" checked>
-    <label for="tab8">Version 8</label></input>
-
-    <input id="tab9" type="radio" name="tabs">
-    <label for="tab9">Version 9</label></input>
-
-    <input id="tab10" type="radio" name="tabs">
-    <label for="tab10">Version 10</label></input>
-<!-- 
-    <input id="tab11" type="radio" name="tabs">
-    <label for="tab11">Version 11</label></input>
-
-    <input id="tab12" type="radio" name="tabs">
-    <label for="tab12">Version 12</label></input>
- -->
-
+    <script>tabs('version-tabs');</script>
 
 <!-- =========================================================================================== -->
 <!-- CONTENT FOR VERSION 8 -->
 
-    <section id="content8">
+    <section id="version-8">
       <div class="f-section-item">
 <!-- set version -->
-        <span class="intro-text">Building OpenJDK 8 with OpenJ9 will be familiar to anyone who has already built OpenJDK.</span>
+        <span class="intro-text">Building OpenJDK&trade; 8 with OpenJ9 will be familiar to anyone who has already built OpenJDK.</span>
       </div>
       <div class="f-section-item">
         <span class="intro-text1" style="margin:0 4rem;">We're going to use a Docker file* to create a Docker container where you'll build a binary from source code and run some tests on it. Just follow these steps:</span>
@@ -96,11 +95,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- set version x5 -->
       <div class="f-section-item">
         <ol class="toc">
-          <li><a href="#8prepare">Prepare your system               </a></li>
-          <li><a href="#8get"    >Get the source                    </a></li>
-          <li><a href="#8config" >Configure your build              </a></li>
-          <li><a href="#8build9" >Build OpenJDK with OpenJ9         </a></li>
-          <li><a href="#8test"   >Test your binary                  </a></li>
+          <li><a href="#version-8:prepare">Prepare your system               </a></li>
+          <li><a href="#version-8:get"    >Get the source                    </a></li>
+          <li><a href="#version-8:config" >Configure your build              </a></li>
+          <li><a href="#version-8:build9" >Build OpenJDK with OpenJ9         </a></li>
+          <li><a href="#version-8:test"   >Test your binary                  </a></li>
         </ol> 
       </div>
 
@@ -111,7 +110,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </div>
 
 <!-- set version -->
-      <div class="f-section-item" id="8prepare">
+      <div class="f-section-item" id="version-8:prepare">
         <div class="f-content-container">
           <h3>Prepare your system</h3>
           <p>
@@ -137,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </div>
 
 <!-- set version -->
-      <div class="f-section-item" id="8get">
+      <div class="f-section-item" id="version-8:get">
         <div class="f-content-container">
           <h3>Get the source</h3>
           <p>First you need to clone the <strong>Extensions for OpenJDK for Eclipse OpenJ9</strong> project.
@@ -157,7 +156,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </div>
 
 <!-- set version -->
-      <div class="f-section-item" id="8config">
+      <div class="f-section-item" id="version-8:config">
         <div class="f-content-container">
           <h3>Configure</h3>
           <p>When you have all the source files that you need, run the configure script, which detects how to build in the current build environment. You must specify one extra jar file, which has already been installed into the Docker container.
@@ -169,7 +168,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </div>
 
 <!-- set version -->
-      <div class="f-section-item" id="8build9">
+      <div class="f-section-item" id="version-8:build9">
         <div class="f-content-container">
           <h3>Build</h3>
           <p>Now you're ready to build OpenJDK with OpenJ9:
@@ -191,7 +190,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </div>
 
 <!-- set version -->
-      <div class="f-section-item" id="8test">
+      <div class="f-section-item" id="version-8:test">
         <div class="f-content-container">
           <h3>Test</h3>
           <p>For a simple test, try running the <code>java -version</code> command.
@@ -271,10 +270,10 @@ OpenJDK  - 27f5b8f based on jdk8u152-b03)
 <!-- =========================================================================================== -->
 <!-- CONTENT FOR VERSION 9 -->
 
-    <section id="content9">
+    <section id="version-9">
       <div class="f-section-item">
 <!-- set version -->
-        <span class="intro-text">Building OpenJDK 9 with OpenJ9 will be familiar to anyone who has already built OpenJDK.</span>
+        <span class="intro-text">Building OpenJDK&trade; 9 with OpenJ9 will be familiar to anyone who has already built OpenJDK.</span>
       </div>
       <div class="f-section-item">
         <span class="intro-text1" style="margin:0 4rem;">We're going to use a Docker file* to create a Docker container where you'll build a binary from source code and run some tests on it. Just follow these steps:</span>
@@ -283,11 +282,11 @@ OpenJDK  - 27f5b8f based on jdk8u152-b03)
 <!-- set version x5 -->
       <div class="f-section-item">
         <ol class="toc">
-          <li><a href="#9prepare">Prepare your system               </a></li>
-          <li><a href="#9get"    >Get the source                    </a></li>
-          <li><a href="#9config" >Configure your build              </a></li>
-          <li><a href="#9build9" >Build OpenJDK with OpenJ9         </a></li>
-          <li><a href="#9test"   >Test your binary                  </a></li>
+          <li><a href="#version-9:prepare">Prepare your system               </a></li>
+          <li><a href="#version-9:get"    >Get the source                    </a></li>
+          <li><a href="#version-9:config" >Configure your build              </a></li>
+          <li><a href="#version-9:build9" >Build OpenJDK with OpenJ9         </a></li>
+          <li><a href="#version-9:test"   >Test your binary                  </a></li>
         </ol> 
       </div>
 
@@ -298,7 +297,7 @@ OpenJDK  - 27f5b8f based on jdk8u152-b03)
       </div>
 
 <!-- set version -->
-      <div class="f-section-item" id="9prepare">
+      <div class="f-section-item" id="version-9:prepare">
         <div class="f-content-container">
           <h3>Prepare your system</h3>
           <p>
@@ -324,7 +323,7 @@ OpenJDK  - 27f5b8f based on jdk8u152-b03)
       </div>
 
 <!-- set version -->
-      <div class="f-section-item" id="9get">
+      <div class="f-section-item" id="version-9:get">
         <div class="f-content-container">
           <h3>Get the source</h3>
           <p>First you need to clone the <strong>Extensions for OpenJDK for Eclipse OpenJ9</strong> project.
@@ -344,7 +343,7 @@ OpenJDK  - 27f5b8f based on jdk8u152-b03)
       </div>
 
 <!-- set version -->
-      <div class="f-section-item" id="9config">
+      <div class="f-section-item" id="version-9:config">
         <div class="f-content-container">
           <h3>Configure</h3>
           <p>When you have all the source files that you need, run the configure script, which detects how to build in the current build environment. You must specify one extra jar file, which has already been installed into the Docker container.
@@ -356,7 +355,7 @@ OpenJDK  - 27f5b8f based on jdk8u152-b03)
       </div>
 
 <!-- set version -->
-      <div class="f-section-item" id="9build9">
+      <div class="f-section-item" id="version-9:build9">
         <div class="f-content-container">
           <h3>Build</h3>
           <p>Now you're ready to build OpenJDK with OpenJ9:
@@ -378,7 +377,7 @@ OpenJDK  - 27f5b8f based on jdk8u152-b03)
       </div>
 
 <!-- set version -->
-      <div class="f-section-item" id="9test">
+      <div class="f-section-item" id="version-9:test">
         <div class="f-content-container">
           <h3>Test</h3>
           <p>For a simple test, try running the <code>java -version</code> command.
@@ -458,10 +457,10 @@ OpenJDK  - 1983043 based on jdk-9+181)
 <!-- =========================================================================================== -->
 <!-- CONTENT FOR VERSION 10 -->
 
-    <section id="content10">
+    <section id="version-10">
       <div class="f-section-item">
 <!-- set version -->
-        <span class="intro-text">Building OpenJDK 10 with OpenJ9 will be familiar to anyone who has already built OpenJDK.</span>
+        <span class="intro-text">Building OpenJDK&trade; 10 with OpenJ9 will be familiar to anyone who has already built OpenJDK.</span>
       </div>
       <div class="f-section-item">
         <span class="intro-text1" style="margin:0 4rem;">We're going to use a Docker file* to create a Docker container where you'll build a binary from source code and run some tests on it. Just follow these steps:</span>
@@ -470,11 +469,11 @@ OpenJDK  - 1983043 based on jdk-9+181)
 <!-- set version x5 -->
       <div class="f-section-item">
         <ol class="toc">
-          <li><a href="#10prepare">Prepare your system               </a></li>
-          <li><a href="#10get"    >Get the source                    </a></li>
-          <li><a href="#10config" >Configure your build              </a></li>
-          <li><a href="#10build9" >Build OpenJDK with OpenJ9         </a></li>
-          <li><a href="#10test"   >Test your binary                  </a></li>
+          <li><a href="#version-10:prepare">Prepare your system               </a></li>
+          <li><a href="#version-10:get"    >Get the source                    </a></li>
+          <li><a href="#version-10:config" >Configure your build              </a></li>
+          <li><a href="#version-10:build9" >Build OpenJDK with OpenJ9         </a></li>
+          <li><a href="#version-10:test"   >Test your binary                  </a></li>
         </ol> 
       </div>
 
@@ -485,7 +484,7 @@ OpenJDK  - 1983043 based on jdk-9+181)
       </div>
 
 <!-- set version -->
-      <div class="f-section-item" id="10prepare">
+      <div class="f-section-item" id="version-10:prepare">
         <div class="f-content-container">
           <h3>Prepare your system</h3>
           <p>
@@ -511,7 +510,7 @@ OpenJDK  - 1983043 based on jdk-9+181)
       </div>
 
 <!-- set version -->
-      <div class="f-section-item" id="10get">
+      <div class="f-section-item" id="version-10:get">
         <div class="f-content-container">
           <h3>Get the source</h3>
           <p>First you need to clone the <strong>Extensions for OpenJDK for Eclipse OpenJ9</strong> project.
@@ -531,7 +530,7 @@ OpenJDK  - 1983043 based on jdk-9+181)
       </div>
 
 <!-- set version -->
-      <div class="f-section-item" id="10config">
+      <div class="f-section-item" id="version-10:config">
         <div class="f-content-container">
           <h3>Configure</h3>
           <p>When you have all the source files that you need, run the configure script, which detects how to build in the current build environment. You must specify one extra jar file, which has already been installed into the Docker container.
@@ -543,7 +542,7 @@ OpenJDK  - 1983043 based on jdk-9+181)
       </div>
 
 <!-- set version -->
-      <div class="f-section-item" id="10build9">
+      <div class="f-section-item" id="version-10:build9">
         <div class="f-content-container">
           <h3>Build</h3>
           <p>Now you're ready to build OpenJDK with OpenJ9:
@@ -565,7 +564,7 @@ OpenJDK  - 1983043 based on jdk-9+181)
       </div>
 
 <!-- set version -->
-      <div class="f-section-item" id="10test">
+      <div class="f-section-item" id="version-10:test">
         <div class="f-content-container">
           <h3>Test</h3>
           <p>For a simple test, try running the <code>java -version</code> command.
