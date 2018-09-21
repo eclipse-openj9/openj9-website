@@ -1,0 +1,1423 @@
+﻿<!--
+TODO:
+- Add tooltips for *all* options?
+- Implement "none" option for turning agents off?
+-->
+
+<!DOCTYPE html>
+<!--
+Copyright (c) 2017, 2018 IBM Corp. and others
+This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which accompanies this distribution and is available at http://eclipse.org/legal/epl-2.0 or the Apache License, Version 2.0 which accompanies this distribution and is available at https://www.apache.org/licenses/LICENSE-2.0. 
+This Source Code may also be made available under the following Secondary Licenses when the conditions for such availability set forth in the Eclipse Public License, v. 2.0 are satisfied: GNU General Public License, version 2 with the GNU Classpath Exception [1] and GNU General Public License, version 2 with the OpenJDK Assembly Exception [2]. 
+[1] https://www.gnu.org/software/classpath/license.html  
+[2] http://openjdk.java.net/legal/assembly-exception.html 
+SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
+The project website pages cannot be redistributed
+-->
+
+<html>
+<title>Xdump Option Builder</title>
+
+<head>
+<script type="text/javascript" language="JavaScript">
+
+var compatibleEventElementIds = {};
+compatibleEventElementIds["vmstop"]     = ["event_vmstop", "event_vmstop_filter"];
+compatibleEventElementIds["load"]       = ["event_load", "event_unload", "event_class_filter"];
+compatibleEventElementIds["unload"]     = ["event_load", "event_unload", "event_class_filter"];
+compatibleEventElementIds["throw"]      = ["event_throw", "event_catch", "event_uncaught", "event_systhrow", "event_throwable_class", "event_throwable_method", "event_throwable_msg_filter"];
+compatibleEventElementIds["catch"]      = ["event_throw", "event_catch", "event_uncaught", "event_systhrow", "event_throwable_class", "event_throwable_method", "event_throwable_msg_filter"];
+compatibleEventElementIds["uncaught"]   = ["event_throw", "event_catch", "event_uncaught", "event_systhrow", "event_throwable_class", "event_throwable_method", "event_throwable_msg_filter"];
+compatibleEventElementIds["systhrow"]   = ["event_throw", "event_catch", "event_uncaught", "event_systhrow", "event_throwable_class", "event_throwable_method", "event_throwable_msg_filter"];
+compatibleEventElementIds["allocation"] = ["event_allocation", "event_allocation_filter_size_min", "event_allocation_filter_units_min", "event_allocation_filter_size_max", "event_allocation_filter_units_max"];
+compatibleEventElementIds["slow"]       = ["event_slow", "event_slow_filter"];
+
+var filterElementIds = {};
+filterElementIds["vmstop"]     = ["event_vmstop_filter"];
+filterElementIds["load"]       = ["event_class_filter"];
+filterElementIds["unload"]     = ["event_class_filter"];
+filterElementIds["throw"]      = ["event_throwable_class", "event_throwable_method", "event_throwable_msg_filter", "event_throwable_offset"];
+filterElementIds["catch"]      = ["event_throwable_class", "event_throwable_method", "event_throwable_msg_filter", "event_throwable_offset"];
+filterElementIds["uncaught"]   = ["event_throwable_class", "event_throwable_method", "event_throwable_msg_filter", "event_throwable_offset"];
+filterElementIds["systhrow"]   = ["event_throwable_class", "event_throwable_method", "event_throwable_msg_filter", "event_throwable_offset"];
+filterElementIds["allocation"] = ["event_allocation_filter_size_min", "event_allocation_filter_units_min", "event_allocation_filter_size_max", "event_allocation_filter_units_max"];
+filterElementIds["slow"]       = ["event_slow_filter"];
+
+var agentsRequiringRequest = {};
+agentsRequiringRequest["serial"] = ["snap", "jit"];
+agentsRequiringRequest["exclusive"] = ["heap", "system", "java", "snap", "jit", "console"];
+agentsRequiringRequest["prepwalk"] = ["heap", "system"];
+agentsRequiringRequest["preempt"] = ["java"];
+
+var noHeapdumpEventElementIds = ["event_gpf", "event_traceassert", "event_abort"];
+var agentsThatDumpAFileIds = ["agent_system", "agent_java", "agent_heap", "agent_snap", "agent_jit"];
+
+function initialSetup() {
+    setupTooltips();
+	parseParams();
+}
+
+function setupTooltips() {
+    var titleText;
+	
+	titleText = "Filter on the fully qualified name of the Exception (or Error) class, to reduce the number of dump files " +
+	            "produced. Use slashes as package separators. Asterisks as wildcards are supported at the beginning of " +
+	            "the string, and/or at the end if no method filter is specified. Examples:\n\n" +
+	            "    - java/lang/OutOfMemoryError\n" +
+	            "    - *IOException";
+	document.getElementById("event_throwable_class").title = titleText;
+	
+	titleText = "Filter on a fully qualified method name to reduce the number of dump files produced. The default stack frame " +
+	            "offset is 0, which is the top stack frame - i.e. the method from which the Exception was thrown.\n\n" +
+				"Use slashes as package separators. Asterisks as wildcards are supported at the end of the string. Examples:\n\n" +
+	            "    - java/lang/String.getBytes*\n" +
+	            "    - java/util/*";
+	document.getElementById("event_throwable_method").title = titleText;
+	
+	titleText = "Filter on text within the exception message, to reduce the number of dump files produced. Asterisks as " +
+	            "wildcards are supported at the beginning and/or end of the string. Supported on " +
+				"Java 8 and later only. Examples:\n\n" +
+	            "    - *class format*\n" +
+	            "    - *access denied*\n";
+	document.getElementById("event_throwable_msg_filter").title = titleText;
+	
+	titleText = "The stack frame offset allows you to specify the position of the filtered method in the stack. This option is " +
+	            "useful if the exception is being thrown from a general purpose or utility class. " +
+	            "The default value is 0 (i.e. the top stack frame)";
+	document.getElementById("event_throwable_offset").title = titleText;
+	
+	titleText = "Filter on the fully qualified Class name, to reduce the number of dump files produced. Asterisks " +
+	            "as wildcards are supported at the beginning or end of the string. Use slashes as package separators. Examples:\n\n" +
+	            "    - java/lang/String" +
+	            "    - java/util/Hash*" +
+	            "    - *security*";
+	document.getElementById("event_class_filter").title = titleText;
+	
+	titleText = "One event can generate multiple dumps. The agents that produce each dump run sequentially and their order is " +
+	            "determined by the priority keyword set for each agent. Higher priority dump agents are started first. The " +
+	            "priorities associated with default dump agents can be view by running \"java -Xdump:what\".";
+	document.getElementById("priority_value").title = titleText;
+}
+
+function parseParams() {
+	if (location.search != "") {
+        // Get the query part of the URL, remove the leading '?', and split on '&'
+        var params = location.search.substring(1).split("&"); // this includes the '?' so need to substring it
+
+		for (var i = 0; i < params.length; i++) {
+	        var param = params[i].split("=");
+    		var key = param[0];
+		    var value = param[1];
+    		
+			var element = document.getElementById(param[0]);
+		    			
+			if (element == null) {
+	        	console.log("ERROR: Key does not map to element: " + tracepointKey);
+			    continue; // Go to the next parameter
+			}
+						
+		    switch (element.type) {
+    		    case "checkbox":
+			        switch (value) {
+			            case "0":
+				            element.checked = false;
+					        break;
+			    
+				        case "1":
+        				    element.checked = true;
+					        break;
+					
+				        default:
+        				    console.log("ERROR: Invalid value for checkbox element \"" + element.id + "\": " + value);
+			                continue; // Go to the next parameter
+			        }
+					break;
+				
+			    case "text":
+    			    element.value = decodeURIComponent(value);
+				    break;
+				
+			    case "number":
+    			    element.value = value;
+				    break;
+		    }
+		
+		    processChange(element);
+		    element.blur();
+	    }
+	} else {
+	    // If no parameters were provided, just build the result with the defaults
+		buildAndUpdateResult();
+	}
+}
+
+function processChange(option) {
+        	
+	if (option.name == "agent") {
+	    if (option.value == "tool") {
+		    var execFieldElement = document.getElementById("exec");
+			if (option.checked == true) {
+			    enableInput(execFieldElement);
+				execFieldElement.focus();
+			} else {
+			    disableInput(execFieldElement);
+			}		
+		}
+
+		configureRequestOptions(option.value);
+	}
+	
+	// Prepwalk can only be checked if exclusive access is also checked
+	if (option.value == "prepwalk") {
+	    // Exclusive access must be checked if prepwalk is checked
+	    if (option.checked == true) {
+        	document.getElementById("request_exclusive").checked = true;
+	    }
+	} else if (option.value == "exclusive") {
+	    // If exclusive access gets unchecked, uncheck prepwalk
+	    if (option.checked == false) {
+        	document.getElementById("request_prepwalk").checked = false;
+	    }
+	}    
+	
+	// Enable range number fields when range is checked
+	if (option.name == "range") {
+	    if (option.checked == true) {
+    	    enableInput(document.getElementById("range_first"));
+            enableInput(document.getElementById("range_last"));			
+	    } else {
+		    disableInput(document.getElementById("range_first"));
+            disableInput(document.getElementById("range_last"));			
+		}
+    }
+	
+	// Enable and focus priority number field when priority is checked
+	if (option.name == "priority") {
+	    var priorityValueElement = document.getElementById("priority_value");
+		if (option.checked == true) {
+    	    enableInput(priorityValueElement);
+			priorityValueElement.focus();
+        } else {
+		    disableInput(priorityValueElement);			
+		}
+    }
+	
+    // Set a sensible default value for the range fields if the user enters an empty value
+	if (option.name == "range_first") {
+	    if (option.value == "") {
+    	    option.value = 1;
+		}
+	} else if (option.name == "range_last") {
+	    if (option.value == "") {
+    	    option.value = 0;
+		}
+	}
+	
+	// Fix obvious mistakes in class name filters
+	if (option.name == "throwable_class" || option.name == "class_text") {
+	    // Remove any whitespace
+		option.value = option.value.replace(/\s/g,'');
+		
+		// Replace dots with slashes
+		option.value = option.value.replace(/\./g, "/");		
+	}
+	
+	// Attempt to correct common formatting mistakes in the method filter
+	if (option.name == "throwable_method") {
+	    // Remove any whitespace
+		option.value = option.value.replace(/\s/g,'');
+		
+		// Check for more than one dot in the string
+		if (option.value.indexOf(".") != -1 && (option.value.indexOf(".") != option.value.lastIndexOf("."))) {
+		    // Replace dots with slashes until there is only one dot left
+			// This is a best effort, and isn't always going to work
+			while (option.value.indexOf(".") != option.value.lastIndexOf(".")) {
+			    option.value = option.value.replace(".", "/");
+			}
+	    }	
+	}
+		
+	// Enable/disable events that are incompatible with the one that has been changed
+	if (option.name == "event") {
+        if (option.getAttribute("data-hasfilter") == "true") {
+			if (option.checked == true) {
+			    // Disable events that are not compatible with this event
+				disableIncompatibleEventElements(compatibleEventElementIds[option.value]);
+				
+				// Enabled relevant filters
+				var filterIds = filterElementIds[option.value];
+				for (var i = 0; i < filterIds.length; i++) {
+				    enableInput(document.getElementById(filterIds[i]));
+				}
+			} else { // Event has been unchecked
+			    var compatibleEventIds = compatibleEventElementIds[option.value];
+				var compatibleEventChecked = false;
+				
+				// Check whether any events that are compatible with this one are still checked
+				for (var i = 0; i < compatibleEventIds.length; i++) {
+				    if (document.getElementById(compatibleEventIds[i]).type == "checkbox" && document.getElementById(compatibleEventIds[i]).checked) {
+					    compatibleEventChecked = true;
+					}
+				}
+				
+				// If no compatible events are checked, enable *all* events and disable filter(s) associated with this event
+				if (!compatibleEventChecked) {
+				    enableEventElementsWithFilters(option);
+					var filterIds = filterElementIds[option.value];
+					for (var i = 0; i < filterIds.length; i++) {
+				        disableInput(document.getElementById(filterIds[i]));
+				    }
+				}
+			}
+		}
+	}
+	
+	// If event_throw is checked, automatically check event_systhrow as well
+	if (option.name == "event" && option.value == "throw" && option.checked == true) {
+	    document.getElementById("event_systhrow").checked = true;
+	}
+	
+	// The gpf, traceassert, and abort events cannot trigger a heap dump,
+	// prepare the heap (request=prepwalk), or compact the heap (request=compact)
+    if (heapIncompatibleEventChecked() && !heapCompatibleEventChecked()) { 
+        disableInput(document.getElementById("agent_heap"));
+		disableInput(document.getElementById("request_prepwalk"));
+		disableInput(document.getElementById("request_compact"));
+    } else {
+	    enableInput(document.getElementById("agent_heap"));
+		enableInput(document.getElementById("request_prepwalk"));
+		enableInput(document.getElementById("request_compact"));
+    }
+	
+	// Enable file text input if file option is checked
+	if (option.name == "file") {
+	    if (option.checked == true) {
+	        enableInput(document.getElementById("file_text"));
+			document.getElementById("file_text").focus();
+		} else {
+		    disableInput(document.getElementById("file_text"));
+		}		
+	}
+	
+	// Insert text in the target text input if one of the token buttons is pressed
+	if (option.type == "button" && option.getAttribute("data-target") != null) {
+	    insertText(document.getElementById(option.getAttribute("data-target")), option.getAttribute("data-token"));
+	}
+	
+	// Enable the file option if a compatible agent is checked
+	if (fileCompatibleAgentChecked()) {
+	    enableInput(document.getElementById("file"));
+	    if (document.getElementById("file").checked) {
+		    enableInput(document.getElementById("file_text"));
+	    }
+	} else {
+	    disableInput(document.getElementById("file"));
+		disableInput(document.getElementById("file_text"));	
+	}
+	
+	// Remove focus from input element (ensures error styling works correctly)
+	if (option.id != null) {
+		option.blur();
+	}
+	
+    // Build the result string and display it
+	buildAndUpdateResult();
+}
+
+// Check/uncheck recommended request options when the specified agent has been changed
+function configureRequestOptions(agent) {
+	var requestsToConfigure = Object.keys(agentsRequiringRequest);
+	for (var i = 0; i < requestsToConfigure.length; i++) {
+	    if (agentNeedsRequest(agent, requestsToConfigure[i])) {
+	        if (document.getElementById("agent_" + agent).checked == true) {
+    	        document.getElementById("request_" + requestsToConfigure[i]).checked = true;
+		    } else if (!enabledAgentsNeedRequest(requestsToConfigure[i])) {
+    		    document.getElementById("request_" + requestsToConfigure[i]).checked = false;
+		    }
+	    }
+	}
+}
+
+// Returns true if the specified agent should run with the specified request option
+// Otherwise returns false
+function agentNeedsRequest(agent, request) {
+	var agentsForRequest = agentsRequiringRequest[request];
+	for (var i = 0; i < agentsForRequest.length; i++) {
+		if (agent == agentsForRequest[i]) {
+			return true;
+		}	
+	}
+	return false;	
+}
+
+// Returns true if any enabled agents should run with the specified request option
+// Otherwise returns false
+function enabledAgentsNeedRequest(request) {
+	var agentsForRequest = agentsRequiringRequest[request];
+	for (var i = 0; i < agentsForRequest.length; i++) {
+	    if (document.getElementById("agent_" + agentsForRequest[i]).checked) {
+		    return true;
+		}	
+	}	
+	return false;    
+}
+
+function heapCompatibleEventChecked() {
+    var section = document.getElementById("event_input");
+    var elements = section.getElementsByTagName("input");
+    for (var i = 0; i < elements.length; i++) {
+	    if (elements[i].checked) {
+	        // This element is checked - check whether it is a heap-compatible event
+			var isCompatibleEvent = true;
+			for (var j = 0; j < noHeapdumpEventElementIds.length; j++) {
+    	        if (elements[i].id == noHeapdumpEventElementIds[j]) {
+	 		        isCompatibleEvent = false;
+				}
+			}
+            if (isCompatibleEvent) {
+			    return true;
+			}			
+	    }
+	}
+	// If we reach here, no heap-compatible events were checked
+	return false;
+}
+
+function heapIncompatibleEventChecked() {
+    for (var i = 0; i < noHeapdumpEventElementIds.length; i++) {
+	    if (document.getElementById(noHeapdumpEventElementIds[i]).checked) {
+		    return true;
+		}	
+	}
+	return false;
+}
+
+function fileCompatibleAgentChecked() {
+    for (var i = 0; i < agentsThatDumpAFileIds.length; i++) {
+	    if (document.getElementById(agentsThatDumpAFileIds[i]).checked) {
+		    return true;
+		}
+	}	
+}
+
+function disableIncompatibleEventElements(compatibleEventElementIds) {
+    // need to pass an array so we can deal with throw/systhrow etc.
+	var section = document.getElementById("event_input");
+    var elements = section.getElementsByTagName("input");
+	for (var i = 0; i < elements.length; i++) {
+	    if (elements[i].getAttribute("data-hasfilter") == "true" || elements[i].type == "text") {
+            var compatible = false;
+			for (var j = 0; j < compatibleEventElementIds.length; j++) {
+			    if (elements[i].id == compatibleEventElementIds[j]) {
+				    compatible = true;
+				}
+			}
+			if (!compatible) { 
+			    disableInput(elements[i]);
+		    }
+		}
+    }
+}
+
+function enableEventElementsWithFilters() {
+    var section = document.getElementById("event_input");
+    var elements = section.getElementsByTagName("input");
+	for (var i = 0; i < elements.length; i++) {
+	    if (elements[i].type == "checkbox" && elements[i].getAttribute("data-hasfilter") == "true") {
+			enableInput(elements[i]);
+		}
+    }
+}
+
+function disableInput(inputElement) {
+    // Disable the input itself
+	inputElement.disabled = true;	
+	
+	// Disable associated labels, if any
+	var labelElements = getLabelsForInput(inputElement);
+	if (typeof labelElements != undefined && labelElements != null) {
+		for (var i = 0; i < labelElements.length; i++) {
+	        labelElements[i].setAttribute("data-disabled", "true");
+		}
+	}
+	
+	// Disable associated buttons, if any
+	var buttonElements = getButtonsForInput(inputElement);
+	if (typeof buttonElements != undefined && buttonElements != null) {
+		for (var i = 0; i < buttonElements.length; i++) {
+	        buttonElements[i].disabled = true;
+		}
+	}
+}
+
+function enableInput(inputElement) {
+    // Enable the input itself
+	inputElement.disabled = false;
+	
+	// Enable associated labels, if any
+	var labelElements = getLabelsForInput(inputElement);
+	if (typeof labelElements != undefined && labelElements != null) {
+	    for (var i = 0; i < labelElements.length; i++) {
+    	    labelElements[i].setAttribute("data-disabled", "false");
+		}
+    }
+	
+	// Enable associated buttons, if any
+	var buttonElements = getButtonsForInput(inputElement);
+	if (typeof buttonElements != undefined && buttonElements != null) {
+		for (var i = 0; i < buttonElements.length; i++) {
+	        buttonElements[i].disabled = false;
+		}
+	}
+}
+
+function getLabelsForInput(inputElement) {
+    var allLabels = document.getElementsByTagName("label");
+    var results = [];
+    for (var i = 0; i < allLabels.length; i++) {
+        if (inputElement.id == allLabels[i].htmlFor) {
+		    results.push(allLabels[i]);
+		}
+    }
+	return results;
+}
+
+function getButtonsForInput(inputElement) {
+    var allInputs = document.getElementsByTagName("input");
+    var results = [];
+    for (var i = 0; i < allInputs.length; i++) {
+        if (allInputs[i].type == "button" && allInputs[i].getAttribute("data-target") == inputElement.id) {
+		    results.push(allInputs[i]);
+		}
+	}
+	return results;
+}
+
+function buildAndUpdateResult() {
+    var resultString = "-Xdump:";	
+	
+    var agentString = "";
+	var eventString = "";
+	var filterString = "";
+			
+    // Agents
+	var section = document.getElementById("agent_input");
+    var agentElements = section.getElementsByTagName("input");
+	for (var i = 0; i < agentElements.length; i++) {
+	    if (!agentElements[i].disabled && agentElements[i].checked == true) {
+		    if (agentString != "") {
+			    agentString += "+";
+		    }
+		    agentString += agentElements[i].value;
+		}
+	}
+	if (agentString != "") {
+	    resultString += agentString;
+	}
+	
+	// Events and filters
+	var eventSection = document.getElementById("event_input");
+    var eventElements = eventSection.getElementsByTagName("input");
+	
+	// Need to make sure filters are only added once for throw/systhrow, load/unload etc.
+    var filterAdded = {};
+	for (var i = 0; i < eventElements.length; i++) {
+	    if (eventElements[i].name != "event") {
+		    // If it's not an event it's a filter - mark it as not added yet
+			filterAdded[eventElements[i]] = false;
+		}
+	}
+	
+	for (var i = 0; i < eventElements.length; i++) {
+	    if (eventElements[i].name == "event" && eventElements[i].checked == true) {
+			if (eventString != "") {
+		        eventString += "+";
+		    }
+		    eventString += eventElements[i].value;
+			
+			// Filters
+			if (eventElements[i].getAttribute("data-hasfilter") == "true") {
+			    var filterIds = filterElementIds[eventElements[i].value];
+				
+				for (var j = 0; j < filterIds.length; j++ ) {
+				    var tempString = document.getElementById(filterIds[j]).value;
+					
+					if (tempString == "" || filterAdded[filterIds[j]]) {
+					    // Filter is empty or has already been added
+						continue;					
+					}
+					
+					// Get contents of filters and augment/correct if necessary
+					if (filterIds[j] == "event_throwable_class") {
+					    filterString += tempString;
+					} else if (filterIds[j] == "event_throwable_method") {
+					    filterString += "#" + tempString;
+					} else if (filterIds[j] == "event_throwable_msg_filter") {
+					    // Do nothing. This is added to the result under a separate flag later on.
+				    } else if (filterIds[j] == "event_throwable_offset") {
+					    if (tempString != "0" && document.getElementById("event_throwable_method").value != "") {
+						    filterString += "#" + tempString;
+						} else {
+                            continue;
+                        }							
+					} else if (filterIds[j] == "event_vmstop_filter") {
+					    filterString += "#" + tempString;
+					} else if (filterIds[j] == "event_slow_filter") {
+					    filterString += "#" + tempString + "ms";
+					} else if (filterIds[j] == "event_allocation_filter_size_min") {
+					    filterString += "#" + tempString;
+					} else if (filterIds[j] == "event_allocation_filter_size_max") {
+					    filterString += ".." + tempString;
+					} else if (filterIds[j] == "event_allocation_filter_units_min" && document.getElementById("event_allocation_filter_size_min").value == "") {
+					    // Don't add units if size is empty
+					} else if (filterIds[j] == "event_allocation_filter_units_max" && document.getElementById("event_allocation_filter_size_max").value == "") {
+					    // Don't add units if size is empty
+					} else {
+					    // Can add the filter value as-is for all other filters
+						filterString += tempString;
+					}
+					
+					filterAdded[filterIds[j]] = true;
+				}
+			}
+	    }
+	}
+	if (eventString != "") {
+	    resultString += ":events=" + eventString;
+	}
+	if (filterString != "") {
+	    resultString += ",filter=" + filterString;
+	}
+	
+	// msg_filter
+	var messageFilterString = document.getElementById("event_throwable_msg_filter").value;
+	if (document.getElementById("event_throwable_msg_filter").disabled == false && messageFilterString != "") {
+	    // Escape quotes in the filter
+		messageFilterString = messageFilterString.replace(/"/g, "\\\"");
+			
+		// Wrap the command in quotes if the entire option isn't going to be wrapped in quotes
+		if (document.getElementById("wrap_in_quotes").checked) {
+		    resultString += ",msg_filter=" + messageFilterString;
+		} else {
+		    resultString += ",msg_filter=\"" + messageFilterString + "\"";
+		}
+	}
+	
+	// range
+	if (document.getElementById("range").checked == true) {
+	    var first = document.getElementById("range_first").value;
+		var last = document.getElementById("range_last").value;
+		resultString += ",range=" + first + ".." + last;
+	}
+	
+	// priority
+	if (document.getElementById("priority").checked == true) {
+	    var priority = document.getElementById("priority_value").value;
+		if (priority != "") {
+		    resultString += ",priority=" + priority;
+	    }
+	}
+	
+	// exec
+	if (document.getElementById("agent_tool").checked) {
+        var execString = document.getElementById("exec").value;
+		if (execString != "") {
+		    // Escape quotes in the command
+			execString = execString.replace(/"/g, "\\\"");
+			
+			// Wrap the command in quotes if the entire option isn't going to be wrapped in quotes
+			if (document.getElementById("wrap_in_quotes").checked) {
+			    resultString += ",exec=" + execString;
+			} else {
+			    resultString += ",exec=\"" + execString + "\"";
+			}
+		}
+    }
+	
+    // request
+	var requestSection = document.getElementById("request_input");
+	var requestElements = requestSection.getElementsByTagName("input");
+	var requestString = "";
+	for (var i = 0; i < requestElements.length; i++) {
+	    if (!requestElements[i].disabled && requestElements[i].checked) {
+		    if (requestElements[i].value != "preempt" || (requestElements[i].value == "preempt" && document.getElementById("agent_java").checked == true)) {
+			    if (requestString != "") {
+    		        requestString += "+";
+		        }
+			    requestString += requestElements[i].value;
+		    }
+	    }
+	}
+	if (requestString != "") {
+	    resultString += ",request=" + requestString;
+	}
+	
+	// Dump file name
+	if (document.getElementById("file").checked && !document.getElementById("file").disabled) {
+        resultString += ",file=";
+		var fileString = document.getElementById("file_text").value;
+		if (fileString != "") {
+		    // Escape quotes in the filename
+			// (I'm not sure what sort of monster would put quotes in the filename, but hey)
+			fileString = fileString.replace(/"/g, "\\\"");
+			
+			// Wrap the filename in quotes if the entire option isn't going to be wrapped in quotes
+			if (document.getElementById("wrap_in_quotes").checked) {
+			    resultString += fileString;
+			} else {
+			    resultString += "\"" + fileString + "\"";
+			}
+		}
+    }
+	
+	// Wrap in quotes if option checked
+	if (document.getElementById("wrap_in_quotes").checked) {
+	    resultString = "\"" + resultString + "\"";
+	}
+	
+	// Escape HTML characters
+	resultString = escapeHTML(resultString);
+	
+	// Add <wbr> tags after '+', ','. '/' and '=' characters
+	// to make the wrapping prettier for longer options
+	resultString = resultString.replace(/,/g, ",<wbr>");
+	resultString = resultString.replace(/\+/g, "+<wbr>");
+	resultString = resultString.replace(/\//g, "/<wbr>");
+	resultString = resultString.replace(/=/g, "=<wbr>");
+	
+	// Rudimentry checks for validity of result
+	var resultIsGreen = true;
+	var errorsHtml = "";
+	var warningsHtml = "";
+	
+	// Check whether any dump events are selected
+	if (eventString == "") {
+	    resultIsGreen = false;
+		errorsHtml += "ERROR: No dump event selected<br>";		
+	}
+	
+	// Check whether any dump agents are selected
+	if (agentString == "") {
+	    resultIsGreen = false;
+		errorsHtml += "ERROR: No dump agent selected<br>";		
+	}
+	
+	// Check object allocation filter sizes
+	var minimumSizeElement = document.getElementById("event_allocation_filter_size_min");
+	var maximumSizeElement = document.getElementById("event_allocation_filter_size_max");
+	if (document.getElementById("event_allocation").checked) {
+        if (minimumSizeElement.value == "" || minimumSizeElement.value < 0 || minimumSizeElement.value > maximumSizeElement.value) {
+	        resultIsGreen = false;
+	        setErrorStyle(minimumSizeElement);
+	        errorsHtml += "ERROR: Invalid minimum size for object allocation size filter: must be >= 0, and must be < maximum size<br>";		
+	    } else {
+	        unsetErrorStyle(minimumSizeElement);
+	    }
+		
+		if (maximumSizeElement.value == "" || maximumSizeElement.value <= 0 || minimumSizeElement.value > maximumSizeElement.value) {
+	        resultIsGreen = false;
+	        setErrorStyle(maximumSizeElement);
+	        errorsHtml += "ERROR: Invalid maximum size for object allocation size filter: must be > 0, and must be > minimum size<br>";		
+	    } else {
+	        unsetErrorStyle(maximumSizeElement);
+	    }
+	} else {
+	    // Ensure error styling is removed if this option is unchecked
+		unsetErrorStyle(minimumSizeElement);
+		unsetErrorStyle(maximumSizeElement);
+	}
+	
+	// Check that a command has been specified if the tool agent is selected
+    var execElement = document.getElementById("exec");
+	if (document.getElementById("agent_tool").checked && execElement.value == "") {
+	    resultIsGreen = false;
+		setErrorStyle(execElement);
+		errorsHtml += "ERROR: Shell command (tool) agent is checked, but no shell command has been specified<br>";		
+	} else {
+	    unsetErrorStyle(execElement);
+	}
+	
+	// Check validity of the throwable class string
+	var throwableClassElement = document.getElementById("event_throwable_class")
+	if (!throwableClassElement.disabled) {
+	    var classValue = throwableClassElement.value;
+		if (classValue.lastIndexOf("*") > 0) {
+		    if (classValue.lastIndexOf("*") != (classValue.length - 1)) {
+    	        // Wildcard must be placed at the beginning and/or end of the string
+		        resultIsGreen = false;
+		        setErrorStyle(throwableClassElement);
+		        errorsHtml += "ERROR: Exception class filter wildcards can only be used at the beginning and/or end of the filter<br>";
+		    } else if (document.getElementById("event_throwable_method").value != "") {
+    	        // Wildcard not allowed at the end of the string if a method filter is enabled
+		        resultIsGreen = false;
+		        setErrorStyle(throwableClassElement);
+		        errorsHtml += "ERROR: Exception class filter must not end with a wildcard when a method filter is specified<br>";
+		    } else {
+    		    // Wildcard looks ok
+    	        unsetErrorStyle(throwableClassElement);
+		    }
+		} else {
+		    // No wildcard, or a single wildcard at the beginning of the string
+			// Note: A filter containing just a wildcard (i.e. "*") is also fine
+		    unsetErrorStyle(throwableClassElement);
+		}		
+	}
+
+    // Check validity of any wildcard in the throwable method string	
+	var throwableMethodElement = document.getElementById("event_throwable_method");
+	if (!throwableMethodElement.disabled) {
+	    var methodValue = throwableMethodElement.value;
+		if (methodValue.indexOf("*") != -1) {
+            if (document.getElementById("event_throwable_offset").value != "0") {
+    		    // No wildcard allowed if using stack offset
+				resultIsGreen = false;
+			    setErrorStyle(throwableMethodElement);
+			    errorsHtml += "ERROR: Exception method filter must not contain a wildcard when using a stack offset.<br>";
+		    } else if (methodValue.indexOf("*") != (methodValue.length - 1)) {
+    		    // If no stack offset, wildcard must be placed at the end
+				resultIsGreen = false;
+			    setErrorStyle(throwableMethodElement);
+			    errorsHtml += "ERROR: Exception method filter wildcard can only be used at the end of the filter<br>";
+		    } else {
+		        // Wildcard looks ok
+				unsetErrorStyle(throwableMethodElement);
+		    }
+		} else {
+		    // No wildcard
+		    unsetErrorStyle(throwableMethodElement);
+		}
+	}
+	
+	// Check that a priority has been specified if the dump priority option is selected
+    var priorityValueElement = document.getElementById("priority_value");
+	if (document.getElementById("priority").checked && priorityValueElement.value == "") {
+	    resultIsGreen = false;
+		setErrorStyle(priorityValueElement);
+		errorsHtml += "ERROR: Dump priority option is checked, but no priority value has been specified<br>";		
+	} else {
+	    unsetErrorStyle(priorityValueElement);
+	}
+	
+	// Dump filename checks
+    var dumpFileElement = document.getElementById("file_text");
+	if (document.getElementById("file").checked) {
+	    if (dumpFileElement.value == "") {
+		    resultIsGreen = false;
+		    setErrorStyle(priorityValueElement);
+		    errorsHtml += "ERROR: Dump file option is checked, but no file name has been specified<br>";
+		} else {
+		    unsetErrorStyle(priorityValueElement);
+		}
+		
+		if (containsReservedChars(dumpFileElement.value)) {
+		    warningsHtml += "WARNING: Dump file name contains a character that is disallowed on some platforms<br>";		
+		}		
+	} else {
+	    unsetErrorStyle(priorityValueElement);
+	}
+	
+	// Check the dump priority value
+	if (document.getElementById("priority").checked && (priorityValueElement.value < 0 || priorityValueElement.value > 999)) {
+	    resultIsGreen = false;
+		setErrorStyle(priorityValueElement);
+		errorsHtml += "ERROR: Invalid dump priority value: must be > 0 and < 999<br>";		
+	} else {
+	    unsetErrorStyle(priorityValueElement);
+	}
+	
+	// Check whether any incompatible events/agents are selected
+	// (nearly all incompatible scenarios are prevented by enabling/disabling input fields)
+	if (heapIncompatibleEventChecked()) {
+	    if (!document.getElementById("agent_heap").disabled && document.getElementById("agent_heap").checked) {
+		    warningsHtml += "WARNING: The PHD heap dump agent cannot be triggered by GPF, abort, or internal JVM error events<br>";
+		}
+		if (!document.getElementById("request_prepwalk").disabled && document.getElementById("request_prepwalk").checked) {
+		    warningsHtml += "WARNING: Dump agents triggered by a GPF, abort, or internal JVM error cannot ensure the heap is walkable prior to dumping<br>";
+		}
+		if (!document.getElementById("request_compact").disabled && document.getElementById("request_compact").checked) {
+		    warningsHtml += "WARNING: Dump agents triggered by a GPF, abort, or internal JVM error cannot conduct a global GC prior to dumping<br>";
+		}
+		if (!document.getElementById("request_exclusive").disabled && document.getElementById("request_exclusive").checked) {
+		    warningsHtml += "WARNING: Dump agents triggered by a GPF, abort, or internal JVM error may have problems obtaining exclusive JVM access<br>";
+		}		
+	}
+	
+	// Add the result string in the appropriate colour
+	if (resultIsGreen) {
+	    document.getElementById("result").innerHTML = "<font color=\"green\">" + resultString + "</font>";
+	} else {
+		document.getElementById("result").innerHTML = "<font color=\"red\">" + resultString + "</font>";
+	}
+	
+	// Add errors/warnings, if any
+	if (errorsHtml != "" || warningsHtml != "") { 
+	    document.getElementById("errors").innerHTML = errorsHtml + warningsHtml;
+	} else {
+	    document.getElementById("errors").innerHTML = "&nbsp;";
+	}
+}
+
+// Return true if a string contains characters that are reserved on some platforms
+// Otherwise return false
+function containsReservedChars(string) {
+	if (   string.indexOf("\\") != -1
+		|| string.indexOf("/") != -1
+		|| string.indexOf(":") != -1
+		|| string.indexOf("*") != -1
+		|| string.indexOf("?") != -1
+		|| string.indexOf("\"") != -1
+		|| string.indexOf("<") != -1
+		|| string.indexOf(">") != -1
+		|| string.indexOf("|") != -1
+	) {
+	    return true;
+	} else {
+	    return false;
+	}	
+}
+
+function setErrorStyle(inputElement) {
+    // Only set the error style if this element doesn't have focus.
+	if (document.activeElement != inputElement) {
+		inputElement.style.borderColor = "red";
+	    inputElement.style.borderStyle = "solid";
+	}
+}
+
+function unsetErrorStyle(inputElement) {
+    inputElement.style.borderColor = "";
+	inputElement.style.borderStyle = "";
+	
+	inputElement.style.borderColor = null;
+	inputElement.style.borderStyle = null;
+}
+
+function escapeHTML(text) {
+    return text.replace(/&/g, "&amp;")
+               .replace(/</g, "&lt;")
+               .replace(/>/g, "&gt;")
+               .replace(/"/g, "&quot;")
+               .replace(/'/g, "&#039;");
+}
+
+// If a string ends with a '&' remove it
+function removeFinalAmpersandIfPresent(string) {
+    if (string.length > 0 && string.lastIndexOf("&") == string.length - 1) {
+	    return string.slice(0, -1);
+	} else {
+	    return string;
+	}
+}
+
+// Inserts text in a target text input, replacing the current selected text
+function insertText(targetElement, textToInsert) {
+    var oldTextValue = targetElement.value;
+	var selectionStart = targetElement.selectionStart;
+	var selectionEnd = targetElement.selectionEnd;
+    
+	// Get text before/after current selection
+	var textBeforeSelection = oldTextValue.substring(0, selectionStart);
+	var textAfterSelection = oldTextValue.substring(selectionEnd, oldTextValue.length);
+	
+	// Insert text, effectively replacing the current selection
+    targetElement.value = textBeforeSelection + textToInsert + textAfterSelection;
+    
+	// Set cursor position to the end of the inserted text
+	var cursorPosition = selectionStart + textToInsert.length;
+    
+	// Make sure nothing is selected
+	targetElement.selectionStart = cursorPosition;
+    targetElement.selectionEnd = cursorPosition;
+    
+	// Give focus to the target field
+	targetElement.focus();
+}
+
+function copyTextToClipboard(element) {
+    var selection = window.getSelection(); // get the window's Selection object
+    selection.removeAllRanges(); // deselect any user selected text
+	
+	// Create a temporary element and store the target element's text in it
+	// (while stripping out any HTML tags)
+	var tempElement = document.createElement("p");
+	tempElement.innerHTML = element.innerText;
+	
+	// Append temporary element to the DOM so we can copy its contents
+    document.body.appendChild(tempElement);
+	
+	var range = document.createRange(); // create a new range object
+    range.selectNodeContents(tempElement); // set range to cover target element text
+    selection.addRange(range); // add range to Selection object
+	
+	document.execCommand("copy"); // do the copy
+	selection.removeAllRanges(); // deselect the target element's text
+	
+	// Remove the temporary text area
+	tempElement.parentNode.removeChild(tempElement);
+}
+
+function copyLinkToClipboard() {
+	// Serialize the form input fields
+	var serializedForm = "";
+	var inputs = document.getElementById("XdumpForm").getElementsByTagName("input");
+	for (var i = 0; i < inputs.length; i++) {
+	    var inputElement = inputs[i];
+		if (inputElement.type == "checkbox") {
+		    if (inputElement.checked) {
+				serializedForm += inputElement.id + "=1&";
+			} else if (inputElement.id == "request_exclusive" || inputElement.id == "request_prepwalk") {
+			    // These are checked by default, so if they're unchecked we need to make note.
+				serializedForm += inputElement.id + "=0&";
+			}			
+		}
+		if (inputElement.type == "text" && inputElement.value != "") {
+		    serializedForm += inputElement.id + "=" + encodeURIComponent(inputElement.value) + "&";		    
+		}
+		if (inputElement.type == "number") {
+		    serializedForm += inputElement.id + "=" + inputElement.value + "&";		    
+		}	
+	}	
+	serializedForm = removeFinalAmpersandIfPresent(serializedForm);
+	
+	// Get the base URL
+	var urlString = window.location.protocol + '//' + window.location.host + window.location.pathname;
+		
+	// Append the serialized form
+	urlString += "?" + serializedForm;
+	
+	// Create a temporary element and store the URL in it
+	var tempElement = document.createElement("p");
+	tempElement.innerHTML = urlString;
+	
+	// Append temporary element to the DOM so we can copy its contents
+    document.body.appendChild(tempElement);
+	
+	// Copy to the clipboard
+	copyTextToClipboard(tempElement);
+	
+	// Remove the temporary text area
+	tempElement.parentNode.removeChild(tempElement);
+}
+
+// Reloads the page and sets all options back to the defaults
+function clearAndReload() {
+	if (confirm("Are you sure you want to set all options to default values?")) {
+		location.replace(window.location.pathname);	
+    } else {
+        // Do nothing
+    }
+}
+
+// This is the alternative action to submitting the form when the user presses return in a text field
+function handleSubmit() {
+    processChange();
+	return false;
+}
+
+</script>
+
+<style> 
+body {
+    font-family: verdana;
+    font-size: 10pt;
+}
+
+table {
+    font-size: 10pt;
+}
+
+button {
+    font-size: 10pt;
+}
+
+label {
+    vertical-align: middle;
+}
+
+input {
+    vertical-align: middle;
+}
+
+input[type=text] {
+    padding: 2px 2px;
+	box-sizing: border-box;
+}
+
+input[type=number] {
+    width: 70px;
+	padding: 2px 2px;
+    box-sizing: border-box;
+}
+
+select {
+    padding: 2px 2px;
+    box-sizing: border-box;
+	vertical-align: middle;
+}
+
+li {
+    padding: 1px 0px;
+}
+
+label[data-disabled=true] {
+    color: #ccc;
+}
+
+label[data-disabled=false] {
+    color: #000;
+}
+
+td {
+    vertical-align: top;
+}
+
+ul {
+    list-style-type: none;
+	padding: 0;
+}
+
+</style>
+
+<link rel="stylesheet" type="text/css" href="../css/oj9_option_builder.css">
+
+</head>
+
+<body onload="initialSetup()">
+
+<form id="XdumpForm" name="XdumpForm" onsubmit="event.preventDefault(); return handleSubmit()">
+
+<table border="0" cellspacing="0" cellpadding="4" style="width:1100px; table-layout:fixed">
+<tr>
+    <td  class="head1" colspan="2">
+        OpenJ9: Xdump Option Builder
+    </td>
+</tr>
+
+<tr>
+    <td rowspan="2">	
+        <b style="font-size: 12pt">Dump Events</b>
+        <ul id="event_input">
+            <hr>
+            <li>
+	            <input type="checkbox" id="event_user"         name="event" value="user"        onchange="processChange(this)" data-hasfilter="false">
+		        <label for="event_user">User signal i.e. SIGQUIT ("kill -3") / SIGBREAK</label>
+	        </li>
+            <li>
+	            <input type="checkbox" id="event_gpf"          name="event" value="gpf"         onchange="processChange(this)" data-hasfilter="false">
+		        <label for="event_gpf">General Protection Fault (GPF) or unexpected SIGSEGV</label>
+            </li>
+			<li>
+	            <input type="checkbox" id="event_abort"        name="event" value="abort"       onchange="processChange(this)" data-hasfilter="false">
+		        <label for="event_abort">Process abort i.e. SIGABRT</label>
+	        </li> 
+            <li>
+	            <input type="checkbox" id="event_traceassert"  name="event" value="traceassert" onchange="processChange(this)" data-hasfilter="false">
+		        <label for="event_traceassert">Internal JVM error (assertion failure)</label>
+	        </li>
+	        <li>
+	            <input type="checkbox" id="event_corruptcache" name="event" value="corruptcache"onchange="processChange(this)" data-hasfilter="false">
+		        <label for="event_corruptcache">Corrupt shared classes cache</label>
+	        </li>
+	        <li>
+	            <input type="checkbox" id="event_excessivegc"  name="event" value="excessivegc" onchange="processChange(this)" data-hasfilter="false">
+		        <label for="event_excessivegc">Excessive GC activity</label>
+	        </li>
+	        <li>
+	            <input type="checkbox" id="event_fullgc"       name="event" value="fullgc"      onchange="processChange(this)" data-hasfilter="false">
+		        <label for="event_fullgc">Global GC</label>
+	        </li>
+	        <li>
+	            <input type="checkbox" id="event_vmstart"      name="event" value="vmstart"     onchange="processChange(this)" data-hasfilter="false">
+		        <label for="event_vmstart">VM startup</label>
+	        </li>
+            <li>
+	            <input type="checkbox" id="event_vmstop"       name="event" value="vmstop"      onchange="processChange(this)" data-hasfilter="true">
+		        <label for="event_vmstop">VM shutdown. Exit code:</label> 
+	            <input type="number" id="event_vmstop_filter" name="vmstop_text" min="-9999" max="9999" value="" disabled onchange="processChange(this)" onBlur="processChange(this)">
+	        </li>
+	        <li>
+	            <input type="checkbox" id="event_thrstart"     name="event" value="thrstart"    onchange="processChange(this)" data-hasfilter="false">
+		        <label for="event_thrstart">Thread started</label>
+	        </li>
+			<li>
+	            <input type="checkbox" id="event_thrstop"     name="event" value="thrstop"    onchange="processChange(this)" data-hasfilter="false">
+		        <label for="event_thrstop">Thread stopped</label>
+	        </li>
+			<li>
+	            <input type="checkbox" id="event_blocked"     name="event" value="blocked"    onchange="processChange(this)" data-hasfilter="false">
+		        <label for="event_blocked">Thread blocked</label>
+	        </li>
+	        <li>
+        	    <input type="checkbox" id="event_slow"         name="event" value="slow"        onchange="processChange(this)" data-hasfilter="true">
+        		<label for="event_slow">Thread slow/hung. Unresponsive threshold in ms:</label>
+        	    <input type="number" id="event_slow_filter" name="slow_ms" size="2" value = "50" min="1" max="9999" disabled onchange="processChange(this)" onBlur="processChange(this)">
+	        </li>
+			<hr>
+	        <li>
+        	    <input type="checkbox" id="event_allocation"   name="event" value="allocation"  onchange="processChange(this)" data-hasfilter="true">
+        		<label for="event_allocation">Object allocated</label>
+        	    <br>
+		        <table>
+		            <tr>
+		                <td>
+		                    <label data-disabled="true" for="event_allocation_filter_size_min">Minimum size:</label>
+	                    </td>		        
+				        <td>
+        				    <input type="number" id="event_allocation_filter_size_min" name="event_allocation_filter_size_min" min="1" max="9999" value="256" disabled onchange="processChange(this)" onBlur="processChange(this)">
+                	        <select id="event_allocation_filter_units_min" name="event_allocation_filter_units_min" size="1" disabled onchange="processChange(this)">
+                                <option value=""> bytes </option>
+ 			                    <option value="k" selected> kilobytes</option>
+                                <option value="m"> megabytes </option>
+                            </select>
+			            </td>
+		            </tr>
+	                <tr>
+		                <td>
+		                    <label data-disabled="true" for="event_allocation_filter_size_max">Maximum size:</label>
+		                </td>
+				        <td>
+				            <input type="number" id="event_allocation_filter_size_max" name="event_allocation_filter_size_max" min="1" max="9999" value="512" disabled onchange="processChange(this)" onBlur="processChange(this)">
+		        	        <select id="event_allocation_filter_units_max" name="event_allocation_filter_units_max" size="1" disabled onchange="processChange(this)">
+                                <option value=""> bytes </option>
+			                    <option value="k" selected> kilobytes</option>
+                                <option value="m"> megabytes </option>
+                            </select>
+		                </td>
+		            </tr>
+        		</table>
+	        </li>
+	
+	        <hr>
+        	<li>
+	            <input type="checkbox" id="event_throw"        name="event" value="throw"       onchange="processChange(this)" data-hasfilter="true">
+		        <label for="event_throw">Exception thrown by Java code</label>
+            </li>
+	        <li>
+	            <input type="checkbox" id="event_systhrow"     name="event" value="systhrow"    onchange="processChange(this)" data-hasfilter="true">
+		        <label for="event_systhrow">Exception thrown by JVM internals</label>
+	        </li>
+            <li>
+	            <input type="checkbox" id="event_catch"        name="event" value="catch"       onchange="processChange(this)" data-hasfilter="true">
+		        <label for="event_catch">Exception caught</label>
+            </li>
+            <li>
+	            <input type="checkbox" id="event_uncaught"     name="event" value="uncaught"    onchange="processChange(this)" data-hasfilter="true">
+		        <label for="event_uncaught">Exception uncaught</label>
+                <table>
+		            <tr>
+    		            <td><label data-disabled="true" for="event_throwable_class">Exception class name:</label></td>
+		                <td><input style="width: 325px" type="text" id="event_throwable_class" name="throwable_class" size="41" value="" disabled onchange="processChange(this)" onBlur="processChange(this)"></td>
+		            </tr>
+		            <tr>
+    		            <td><label data-disabled="true" for="event_throwable_method">Method name / offset:</label></td>
+                        <td nowrap>
+							<input style="width: 250px" type="text" id="event_throwable_method" name="throwable_method" size="30" value="" disabled onchange="processChange(this)" onBlur="processChange(this)">
+				            <input type="number" id="event_throwable_offset" name="range_first" min="0" max="999" value="0" size="4" disabled onchange="processChange(this)" onBlur="processChange(this)" onBlur="processChange(this)">
+						</td>
+		            </tr>
+					<tr>
+    			        <td><label data-disabled="true" for="event_throwable_msg_filter">Exception message (Java 8+):</label></td>
+		                <td><input style="width: 325px" type="text" id="event_throwable_msg_filter" name="throwable_message" size="41" value="" disabled onchange="processChange(this)" onBlur="processChange(this)"></td>
+	                </tr>
+        		</table>
+        	</li>
+	
+	        <hr>
+	        <li>
+	            <input type="checkbox" id="event_load"         name="event" value="load"        onchange="processChange(this)" data-hasfilter="true">
+		        <label for="event_load">Class loaded</label>
+	        </li>
+            <li>
+	            <input type="checkbox" id="event_unload"       name="event" value="unload"      onchange="processChange(this)" data-hasfilter="true">
+		        <label for="event_unload">Class unloaded</label><br>
+		        <label data-disabled="true" for="event_class_filter">Class name:</label> <input style="width: 450px" type="text" id="event_class_filter" name="class_text" size="58" value="" disabled onchange="processChange(this)" onBlur="processChange(this)">
+	        </li>
+	    </ul>
+    </td>
+
+    <td>
+        <b style="font-size: 12pt">Dump Agents</b>
+        <ul id="agent_input">
+            <hr>
+            <li>
+    	        <input type="checkbox" id="agent_stack"   name="agent" value="stack"   onchange="processChange(this)">
+		        <label for="agent_stack">Write current Java&trade; thread stack to stderr</label>
+	        </li>
+            <li>
+        	    <input type="checkbox" id="agent_console" name="agent" value="console" onchange="processChange(this)">
+		        <label for="agent_console">Write all Java thread stacks to stderr</label>
+            </li>
+            <li>
+        	    <input type="checkbox" id="agent_system"  name="agent" value="system"  onchange="processChange(this)">
+        		<label for="agent_system">Generate a system dump (core file)</label>
+            </li>
+            <li>
+	            <input type="checkbox" id="agent_java"    name="agent" value="java"    onchange="processChange(this)">
+		        <label for="agent_java">Generate a Java dump (Java core)</label>
+	        </li>
+            <li>
+	            <input type="checkbox" id="agent_heap"    name="agent" value="heap"    onchange="processChange(this)">
+	            <label for="agent_heap">Generate a PHD heap dump (system dump is usually preferred)</label>
+	        </li>
+            <li>
+	            <input type="checkbox" id="agent_snap"    name="agent" value="snap"    onchange="processChange(this)">
+		        <label for="agent_snap">Generate a Snap trace</label>
+	        </li>
+            <li>
+	            <input type="checkbox" id="agent_jit"     name="agent" value="jit"     onchange="processChange(this)">
+		        <label for="agent_jit">Generate a JIT dump</label>
+	        </li>
+	        <li>
+	            <input type="checkbox" id="agent_tool"    name="agent" value="tool"    onchange="processChange(this)">
+		        <label for="agent_tool">Run a shell command:</label><br> 
+		            <input style="width: 540px" type="text" id="exec" name="exec" size="72" value="" disabled onchange="processChange(this)" onBlur="processChange(this)">
+			        <div style="padding: 4px 0px;">
+			            <input type="button" data-target="exec" data-token="%Y"    id="exec_button_year4"  disabled style="font-size: 8pt; height:20px;width:55px" onclick="processChange(this)"
+				            value="Year (4)" title="Year (4 digits) e.g. 2017">
+			            <input type="button" data-target="exec" data-token="%y"    id="exec_button_year2"  disabled style="font-size: 8pt; height:20px;width:55px" onclick="processChange(this)"
+				            value="Year (2)" title="Year (4 digits) e.g. 17">
+				        <input type="button" data-target="exec" data-token="%m"    id="exec_button_month"  disabled style="font-size: 8pt; height:20px;width:50px" onclick="processChange(this)"
+				            value="Month" title="Month (2 digits) e.g. 08">
+			            <input type="button" data-target="exec" data-token="%d"    id="exec_button_day"    disabled style="font-size: 8pt; height:20px;width:41px" onclick="processChange(this)"
+				            value="Day" title="Day of month (2 digits) e.g. 26">
+			            <input type="button" data-target="exec" data-token="%H"    id="exec_button_hour"   disabled style="font-size: 8pt; height:20px;width:41px" onclick="processChange(this)"
+				            value="Hour" title="Hour of day (2 digits) e.g. 05">
+			            <input type="button" data-target="exec" data-token="%M"    id="exec_button_minute" disabled style="font-size: 8pt; height:20px;width:41px" onclick="processChange(this)"
+				            value="Min" title="Minute of hour (2 digits) e.g. 47">
+			            <input type="button" data-target="exec" data-token="%S"    id="exec_button_second" disabled style="font-size: 8pt; height:20px;width:41px" onclick="processChange(this)"
+				            value="Sec" title="Second of minute (2 digits) e.g. 35">
+			        </div>
+			        <div>
+			            <input type="button" data-target="exec" data-token="%pid"  id="exec_button_pid"         disabled style="font-size: 8pt; height:20px;width:43px" onclick="processChange(this)"
+				            value="PID" title="JVM Process ID e.g. 27491">
+			            <input type="button" data-target="exec" data-token="%uid"  id="exec_button_uname"       disabled style="font-size: 8pt; height:20px;width:50px" onclick="processChange(this)"
+				            value="Uname" title="User name e.g. jbloggs">
+			            <input type="button" data-target="exec" data-token="%seq"  id="exec_button_dumpcounter" disabled style="font-size: 8pt; height:20px;width:80px" onclick="processChange(this)"
+				            value="Dump Count" title="Dump Counter e.g. 0004">
+			            <input type="button" data-target="exec" data-token="%tick" id="exec_button_mscounter"   disabled style="font-size: 8pt; height:20px;width:80px" onclick="processChange(this)"
+				            value="msec Count" title="Millisecond counter e.g. 638349">
+			            <input type="button" data-target="exec" data-token="%home" id="exec_button_javahome"    disabled style="font-size: 8pt; height:20px;width:80px" onclick="processChange(this)"
+				            value="Java Home" title="Java Home e.g. /home/jbloggs/java">
+			        </div>
+	        </li>
+	        <hr>
+        </ul>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        <b style="font-size: 12pt">Dump Options</b>
+        <ul id="options_input">
+            <hr>
+            <li>
+	            <input type="checkbox" id="range" name="range" value="range" onchange="processChange(this)">
+		        <label for="range">Range of events</label>
+		        <table>
+		            <tr>
+			            <td><label data-disabled="true" for="range_first">First occurrence:</label></td>
+				        <td><input type="number" id="range_first" name="range_first" min="1" max="9999" value="1" size="4" disabled onchange="processChange(this)" onBlur="processChange(this)"></td>
+			        </tr>
+			        <tr>
+			            <td><label data-disabled="true" for="range_last">Last occurrence:</label></td>
+				        <td>
+				            <input type="number" id="range_last" name="range_last" min="0" max="9999" value="0" size="4" disabled onchange="processChange(this)" onBlur="processChange(this)">
+					        <label data-disabled="true" for="range_last">(0 = no limit)</label>
+				        </td>
+			        </tr>
+		        </table>
+	        </li>
+			<hr>
+			<li>
+			    <input type="checkbox" id="priority" name="priority" value="priority" onchange="processChange(this)">
+				<label for="priority">Dump priority:</label>
+				<input type="number" id="priority_value" name="priority_value" min="0" max="999" size="4" disabled onchange="processChange(this)" onBlur="processChange(this)">
+				<label data-disabled="true" for="priority_value">(0 [lowest] - 999 [highest])</label>
+			</li>
+			<hr>
+	        <div id="request_input">
+	            <li>
+		            <input type="checkbox" id="request_exclusive" name="request" value="exclusive" onchange="processChange(this)">
+			        <label for="request_exclusive">Obtain exclusive JVM access before dumping</label>
+		        </li>
+		        <li>
+		            <input type="checkbox" id="request_compact"   name="request" value="compact"   onchange="processChange(this)">
+			        <label for="request_compact">Run global GC before dumping (i.e. remove garbage objects)</label>
+		        </li>
+		        <li>
+		            <input type="checkbox" id="request_prepwalk"  name="request" value="prepwalk"  onchange="processChange(this)">
+			        <label for="request_prepwalk">Ensure heap is walkable before dumping</label>
+		        </li>
+		        <li>
+		            <input type="checkbox" id="request_serial"    name="request" value="serial"    onchange="processChange(this)">
+			        <label for="request_serial">Suspend other dumps while dumping</label>
+		        </li>
+		        <li>
+		            <input type="checkbox" id="request_preempt"   name="request" value="preempt"   onchange="processChange(this)">
+			        <label for="request_preempt">Enable native thread stacks in javacore</label>
+		        </li>
+	        </div>
+	    	<hr>
+	        <li>
+	            <input type="checkbox" id="file"    name="file" value="file"  disabled  onchange="processChange(this)">
+		        <label for="file" data-disabled="true">Custom dump file name (applies to all enabled dump types):</label> 
+		            <input style="width: 540px" type="text" id="file_text" name="file_text" size="71" value="" disabled onchange="processChange(this)" onBlur="processChange(this)">
+			        <div style="padding: 4px 0px;">
+			            <input type="button" data-target="file_text" data-token="%Y"    id="file_button_year4"  disabled style="font-size: 8pt; height:20px;width:55px" onclick="processChange(this)"
+				            value="Year (4)" title="Year (4 digits) e.g. 2017">
+			            <input type="button" data-target="file_text" data-token="%y"    id="file_button_year2"  disabled style="font-size: 8pt; height:20px;width:55px" onclick="processChange(this)"
+				            value="Year (2)" title="Year (4 digits) e.g. 17">
+				        <input type="button" data-target="file_text" data-token="%m"    id="file_button_month"  disabled style="font-size: 8pt; height:20px;width:50px" onclick="processChange(this)"
+				            value="Month" title="Month (2 digits) e.g. 08">
+			            <input type="button" data-target="file_text" data-token="%d"    id="file_button_day"    disabled style="font-size: 8pt; height:20px;width:41px" onclick="processChange(this)"
+				            value="Day" title="Day of month (2 digits) e.g. 26">
+			            <input type="button" data-target="file_text" data-token="%H"    id="file_button_hour"   disabled style="font-size: 8pt; height:20px;width:41px" onclick="processChange(this)"
+				            value="Hour" title="Hour of day (2 digits) e.g. 05">
+			            <input type="button" data-target="file_text" data-token="%M"    id="file_button_minute" disabled style="font-size: 8pt; height:20px;width:41px" onclick="processChange(this)"
+				            value="Min" title="Minute of hour (2 digits) e.g. 47">
+			            <input type="button" data-target="file_text" data-token="%S"    id="file_button_second" disabled style="font-size: 8pt; height:20px;width:41px" onclick="processChange(this)"
+				            value="Sec" title="Second of minute (2 digits) e.g. 35">
+			        </div>
+			        <div>
+			            <input type="button" data-target="file_text" data-token="%pid"  id="file_button_pid"         disabled style="font-size: 8pt; height:20px;width:43px" onclick="processChange(this)"
+				            value="PID" title="JVM Process ID e.g. 27491">
+			            <input type="button" data-target="file_text" data-token="%uid"  id="file_button_uname"       disabled style="font-size: 8pt; height:20px;width:50px" onclick="processChange(this)"
+				            value="Uname" title="User name e.g. jbloggs">
+			            <input type="button" data-target="file_text" data-token="%seq"  id="file_button_dumpcounter" disabled style="font-size: 8pt; height:20px;width:80px" onclick="processChange(this)"
+				            value="Dump Count" title="Dump Counter e.g. 0004">
+			            <input type="button" data-target="file_text" data-token="%tick" id="file_button_mscounter"   disabled style="font-size: 8pt; height:20px;width:80px" onclick="processChange(this)"
+				            value="msec Count" title="Millisecond counter e.g. 638349">
+			            <input type="button" data-target="file_text" data-token="%home" id="file_button_javahome"    disabled style="font-size: 8pt; height:20px;width:80px" onclick="processChange(this)"
+				            value="Java Home" title="Java Home e.g. /home/jbloggs/java">
+			        </div>
+	        </li>
+	    </ul>
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2">
+        <hr>
+        <b><p id="result" style="font-size: 14pt; font-family:courier;">&nbsp;</p></b>
+        <hr>
+        <p>
+			<input type="checkbox" id="wrap_in_quotes" name="wrap_in_quotes" value="wrap_in_quotes" onchange="processChange(this)">
+        	<label for="wrap_in_quotes">Wrap in quotes (for use in a shell)</label>
+		</p>
+		<p>
+            <button type="button" id="button_copy_to_clipboard" style="font-size: 12pt; height:30px;width:200px" onclick="copyTextToClipboard(document.getElementById('result'))" title="Copy this -Xdump option to the clipboard">Copy option</button>
+    	    <button type="button" id="button_copy_link_to_clipboard" style="font-size: 12pt; height:30px;width:200px" onclick="copyLinkToClipboard()" title="Copy a link to this -Xdump option to the clipboard">Copy link</button>
+    		<button type="button" id="button_reset" style="font-size: 12pt; height:30px;width:200px" onclick="location.reload()"title="Reset all options to the values that were set when this page was originally loaded">Reset</button>
+			<button type="button" id="button_clear" style="font-size: 12pt; height:30px;width:200px" onclick="clearAndReload()" title="Clear all options and set default values">Clear</button>
+			&nbsp;
+		</p>
+	<p id="errors" style="font-size: 12pt; font-family:courier; color:red;">&nbsp;</p></b>
+    </td>
+</tr>
+
+</table>
+
+</form>
+
+</body>
+</html>
