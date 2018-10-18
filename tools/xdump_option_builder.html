@@ -939,7 +939,7 @@ function copyTextToClipboard(element) {
 	// Create a temporary element and store the target element's text in it
 	// (while stripping out any HTML tags)
 	var tempElement = document.createElement("p");
-	tempElement.innerHTML = element.innerText;
+	tempElement.innerText = element.innerText;
 
 	// Append temporary element to the DOM so we can copy its contents
 	document.body.appendChild(tempElement);
