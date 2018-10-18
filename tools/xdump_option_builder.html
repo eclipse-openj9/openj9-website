@@ -96,6 +96,13 @@ function setupTooltips() {
 	            "determined by the priority keyword set for each agent. Higher priority dump agents are started first. The " +
 	            "priorities associated with default dump agents can be view by running \"java -Xdump:what\".";
 	document.getElementById("priority_value").title = titleText;
+	
+	titleText = "Specify the range of dump events on which to trigger the specified dump agents. For example, if \"First event\" is set to 5, " +
+				"and \"Last event\" set to 7, the dump event will trigger only on the 5th, 6th and 7th dump events. A value of 0 means " +
+				"\"no limit\"\n\n" +
+				"The default is first = 1 and last = 0 except for when the shell command (tool) agent is enabled, whereby the default " +
+				" becomes first = 1 and last = 1.";
+	document.getElementById("range_li").title = titleText;
 }
 
 function parseParams() {
@@ -111,7 +118,7 @@ function parseParams() {
 			var element = document.getElementById(param[0]);
 
 			if (element == null) {
-				console.log("ERROR: Key does not map to element: " + tracepointKey);
+				console.log("ERROR: Key does not map to element: " + key);
 				continue; // Go to the next parameter
 			}
 
@@ -155,11 +162,31 @@ function processChange(option) {
 	if (option.name == "agent") {
 		if (option.value == "tool") {
 			var execFieldElement = document.getElementById("exec");
+			var toolAsyncElement = document.getElementById("tool_async");
+			var toolWaitElement = document.getElementById("tool_wait");
+			
+			var rangeElement = document.getElementById("range");
+			var rangeFirstElement = document.getElementById("range_first");
+			var rangeLastElement = document.getElementById("range_last");
 			if (option.checked == true) {
+				// If range has not been modified, set it to the tool default of 1..1
+				if (rangeFirstElement.value == 1 && rangeLastElement.value == 0) {
+					rangeFirstElement.value = 1;
+					rangeLastElement.value = 1;
+				}
 				enableInput(execFieldElement);
+				enableInput(toolAsyncElement);
+				enableInput(toolWaitElement);
 				execFieldElement.focus();
 			} else {
+				// If has not been modified, set it to the normal default of 1..0
+				if (rangeFirstElement.value == 1 && rangeLastElement.value == 1) {
+					rangeFirstElement.value = 1;
+					rangeLastElement.value = 0;
+				}
 				disableInput(execFieldElement);
+				disableInput(toolAsyncElement);
+				disableInput(toolWaitElement);
 			}		
 		}
 
@@ -503,7 +530,7 @@ function buildAndUpdateResult() {
 	var section = document.getElementById("agent_input");
 	var agentElements = section.getElementsByTagName("input");
 	for (var i = 0; i < agentElements.length; i++) {
-		if (!agentElements[i].disabled && agentElements[i].checked == true) {
+		if (!agentElements[i].disabled && agentElements[i].checked == true && agentElements[i].id != "tool_async") {
 			if (agentString != "") {
 				agentString += "+";
 			}
@@ -603,10 +630,18 @@ function buildAndUpdateResult() {
 	}
 
 	// range
-	if (document.getElementById("range").checked == true) {
-		var first = document.getElementById("range_first").value;
-		var last = document.getElementById("range_last").value;
-		resultString += ",range=" + first + ".." + last;
+	var rangeFirst = document.getElementById("range_first").value;
+	var rangeLast = document.getElementById("range_last").value;
+	if (document.getElementById("agent_tool").checked) {
+		// Default with "tool" agent enabled is 1..1
+		if (rangeFirst != 1 || rangeLast != 1) {
+			resultString += ",range=" + rangeFirst + ".." + rangeLast;
+		}
+	} else {
+		// Normal default is 1..0
+		if (rangeFirst != 1 || rangeLast != 0) {
+			resultString += ",range=" + rangeFirst + ".." + rangeLast;
+		}	
 	}
 	
 	// priority
@@ -630,6 +665,23 @@ function buildAndUpdateResult() {
 			} else {
 				resultString += ",exec=\"" + execString + "\"";
 			}
+		}
+		
+		// opts
+		var optsString = "";
+		var toolAsyncElement = document.getElementById("tool_async");
+		var toolWaitElement = document.getElementById("tool_wait");
+		if (toolAsyncElement.checked) {
+			optsString += toolAsyncElement.value;
+		}
+		if (toolWaitElement.value != 0) {
+			if (optsString != "") {
+				optsString += "+";
+			}
+			optsString += "WAIT" + toolWaitElement.value;
+			}
+		if (optsString != "") {
+			resultString += ",opts=" + optsString;
 		}
 	}
 
@@ -735,6 +787,16 @@ function buildAndUpdateResult() {
 	} else {
 		unsetErrorStyle(execElement);
 	}
+	
+	// Check value provided for tool wait time
+	var toolWaitElement = document.getElementById("tool_wait");
+	if (!toolWaitElement.disabled && toolWaitElement.value < 0) {
+		resultIsGreen = false;
+		setErrorStyle(toolWaitElement);
+		errorsHtml += "ERROR: Invalid tool wait time: must be > 0<br>";
+	} else {
+		unsetErrorStyle(toolWaitElement);
+	}
 
 	// Check validity of the throwable class string
 	var throwableClassElement = document.getElementById("event_throwable_class")
@@ -768,7 +830,7 @@ function buildAndUpdateResult() {
 		var methodValue = throwableMethodElement.value;
 		if (methodValue.indexOf("*") != -1) {
 			if (document.getElementById("event_throwable_offset").value != "0") {
-    				// No wildcard allowed if using stack offset
+				// No wildcard allowed if using stack offset
 				resultIsGreen = false;
 				setErrorStyle(throwableMethodElement);
 				errorsHtml += "ERROR: Exception method filter must not contain a wildcard when using a stack offset.<br>";
@@ -1283,6 +1345,9 @@ ul {
 						value="Min" title="Minute of hour (2 digits) e.g. 47">
 					<input type="button" data-target="exec" data-token="%S"    id="exec_button_second" disabled style="font-size: 8pt; height:20px;width:41px" onclick="processChange(this)"
 						value="Sec" title="Second of minute (2 digits) e.g. 35">
+						&nbsp;
+						<input type="checkbox" id="tool_async" name="tool_async" value="ASYNC" title="If checked, don't wait for the command to complete before continuing" disabled onchange="processChange(this)">
+						<label for="tool_async" data-disabled="true" title="If checked, don't wait for the command to complete before continuing">Run asynchronously</label>
 				</div>
 				<div>
 					<input type="button" data-target="exec" data-token="%pid"  id="exec_button_pid"         disabled style="font-size: 8pt; height:20px;width:43px" onclick="processChange(this)"
@@ -1295,6 +1360,9 @@ ul {
 						value="msec Count" title="Millisecond counter e.g. 638349">
 					<input type="button" data-target="exec" data-token="%home" id="exec_button_javahome"    disabled style="font-size: 8pt; height:20px;width:80px" onclick="processChange(this)"
 						value="Java Home" title="Java Home e.g. /home/jbloggs/java">
+						&nbsp;&nbsp;
+						<label for="tool_wait" data-disabled="true" title="Time to wait after executing the command, in milliseconds">Wait (ms): </label>
+						<input type="number" id="tool_wait" name="tool_wait" min="0" value="0" disabled title="Time to wait after executing the command, in milliseconds" onchange="processChange(this)">
 				</div>
 			</li>
 			<hr>
@@ -1307,19 +1375,17 @@ ul {
 		<b style="font-size: 12pt">Dump Options</b>
 		<ul id="options_input">
 			<hr>
-			<li>
-				<input type="checkbox" id="range" name="range" value="range" onchange="processChange(this)">
-				<label for="range">Range of events</label>
+			<li id="range_li">
 				<table>
 					<tr>
-						<td><label data-disabled="true" for="range_first">First occurrence:</label></td>
-						<td><input type="number" id="range_first" name="range_first" min="1" max="9999" value="1" size="4" disabled onchange="processChange(this)" onBlur="processChange(this)"></td>
+						<td><label for="range_first">First event:</label></td>
+						<td><input type="number" id="range_first" name="range_first" min="1" max="9999" value="1" size="4" onchange="processChange(this)" onBlur="processChange(this)"></td>
 					</tr>
 					<tr>
-						<td><label data-disabled="true" for="range_last">Last occurrence:</label></td>
+						<td><label for="range_last">Last event:</label></td>
 						<td>
-							<input type="number" id="range_last" name="range_last" min="0" max="9999" value="0" size="4" disabled onchange="processChange(this)" onBlur="processChange(this)">
-							<label data-disabled="true" for="range_last">(0 = no limit)</label>
+							<input type="number" id="range_last" name="range_last" min="0" max="9999" value="0" size="4" onchange="processChange(this)" onBlur="processChange(this)">
+							<label for="range_last">(0 = no limit)</label>
 						</td>
 					</tr>
 				</table>
