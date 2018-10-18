@@ -488,7 +488,7 @@ function processChange(option) {
 	}
 
 	// Enable the stack depth field if a jstacktrace trigger action is selected
-	if (isTracepointJStackTraceActionSelected() || isMethodJStackTraceActionSelected) {
+	if (isTracepointJStackTraceActionSelected() || isMethodJStackTraceActionSelected()) {
 		enableInput(document.getElementById("stack_depth"));
 	} else {
 		disableInput(document.getElementById("stack_depth"));
