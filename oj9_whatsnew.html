@@ -77,7 +77,65 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="f-section-item">
         <span class="intro-text">Covering project news, events, milestones, and of course... new and cool stuff!</span>
       </div>
-	<div class="f-section-item" id="openj90100">
+
+	<div class="f-section-item" id="openj90110">
+    
+    <div class="f-content-container">
+          <h3>Eclipse OpenJ9 version 0.11.0 released</h3>
+          <p><i>22nd October 2018</i></p>
+          <p>Our latest release of Eclipse OpenJ9 is now complete and comes with extended support and performance benefits:
+			<p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Support for the MacOS platform</strong></p>
+			<p>OpenJDK with OpenJ9 is now available on macOS&reg;. Early builds of OpenJDK 11 with OpenJ9 are now available at the <a href="https://adoptopenjdk.net/nightly.html?variant=openjdk11&jvmVariant=openj9">AdoptOpenJDK project</a>, 
+			with OpenJDK 8 coming soon.</p>
+			<p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Improved cryptographic performance with support for OpenSSL</strong></p>
+			<p>OpenJ9 now supports OpenSSL v1.1.x for native cryptographic operations on OpenJDK 8, providing performance improvements over the default OpenJDK 8 
+cryptographic implementation. On x86 Linux, we measured up to a 15x improvement on encrypt and decrypt operations for the GCM and CBC algorithms compared
+to the default implmentation.</p>
+			<p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Improved performance of AOT compiled code</i></strong></p>
+			<p>Ahead-Of-Time (AOT) compiled code is ideal for using at startup time, but it is not as fast as JIT-compiled code from a throughput perspective. 
+In this release, we have introduced an improved AOT implementation, with better throughput that bridges up to half the performance delta on x86-64 
+platforms compared to JIT-compiled code. At the moment, this new AOT implementation can be invoked under the`-Xtune:virtualized` option. There are 
+three potential areas of improvement; (i) better startup time (because AOT code runs a lot during the startup phase), 
+(ii) faster ramp-up time (where AOT is being used more aggressively under `-Xtune:virtualized`), and (iii) better throughput (for applications that are 
+running lots of AOT code during steady state).</p>
+			<p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Memory optimizations for applications that run in containers</i></strong></p>
+			<p>We recently added some intelligence to make OpenJ9 "container-aware", which allows it to make informed decisions about the
+size of your Java heap if you run your application in a container. Since applications are typically run on their own in a container and do 
+not need to compete for memory, the JVM allocates a larger proportion of memory for the Java heap. With more container memory available, the JIT compiler
+can work harder, improving the ramp up time for applications. Conversely, if we do not have as much container memory available, the JIT compiler can 
+reduce its memory usage to fit within the container limits. Due to good performance results and positive feedback, we've now enabled this 
+feature by default.</p>
+			<p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>x86 support for our "pause-less" GC mode for response-time sensitive, large heap applications</strong></p>
+			<p>We've now extended support to Linux and Windows 64-bit compressed references OpenJ9 builds for this innovative GC mode (`-Xgc:concurrentScavenge`) that 
+runs concurrently with Java application threads. In this mode, the garbage collector is able to relocate objects while application threads are running, 
+thereby reducing the "stop-the-world" application pause time needed to reclaim memory on the Java heap. Shorter pause times mean faster response times. 
+So if you're running an app that requires a large Java heap but depends on fast response-times, why not try it out?</p>
+		  <br/><br/>
+		  <p align="center"><strong><i>Can't wait to take advantage of Eclipse OpenJ9 0.11.0?</i></strong></p>
+		  <br/>		  
+		  <br/>
+		  <p style="text-align:center;"><a class="button external-button" style="width:15em; margin-top:0rem;" href="https://adoptopenjdk.net/archive.html?variant=openjdk8&jvmVariant=openj9">OpenJDK8 with OpenJ9 <i class="fa fa-download" aria-hidden="true"></i></a>
+		  <a class="button external-button" style="width:15em; margin-top:0rem;" href="https://adoptopenjdk.net/archive.html?variant=openjdk11&jvmVariant=openj9">OpenJDK11 with OpenJ9 <i class="fa fa-download" aria-hidden="true"></i></a></p>
+		  <br/>
+		  <br/>
+		 
+		  <p>To read more about the changes in this release, head over to our <a href="https://www.eclipse.org/openj9/docs/version0.11/"><i>user documentation</i></a>. 
+		  </p>
+		  
+
+<!-- Keep as-is except edit ID in URL and change "text=" -->
+<a href="https://twitter.com/share?
+url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openj90110&
+via=openj9&
+hashtags=openj9,java&
+text=Eclipse%20#OpenJ9%20V0.11.0%20released;%20Improved%20cryptographic%performance%20with%20OpenSSL."
+class="twitter-share-button"
+data-show-count="false">Tweet</a>
+        </div>
+	</div>		  
+	  
+	  
+  <div class="f-section-item" id="openj90100">
     
     <div class="f-content-container">
           <h3>Eclipse OpenJ9 version 0.10.0 released</h3>
@@ -92,7 +150,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		  are also writing content for the user documentation to help you compare Hotspot and OpenJ9 non-standard options and 
 		  garbage collection policies. So if you haven't already tried an OpenJDK with OpenJ9 or you've stumbled into problems 
 		  because command-line options you are familiar with are not recognised, we're working hard to improve the experience. If
-		  you have a migration problem, please help us out by posting details in our GitHub <a href="https://github.com/eclipse/openj9/issues/2332">issue</a>.
+		  you have a migration problem, please help us out by posting details in a GitHub <a href="https://github.com/eclipse/openj9/issues/2332">issue</a>.
 		  </p>	
 		  		
 		<p>To read about other enhancements and notable changes in this release, see our <a href="https://www.eclipse.org/openj9/docs/version0.10/"><i>What's new</i></a> topic. 
