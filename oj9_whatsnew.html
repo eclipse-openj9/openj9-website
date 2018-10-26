@@ -105,8 +105,8 @@ not need to compete for memory, the JVM allocates a larger proportion of memory 
 can work harder, improving the ramp up time for applications. Conversely, if we do not have as much container memory available, the JIT compiler can 
 reduce its memory usage to fit within the container limits. Due to good performance results and positive feedback, we've now enabled this 
 feature by default.</p>
-			<p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>x86 support for our "pause-less" GC mode for response-time sensitive, large heap applications</strong></p>
-			<p>We've now extended support to Linux and Windows 64-bit compressed references OpenJ9 builds for this innovative GC mode (`-Xgc:concurrentScavenge`) that 
+			<p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Linux x86 support for our "pause-less" GC mode for response-time sensitive, large heap applications</strong></p>
+			<p>We've now extended support to Linux 64-bit compressed references OpenJ9 builds for this innovative GC mode (`-Xgc:concurrentScavenge`) that 
 runs concurrently with Java application threads. In this mode, the garbage collector is able to relocate objects while application threads are running, 
 thereby reducing the "stop-the-world" application pause time needed to reclaim memory on the Java heap. Shorter pause times mean faster response times. 
 So if you're running an app that requires a large Java heap but depends on fast response-times, why not try it out?</p>
