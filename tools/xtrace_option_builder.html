@@ -800,7 +800,7 @@ function addMethod() {
 		'<input type="text" id="meth_text_' + methodCounter + '" name="meth_text_' + methodCounter + '" size="25" value="" onchange="processChange(this)" onblur="processChange(this)">' +
 		'&nbsp;&nbsp;' +
 		'<input type="checkbox" id="meth_args_' + methodCounter + '" name="meth_args_' + methodCounter + '" value="meth_args_' + methodCounter + '" checked onchange="processChange(this)">' +
-		'<label for="meth_args_' + methodCounter + '">Trace arguments and return values</label>';
+		'<label for="meth_args_' + methodCounter + '" title="This option will only work for interpreted methods. Use a JIT exclude if necessary.">Trace arguments and return values</label>';
 
 	var methodList = document.getElementById("method_input");
 	methodList.appendChild(newMethod);
@@ -815,7 +815,7 @@ function addMethod() {
 		"    - *.readObject\n" +
 		"    - *.*\n" +
 		"\n" +
-		"Note that methods parameters cannot be specified.\n" +
+		"Note that method parameters cannot be specified.\n" +
 		"All methods matching the specified name will be traced.";
 	methodTextElement.title = tooltipText;
 
@@ -1523,9 +1523,13 @@ function buildAndUpdateResult() {
 		errorsHtml += "ERROR: \"Methods\" component tracepoint is enabled but no methods have been specified for tracing, and no jstacktrace method trigger actions have been enabled<br>";
 	}
 
-	// Check that each method option actually contains a method spec
+	// Method option checks
+	var argTracingEnabled = false;
+	var methodSpecForJitExclude = "";
 	for (var i = 0; i < methodCounter; i++) {
 		var methodSpecElement = document.getElementById("meth_text_" + i);
+		
+		// Check that each method option actually contains a method spec
 		if (methodSpecElement != null) {
 			if (methodSpecElement.value == "") {
 				resultIsGreen = false;
@@ -1535,7 +1539,37 @@ function buildAndUpdateResult() {
 				unsetErrorStyle(methodSpecElement);
 			}
 		}
+		
+		// Check whether argument and return value tracing is enabled.
+		// The warning includes an example JIT exclude option.
+		if (methodSpecElement != null && document.getElementById("meth_args_" + i).checked) {
+			argTracingEnabled = true;
+			var methodSpecValue = methodSpecElement.value;
+						
+			// Method specs for JIT excludes must specify parameters or match them with a wildcard,
+			// so we append a '*' if the method spec doesn't already end in one
+			if (methodSpecValue.length > 0) {
+				if (methodSpecValue.lastIndexOf("*") != methodSpecValue.length - 1) {
+					methodSpecValue += "*";
+				}
+				
+				if (methodSpecForJitExclude == "") {
+					methodSpecForJitExclude += methodSpecValue;
+				} else {
+					methodSpecForJitExclude += "|" + methodSpecValue;
+				}
+			}
+		}		
 	}
+	if (argTracingEnabled) {
+		if (methodSpecForJitExclude != "") {
+			var jitExcludeOption = "-Xjit:exclude={" + methodSpecForJitExclude + "}";
+			warningsHtml += "WARNING: Arguments and return values will only be traced for interpreted methods. Use this JIT exclude option if necessary: <span style=\"white-space: nowrap\">" + jitExcludeOption + "</span><br>";
+		} else {
+			warningsHtml += "WARNING: Arguments and return values will only be traced for interpreted methods. Use a JIT exclude option if necessary.<br>";
+		}
+	}
+	
 
 	// Check that each ID tracepoint has a tpnid
 	for (var i = 0; i < tracepointCounter; i++) {
@@ -1664,7 +1698,7 @@ function buildAndUpdateResult() {
 		}	    
 	}	
 
-    	// Check output file fields
+	// Check output file fields
 	var fileTextElement = document.getElementById("file_text");
 	if (!fileTextElement.disabled) {
 		if (!isOutputFileSpecified()) {
