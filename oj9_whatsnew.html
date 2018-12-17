@@ -89,14 +89,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			with OpenJDK 8 coming soon.</p>
 			<p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Improved cryptographic performance with support for OpenSSL</strong></p>
 			<p>OpenJ9 now supports OpenSSL v1.1.x for native cryptographic operations on OpenJDK 8, providing performance improvements over the default OpenJDK 8 
-cryptographic implementation. On x86 Linux, we measured up to a 15x improvement on encrypt and decrypt operations for the GCM and CBC algorithms compared
+cryptographic implementation. On x86 Linux&reg;, we measured up to a 15x improvement on encrypt and decrypt operations for the GCM and CBC algorithms compared
 to the default implementation.</p>
 			<p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Improved performance of AOT compiled code</i></strong></p>
 			<p>Ahead-Of-Time (AOT) compiled code is ideal for using at startup time, but it is not as fast as JIT-compiled code from a throughput perspective. 
 In this release, we have introduced an improved AOT implementation, with better throughput that bridges up to half the performance delta on x86-64 
-platforms compared to JIT-compiled code. At the moment, this new AOT implementation can be invoked under the`-Xtune:virtualized` option. There are 
+platforms compared to JIT-compiled code. At the moment, this new AOT implementation can be invoked under the <tt>-Xtune:virtualized</tt> option. There are 
 three potential areas of improvement; (i) better startup time (because AOT code runs a lot during the startup phase), 
-(ii) faster ramp-up time (where AOT is being used more aggressively under `-Xtune:virtualized`), and (iii) better throughput (for applications that are 
+(ii) faster ramp-up time (where AOT is being used more aggressively under <tt>-Xtune:virtualized</tt>), and (iii) better throughput (for applications that are 
 running lots of AOT code during steady state).</p>
 			<p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Memory optimizations for applications that run in containers</i></strong></p>
 			<p>We recently added some intelligence to make OpenJ9 "container-aware", which allows it to make informed decisions about the
@@ -106,7 +106,7 @@ can work harder, improving the ramp up time for applications. Conversely, if we 
 reduce its memory usage to fit within the container limits. Due to good performance results and positive feedback, we've now enabled this 
 feature by default.</p>
 			<p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Linux x86 support for our "pause-less" GC mode for response-time sensitive, large heap applications</strong></p>
-			<p>We've now extended support to Linux 64-bit compressed references OpenJ9 builds for this innovative GC mode (`-Xgc:concurrentScavenge`) that 
+			<p>We've now extended support to Linux 64-bit compressed references OpenJ9 builds for this innovative GC mode (<tt>-Xgc:concurrentScavenge</tt>) that 
 runs concurrently with Java application threads. In this mode, the garbage collector is able to relocate objects while application threads are running, 
 thereby reducing the "stop-the-world" application pause time needed to reclaim memory on the Java heap. Shorter pause times mean faster response times. 
 So if you're running an app that requires a large Java heap but depends on fast response-times, why not try it out?</p>
@@ -141,19 +141,23 @@ data-show-count="false">Tweet</a>
           <h3>Eclipse OpenJ9 version 0.10.0 released</h3>
           <p><i>3rd October 2018</i></p>
           <p>Eclipse OpenJ9 version 0.10.0 adds support for OpenJDK version 11. All the testing we've done so far proves
-		  that builds are compatible with OpenJDK 11 and builds are now available at  <a href="https://adoptopenjdk.net/archive.html?variant=openjdk11&jvmVariant=openj9" target="_blank">AdoptOpenJDK</a>.</p>
+		  that builds are compatible with OpenJDK 11 and builds are now available at  <a href="https://adoptopenjdk.net/archive.html?variant=openjdk11&jvmVariant=openj9" target="_blank">AdoptOpenJDK</a>
+		  <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.</p>
 		  
 		  <p>To learn more about our release strategy, plus our supported architectures and operating systems, 
-		  see <a href="https://www.eclipse.org/openj9/docs/openj9_support/index.html">Supported environments</a>.</p>
+		  see <a href="https://www.eclipse.org/openj9/docs/openj9_support/index.html">Supported environments</a>
+		  <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.</p>
 
 		  <p>To help users adopt OpenJ9 we have been busy adding compatibility for a number of Hotspot options. We 
 		  are also writing content for the user documentation to help you compare Hotspot and OpenJ9 non-standard options and 
 		  garbage collection policies. So if you haven't already tried an OpenJDK with OpenJ9 or you've stumbled into problems 
 		  because command-line options you are familiar with are not recognised, we're working hard to improve the experience. If
-		  you have a migration problem, please help us out by posting details in a GitHub <a href="https://github.com/eclipse/openj9/issues/2332">issue</a>.
+		  you have a migration problem, please help us out by posting details in a GitHub <a href="https://github.com/eclipse/openj9/issues/2332">issue</a>
+		  <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.
 		  </p>	
 		  		
-		<p>To read about other enhancements and notable changes in this release, see our <a href="https://www.eclipse.org/openj9/docs/version0.10/"><i>What's new</i></a> topic. 
+		<p>To read about other enhancements and notable changes in this release, see our <a href="https://www.eclipse.org/openj9/docs/version0.10/"><i>What's new</i></a>
+		<i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>		topic. 
 		  </p>
 		  
 
@@ -180,14 +184,16 @@ data-show-count="false">Tweet</a>
           <p>We're pleased to announce the release of Eclipse OpenJ9 version 0.9.0.</p>
 		  <p>V0.9.0 adds support for OpenJDK 10 builds, OpenJDK 8 Windows 32-bit builds, and OpenJDK large heap builds 
 		  that support Java heap sizes > 57 GB.
-		  Work is underway to make these builds available at  <a href="https://adoptopenjdk.net" target="_blank">AdoptOpenJDK</a>. 
+		  Work is underway to make these builds available at  <a href="https://adoptopenjdk.net" target="_blank">AdoptOpenJDK</a>
+		  <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>. 
 		  If you want a large heap binary for a platform other than 
 		  <a href="https://adoptopenjdk.net/nightly.html?variant=openjdk8-openj9" target="_blank">OpenJDK 8 
 		  Linux x64</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>, 
 		  you can easily build one by following our <a href="https://github.com/eclipse/openj9/tree/master/buildenv" target="_blank">
 		  detailed build instructions</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>. 
 	      To learn more about our release strategy, plus our supported architectures and operating systems, 
-		see <a href="https://www.eclipse.org/openj9/docs/openj9_support/index.html">Supported environments</a>.</p>
+		see <a href="https://www.eclipse.org/openj9/docs/openj9_support/index.html">Supported environments</a>
+		<i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.</p>
 
 		  <p>Version 0.9.0 also includes some great progress to make the JVM more container-aware. When OpenJ9 is running 
 		  inside a container, checks for memory availability and subsequent Java heap allocation now reflect limits 
@@ -197,11 +203,12 @@ data-show-count="false">Tweet</a>
 		
 		<p>We are also introducing a new garbage collection policy mode to implement <a href="http://openjdk.java.net/jeps/318" target="_blank">JEP 318</a>
 		<i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.
-		When this policy is enabled (<strong>-Xgcpolicy:nogc</strong> or <strong>-XX:+UseNoGC</strong>), the Java 
+		When this policy is enabled (<tt>-Xgcpolicy:nogc</tt> or <tt>-XX:+UseNoGC</tt>), the Java 
 		object heap is expanded in the normal way until the limit is reached, but memory is not reclaimed through 
 		garbage collection. This mode is ideal for short-lived applications and useful for test purposes.</p>
 		
-		<p>To read about other enhancements and notable changes in this release, see our <a href="https://www.eclipse.org/openj9/docs/version0.9/"><i>What's new</i></a> topic. 
+		<p>To read about other enhancements and notable changes in this release, see our <a href="https://www.eclipse.org/openj9/docs/version0.9/"><i>What's new</i></a>
+		<i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>		topic. 
 		  </p>
 		  
 		  <p>If you are interested in trying the OpenJDK 8 Windows binaries, we've run some Eclipse performance tests to compare OpenJ9 and the Hotspot JVM.
