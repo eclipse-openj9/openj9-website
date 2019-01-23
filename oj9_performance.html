@@ -55,7 +55,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       <div class="f-section-item">
         <div class="f-content-container">
-          <p class="intro-text" style="padding:2rem 0 2rem 0;">Benchmark testing demonstrates significantly better performance for both OpenJDK&trade; 8 and OpenJDK 9 when using Eclipse OpenJ9, than with Hotspot.
+          <p class="intro-text" style="padding:2rem 0 2rem 0;">Benchmark testing demonstrates significantly better performance for OpenJDK&trade; 8 when using Eclipse OpenJ9, than with Hotspot.
           </p>
         </div>
       </div>
@@ -64,11 +64,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="f-content-container">
           <p>Many different metrics exist to measure the performance of an application including startup time, ramp up time, footprint, response time, as well as throughput. At Eclipse OpenJ9, we keep a watchful eye on all of these metrics, making sensible tradeoffs and providing tuning options that allow the virtual machine (VM) to be optimized for different workloads.
           </p>
-         	<p>Our original tests were carried out with OpenJDK version 9, but as most users are more interested in version 8, we have taken the opportunity to re-evaluate the performance of OpenJ9 when running OpenJDK version 8 using the same metrics as before, namely footprint after start up and during ramp up, start-up time, throughput, and ramp-up time.
-        	</p>
-        	<p>The results for OpenJDK 8 with OpenJ9 are very much in line with our <a href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader3.md">previous tests using OpenJDK 9</a>, and demonstrate a significantly better performance than OpenJDK 8 with Hotspot.
-        	</p>
-          <p>Take a look at these results:
+         	<p>The result is that OpenJDK 8 with OpenJ9 demonstrates a significantly better performance than with Hotspot. Take a look at these results:
           <ul>
             <li><a href="#g1">66% smaller footprint after startup</a></li>
             <li><a href="#g2">63% smaller footprint during ramp up</a></li>
@@ -85,7 +81,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </p>
           <p>Due to its low memory footprint, OpenJ9 is particularly well suited for cloud computing environments where memory savings translate into cost savings for cloud users and providers alike.
           </p>
-          <p style="padding:1rem 0 0rem 0;"><i><b>You can read the full details about how the data was generated at <a href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader7.md">OpenJDK 8 performance with OpenJ9</a>.</b> (You can also see the results of previous tests for <a href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader3.md">OpenJDK 9 with OpenJ9</a>.)</i>
+          <p style="padding:1rem 0 0rem 0;"><i><b>You can read the full details about how the data was generated at <a href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader7.md">OpenJDK 8 performance with OpenJ9</a>.</b> </i>
           </p>
         </div>
       </div>
@@ -153,7 +149,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>  <!-- end: figure -->
           </div>  <!-- end: figures -->
 
-          <p>In all three scenarios, memory footprint (Resident Set Size) increased abruptly when load was applied to the system (time = 0). But at steady state, OpenJDK 8 with OpenJ9 was found to use approximately 63% less physical memory than OpenJDK 8 with HotSpot. This difference is even more striking than in the experiments with OpenJDK 9.
+          <p>In all three scenarios, memory footprint (Resident Set Size) increased abruptly when load was applied to the system (time = 0). But at steady state, OpenJDK 8 with OpenJ9 was found to use approximately 63% less physical memory than OpenJDK 8 with HotSpot.
           </p>
           <p>Enabling AOT on the OpenJ9 VM made almost no difference to these results.
           </p>
