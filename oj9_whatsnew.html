@@ -1,13 +1,14 @@
+﻿
 <!DOCTYPE html>
 <!--
 Copyright (c) 2017, 2019 IBM Corp. and others
 
-This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which accompanies this distribution and is available at http://eclipse.org/legal/epl-2.0 or the Apache License, Version 2.0 which accompanies this distribution and is available at https://www.apache.org/licenses/LICENSE-2.0. 
+This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which accompanies this distribution and is available at http://eclipse.org/legal/epl-2.0 or the Apache License, Version 2.0 which accompanies this distribution and is available at https://www.apache.org/licenses/LICENSE-2.0. 
 
-This Source Code may also be made available under the following Secondary Licenses when the conditions for such availability set forth in the Eclipse Public License, v. 2.0 are satisfied: GNU General Public License, version 2 with the GNU Classpath Exception [1] and GNU General Public License, version 2 with the OpenJDK Assembly Exception [2]. 
+This Source Code may also be made available under the following Secondary Licenses when the conditions for such availability set forth in the Eclipse Public License, v. 2.0 are satisfied: GNU General Public License, version 2 with the GNU Classpath Exception [1] and GNU General Public License, version 2 with the OpenJDK Assembly Exception [2]. 
 
-[1] https://www.gnu.org/software/classpath/license.html  
-[2] http://openjdk.java.net/legal/assembly-exception.html 
+[1] https://www.gnu.org/software/classpath/license.html  
+[2] http://openjdk.java.net/legal/assembly-exception.html 
 
 SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
 
@@ -78,153 +79,198 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <span class="intro-text">Covering project news, events, milestones, and of course... new and cool stuff!</span>
       </div>
 
-	<div class="f-section-item" id="openj90110">
-    
+    <div class="f-section-item" id="openj90120">
+    <div class="f-content-container">
+      <h3>Eclipse OpenJ9 version 0.12.0 released</h3>
+      <p><i>31st January 2019</i></p>
+      <p>Our latest version of Eclipse OpenJ9 is now released, with a number of improvements and new benefits. Here are the highlights:
+      </p>
+	  <p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Support for macOS&reg;</strong>
+      </p>
+      <p>This release adds support for OpenJDK 8 with OpenJ9 on the 64-bit macOS platform.</p>
+      <p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Extended support for pause-less garbage collection</strong>
+      </p>
+      <p>Concurrent scavenge mode is now available on 64-bit Windows platforms. Support for 64-bit Linux x86 platforms is now extended for applications that require large heap (non-compressed references) VMs. </p>
+	  <p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Improved cryptographic performance for the RSA algorithm.</strong>
+      </p>
+	  <p>OpenSSL 1.1.x support is now available for the RSA algorithm, in addition to Digest, CBC, and GCM. In our tests, we measured a 2-3&times; increase in RSA performance.</p> 
+
+      <p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>OpenJ9 performance gets better and better:</strong><ul>
+        <li>Improvements to AOT-compiled code during startup processing, which generates 10% startup time savings in AOT <i>warm</i> runs.</li>
+        <li>Improved density of AOT-compiled code in the shared classes cache by reducing the number of duplicated validation records. This change
+		allows more AOT-compiled code to be stored, with faster load times.</li>
+        <li>2&times; performance improvement when cloning arrays.</li>
+      </ul>
+      </p>
+      <p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Documentation changes</strong></p>
+      <p>We are now hosting two sets of user documentation: 
+	  <ul>
+	  <li>Documentation to support the latest release of Eclipse OpenJ9 is hosted at <a href="https://www.eclipse.org/openj9/docs" target="_blank">https://www.eclipse.org/openj9/docs</a>. </li>
+	  <li>Draft documentation for our next release is now hosted at <a href="https://eclipse.github.io/openj9-docs" target="_blank">https://eclipse.github.io/openj9-docs</a>.</li>
+	  </ul>
+	  If you are building OpenJDK with OpenJ9 against the latest OpenJ9 code base, any new features and changes can be found in the draft documentation.</p>
+      
+
+      <p>You can read more about the changes in this release in our <a href="https://www.eclipse.org/openj9/docs/version0.12/"><i>user documentation</i></a>. 
+      </p>
+
+<!-- Keep as-is except edit ID in URL and change "text=" -->
+<a href="https://twitter.com/share?
+url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openj90120&
+via=openj9&
+hashtags=openj9,java&
+text=V0.12.0%20released;%20macOS%20support%20on%20version%208%20and%20more!"
+class="twitter-share-button"
+data-show-count="false">Tweet</a>
+        </div>
+  </div>      
+
+  <div class="f-section-item" id="openj90110">
     <div class="f-content-container">
           <h3>Eclipse OpenJ9 version 0.11.0 released</h3>
           <p><i>22nd October 2018</i></p>
           <p>Our latest release of Eclipse OpenJ9 is now complete and comes with extended support and performance benefits:
-			<p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Support for the MacOS platform</strong></p>
-			<p>OpenJDK with OpenJ9 is now available on macOS&reg;. Early builds of OpenJDK 11 with OpenJ9 are now available at the <a href="https://adoptopenjdk.net/nightly.html?variant=openjdk11&jvmVariant=openj9">AdoptOpenJDK project</a>, 
-			with OpenJDK 8 coming soon.</p>
-			<p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Improved cryptographic performance with support for OpenSSL</strong></p>
-			<p>OpenJ9 now supports OpenSSL v1.1.x for native cryptographic operations on OpenJDK 8, providing performance improvements over the default OpenJDK 8 
+      <p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Support for the macOS&reg; platform</strong></p>
+      <p>OpenJDK with OpenJ9 is now available on macOS. Early builds of OpenJDK 11 with OpenJ9 are now available at the <a href="https://adoptopenjdk.net/nightly.html?variant=openjdk11&jvmVariant=openj9">AdoptOpenJDK project</a>, 
+      with OpenJDK 8 coming soon.</p>
+      <p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Improved cryptographic performance with support for OpenSSL</strong></p>
+      <p>OpenJ9 now supports OpenSSL v1.1.x for native cryptographic operations on OpenJDK 8, providing performance improvements over the default OpenJDK 8 
 cryptographic implementation. On x86 Linux&reg;, we measured up to a 15x improvement on encrypt and decrypt operations for the GCM and CBC algorithms compared
 to the default implementation.</p>
-			<p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Improved performance of AOT compiled code</i></strong></p>
-			<p>Ahead-Of-Time (AOT) compiled code is ideal for using at startup time, but it is not as fast as JIT-compiled code from a throughput perspective. 
+      <p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Improved performance of AOT compiled code</i></strong></p>
+      <p>Ahead-Of-Time (AOT) compiled code is ideal for using at startup time, but it is not as fast as JIT-compiled code from a throughput perspective. 
 In this release, we have introduced an improved AOT implementation, with better throughput that bridges up to half the performance delta on x86-64 
 platforms compared to JIT-compiled code. At the moment, this new AOT implementation can be invoked under the <tt>-Xtune:virtualized</tt> option. There are 
 three potential areas of improvement; (i) better startup time (because AOT code runs a lot during the startup phase), 
 (ii) faster ramp-up time (where AOT is being used more aggressively under <tt>-Xtune:virtualized</tt>), and (iii) better throughput (for applications that are 
 running lots of AOT code during steady state).</p>
-			<p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Memory optimizations for applications that run in containers</i></strong></p>
-			<p>We recently added some intelligence to make OpenJ9 "container-aware", which allows it to make informed decisions about the
+      <p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Memory optimizations for applications that run in containers</i></strong></p>
+      <p>We recently added some intelligence to make OpenJ9 "container-aware", which allows it to make informed decisions about the
 size of your Java heap if you run your application in a container. Since applications are typically run on their own in a container and do 
 not need to compete for memory, the JVM allocates a larger proportion of memory for the Java heap. With more container memory available, the JIT compiler
 can work harder, improving the ramp up time for applications. Conversely, if we do not have as much container memory available, the JIT compiler can 
 reduce its memory usage to fit within the container limits. Due to good performance results and positive feedback, we've now enabled this 
 feature by default.</p>
-			<p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Linux x86 support for our "pause-less" GC mode for response-time sensitive, large heap applications</strong></p>
-			<p>We've now extended support to Linux 64-bit compressed references OpenJ9 builds for this innovative GC mode (<tt>-Xgc:concurrentScavenge</tt>) that 
+      <p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Linux x86 support for our "pause-less" GC mode for response-time sensitive, large heap applications</strong></p>
+      <p>We've now extended support to Linux 64-bit compressed references OpenJ9 builds for this innovative GC mode (<tt>-Xgc:concurrentScavenge</tt>) that 
 runs concurrently with Java application threads. In this mode, the garbage collector is able to relocate objects while application threads are running, 
 thereby reducing the "stop-the-world" application pause time needed to reclaim memory on the Java heap. Shorter pause times mean faster response times. 
 So if you're running an app that requires a large Java heap but depends on fast response-times, why not try it out?</p>
-		  <br/><br/>
-		  <p align="center"><strong><i>Can't wait to take advantage of Eclipse OpenJ9 0.11.0?</i></strong></p>
-		  <br/>		  
-		  <br/>
-		  <p style="text-align:center;"><a class="button external-button" style="width:15em; margin-top:0rem;" href="https://adoptopenjdk.net/archive.html?variant=openjdk8&jvmVariant=openj9">OpenJDK8 with OpenJ9 <i class="fa fa-download" aria-hidden="true"></i></a>
-		  <a class="button external-button" style="width:15em; margin-top:0rem;" href="https://adoptopenjdk.net/archive.html?variant=openjdk11&jvmVariant=openj9">OpenJDK11 with OpenJ9 <i class="fa fa-download" aria-hidden="true"></i></a></p>
-		  <br/>
-		  <br/>
-		 
-		  <p>To read more about the changes in this release, head over to our <a href="https://www.eclipse.org/openj9/docs/version0.11/"><i>user documentation</i></a>. 
-		  </p>
-		  
+      <br/><br/>
+      <p align="center"><strong><i>Can't wait to take advantage of Eclipse OpenJ9 0.11.0?</i></strong></p>
+      <br/>      
+      <br/>
+      <p style="text-align:center;"><a class="button external-button" style="width:15em; margin-top:0rem;" href="https://adoptopenjdk.net/archive.html?variant=openjdk8&jvmVariant=openj9">OpenJDK8 with OpenJ9 <i class="fa fa-download" aria-hidden="true"></i></a>
+      <a class="button external-button" style="width:15em; margin-top:0rem;" href="https://adoptopenjdk.net/archive.html?variant=openjdk11&jvmVariant=openj9">OpenJDK11 with OpenJ9 <i class="fa fa-download" aria-hidden="true"></i></a></p>
+      <br/>
+      <br/>
+     
+      <p>To read more about the changes in this release, head over to our <a href="https://www.eclipse.org/openj9/docs/version0.11/"><i>user documentation</i></a>. 
+      </p>
+      
 
 <!-- Keep as-is except edit ID in URL and change "text=" -->
 <a href="https://twitter.com/share?
 url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openj90110&
 via=openj9&
 hashtags=openj9,java&
-text=Eclipse%20#OpenJ9%20V0.11.0%20released;%20Improved%20cryptographic%performance%20with%20OpenSSL."
+text=V0.11.0%20released;%20Improved%20cryptographic%20performance%20with%20OpenSSL."
 class="twitter-share-button"
 data-show-count="false">Tweet</a>
         </div>
-	</div>		  
-	  
-	  
+  </div>      
+    
+    
   <div class="f-section-item" id="openj90100">
     
     <div class="f-content-container">
           <h3>Eclipse OpenJ9 version 0.10.0 released</h3>
           <p><i>3rd October 2018</i></p>
           <p>Eclipse OpenJ9 version 0.10.0 adds support for OpenJDK version 11. All the testing we've done so far proves
-		  that builds are compatible with OpenJDK 11 and builds are now available at  <a href="https://adoptopenjdk.net/archive.html?variant=openjdk11&jvmVariant=openj9" target="_blank">AdoptOpenJDK</a>
-		  <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.</p>
-		  
-		  <p>To learn more about our release strategy, plus our supported architectures and operating systems, 
-		  see <a href="https://www.eclipse.org/openj9/docs/openj9_support/index.html">Supported environments</a>
-		  <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.</p>
+      that builds are compatible with OpenJDK 11 and builds are now available at  <a href="https://adoptopenjdk.net/archive.html?variant=openjdk11&jvmVariant=openj9" target="_blank">AdoptOpenJDK</a>
+      <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.</p>
+      
+      <p>To learn more about our release strategy, plus our supported architectures and operating systems, 
+      see <a href="https://www.eclipse.org/openj9/docs/openj9_support/index.html">Supported environments</a>
+      <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.</p>
 
-		  <p>To help users adopt OpenJ9 we have been busy adding compatibility for a number of Hotspot options. We 
-		  are also writing content for the user documentation to help you compare Hotspot and OpenJ9 non-standard options and 
-		  garbage collection policies. So if you haven't already tried an OpenJDK with OpenJ9 or you've stumbled into problems 
-		  because command-line options you are familiar with are not recognised, we're working hard to improve the experience. If
-		  you have a migration problem, please help us out by posting details in a GitHub <a href="https://github.com/eclipse/openj9/issues/2332">issue</a>
-		  <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.
-		  </p>	
-		  		
-		<p>To read about other enhancements and notable changes in this release, see our <a href="https://www.eclipse.org/openj9/docs/version0.10/"><i>What's new</i></a>
-		<i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>		topic. 
-		  </p>
-		  
+      <p>To help users adopt OpenJ9 we have been busy adding compatibility for a number of Hotspot options. We 
+      are also writing content for the user documentation to help you compare Hotspot and OpenJ9 non-standard options and 
+      garbage collection policies. So if you haven't already tried an OpenJDK with OpenJ9 or you've stumbled into problems 
+      because command-line options you are familiar with are not recognised, we're working hard to improve the experience. If
+      you have a migration problem, please help us out by posting details in a GitHub <a href="https://github.com/eclipse/openj9/issues/2332">issue</a>
+      <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.
+      </p>  
+          
+    <p>To read about other enhancements and notable changes in this release, see our <a href="https://www.eclipse.org/openj9/docs/version0.10/"><i>What's new</i></a>
+    <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>    topic. 
+      </p>
+      
 
 
-		  
-		  
+      
+      
 
 <!-- Keep as-is except edit ID in URL and change "text=" -->
 <a href="https://twitter.com/share?
 url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openj90100&
 via=openj9&
 hashtags=openj9,java&
-text=Eclipse%20#OpenJ9%20V0.10.0%20released;%20OpenJDK%20v11%20builds%20now%20available."
+text=OpenJ9%20V0.10.0%20released;%20OpenJDK%20v11%20builds%20now%20available."
 class="twitter-share-button"
 data-show-count="false">Tweet</a>
         </div>
-	</div>	  
-	  
-	<div class="f-section-item" id="openj9090">
+  </div>    
+    
+  <div class="f-section-item" id="openj9090">
     
     <div class="f-content-container">
           <h3>Eclipse OpenJ9 version 0.9.0 released</h3>
           <p><i>15th August 2018</i></p>
           <p>We're pleased to announce the release of Eclipse OpenJ9 version 0.9.0.</p>
-		  <p>V0.9.0 adds support for OpenJDK 10 builds, OpenJDK 8 Windows 32-bit builds, and OpenJDK large heap builds 
-		  that support Java heap sizes > 57 GB.
-		  Work is underway to make these builds available at  <a href="https://adoptopenjdk.net" target="_blank">AdoptOpenJDK</a>
-		  <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>. 
-		  If you want a large heap binary for a platform other than 
-		  <a href="https://adoptopenjdk.net/nightly.html?variant=openjdk8-openj9" target="_blank">OpenJDK 8 
-		  Linux x64</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>, 
-		  you can easily build one by following our <a href="https://github.com/eclipse/openj9/tree/master/buildenv" target="_blank">
-		  detailed build instructions</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>. 
-	      To learn more about our release strategy, plus our supported architectures and operating systems, 
-		see <a href="https://www.eclipse.org/openj9/docs/openj9_support/index.html">Supported environments</a>
-		<i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.</p>
+      <p>V0.9.0 adds support for OpenJDK 10 builds, OpenJDK 8 Windows 32-bit builds, and OpenJDK large heap builds 
+      that support Java heap sizes > 57 GB.
+      Work is underway to make these builds available at  <a href="https://adoptopenjdk.net" target="_blank">AdoptOpenJDK</a>
+      <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>. 
+      If you want a large heap binary for a platform other than 
+      <a href="https://adoptopenjdk.net/nightly.html?variant=openjdk8-openj9" target="_blank">OpenJDK 8 
+      Linux x64</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>, 
+      you can easily build one by following our <a href="https://github.com/eclipse/openj9/tree/master/buildenv" target="_blank">
+      detailed build instructions</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>. 
+        To learn more about our release strategy, plus our supported architectures and operating systems, 
+    see <a href="https://www.eclipse.org/openj9/docs/openj9_support/index.html">Supported environments</a>
+    <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.</p>
 
-		  <p>Version 0.9.0 also includes some great progress to make the JVM more container-aware. When OpenJ9 is running 
-		  inside a container, checks for memory availability and subsequent Java heap allocation now reflect limits 
-		  that are imposed on the container. You can read more about our enhancement plans and progress around 
-		  container technology in <a href="https://blog.openj9.org/2018/06/12/eclipse-openj9-in-containers/" target="_blank">Eclipse 
-		  OpenJ9 in Containers</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>. </p> 
-		
-		<p>We are also introducing a new garbage collection policy mode to implement <a href="http://openjdk.java.net/jeps/318" target="_blank">JEP 318</a>
-		<i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.
-		When this policy is enabled (<tt>-Xgcpolicy:nogc</tt> or <tt>-XX:+UseNoGC</tt>), the Java 
-		object heap is expanded in the normal way until the limit is reached, but memory is not reclaimed through 
-		garbage collection. This mode is ideal for short-lived applications and useful for test purposes.</p>
-		
-		<p>To read about other enhancements and notable changes in this release, see our <a href="https://www.eclipse.org/openj9/docs/version0.9/"><i>What's new</i></a>
-		<i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>		topic. 
-		  </p>
-		  
-		  <p>If you are interested in trying the OpenJDK 8 Windows binaries, we've run some Eclipse performance tests to compare OpenJ9 and the Hotspot JVM.
-		Our results indicate that OpenJ9 is <strong>43% faster</strong> and uses <strong>42% less memory</strong>. Read more about these amazing results
-		in <a href="https://blog.openj9.org/2018/06/15/eclipse-openj9-performance-a-bake-off-on-windows/" target="_blank">Eclipse OpenJ9; a
-		bake off on Windows</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>. 
-		In fact, the results are so impressive that the Eclipse Foundation have decided to bundle
-		OpenJ9 with a future release of the Eclipse IDE.</p>
+      <p>Version 0.9.0 also includes some great progress to make the JVM more container-aware. When OpenJ9 is running 
+      inside a container, checks for memory availability and subsequent Java heap allocation now reflect limits 
+      that are imposed on the container. You can read more about our enhancement plans and progress around 
+      container technology in <a href="https://blog.openj9.org/2018/06/12/eclipse-openj9-in-containers/" target="_blank">Eclipse 
+      OpenJ9 in Containers</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>. </p> 
+    
+    <p>We are also introducing a new garbage collection policy mode to implement <a href="http://openjdk.java.net/jeps/318" target="_blank">JEP 318</a>
+    <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.
+    When this policy is enabled (<tt>-Xgcpolicy:nogc</tt> or <tt>-XX:+UseNoGC</tt>), the Java 
+    object heap is expanded in the normal way until the limit is reached, but memory is not reclaimed through 
+    garbage collection. This mode is ideal for short-lived applications and useful for test purposes.</p>
+    
+    <p>To read about other enhancements and notable changes in this release, see our <a href="https://www.eclipse.org/openj9/docs/version0.9/"><i>What's new</i></a>
+    <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>    topic. 
+      </p>
+      
+      <p>If you are interested in trying the OpenJDK 8 Windows binaries, we've run some Eclipse performance tests to compare OpenJ9 and the Hotspot JVM.
+    Our results indicate that OpenJ9 is <strong>43% faster</strong> and uses <strong>42% less memory</strong>. Read more about these amazing results
+    in <a href="https://blog.openj9.org/2018/06/15/eclipse-openj9-performance-a-bake-off-on-windows/" target="_blank">Eclipse OpenJ9; a
+    bake off on Windows</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>. 
+    In fact, the results are so impressive that the Eclipse Foundation have decided to bundle
+    OpenJ9 with a future release of the Eclipse IDE.</p>
 
-		  
-		  <p>On a final note, <a href="https://www.eclipse.org/openj9/docs/">user documentation</a> is now available to support the configuration, tuning, and diagnosis of JDKs that contain the
-		OpenJ9 JVM. Expect the content here to grow over time as more information is written about our JIT compiler, 
-		garbage collectors, shared classes cache implementation, and diagnostic capabilities.</p>
+      
+      <p>On a final note, <a href="https://www.eclipse.org/openj9/docs/">user documentation</a> is now available to support the configuration, tuning, and diagnosis of JDKs that contain the
+    OpenJ9 JVM. Expect the content here to grow over time as more information is written about our JIT compiler, 
+    garbage collectors, shared classes cache implementation, and diagnostic capabilities.</p>
 
-		  
-		  
+      
+      
 
 <!-- Keep as-is except edit ID in URL and change "text=" -->
 <a href="https://twitter.com/share?
@@ -235,16 +281,16 @@ text=V0.9.0%20released;%20new%2032-bit%20Windows%20builds,%20container-aware%20f
 class="twitter-share-button"
 data-show-count="false">Tweet</a>
         </div>
-	</div>
-	 
-	  <div class="f-section-item" id="openj9blog">
+  </div>
+   
+    <div class="f-section-item" id="openj9blog">
         <div class="f-content-container">
           <h3>Introducing the OpenJ9 blog</h3>
           <p><i>11th May 2018</i></p>
           <p>We've just started up a <a href="https://blog.openj9.org" target="_blank">blog</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> to share interesting insights 
-		  and information about the Eclipse OpenJ9 project. Over the coming weeks our developers are promising lots of
-		  exciting articles that will lift the lid on many of the great features and capabilities of OpenJ9.</p>
-		  <p>Why not hop over and check it out!</p>
+      and information about the Eclipse OpenJ9 project. Over the coming weeks our developers are promising lots of
+      exciting articles that will lift the lid on many of the great features and capabilities of OpenJ9.</p>
+      <p>Why not hop over and check it out!</p>
           
 
 <!-- Keep as-is except edit ID in URL and change "text=" -->
@@ -257,7 +303,7 @@ class="twitter-share-button"
 data-show-count="false">Tweet</a>
         </div>
       </div>
-	  
+    
       <div class="f-section-item" id="otherblogs">
         <div class="f-content-container">
           <h3>What are others saying about OpenJ9?</h3>
