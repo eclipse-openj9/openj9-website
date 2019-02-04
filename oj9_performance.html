@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!--
 Copyright (c) 2017, 2019 IBM Corp. and others
@@ -55,214 +56,71 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       <div class="f-section-item">
         <div class="f-content-container">
-          <p class="intro-text" style="padding:2rem 0 2rem 0;">Benchmark testing demonstrates significantly better performance for OpenJDK&trade; 8 when using Eclipse OpenJ9, than with Hotspot.
+          <p class="intro-text" style="padding:2rem 0 2rem 0; font-weight:bold;">Benchmark testing shows significantly better performance for OpenJDK&trade; 8 when using Eclipse OpenJ9 instead of Hotspot
           </p>
         </div>
       </div>
 
       <div class="f-section-item">
         <div class="f-content-container">
-          <p>Many different metrics exist to measure the performance of an application including startup time, ramp up time, footprint, response time, as well as throughput. At Eclipse OpenJ9, we keep a watchful eye on all of these metrics, making sensible tradeoffs and providing tuning options that allow the virtual machine (VM) to be optimized for different workloads.
+          <p>Application performance can be measured using many different metrics, including startup time, ramp-up time, footprint, and response time, as well as throughput. At Eclipse OpenJ9, we keep a watchful eye on all of these metrics, making sensible tradeoffs and providing tuning options that allow the virtual machine (VM) to be optimized for different workloads.
           </p>
-         	<p>The result is that OpenJDK 8 with OpenJ9 demonstrates a significantly better performance than with Hotspot. Take a look at these results:
-          <ul>
-            <li><a href="#g1">66% smaller footprint after startup</a></li>
-            <li><a href="#g2">63% smaller footprint during ramp up</a></li>
-            <li><a href="#g3">42% faster startup time</a></li>
-            <li><a href="#g4">Comparable throughput</a></li>
-            <li><a href="#g5">Significantly faster ramp up time in a CPU constrained environment</a></li>
-          </ul>
-          </p>
-          <p style="background-color:#eee; border:1 px black; margin-bottom:1rem; padding: 1rem; font-size: .8rem; line-height: 1.2rem;"><strong>Note:</strong> For the evaluation of OpenJDK v8, we used the Daytrader 7 benchmark (download from <a href="https://github.com/wasdev/sample.daytrader7">GitHub</a>). Although Daytrader 3, which we used previously, is an application conforming to the Java&trade; EE 6 specification, Daytrader 7 has been re-designed to use the latest Java EE 7 features, including the new WebSockets specification. Thus, we feel that the new benchmark is more representative of the types of Java applications and technologies in use today and therefore more relevant to existing Java users.
-          </p>
-          <p>While the specific levels of performance shown in these tests might change from benchmark to benchmark or even from machine to machine, the same trends are expected to hold for a large class of server-type applications.
-          </p>
-          <p>These results show that OpenJ9 achieves a good balance between (often conflicting) performance metrics: it offers excellent footprint savings and faster start-up time with the help of AOT technology, while also delivering throughput performance that is competitive with Hotspot.
-          </p>
-          <p>Due to its low memory footprint, OpenJ9 is particularly well suited for cloud computing environments where memory savings translate into cost savings for cloud users and providers alike.
-          </p>
-          <p style="padding:1rem 0 0rem 0;"><i><b>You can read the full details about how the data was generated at <a href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader7.md">OpenJDK 8 performance with OpenJ9</a>.</b> </i>
-          </p>
-        </div>
-      </div>
-
-      <div class="f-section-item" id="g1">
-        <div class="f-content-container">
-          <h3>Memory footprint after startup</h3>
-          <p>OpenJ9 is highly optimized for cloud workloads. The memory footprint (Resident Set Size) is around a third the size of other VM implementations.
-          </p>
-
-          <div class="figures">
-            <div class="figure">
-              <div class="box">
-                <a class="pop" href="#fig1" id=fig1a>
-                  <img src="assets/perf_v8_startup_footprint.png" alt="Footprint size after start up (see link below)."/>
-                  <span>Click to enlarge</span>
-                </a>
-              </div>
-              <p class="caption1">Fig 1. DayTrader 7 footprint size after start up with a maximum Java heap size set to 1 GB.
-              </p>
-              <div id="fig1" class="pop-box">
-                <a class="close" href="#g1">&times;</a>
-                <div class="content">
-                  <img src="assets/perf_v8_startup_footprint.png" alt=""/>
-                  <p class="caption2">Fig 1. DayTrader 7 footprint size after start up with a maximum Java heap size set to 1 GB.<br/>Comparison between OpenJDK 8 with OpenJ9 and OpenJDK 8 with Hotspot.
-                  </p>
-                </div>
-              </div>
-            </div>  <!-- end: figure -->
-          </div>  <!-- end: figures -->
-
-          <p>Immediately after startup OpenJDK 8 with OpenJ9 showed a footprint size about 66% less than OpenJDK 8 with Hotspot.
-          </p>
-          <p>When OpenJ9 was tested with AOT enabled, and with AOT and <code>-Xquickstart</code> enabled, the footprint size remained at around 66% less than Hotspot.
+          <p>The result is that OpenJDK 8 with OpenJ9 demonstrates significantly better performance than with Hotspot. Take a look at the following results:
           </p>
       	</div>
       </div>
-
-
-
-      <div class="f-section-item" id="g2">
-        <div class="f-content-container">
-          <h3>Memory footprint during ramp up</h3>
-          <p>
-          </p>
-
-          <div class="figures">
-            <div class="figure">
-              <div class="box">
-                <a class="pop" href="#fig2">
-                  <img src="assets/perf_v8_ramp_footprint.png" alt="Footprint size during ramp up (see link below)."/>
-                  <span>Click to enlarge</span>
-                </a>
-              </div>
-              <p class="caption1">Fig 2. DayTrader 7 footprint size during ramp up with a maximum Java heap size set to 1 GB.
-              </p>
-              <div id="fig2" class="pop-box">
-                <a class="close" href="#g2">&times;</a>
-                <div class="content">
-                  <img src="assets/perf_v8_ramp_footprint.png" alt=""/>
-                  <p class="caption2">Fig 2. DayTrader 7 footprint size during ramp up with a maximum Java heap size set to 1 GB.<br/>Comparison between OpenJDK 8 with OpenJ9 and OpenJDK 8 with Hotspot.
-                  </p>
-                </div>
-              </div>
-            </div>  <!-- end: figure -->
-          </div>  <!-- end: figures -->
-
-          <p>In all three scenarios, memory footprint (Resident Set Size) increased abruptly when load was applied to the system (time = 0). But at steady state, OpenJDK 8 with OpenJ9 was found to use approximately 63% less physical memory than OpenJDK 8 with HotSpot.
-          </p>
-          <p>Enabling AOT on the OpenJ9 VM made almost no difference to these results.
-          </p>
-      	</div>
-      </div>
-
-
-
-      <div class="f-section-item" id="g3">
-        <div class="f-content-container">
-          <h3>Startup time</h3>
-          <p>Shared classes and Ahead-of-Time (AOT) technologies typically reduce startup time while improving the overall ramp-up time of applications. As a developer you can achieve even faster startup times by using <code>-Xquickstart</code> mode as well.
-          </p>
-
-          <div class="figures">
-            <div class="figure">
-              <div class="box">
-                <a class="pop" href="#fig3">
-                  <img src="assets/perf_v8_startup_time.png" alt="Startup time (see link below)."/>
-                  <span>Click to enlarge</span>
-                </a>
-              </div>
-              <p class="caption1">Fig 3. DayTrader 7 startup time with a maximum Java heap size set to 1 GB.
-              </p>
-              <div id="fig3" class="pop-box">
-                <a class="close" href="#g3">&times;</a>
-                <div class="content">
-                  <img src="assets/perf_v8_startup_time.png" alt=""/>
-                  <p class="caption2">Fig 3. DayTrader 7 startup time with a maximum Java heap size set to 1 GB.<br/>Comparison between OpenJDK 8 with OpenJ9 and OpenJDK 8 with Hotspot.
-                  </p>
-                </div>
-              </div>
-            </div>  <!-- end: figure -->
-          </div>  <!-- end: figures -->
-
-          <p>With AOT enabled, startup time for OpenJDK 8 with OpenJ9 is 36% lower than Hotspot. Moreover, with AOT enabled and using the <code>-Xquickstart</code> option, start-up time for OpenJ9 is almost 42% lower than Hotspot.
-          </p>
-      	</div>
-      </div>
-
-
-
-      <div class="f-section-item" id="g4">
-        <div class="f-content-container">
-          <h3>Throughput</h3>
-
-          <div class="figures" style="clear: both;">
-            <div class="figure">
-              <div class="box">
-                <a class="pop" href="#fig4">
-                  <img src="assets/perf_v8_ramp_throughput.png" alt="Throughput during ramp up (see link below)."/>
-                  <span>Click to enlarge</span>
-                </a>
-              </div>
-              <p class="caption1">Fig 4. DayTrader 7 throughput during ramp up with a maximum Java heap size set to 1 GB.
-              </p>
-              <div id="fig4" class="pop-box">
-                <a class="close" href="#g4">&times;</a>
-                <div class="content">
-                  <img src="assets/perf_v8_ramp_throughput.png" alt=""/>
-                  <p class="caption2">Fig 4. DayTrader 7 throughput during ramp up with a maximum Java heap size set to 1 GB.<br/>Comparison between OpenJDK 8 with OpenJ9 and OpenJDK 8 with Hotspot.
-                  </p>
-                </div>
-              </div>
-            </div>  <!-- end: figure -->
-          </div>  <!-- end: figures -->
-
-          <p>Although both OpenJDK 8 with OpenJ9 and OpenJDK 8 with Hotspot reach a similar peak throughput, OpenJDK 8 with OpenJ9 reaches the peak about 1 minute faster. The small amount of AOT code (8 MB) does not make a difference in this case.
-          </p>
-      	</div>
-      </div>
-
-
-
-      <div class="f-section-item" id="g5">
-        <div class="f-content-container">
-          <h3>Ramp up time in CPU-constrained environments</h3>
-          <p>Virtualization is heavily used in the cloud to split big computing machines into many smaller VM guests. These guests are typically provisioned with a small number of virtual CPUs in order to achieve a high application density and to control the resources dedicated to applications. One side-effect is that Java applications can take longer to ramp-up because JIT compilation threads compete with application threads over the more limited computing resources.
-          </p>
-
-          <div class="figures" style="clear: both;">
-            <div class="figure">
-              <div class="box">
-                <a class="pop" href="#fig5">
-                  <img src="assets/perf_v8_ramp_footprint_1core.png" alt="Throughput during ramp up in a CPU-constrained environment (see link below)."/>
-                  <span>Click to enlarge</span>
-                </a>
-              </div>
-              <p class="caption1">Fig 5. DayTrader 7 throughput during ramp up with a maximum Java heap size set to 1 GB and the VM pinned to 1 core.
-              </p>
-              <div id="fig5" class="pop-box">
-                <a class="close" href="#g5">&times;</a>
-                <div class="content">
-                  <img src="assets/perf_v8_ramp_footprint_1core.png" alt=""/>
-                  <p class="caption2">Fig 5. DayTrader 7 throughput during ramp up with a maximum Java heap size set to 1 GB and the VM pinned to 1 core.<br/>Comparison between OpenJDK 8 with OpenJ9 and OpenJDK 8 with Hotspot.
-                  </p>
-                </div>
-              </div>
-            </div>  <!-- end: figure -->
-          </div>  <!-- end: figures -->
-
-          <p>Without any additional configuration set, OpenJ9 already ramps up much better than HotSpot. Although we haven't shown it on the graph, HotSpot needs about 30 minutes to reach its peak throughput; in contrast, OpenJ9 needs only 8.5 minutes!
-          </p>
-          <p>With our recommended configuration for the cloud, the ramp-up curve for OpenJ9 improves substantially compared to its default settings. While OpenJ9 with default settings obtains a higher throughput in the end, it takes a full 5 minutes to equal the peak throughput of our configured OpenJ9. The lower peak throughput seen in the chart results from the use of a lot of AOT-compiled code, which is less optimized, and the presence of <code>-Xtune:virtualized</code>, which prevents most recompilations.
-          </p>
-          <p>The total work done by the VM after load is applied, is represented by the area under the curve. The results show that our cloud configuration performs more work than the default OpenJ9 configuration and much more work than Hotspot in the first 12 minutes. Therefore, configuring OpenJ9 to use AOT and <code>-Xtune:virtualized</code> is an excellent solution for short lived VMs running in a CPU-constrained environment.
-          </p>
-
-          <p style="padding:1rem 0 0rem 0;"><i><b>You can read the full details about how the data was generated at <a href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader7.md">OpenJDK 8 performance with OpenJ9</a>.</b></i>
-          </p>
-<hr/>
-      	</div>
-      </div>
+	  
+      <div class="f-section-item">
+        <div id="perf-cards" class="f-content-container">	  
+			<div class="card">
+				<div class="card-content">
+				  <h4>66% smaller footprint after startup</h4>
+				  <p><img width="299" height="180" src="assets/perf_v8_startup_footprint_2.png" alt="Footprint size after start up"/>
+				   OpenJ9 is highly optimized for cloud workloads, where minimising memory footprint is important. Even with other optimizations enabled, the footprint stays about the same.
+				  </p>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-content">
+				  <h4>63% smaller footprint during ramp up</h4>
+				  <p><img width="299" height="180" src="assets/perf_v8_ramp_footprint_2.png" alt="Footprint size during ramp up"/>
+				  Memory footprint increases rapidly when load is applied, but at steady state, OpenJDK 8 with OpenJ9 used around 63% less physical memory than OpenJDK 8 with HotSpot.
+				  </p>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-content">
+				  <h4>42% faster startup time</h4>
+				  <p><img width="299" height="180" src="assets/perf_v8_startup_time_2.png" alt="Startup time"/>
+				  Shared classes and Ahead-of-Time (AOT) technologies typically reduce startup time. By using -Xquickstart mode as well, you can reduce startup time by up to 42%.
+				  </p>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-content">			
+				  <h4>Comparable throughput</h4>
+				  <p><img width="299" height="180" src="assets/perf_v8_ramp_throughput_2.png" alt="Throughput during ramp up"/>
+				  Although both OpenJDK 8 with OpenJ9 and OpenJDK 8 with Hotspot reach a similar peak throughput, OpenJDK 8 with OpenJ9 reaches that peak about 1 minute faster.
+				  </p>
+				</div>			  
+			</div>
+			<div class="card">
+				<div class="card-content">			
+				  <h4>Faster ramp-up time in the cloud</h4>
+				  <p><img width="299" height="180" src="assets/perf_v8_ramp_footprint_1core_2.png" alt="Throughput during ramp up in a CPU-constrained environment"/>
+				  OpenJ9 reaches peak throughput on a single CPU core in 8.5 minutes compared with 30 minutes for Hotspot. Doing more work more quickly is important for short-lived VMs running in resource-constrained environments like the cloud.
+				  </p>
+				</div>			  
+			</div>			
+		</div>
+	  </div>
+      <div class="f-section-item">
+	    <div class="f-content-container">
+		  <p>These results show that OpenJ9 achieves a good balance between (often conflicting) performance metrics: it offers excellent footprint savings and faster start-up time with the help of AOT technology, while also delivering throughput performance that is competitive with Hotspot.</p>
+		  <p>Due to its low memory footprint, OpenJ9 is particularly well suited for cloud computing environments where memory savings translate into cost savings for cloud users and providers alike.</p>
+		  <p style="padding:1rem 0 0rem 0;"><i><b>You can read the full account of how the data was generated and details of the results obtained at <a href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader7.md">OpenJDK 8 performance with OpenJ9</a>.</b></i></p>	       
+		</div>
+	  </div>
 
     </div> <!-- end: performance -->
 
