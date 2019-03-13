@@ -55,6 +55,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   return t;
 }(document, "script", "twitter-wjs"));</script>
 
+
 </head>
 <body>
 <script>twttr.widgets.load()</script>
@@ -81,9 +82,45 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <div class="f-section-item" id="openj90120">
     <div class="f-content-container">
+      <h3>Eclipse OpenJ9 version 0.13.0 released</h3>
+      <p><i>20th March 2019</i></p>
+	  <p>OpenJ9 version 0.13.0 adds support for OpenJDK version 12, the latest release of the Java SE Platform. 
+	  Builds of OpenJDK with OpenJ9 are now available at the <a href="https://adoptopenjdk.net/releases.html?variant=openjdk12&jvmVariant=openj9" target="_blank">AdoptOpenJDK community project</a>
+	  <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.</p>
+      <p><i class="fa fa-pencil" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> OpenSSL pre-requisites have changed. For more information,
+      see <a href="https://www.eclipse.org/openj9/docs/adoptopenjdk/">AdoptOpenJDK builds</a>.
+      </p>
+      <p>There are a number of new features and capabilities delivered in this release:
+		<ul>
+           <li>Support for OpenSLL v1.0.2 for the Digest, CBC, GCM, and RSA algorithms for improved cryptographic performance. </li>
+           <li>The ability to query running Java&trade; processes with our new Java process status tool (<tt>jps</tt>).</li>
+           <li>Improved platform support for pause-less garbage collection, with the addition of Linux&reg; on POWER LE and AIX&reg;.</li>
+		   <li>The ability to write a Java dump file to STDOUT or STDERR as an alternative to writing to a file.</li>
+		   <li>Better diagnostic information for Linux systems that implement control groups.</li>
+      </ul>
+      To find out more about these changes, read the <a href="https://www.eclipse.org/openj9/docs/version0.13/">OpenJ9 user documentation.</a>
+	  </p>
+      
+
+<!-- Keep as-is except edit ID in URL and change "text=" -->
+<a href="https://twitter.com/share?
+url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openj90130&
+via=openj9&
+hashtags=openj9,java&
+text=V0.13.0%20released;%20Supporting%20OpenJDK%2012%20with%20OpenJ9!"
+class="twitter-share-button"
+data-show-count="false">Tweet</a>
+
+        </div>
+  </div> 
+	  
+	  
+    <div class="f-section-item" id="openj90120">
+    <div class="f-content-container">
       <h3>Eclipse OpenJ9 version 0.12.1 released</h3>
       <p><i>5th Februrary 2019</i></p>
-	  <p>We've released a minor update to version 0.12.0 due to issue <a href="https://github.com/eclipse/openj9/issues/4530" target="_blank">4530</a>,
+	  <p>We've released a minor update to version 0.12.0 due to issue <a href="https://github.com/eclipse/openj9/issues/4530" target="_blank">4530</a>
+	  <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>,
 		which affects OpenSSL cryptographic acceleration with the Digest algorithm. Support for the Digest algorithm is currently turned off.</p>
       <p>Eclipse OpenJ9 V0.12.0 contains a number of improvements and new benefits. Here are the highlights:
       </p>
@@ -113,7 +150,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	  If you are building OpenJDK with OpenJ9 against the latest OpenJ9 code base, any new features and changes can be found in the draft documentation.</p>
       
 
-      <p>You can read more about the changes in this release in our <a href="https://www.eclipse.org/openj9/docs/version0.12/"><i>user documentation</i></a>. 
+      <p>You can read more about the changes in this release in our <a href="https://www.eclipse.org/openj9/docs/version0.12/"><i>user documentation</i></a>.
+	  
       </p>
 
 <!-- Keep as-is except edit ID in URL and change "text=" -->
@@ -133,11 +171,12 @@ data-show-count="false">Tweet</a>
           <p><i>22nd October 2018</i></p>
           <p>Our latest release of Eclipse OpenJ9 is now complete and comes with extended support and performance benefits:
       <p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Support for the macOS&reg; platform</strong></p>
-      <p>OpenJDK with OpenJ9 is now available on macOS. Early builds of OpenJDK 11 with OpenJ9 are now available at the <a href="https://adoptopenjdk.net/nightly.html?variant=openjdk11&jvmVariant=openj9">AdoptOpenJDK project</a>, 
+      <p>OpenJDK with OpenJ9 is now available on macOS. Early builds of OpenJDK 11 with OpenJ9 are now available at the <a href="https://adoptopenjdk.net/nightly.html?variant=openjdk11&jvmVariant=openj9">AdoptOpenJDK project</a>
+	  <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>, 
       with OpenJDK 8 coming soon.</p>
       <p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Improved cryptographic performance with support for OpenSSL</strong></p>
       <p>OpenJ9 now supports OpenSSL v1.1.x for native cryptographic operations on OpenJDK 8, providing performance improvements over the default OpenJDK 8 
-cryptographic implementation. On x86 Linux&reg;, we measured up to a 15x improvement on encrypt and decrypt operations for the GCM and CBC algorithms compared
+cryptographic implementation. On x86 Linux, we measured up to a 15x improvement on encrypt and decrypt operations for the GCM and CBC algorithms compared
 to the default implementation.</p>
       <p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Improved performance of AOT compiled code</i></strong></p>
       <p>Ahead-Of-Time (AOT) compiled code is ideal for using at startup time, but it is not as fast as JIT-compiled code from a throughput perspective. 
@@ -167,7 +206,7 @@ So if you're running an app that requires a large Java heap but depends on fast 
       <br/>
       <br/>
      
-      <p>To read more about the changes in this release, head over to our <a href="https://www.eclipse.org/openj9/docs/version0.11/"><i>user documentation</i></a>. 
+      <p>To read more about the changes in this release, head over to our <a href="https://www.eclipse.org/openj9/docs/version0.11/"><i>user documentation</i></a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>. 
       </p>
       
 
@@ -422,7 +461,7 @@ data-show-count="false">Tweet</a>
 
       <div class="f-section-item" id="openjdk8_ga">
         <div class="f-content-container">
-          <h3>Eclipse OpenJ9 for Java&trade; 8</h3>
+          <h3>Eclipse OpenJ9 for Java 8</h3>
           <p><i>22nd November 2017</i></p>
           <p>Over the last couple of months, we've been talking about OpenJ9 with pretty much everyone who'd listen to us. People have told us that OpenJ9 for Java 9 is a great achievement, but many users and developers aren't ready to step up to Java 9 just yet. The most popular request we've heard is to combine Eclipse OpenJ9 with a Java 8 JDK so that it can be used in day-to-day development and production environments.
           </p>
