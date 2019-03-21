@@ -64,7 +64,8 @@ timeout(time: 3, unit: 'HOURS') {
                         sh "cp -r ${WORKSPACE}/${GITHUB_DIR}/* ."
                         sh "cp -r ${WORKSPACE}/${GITHUB_DIR}/.gitignore ."
                         sh 'git status'
-                        sh 'git commit -am "Generated from commit: ${sha1}"'
+                        sh 'git add .'						
+                        sh 'git commit -m "Generated from commit: ${sha1}"'
                         sh "git push origin ${BRANCH}"
                         sh "git diff origin/${BRANCH}..origin/master"
                     }
