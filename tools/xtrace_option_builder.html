@@ -1294,36 +1294,82 @@ function isMethodOptionEnabled() {
 }
 
 // Make a best effort to fix the case for tracepoint IDs
-// All VM tracepoint IDs use lower case.
-// IBM JCL tracepoint IDs use upper case.
 function fixTracepointIdCase(id) {
-	var lowercaseIds = [
-		"j9",
+	var knownComponents = [
+		// Upper case
+		"AWT",
+		"FONTMANAGER",
+		"IO",
+		"JAVA",
+		"JSOR",
+		"JVERBS",
+		"MAWT",
+		"NET",
+		"NIO",
+		"WRAPPERS",
+
+		// Lower case
+		"avl",
 		"cuda4j",
 		"ddrext",
-		"ifa",
-		"avl",
-		"hashtable",
-		"pool",
 		"dg",
-		"mt",
-		"simplepool",
-		"map",
-		"sunvmi",
 		"gptest",
+		"hashtable",
+		"ifa",
+		"j9",
+		"j9bcu",
+		"j9bcverify",
+		"j9codertvm",
+		"j9dfix",
+		"j9dmp",
+		"j9hook",
+		"j9hshelp",
+		"j9jcl",
+		"j9jit",
+		"j9jni",
+		"j9jvmti",
+		"j9mm",
+		"j9prt",
+		"j9scar",
+		"j9shr",
+		"j9trc",
+		"j9trc_aux",
+		"j9thr",
+		"j9util",
+		"j9utilcore",
+		"j9vgc",
+		"j9vm",
+		"j9vmchk",
+		"j9vmutil",
+		"j9vrb",
+		"map",
 		"module",
-		"srphashtable"
+		"mt",
+		"omrport",
+		"omrrmm",
+		"omrti",
+		"omrvm",
+		"pool",
+		"simplepool",
+		"srphashtable",
+		"sunvmi",
+
+		// Mixed case
+		"Audio"
 	];
 
-	// Check whether we need to use lower case
-	for (var i = 0; i < lowercaseIds.length; i++) {
-		if (id.toLowerCase().lastIndexOf(lowercaseIds[i]) == 0) {
-			return id.toLowerCase();
+	// If the specified component matches an component in the table (case insensitive match), return the correct form
+	var idArray = id.split(".");
+	var component = idArray[0];
+	var tracepointNumber = idArray[1];
+	for (var i = 0; i < knownComponents.length; i++) {
+		if (component.toLowerCase() == knownComponents[i].toLowerCase()) {
+			return knownComponents[i] + "." + tracepointNumber;
 		}			
 	}
 
-	// If we reach here, use upper case
-	return id.toUpperCase();
+	// If we reach here the ID contains an unknown component, so just return it without making any changes
+	return id;
 }
 
 function disableInput(inputElement) {
