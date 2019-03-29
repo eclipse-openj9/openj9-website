@@ -8,10 +8,10 @@ TODO:
 <!DOCTYPE html>
 <!--
 Copyright (c) 2017, 2019 IBM Corp. and others
-This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which accompanies this distribution and is available at http://eclipse.org/legal/epl-2.0 or the Apache License, Version 2.0 which accompanies this distribution and is available at https://www.apache.org/licenses/LICENSE-2.0. 
-This Source Code may also be made available under the following Secondary Licenses when the conditions for such availability set forth in the Eclipse Public License, v. 2.0 are satisfied: GNU General Public License, version 2 with the GNU Classpath Exception [1] and GNU General Public License, version 2 with the OpenJDK Assembly Exception [2]. 
-[1] https://www.gnu.org/software/classpath/license.html  
-[2] http://openjdk.java.net/legal/assembly-exception.html 
+This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which accompanies this distribution and is available at http://eclipse.org/legal/epl-2.0 or the Apache License, Version 2.0 which accompanies this distribution and is available at https://www.apache.org/licenses/LICENSE-2.0.
+This Source Code may also be made available under the following Secondary Licenses when the conditions for such availability set forth in the Eclipse Public License, v. 2.0 are satisfied: GNU General Public License, version 2 with the GNU Classpath Exception [1] and GNU General Public License, version 2 with the OpenJDK Assembly Exception [2].
+[1] https://www.gnu.org/software/classpath/license.html
+[2] http://openjdk.java.net/legal/assembly-exception.html
 SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
 The project website pages cannot be redistributed
 -->
@@ -88,7 +88,7 @@ function parseParams() {
 					case "number":
 						// id = value
 						element.value = value;
-				        	break;
+						break;
 
 					case "checkbox":
 						// id = 0|1 (unchecked|checked)
@@ -98,20 +98,20 @@ function parseParams() {
 								break;
 
 							case "1":
-						                element.checked = true;
+								element.checked = true;
 								break;
 
 							default:
 								console.log("ERROR: Invalid value for checkbox element \"" + element.id + "\": " + value);
 								continue; // Go to the next parameter
-						}						
-						break;				
+						}
+						break;
 				}
 
 				processChange(element);
 				element.blur();
 				continue; // Go to the next parameter
-			}		
+			}
 		}
 	} else {
 		// If no parameters were provided, just build the result with the defaults
@@ -125,15 +125,15 @@ function parseTracepointParam(key, value) {
 
 	if (regexArray == null) {
 		console.log("ERROR: Invalid tracepoint key: " + key);
-		return;		
+		return;
 	}
 
 	var type = regexArray[1];
 	var tracepointIndex = regexArray[2];
 
 	if (type != "id" && type != "component") {
-		console.log("ERROR: Invalid tracepoint type in key \"" + key + "\": "  + type);
-		return;		
+		console.log("ERROR: Invalid tracepoint type in key \"" + key + "\": " + type);
+		return;
 	}
 
 	// Add the tracepoint
@@ -161,7 +161,7 @@ function parseTracepointParam(key, value) {
 				if (!selectOptionByValue(element, tracepointValue)) {
 					console.log("ERROR: Invalid value for select element \"" + element.id + "\": " + tracepointValue);
 					continue; // Go to the next parameter
-				}				
+				}
 				break;
 
 			case "INPUT":
@@ -171,7 +171,7 @@ function parseTracepointParam(key, value) {
 				}
 				if (element.type == "radio") {
 					if (tracepointValue == 1) {
-						// id = 1 (checked) (unchecked radio options are not included) 
+						// id = 1 (checked) (unchecked radio options are not included)
 						element.checked = true;
 					} else {
 						console.log("ERROR: Invalid value for radio input\"" + element.id + "\": " + tracepointValue);
@@ -191,7 +191,7 @@ function parseMethodParam(key, value) {
 
 	if (regexArray == null) {
 		console.log("ERROR: Invalid method key: " + key);
-		return;		
+		return;
 	}
 
 	var methodIndex = regexArray[1];
@@ -250,7 +250,7 @@ function parseTriggerParam(key, value) {
 
 	if (regexArray == null) {
 		console.log("ERROR: Invalid trigger key: " + key);
-		return;		
+		return;
 	}
 
 	var type = regexArray[1];
@@ -258,7 +258,7 @@ function parseTriggerParam(key, value) {
 
 	if (type != "method" && type != "tracepoint" && type != "group") {
 		console.log("ERROR: Invalid trigger type in key \"" + key + "\": " + type);
-		return;		
+		return;
 	}
 
 	// Add the trigger
@@ -400,14 +400,14 @@ function processChange(option) {
 			if (option.checked) {
 				enableInput(document.getElementById("tp_type_select_" + tracepointIndex));
 				disableInput(document.getElementById("tp_group_select_" + tracepointIndex));
-			}		
+			}
 		}
 
 		if (option.value == "group") {
 			if (option.checked) {
 				enableInput(document.getElementById("tp_group_select_" + tracepointIndex));
 				disableInput(document.getElementById("tp_type_select_" + tracepointIndex));
-			}		
+			}
 		}
 	}
 
@@ -423,12 +423,12 @@ function processChange(option) {
 				}
 			}
 		}
-	}	
+	}
 
 	// Attempt to correct formatting mistakes in method text fields
 	if (option.type == "text"
 		&& (   option.id.indexOf("meth_text_") != -1
-		    || option.id.indexOf("trig_meth_spec_") != -1) )
+			|| option.id.indexOf("trig_meth_spec_") != -1) )
 	{
 		// Check for more than one dot in the string
 		if (option.value.indexOf(".") != -1
@@ -448,7 +448,7 @@ function processChange(option) {
 	// Fix obvious mistakes in tracepoint ID fields
 	if (   option.id != null
 		&& (   option.id.indexOf("trig_tp_tpnid_") != -1
-		    || option.id.indexOf("tp_id_") != -1) )
+			|| option.id.indexOf("tp_id_") != -1) )
 	{
 		var result = "";
 		var specs = option.value.split(",");
@@ -498,15 +498,15 @@ function processChange(option) {
 	// a suitable trace tracepoint is enabled to control the destination
 	if (option.id != null
 		&& (   option.id.indexOf("trig_meth_ent_") != -1
-		    || option.id.indexOf("trig_meth_ex_") != -1
-		    || option.id.indexOf("trig_tp_act_") != -1
-		    || option.id.indexOf("trig_grp_act_") != -1) )
+			|| option.id.indexOf("trig_meth_ex_") != -1
+			|| option.id.indexOf("trig_tp_act_") != -1
+			|| option.id.indexOf("trig_grp_act_") != -1) )
 	{
 		var regexArray = option.id.match(/_(\d+)/)
 		var triggerIndex = regexArray[1];
 		var selectedElement = getSelectedElement(document.getElementById(option.id));
 		if (selectedElement.id.indexOf("jstacktrace") != -1) {
-    			if (option.id.indexOf("trig_tp_act_") != -1) {
+				if (option.id.indexOf("trig_tp_act_") != -1) {
 				// This is a tracepoint ID trigger
 				var triggerTracepointId = document.getElementById("trig_tp_tpnid_" + triggerIndex).value;
 				if (!isIdTracepointEnabled(triggerTracepointId) && !isAllTracepointEnabled()) {
@@ -517,7 +517,7 @@ function processChange(option) {
 			} else {
 				// This is a method trigger
 				if (!isMethodTracepointEnabled() && !isAllTracepointEnabled()) {
-					addTracepoint("component", "mt");			
+					addTracepoint("component", "mt");
 				}
 			}
 		}
@@ -526,8 +526,8 @@ function processChange(option) {
 	// If a tracepoint action or method trigger entry action is set to start tracing, automatically disable tracing at startup
 	if (option.id != null
 		&& (   option.id.indexOf("trig_meth_ent_") != -1
-		    || option.id.indexOf("trig_tp_act_") != -1
-		    || option.id.indexOf("trig_grp_act_") != -1) )
+			|| option.id.indexOf("trig_tp_act_") != -1
+			|| option.id.indexOf("trig_grp_act_") != -1) )
 	{
 		var selectedElement = getSelectedElement(document.getElementById(option.id));
 		if (selectedElement.id.indexOf("resume") != -1) {
@@ -572,7 +572,7 @@ function checkOutputForms() {
 					break;
 
 				default:
-					break;					
+					break;
 			}
 		}
 	}
@@ -594,7 +594,7 @@ function checkOutputForms() {
 		disableInput(document.getElementById("file_text_exception"));
 		disableInput(document.getElementById("output_size_exception"));
 	}
-	
+
 	if (needOutputForm || needExceptionOutputForm) {
 		enableInput(document.getElementById("buffer_size"));
 		enableInput(document.getElementById("buffer_size_units"));
@@ -636,7 +636,7 @@ function addTracepoint(type, defaultComponent) {
 		'&nbsp;&nbsp;';
 
 	if (type == "id") {
-		newTracepoint.innerHTML += 
+		newTracepoint.innerHTML +=
 			'<label for="tp_id_' + tracepointCounter + '">Tracepoint <a href="https://www.ibm.com/support/knowledgecenter/en/SSYKE2_8.0.0/com.ibm.java.lnx.80.doc/diag/tools/trace_tracepoint.html#trace_tracepoint">ID</a>: </label>' +
 			'<input type="text" id="tp_id_' + tracepointCounter + '" name="tp_id_' + tracepointCounter + '" size="10" value="" onchange="processChange(this)" onblur="processChange(this)">';
 	}
@@ -672,9 +672,8 @@ function addTracepoint(type, defaultComponent) {
 			'  	 <option id="tp_comp_pool_'       + tracepointCounter + '" value="pool"         >JVM - Storage pool</option>' +
 			'  	 <option id="tp_comp_simplepool_' + tracepointCounter + '" value="simplepool"   >JVM - Storage pool (simple)</option>' +
 			'  	 <option id="tp_comp_j9trc_'      + tracepointCounter + '" value="j9trc"        >JVM - Trace engine</option>' +
-			'    <option id="tp_comp_j9util_'     + tracepointCounter + '" value="j9util"       >JVM - Utilities (j9util)</option>' +  // TODO: what is the difference between this and j9vmutil?
+			'    <option id="tp_comp_j9util_'     + tracepointCounter + '" value="j9util"       >JVM - Utilities (j9util)</option>' + // TODO: what is the difference between this and j9vmutil?
 			'    <option id="tp_comp_j9vmutil_'   + tracepointCounter + '" value="j9vmutil"     >JVM - Utilities (j9vmutil)</option>' +
-		
 			'</select>' +
 			'&nbsp;&nbsp;' +
 			'<select id="tp_level_select_' + tracepointCounter + '" onchange="processChange(this)">' +
@@ -735,7 +734,7 @@ function addTracepoint(type, defaultComponent) {
 		idInputElement = document.getElementById("tp_id_" + tracepointCounter);
 
 		// Tooltip: ID field
-		tooltipText = "Examples:\n" + 
+		tooltipText = "Examples:\n" +
 			"    - j9prt.5\n" +
 			"    - j9prt.5-15\n" +
 			"    - j9prt.5-15,j9vm.12\n";
@@ -783,14 +782,14 @@ function removeTracepoint(tracepointIndex) {
 	tracepoint.parentNode.removeChild(tracepoint);
 	processChange("none");
 }
- 
+
 function addMethod() {
 	// If no method trace tracepoint is enabled, add one
 	if (!isMethodTracepointEnabled() && !isAllTracepointEnabled()) {
 		addTracepoint("component", "mt");
 	}
 
-	// Add a method form	
+	// Add a method form
 	var newMethod = document.createElement("li");
 	newMethod.setAttribute("id", "method_" + methodCounter);
 	newMethod.innerHTML =
@@ -808,7 +807,7 @@ function addMethod() {
 	var methodTextElement = document.getElementById("meth_text_" + methodCounter);
 
 	// Tooltip: Method text field
-	var tooltipText = "Examples:\n" + 
+	var tooltipText = "Examples:\n" +
 		"    - java/lang/String.indexOf\n" +
 		"    - java/nio/ByteBuffer.*\n" +
 		"    - java/util/*.*\n" +
@@ -840,7 +839,7 @@ function addTrigger(type) {
 
 	newTrigger.innerHTML =
 		'<a href="javascript:void(0)" title="Remove trigger" class="remove" id="remove_trigger_' + triggerCounter + '" onclick="removeTrigger(' + triggerCounter + ')">&#x274C</a>' +
-		'&nbsp;&nbsp;';	
+		'&nbsp;&nbsp;';
 
 	if (type == "method") {
 		// method{<methodspec>[,<entryAction>[,<exitAction>[,<delayCount>[,<matchcount>]]]]}
@@ -950,14 +949,14 @@ function addTrigger(type) {
 		'&nbsp;&nbsp;' +
 		'<label for "trig_match_' + triggerCounter + '">Limit: </label>' +
 		'<input type="number" id="trig_match_' + triggerCounter + '" min="0" max="9999" value="0" size="4" onchange="processChange(this)" onblur="processChange(this)">';
-	
+
 	triggerList.appendChild(newTrigger);
 
 	if (type == "tracepoint") {
 		tpnidElement = document.getElementById("trig_tp_tpnid_" + triggerCounter);
 
 		// Tooltip: Tracepoint ID
-		var tooltipText = "Examples:\n" + 
+		var tooltipText = "Examples:\n" +
 			"    - j9prt.5\n" +
 			"    - j9prt.5-15\n";
 		tpnidElement.title = tooltipText;
@@ -969,11 +968,11 @@ function addTrigger(type) {
 		tpnidElement.focus();
 	}
 
-	if (type == "method") { 
+	if (type == "method") {
 		methodSpecElement = document.getElementById("trig_meth_spec_" + triggerCounter);
 
 		// Tooltip: Tracepoint ID
-		var tooltipText = "Examples:\n" + 
+		var tooltipText = "Examples:\n" +
 			"    - java/lang/String.indexOf\n" +
 			"    - java/nio/ByteBuffer.*\n" +
 			"    - java/util/*.*\n" +
@@ -992,7 +991,7 @@ function addTrigger(type) {
 		methodSpecElement.focus();
 	}
 
-	if (type == "group") { 
+	if (type == "group") {
 		// Tooltip: Group Name
 		document.getElementById("trig_grp_name_" + triggerCounter).title = "Tracepoint group";
 
@@ -1058,7 +1057,7 @@ function disableLabel(elementId) {
 function enableOption(selectElement, optionToEnable) {
 	var optionElements = selectElement.getElementsByTagName("option");
 	for (var i = 0; i < optionElements.length; i++) {
-		if (optionElements[i].value == optionToEnable) {						
+		if (optionElements[i].value == optionToEnable) {
 			optionElements[i].disabled = false;
 			optionElements[i].style.display = null; // i.e. default
 		}
@@ -1162,7 +1161,6 @@ function isTriggerResumeActionSelected(entryOnly) {
 	return false;
 }
 
-
 // Returns true if an output file is specified
 function isOutputFileSpecified() {
 	var regularOutputElement = document.getElementById("file_text");
@@ -1196,7 +1194,7 @@ function isAtLeastOneTracepointEnabled() {
 		}
 	}
 	return false;
-}  
+}
 
 // Returns true if a "methods" component tracepoint is enabled
 function isMethodTracepointEnabled() {
@@ -1205,7 +1203,7 @@ function isMethodTracepointEnabled() {
 		if (methodsComponentOption != null && methodsComponentOption.selected) {
 			return true;
 		}
-	}	
+	}
 	return false;
 }
 
@@ -1216,7 +1214,7 @@ function isAllTracepointEnabled() {
 		if (allComponentsOption != null && allComponentsOption.selected) {
 			return true;
 		}
-	}	
+	}
 	return false;
 }
 
@@ -1248,7 +1246,7 @@ function isIdTracepointEnabled(specifiedId) {
 							&& specifiedIndex <= rangeEnd)
 						{
 							return true;
-						}					   					
+						}
 					} else {
 						// Specified ID is a range
 						regexArray = specifiedId.match(/([a-zA-Z0-9]+)\.(\d+)-(\d+)/);
@@ -1274,19 +1272,19 @@ function isIdTracepointEnabled(specifiedId) {
 // Returns true if the "maximal" tracepoint destination is enabled
 function isMaximalTracepointDestinationEnabled() {
 	for (var i = 0; i < tracepointCounter; i++) {
-		if (document.getElementById("tp_dest_maximal_" + i) != null) { 
+		if (document.getElementById("tp_dest_maximal_" + i) != null) {
 			if (document.getElementById("tp_dest_maximal_" + i).selected) {
 				return true;
 			}
-		}			
-	}	
+		}
+	}
 	return false;
 }
 
 // Returns true if a method trace spec has been added, false otherwise
 function isMethodOptionEnabled() {
 	for (var i = 0; i < methodCounter; i++) {
-        	if (document.getElementById("method_" + i) != null) {
+			if (document.getElementById("method_" + i) != null) {
 			return true;
 		}
 	}
@@ -1365,7 +1363,7 @@ function fixTracepointIdCase(id) {
 	for (var i = 0; i < knownComponents.length; i++) {
 		if (component.toLowerCase() == knownComponents[i].toLowerCase()) {
 			return knownComponents[i] + "." + tracepointNumber;
-		}			
+		}
 	}
 
 	// If we reach here the ID contains an unknown component, so just return it without making any changes
@@ -1374,7 +1372,7 @@ function fixTracepointIdCase(id) {
 
 function disableInput(inputElement) {
 	// Disable the input itself
-	inputElement.disabled = true;	
+	inputElement.disabled = true;
 
 	// Disable associated labels, if any
 	var labelElements = getLabelsForInput(inputElement);
@@ -1444,7 +1442,7 @@ function removeFinalCommaIfPresent(string) {
 		return string.slice(0, -1);
 	} else {
 		return string;
-	}	
+	}
 }
 
 // If a string ends with a '&' remove it
@@ -1472,16 +1470,16 @@ function findInvalidTracepointSpecs(value) {
 			}
 		}
 	}
-	return invalidSpecs; 
+	return invalidSpecs;
 }
 
 function buildAndUpdateResult() {
-	var resultString = "-Xtrace:";	
+	var resultString = "-Xtrace:";
 
 	// Disable predefined (default) tracepoints?
 	var disableDefaultTracepointsElement = document.getElementById("disable_predefined");
 	if (!disableDefaultTracepointsElement.disabled && disableDefaultTracepointsElement.checked) {
-		resultString += "none,";	
+		resultString += "none,";
 	}
 
 	// Add tracepoints
@@ -1543,7 +1541,7 @@ function buildAndUpdateResult() {
 			|| document.getElementById("trigger_" + i) != null)
 		{
 			inputPresent = true;
-			break;		
+			break;
 		}
 	}
 	if (!inputPresent) {
@@ -1574,7 +1572,7 @@ function buildAndUpdateResult() {
 	var methodSpecForJitExclude = "";
 	for (var i = 0; i < methodCounter; i++) {
 		var methodSpecElement = document.getElementById("meth_text_" + i);
-		
+
 		// Check that each method option actually contains a method spec
 		if (methodSpecElement != null) {
 			if (methodSpecElement.value == "") {
@@ -1585,27 +1583,27 @@ function buildAndUpdateResult() {
 				unsetErrorStyle(methodSpecElement);
 			}
 		}
-		
+
 		// Check whether argument and return value tracing is enabled.
 		// The warning includes an example JIT exclude option.
 		if (methodSpecElement != null && document.getElementById("meth_args_" + i).checked) {
 			argTracingEnabled = true;
 			var methodSpecValue = methodSpecElement.value;
-						
+
 			// Method specs for JIT excludes must specify parameters or match them with a wildcard,
 			// so we append a '*' if the method spec doesn't already end in one
 			if (methodSpecValue.length > 0) {
 				if (methodSpecValue.lastIndexOf("*") != methodSpecValue.length - 1) {
 					methodSpecValue += "*";
 				}
-				
+
 				if (methodSpecForJitExclude == "") {
 					methodSpecForJitExclude += methodSpecValue;
 				} else {
 					methodSpecForJitExclude += "|" + methodSpecValue;
 				}
 			}
-		}		
+		}
 	}
 	if (argTracingEnabled) {
 		if (methodSpecForJitExclude != "") {
@@ -1615,7 +1613,6 @@ function buildAndUpdateResult() {
 			warningsHtml += "WARNING: Arguments and return values will only be traced for interpreted methods. Use a JIT exclude option if necessary.<br>";
 		}
 	}
-	
 
 	// Check that each ID tracepoint has a tpnid
 	for (var i = 0; i < tracepointCounter; i++) {
@@ -1636,7 +1633,7 @@ function buildAndUpdateResult() {
 	var resumeSelectedEntry = false;
 	var resumeSelectedExit = false;
 	for (var i = 0; i < triggerCounter; i++) {
-        	// Method trigger checks
+			// Method trigger checks
 		var methodSpecElement = document.getElementById("trig_meth_spec_" + i);
 		if (methodSpecElement != null) {
 			// Check whether a method spec is provided
@@ -1647,12 +1644,12 @@ function buildAndUpdateResult() {
 			} else {
 				// Method spec is present
 				unsetErrorStyle(methodSpecElement);
-				
+
 				// Check that an entry or exit action is provided
 				var entryActionElement = getSelectedElement(document.getElementById("trig_meth_ent_" + i));
 				var exitActionElement = getSelectedElement(document.getElementById("trig_meth_ex_" + i));
 				if (entryActionElement.value == "none" && exitActionElement.value == "none") {
-			        	resultIsGreen = false;
+						resultIsGreen = false;
 					setErrorStyle(entryActionElement);
 					setErrorStyle(exitActionElement);
 					errorsHtml += "ERROR: No entry/exit action selected for method trigger: " + methodSpecElement.value + "<br>";
@@ -1702,7 +1699,7 @@ function buildAndUpdateResult() {
 			if (delayElement.value < 0) {
 				resultIsGreen = false;
 				setErrorStyle(delayElement);
-				errorsHtml += "ERROR: Invalid trigger delay (" + delayElement.value + "): must be >= 0.<br>";	
+				errorsHtml += "ERROR: Invalid trigger delay (" + delayElement.value + "): must be >= 0.<br>";
 			} else {
 				unsetErrorStyle(delayElement);
 			}
@@ -1714,7 +1711,7 @@ function buildAndUpdateResult() {
 			if (matchElement.value < 0) {
 				resultIsGreen = false;
 				setErrorStyle(matchElement);
-				errorsHtml += "ERROR: Invalid trigger limit (" + matchElement.value + "): must be >= 0.<br>";	
+				errorsHtml += "ERROR: Invalid trigger limit (" + matchElement.value + "): must be >= 0.<br>";
 			} else {
 				unsetErrorStyle(matchElement);
 			}
@@ -1741,8 +1738,8 @@ function buildAndUpdateResult() {
 			if (document.getElementById("trace_initially_disabled").checked) {
 				errorsHtml += "WARNING: \"Trace initially stopped\" is selected, but no trigger actions enable tracing. No trace will be produced.<br>";
 			}
-		}	    
-	}	
+		}
+	}
 
 	// Check output file fields
 	var fileTextElement = document.getElementById("file_text");
@@ -1760,19 +1757,19 @@ function buildAndUpdateResult() {
 			// Exception output *is* mandatory if enabled
 			resultIsGreen = false;
 			setErrorStyle(exceptionFileTextElement);
-			errorsHtml += "ERROR: No output file specified for Exception trace buffers<br>";	
+			errorsHtml += "ERROR: No output file specified for Exception trace buffers<br>";
 		} else {
 			unsetErrorStyle(exceptionFileTextElement);
 		}
 
 		if (containsReservedChars(exceptionFileTextElement.value)) {
-			warningsHtml += "WARNING: Exception trace buffer output file contains a character that is disallowed on some platforms<br>";		
+			warningsHtml += "WARNING: Exception trace buffer output file contains a character that is disallowed on some platforms<br>";
 		}
 	} else {
 		unsetErrorStyle(exceptionFileTextElement);
 	}
 
-	// Output file checks when generations > 1 
+	// Output file checks when generations > 1
 	var generationsElement = document.getElementById("output_generations");
 	var fileElement = document.getElementById("file_text");
 	var fileString = fileElement.value;
@@ -1784,18 +1781,18 @@ function buildAndUpdateResult() {
 		if (fileString.indexOf("#") == -1) {
 			resultIsGreen = false;
 			setErrorStyle(fileElement);
-			errorsHtml += "ERROR: Maximum number of output files is > 1, but the File Counter token ('#') is missing from the output file name<br>";	
+			errorsHtml += "ERROR: Maximum number of output files is > 1, but the File Counter token ('#') is missing from the output file name<br>";
 		} else {
 			unsetErrorStyle(fileElement);
 		}
 		// Check that only one '#' token is present
 		if (fileString.indexOf("#") != fileString.lastIndexOf("#")) {
-			warningsHtml += "WARNING: There are two '#' tokens in the output file field. Only the first token will be replaced by the file counter.<br>";	
-		}		
+			warningsHtml += "WARNING: There are two '#' tokens in the output file field. Only the first token will be replaced by the file counter.<br>";
+		}
 		// Check that the max file size is > 0
 		var outputSizeElement = document.getElementById("output_size");
 		if (outputSizeElement.value == 0) {
-			warningsHtml += "WARNING: Maximum number of output files is > 1, but the maximum file size is set to 0<br>";	
+			warningsHtml += "WARNING: Maximum number of output files is > 1, but the maximum file size is set to 0<br>";
 		} else {
 			unsetErrorStyle(outputSizeElement);
 		}
@@ -1805,7 +1802,7 @@ function buildAndUpdateResult() {
 	if (generationsElement.value < 1 || generationsElement.value > 36) {
 		resultIsGreen = false;
 		setErrorStyle(generationsElement);
-		errorsHtml += "ERROR: Invalid maximum number of output files (" + generationsElement.value + "): valid range is 1-36.<br>";	
+		errorsHtml += "ERROR: Invalid maximum number of output files (" + generationsElement.value + "): valid range is 1-36.<br>";
 	} else {
 		unsetErrorStyle(generationsElement);
 	}
@@ -1813,15 +1810,15 @@ function buildAndUpdateResult() {
 	if (outputSizeElement.value < 0) {
 		resultIsGreen = false;
 		setErrorStyle(outputSizeElement);
-		errorsHtml += "ERROR: Invalid maximum output file size (" + outputSizeElement.value + "): must be > 0, or 0 to set no limit.<br>";	
+		errorsHtml += "ERROR: Invalid maximum output file size (" + outputSizeElement.value + "): must be > 0, or 0 to set no limit.<br>";
 	} else {
-	    unsetErrorStyle(outputSizeElement);
+		unsetErrorStyle(outputSizeElement);
 	}
 	var outputSizeExceptionElement = document.getElementById("output_size_exception");
 	if (!outputSizeExceptionElement.disabled && outputSizeExceptionElement.value < 0) {
 		resultIsGreen = false;
 		setErrorStyle(outputSizeExceptionElement);
-		errorsHtml += "ERROR: Invalid maximum Exception output file size (" + outputSizeExceptionElement.value + ") is invalid: must be > 0, or 0 to set no limit.<br>";	
+		errorsHtml += "ERROR: Invalid maximum Exception output file size (" + outputSizeExceptionElement.value + ") is invalid: must be > 0, or 0 to set no limit.<br>";
 	} else {
 		unsetErrorStyle(outputSizeExceptionElement);
 	}
@@ -1829,7 +1826,7 @@ function buildAndUpdateResult() {
 	if (!sleepTimeElement.disabled && sleepTimeElement.value <= 0) {
 		resultIsGreen = false;
 		setErrorStyle(sleepTimeElement);
-		errorsHtml += "ERROR: Invalid sleep time (" + sleepTimeElement.value + "): must be > 0.<br>";	
+		errorsHtml += "ERROR: Invalid sleep time (" + sleepTimeElement.value + "): must be > 0.<br>";
 	} else {
 		unsetErrorStyle(sleepTimeElement);
 	}
@@ -1837,7 +1834,7 @@ function buildAndUpdateResult() {
 	if (bufferSizeElement.value <= 0) {
 		resultIsGreen = false;
 		setErrorStyle(bufferSizeElement);
-		errorsHtml += "ERROR: Invalid trace buffer size (" + bufferSizeElement.value + "): must be > 0.<br>";	
+		errorsHtml += "ERROR: Invalid trace buffer size (" + bufferSizeElement.value + "): must be > 0.<br>";
 	} else {
 		unsetErrorStyle(bufferSizeElement);
 	}
@@ -1845,7 +1842,7 @@ function buildAndUpdateResult() {
 	if (stackDepthElement.value < 0) {
 		resultIsGreen = false;
 		setErrorStyle(stackDepthElement);
-		errorsHtml += "ERROR: Invalid stack depth (" + stackDepthElement.value + "): must be > 0, or 0 to set no limit.<br>";	
+		errorsHtml += "ERROR: Invalid stack depth (" + stackDepthElement.value + "): must be > 0, or 0 to set no limit.<br>";
 	} else {
 		unsetErrorStyle(stackDepthElement);
 	}
@@ -1858,7 +1855,7 @@ function buildAndUpdateResult() {
 	}
 
 	// Add errors/warnings, if any
-	if (errorsHtml != "" || warningsHtml != "") { 
+	if (errorsHtml != "" || warningsHtml != "") {
 		document.getElementById("errors").innerHTML = errorsHtml + warningsHtml;
 	} else {
 		document.getElementById("errors").innerHTML = "&nbsp;";
@@ -1888,13 +1885,13 @@ function getTracepointResultString() {
 				case "id":
 					// [!]<tracepoint_id>[,<tracepoint_id>]
 					var tracepointId = document.getElementById("tp_id_" + i).value;
-					destinationStrings[destination] += tracepointId + ",";					
+					destinationStrings[destination] += tracepointId + ",";
 					break;
 
 				case "component":
 					// [!]<component>[{<group>}] or [!]<component>[{<type>}]
 					var component = getSelectedElement(document.getElementById("tp_comp_select_" + i)).value;
-					destinationStrings[destination] += component;					
+					destinationStrings[destination] += component;
 
 					var level = getSelectedElement(document.getElementById("tp_level_select_" + i)).value;
 					if (level != 9) {
@@ -1918,7 +1915,7 @@ function getTracepointResultString() {
 					}
 
 					break;
-			}		
+			}
 		}
 	}
 
@@ -1928,9 +1925,9 @@ function getTracepointResultString() {
 		tracepointString += destination + "=";
 		destinationStrings[destination] = removeFinalCommaIfPresent(destinationStrings[destination]);
 		if (destinationCount[destination] > 1 || destinationStrings[destination].indexOf(",") != -1) {
-			tracepointString += "{" + destinationStrings[destination] + "},"; 
+			tracepointString += "{" + destinationStrings[destination] + "},";
 		} else {
- 			tracepointString += destinationStrings[destination] + ",";
+			tracepointString += destinationStrings[destination] + ",";
 		}
 	}
 
@@ -2061,7 +2058,7 @@ function getTriggerResultString() {
 						sleepActionSelected = true;
 					}
 
-					break;		
+					break;
 			}
 
 			// Delay
@@ -2081,7 +2078,7 @@ function getTriggerResultString() {
 			// Remove all trailing commas (we might have a few, depending on which options were specified)
 			while (triggerString.length > 0 && triggerString.lastIndexOf(",") == triggerString.length - 1) {
 				triggerString = removeFinalCommaIfPresent(triggerString);
-			}			
+			}
 
 			// Close the curly braces and add a comma
 			triggerString += "},";
@@ -2090,13 +2087,13 @@ function getTriggerResultString() {
 
 	// Sleep time
 	if (sleepActionSelected) {
-		triggerString += "sleeptime=" + document.getElementById("sleep_time").value + ",";		
+		triggerString += "sleeptime=" + document.getElementById("sleep_time").value + ",";
 	}
 
 	// Stack depth
 	var stackDepthElement = document.getElementById("stack_depth");
 	if (!stackDepthElement.disabled && stackDepthElement.value > 0) {
-		triggerString += "stackdepth=" + stackDepthElement.value;		
+		triggerString += "stackdepth=" + stackDepthElement.value;
 	}
 
 	return removeFinalCommaIfPresent(triggerString);
@@ -2131,8 +2128,8 @@ function getOutputResultString() {
 
 	// Add prefix and trailing comma if the string isn't empty
 	if (buffersString != "") {
-		buffersString = "buffers=" + buffersString + ",";	
-	}	
+		buffersString = "buffers=" + buffersString + ",";
+	}
 
 	var regularOutputString = "";
 	var exceptionOutputString = "";
@@ -2217,7 +2214,7 @@ function containsReservedChars(string) {
 		return true;
 	} else {
 		return false;
-	}	
+	}
 }
 
 function setErrorStyle(inputElement) {
@@ -2235,10 +2232,10 @@ function unsetErrorStyle(inputElement) {
 
 function escapeHTML(text) {
 	return text.replace(/&/g, "&amp;")
-	           .replace(/</g, "&lt;")
-	           .replace(/>/g, "&gt;")
-	           .replace(/"/g, "&quot;")
-	           .replace(/'/g, "&#039;");
+			   .replace(/</g, "&lt;")
+			   .replace(/>/g, "&gt;")
+			   .replace(/"/g, "&quot;")
+			   .replace(/'/g, "&#039;");
 }
 
 // Inserts text in a target text input, replacing the current selected text
@@ -2251,7 +2248,7 @@ function insertText(targetElement, textToInsert) {
 	// Get text before/after current selection
 	var textBeforeSelection = oldTextValue.substring(0, selectionStart);
 	var textAfterSelection = oldTextValue.substring(selectionEnd, oldTextValue.length);
-	
+
 	// Insert text, effectively replacing the current selection
 	targetElement.value = textBeforeSelection + textToInsert + textAfterSelection;
 
@@ -2335,7 +2332,7 @@ function copyLinkToClipboard() {
 		var regexArray = methodListElements[i].id.match(/method_(\d+)/)
 		var methodIndex = regexArray[1];
 
-		// Method text/spec	
+		// Method text/spec
 		var methodText = document.getElementById("meth_text_" + methodIndex).value;
 
 		// Args checkbox
@@ -2345,12 +2342,12 @@ function copyLinkToClipboard() {
 		}
 
 		var serializedMethod = "meth_text_" + i + "=" + encodeURIComponent(methodText) + "&" +
-		                       "meth_args_" + i + "=" + methodArgs;
-		
+							   "meth_args_" + i + "=" + methodArgs;
+
 		// URI encode the whole lot and use the result as the value for the method parameter
 		serializedForm += "method_" + i + "=" + encodeURIComponent(serializedMethod) + "&";
 	}
-	
+
 	// Serialize the triggers
 	var triggerListElements = document.getElementById("trigger_input").getElementsByTagName("li");
 	for (var i = 0; i < triggerListElements.length; i++) {
@@ -2381,7 +2378,7 @@ function copyLinkToClipboard() {
 						serializedTrigger += elementId + "=" + triggerFormElements[j].value + "&";
 					}
 					break;
-			}			
+			}
 		}
 		// URI encode the whole lot and use the result as the value for the tracepoint parameter
 		serializedForm += "trigger_" + type + "_" + i + "=";
@@ -2429,7 +2426,7 @@ function copyLinkToClipboard() {
 				if (inputElements[i].checked) {
 					serializedForm += "1&";
 				} else {
-					serializedForm += "0&";						
+					serializedForm += "0&";
 				}
 			}
 		}
@@ -2461,7 +2458,7 @@ function copyLinkToClipboard() {
 // Reloads the page and sets all options back to the defaults
 function clearAndReload() {
 	if (confirm("Are you sure you want to set all options to default values?")) {
-		location.replace(window.location.pathname);	
+		location.replace(window.location.pathname);
 	} else {
 		// Do nothing
 	}
@@ -2475,7 +2472,7 @@ function handleSubmit() {
 
 </script>
 
-<style> 
+<style>
 body {
 	font-family: verdana;
 	font-size: 10pt;
@@ -2541,7 +2538,7 @@ ul {
 }
 
 li {
-	padding: 2px 0px;	
+	padding: 2px 0px;
 }
 
 a.remove {
@@ -2557,10 +2554,10 @@ a.remove {
 
 <!--
 Copyright (c) 2017, 2019 IBM Corp. and others
-This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which accompanies this distribution and is available at http://eclipse.org/legal/epl-2.0 or the Apache License, Version 2.0 which accompanies this distribution and is available at https://www.apache.org/licenses/LICENSE-2.0. 
-This Source Code may also be made available under the following Secondary Licenses when the conditions for such availability set forth in the Eclipse Public License, v. 2.0 are satisfied: GNU General Public License, version 2 with the GNU Classpath Exception [1] and GNU General Public License, version 2 with the OpenJDK Assembly Exception [2]. 
-[1] https://www.gnu.org/software/classpath/license.html  
-[2] http://openjdk.java.net/legal/assembly-exception.html 
+This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which accompanies this distribution and is available at http://eclipse.org/legal/epl-2.0 or the Apache License, Version 2.0 which accompanies this distribution and is available at https://www.apache.org/licenses/LICENSE-2.0.
+This Source Code may also be made available under the following Secondary Licenses when the conditions for such availability set forth in the Eclipse Public License, v. 2.0 are satisfied: GNU General Public License, version 2 with the GNU Classpath Exception [1] and GNU General Public License, version 2 with the OpenJDK Assembly Exception [2].
+[1] https://www.gnu.org/software/classpath/license.html
+[2] http://openjdk.java.net/legal/assembly-exception.html
 SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
 The project website pages cannot be redistributed
 -->
@@ -2573,14 +2570,13 @@ The project website pages cannot be redistributed
 <table border="0" cellspacing="0" cellpadding="4" style="width:100%; table-layout:fixed">
 <tbody>
 <tr>
-	<td  class="head1" colspan="2">
-	        OpenJ9: Xtrace Option Builder
+	<td class="head1" colspan="2">
+			OpenJ9: Xtrace Option Builder
 	</td>
 </tr>
 </tbody>
 </table>
 <br/><br/>
-
 
 <table cellpadding="1">
 	<tr>
@@ -2597,19 +2593,17 @@ The project website pages cannot be redistributed
 			&nbsp;
 			<input disabled type="checkbox" id="disable_predefined" name="disable_predefined" value="disable_predefined" title="Disables all tracepoints that are enabled by default" checked onchange="processChange(this)">
 			<label data-disabled="true" for="disable_predefined" title="Disables all tracepoints that are enabled by default (destination: maximal buffers)">Disable default tracepoints</label>
-		</td>		    
+		</td>
 	</tr>
 </table>
-				
+
 <hr>
-		
+
 <ul id="tracepoint_input">
 	<!-- Tracepoint forms will be added here -->
 </ul>
-		
+
 <br>
-
-
 
 <table cellpadding="1">
 	<tr>
@@ -2621,9 +2615,9 @@ The project website pages cannot be redistributed
 		</td>
 	</tr>
 </table>
-		
+
 <hr>
-		
+
 <ul id="method_input">
 	<!-- Method forms will be added here -->
 </ul>
@@ -2647,23 +2641,23 @@ The project website pages cannot be redistributed
 		<td id="trace_initially_disabled_td">
 			&nbsp;
 			<input type="checkbox" id="trace_initially_disabled" name="trace_initially_disabled" value="trace_initially_disabled" title="Trace can be started with a trigger, e.g. when entering a specific method" onchange="processChange(this)">
-			<label for="trace_initially_disabled" title="Trace can be started with a trigger, e.g. when entering a specific method">Trace initially stopped</label>	
+			<label for="trace_initially_disabled" title="Trace can be started with a trigger, e.g. when entering a specific method">Trace initially stopped</label>
 		</td>
 		<td title="Length of time to sleep for the &quot;thread sleep&quot; action">
 			&nbsp;
-			<label data-disabled="true" for="sleep_time">Sleep time (ms): </label>	
+			<label data-disabled="true" for="sleep_time">Sleep time (ms): </label>
 			<input disabled type="number" id="sleep_time" min="1" value="30000" size="1" onchange="processChange(this)" onblur="processChange(this)">
 		</td>
 		<td title="Maximum number of stack frames to include for the &quot;jstacktrace&quot; action (0 = no limit)">
 			&nbsp;
-			<label data-disabled="true" for="stack_depth">Stack depth: </label>	
+			<label data-disabled="true" for="stack_depth">Stack depth: </label>
 			<input disabled type="number" id="stack_depth" value="0" min="1" onchange="processChange(this)" onblur="processChange(this)">
-		</td>		
+		</td>
 	</tr>
 </table>
-		
+
 <hr>
-		
+
 <ul id="trigger_input">
 	<!-- Trigger forms will be added here -->
 </ul>
@@ -2675,21 +2669,21 @@ The project website pages cannot be redistributed
 			<b style="font-size: 12pt">Trace Buffer Output</b>
 		</td>
 		<td title="Size of trace buffers - per thread for regular buffers, global for exception buffers">
-			<label for="buffer_size">Buffer size: </label>	
+			<label for="buffer_size">Buffer size: </label>
 			<input type="number" id="buffer_size" value="8" min="1" max="9999" onchange="processChange(this)">
 			<select id="buffer_size_units" name="buffer_size_units" title="Buffer size units" size="1" onchange="processChange(this)">
 			<option value="k" selected> kilobytes</option>
 			<option value="m"> megabytes </option>
-			</select>    
+			</select>
 		</td>
 		<td title="Dynamically allocate buffers to match IO rate for output file">
 			&nbsp;
 			<input disabled type="checkbox" id="dynamic_buffers" name="dynamic_buffers" checked onchange="processChange(this)">
-			<label data-disabled="true" for="dynamic_buffers">Use dynamic buffers</label>	
+			<label data-disabled="true" for="dynamic_buffers">Use dynamic buffers</label>
 		</td>
 		<td>
 			&nbsp;
-			<a href="http://www.eclipse.org/openj9/docs/tool_traceformat/">How to format binary trace output</a>		
+			<a href="http://www.eclipse.org/openj9/docs/tool_traceformat/">How to format binary trace output</a>
 		</td>
 	</tr>
 </table>
@@ -2714,17 +2708,17 @@ The project website pages cannot be redistributed
 				value="File counter" title="Incremental file counter. Use with &quot;Maximum number of files&quot; below".>
 		</td>
 	</tr>
-   	<tr>
+	<tr>
 		<td>
-  			<label data-disabled="true" for="output_size">Maximum file size (MB):</label>
-   		</td>
+			<label data-disabled="true" for="output_size">Maximum file size (MB):</label>
+		</td>
 		<td>
 			<input disabled type="number" id="output_size" name="output_size" min="0" max="9999" value="0" size="4" onchange="processChange(this)" onblur="processChange(this)" title="When the file reaches this size it will wrap to the beginning. If set to 0, the file size is limited only by disk space.">
 			<label data-disabled="true" for="output_size">(0 = no limit)</label>
 		</td>
 	</tr>
 	<tr>
-        	<td>
+			<td>
 			<label data-disabled="true" for="output_generations">Maximum number of files:</label>
 		</td>
 		<td>
@@ -2762,7 +2756,6 @@ The project website pages cannot be redistributed
 	</tr>
 </table>
 
-
 <hr>
 <b><p id="result" style="font-size: 14pt; font-family:courier;">&nbsp;</p></b>
 <hr>
@@ -2778,7 +2771,6 @@ The project website pages cannot be redistributed
 </p>
 
 <p id="errors" style="font-size: 12pt; font-family:courier; color:red;">&nbsp;</p></b>
-
 
 </form>
 
