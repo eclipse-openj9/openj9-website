@@ -762,10 +762,18 @@ function buildAndUpdateResult() {
 
 	// Check that a command has been specified if the tool agent is selected
 	var execElement = document.getElementById("exec");
-	if (document.getElementById("agent_tool").checked && execElement.value == "") {
-		resultIsGreen = false;
-		setErrorStyle(execElement);
-		errorsHtml += "ERROR: Shell command (tool) agent is checked, but no shell command has been specified<br>";		
+	if (document.getElementById("agent_tool").checked) {
+		if (execElement.value == "") {
+			resultIsGreen = false;
+			setErrorStyle(execElement);
+			errorsHtml += "ERROR: Shell command (tool) agent is checked, but no shell command has been specified<br>";
+		} else if (execElement.value.indexOf(",") != -1) {
+			resultIsGreen = false;
+			setErrorStyle(execElement);
+			errorsHtml += "ERROR: Invalid shell command: must not contain a comma.<br>";
+		} else {
+			unsetErrorStyle(execElement);
+		}
 	} else {
 		unsetErrorStyle(execElement);
 	}
@@ -785,28 +793,32 @@ function buildAndUpdateResult() {
 	if (!throwableClassElement.disabled) {
 		var classValue = throwableClassElement.value;
 		if (classValue.lastIndexOf("*") > 0) {
+			// Note: a filter containing a single wildcard at the beginning of the string,
+			// or a filter containing just a wildcard (i.e. "*") are fine
 			if (classValue.lastIndexOf("*") != (classValue.length - 1)) {
 				// Wildcard must be placed at the beginning and/or end of the string
 				resultIsGreen = false;
 				setErrorStyle(throwableClassElement);
-				errorsHtml += "ERROR: Exception class filter wildcards can only be used at the beginning and/or end of the filter<br>";
+				errorsHtml += "ERROR: Invalid Exception class filter: wildcards can only be used at the beginning and/or end of the filter<br>";
 			} else if (document.getElementById("event_throwable_method").value != "") {
 				// Wildcard not allowed at the end of the string if a method filter is enabled
 				resultIsGreen = false;
 				setErrorStyle(throwableClassElement);
-				errorsHtml += "ERROR: Exception class filter must not end with a wildcard when a method filter is specified<br>";
+				errorsHtml += "ERROR: Invalid Exception class filter: must not end with a wildcard when a method filter is specified<br>";
 			} else {
 				// Wildcard looks ok
 				unsetErrorStyle(throwableClassElement);
 			}
+		} else if (throwableClassElement.value.indexOf(",") != -1) {
+			resultIsGreen = false;
+			setErrorStyle(throwableClassElement);
+			errorsHtml += "ERROR: Invalid Exception class filter: must not contain a comma.<br>";
 		} else {
-			// No wildcard, or a single wildcard at the beginning of the string
-			// Note: A filter containing just a wildcard (i.e. "*") is also fine
 			unsetErrorStyle(throwableClassElement);
-		}		
+		}
 	}
 
-	// Check validity of any wildcard in the throwable method string	
+	// Check validity of the throwable method string	
 	var throwableMethodElement = document.getElementById("event_throwable_method");
 	if (!throwableMethodElement.disabled) {
 		var methodValue = throwableMethodElement.value;
@@ -815,20 +827,43 @@ function buildAndUpdateResult() {
 				// No wildcard allowed if using stack offset
 				resultIsGreen = false;
 				setErrorStyle(throwableMethodElement);
-				errorsHtml += "ERROR: Exception method filter must not contain a wildcard when using a stack offset.<br>";
+				errorsHtml += "ERROR: Invalid Exception method filter: must not contain a wildcard when using a stack offset.<br>";
 			} else if (methodValue.indexOf("*") != (methodValue.length - 1)) {
 				// If no stack offset, wildcard must be placed at the end
 				resultIsGreen = false;
 				setErrorStyle(throwableMethodElement);
-				errorsHtml += "ERROR: Exception method filter wildcard can only be used at the end of the filter<br>";
+				errorsHtml += "ERROR: Invalid Exception method filter: wildcard can only be used at the end of the filter<br>";
 			} else {
 				// Wildcard looks ok
 				unsetErrorStyle(throwableMethodElement);
 			}
+		} else if (throwableMethodElement.value.indexOf(",") != -1) {
+			resultIsGreen = false;
+			setErrorStyle(throwableMethodElement);
+			errorsHtml += "ERROR: Invalid Exception method filter: must not contain a comma.<br>";
 		} else {
-			// No wildcard
 			unsetErrorStyle(throwableMethodElement);
 		}
+	}
+
+	// Check validity of the throwable message filter string
+	var throwableMessageElement = document.getElementById("event_throwable_msg_filter");
+	if (throwableMessageElement.value.indexOf(",") != -1) {
+		resultIsGreen = false;
+		setErrorStyle(throwableMessageElement);
+		errorsHtml += "ERROR: Invalid Exception message filter: must not contain a comma.<br>";	
+	} else {
+		unsetErrorStyle(throwableMessageElement);
+	}
+
+	// Check validity of the class load/unload filter string
+	var classFilterElement = document.getElementById("event_class_filter");
+	if (classFilterElement.value.indexOf(",") != -1) {
+		resultIsGreen = false;
+		setErrorStyle(classFilterElement);
+		errorsHtml += "ERROR: Invalid class load/unload filter: must not contain a comma.<br>";	
+	} else {
+		unsetErrorStyle(classFilterElement);
 	}
 
 	// Check that a priority has been specified if the dump priority option is selected
@@ -848,6 +883,10 @@ function buildAndUpdateResult() {
 			resultIsGreen = false;
 			setErrorStyle(priorityValueElement);
 			errorsHtml += "ERROR: Dump file option is checked, but no file name has been specified<br>";
+		} else if (dumpFileElement.value.indexOf(",") != -1) {
+			resultIsGreen = false;
+			setErrorStyle(dumpFileElement);
+			errorsHtml += "ERROR: Invalid dump file name: must not contain a comma.<br>";
 		} else {
 			unsetErrorStyle(priorityValueElement);
 		}

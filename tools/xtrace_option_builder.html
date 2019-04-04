@@ -1356,17 +1356,21 @@ function fixTracepointIdCase(id) {
 		"Audio"
 	];
 
-	// If the specified component matches an component in the table (case insensitive match), return the correct form
-	var idArray = id.split(".");
-	var component = idArray[0];
-	var tracepointNumber = idArray[1];
-	for (var i = 0; i < knownComponents.length; i++) {
-		if (component.toLowerCase() == knownComponents[i].toLowerCase()) {
-			return knownComponents[i] + "." + tracepointNumber;
+	// If the ID looks valid and the specified component matches an component in the table
+	// (case insensitive match), return the correct form
+	if (id.match(/^([a-zA-Z0-9])+\.\d+(-\d+)?$/) != null) {
+		var idArray = id.split(".");
+		var component = idArray[0];
+		var tracepointNumber = idArray[1];
+		for (var i = 0; i < knownComponents.length; i++) {
+			if (component.toLowerCase() == knownComponents[i].toLowerCase()) {
+				return knownComponents[i] + "." + tracepointNumber;
+			}
 		}
 	}
 
-	// If we reach here the ID contains an unknown component, so just return it without making any changes
+	// If we reach here the tracepoint ID is either invalid or contains an unknown component,
+	// so just return it without making any changes
 	return id;
 }
 
@@ -1579,12 +1583,16 @@ function buildAndUpdateResult() {
 	for (var i = 0; i < methodCounter; i++) {
 		var methodSpecElement = document.getElementById("meth_text_" + i);
 
-		// Check that each method option actually contains a method spec
+		// Check that each method option actually contains a valid-looking method spec
 		if (methodSpecElement != null) {
 			if (methodSpecElement.value == "") {
 				resultIsGreen = false;
 				setErrorStyle(methodSpecElement);
 				errorsHtml += "ERROR: Missing method specification in method trace<br>";
+			} else if (methodSpecElement.value.indexOf(",") != -1) {
+				resultIsGreen = false;
+				setErrorStyle(methodSpecElement);
+				errorsHtml += "ERROR: Invalid method specification: must not contain a comma: \"" + escapeHTML(methodSpecElement.value) + "\"<br>";
 			} else {
 				unsetErrorStyle(methodSpecElement);
 			}
@@ -1651,14 +1659,21 @@ function buildAndUpdateResult() {
 				// Method spec is present
 				unsetErrorStyle(methodSpecElement);
 
+				// Check whether the method spec looks valid
+				if (methodSpecElement.value.indexOf(",") != -1) {
+					resultIsGreen = false;
+					setErrorStyle(methodSpecElement);
+					errorsHtml += "ERROR: Invalid method specification: must not contain a comma: \"" + escapeHTML(methodSpecElement.value) + "\"<br>";
+				}
+
 				// Check that an entry or exit action is provided
 				var entryActionElement = getSelectedElement(document.getElementById("trig_meth_ent_" + i));
 				var exitActionElement = getSelectedElement(document.getElementById("trig_meth_ex_" + i));
 				if (entryActionElement.value == "none" && exitActionElement.value == "none") {
-						resultIsGreen = false;
+					resultIsGreen = false;
 					setErrorStyle(entryActionElement);
 					setErrorStyle(exitActionElement);
-					errorsHtml += "ERROR: No entry/exit action selected for method trigger: " + methodSpecElement.value + "<br>";
+					errorsHtml += "ERROR: No entry/exit action selected for method trigger: " + escapeHTML(methodSpecElement.value) + "<br>";
 				} else {
 					unsetErrorStyle(entryActionElement);
 					unsetErrorStyle(exitActionElement);
@@ -1753,8 +1768,16 @@ function buildAndUpdateResult() {
 		if (!isOutputFileSpecified()) {
 			// Warning only - output file is not manadatory
 			warningsHtml += "WARNING: No output file specified for trace buffers (trace will still be visible in snap dumps)<br>";
-		} else if (containsReservedChars(fileTextElement.value)) {
-			warningsHtml += "WARNING: Trace buffer output file contains a character that is disallowed on some platforms<br>";
+		} else if (fileTextElement.value.indexOf(",") != -1) {
+			resultIsGreen = false;
+			setErrorStyle(fileTextElement);
+			errorsHtml += "ERROR: Invalid trace buffer output file name: must not contain a comma.<br>";
+		} else {
+			unsetErrorStyle(fileTextElement);
+		}
+		
+		if (containsReservedChars(fileTextElement.value)) {
+			warningsHtml += "WARNING: Trace buffer output file name contains a character that is disallowed on some platforms<br>";
 		}
 	}
 	var exceptionFileTextElement = document.getElementById("file_text_exception");
@@ -1764,12 +1787,16 @@ function buildAndUpdateResult() {
 			resultIsGreen = false;
 			setErrorStyle(exceptionFileTextElement);
 			errorsHtml += "ERROR: No output file specified for Exception trace buffers<br>";
+		} else if (exceptionFileTextElement.value.indexOf(",") != -1) {
+			resultIsGreen = false;
+			setErrorStyle(fileTextElement);
+			errorsHtml += "ERROR: Invalid Exception trace buffer output file name: must not contain a comma.<br>";
 		} else {
 			unsetErrorStyle(exceptionFileTextElement);
 		}
 
 		if (containsReservedChars(exceptionFileTextElement.value)) {
-			warningsHtml += "WARNING: Exception trace buffer output file contains a character that is disallowed on some platforms<br>";
+			warningsHtml += "WARNING: Exception trace buffer output file name contains a character that is disallowed on some platforms<br>";
 		}
 	} else {
 		unsetErrorStyle(exceptionFileTextElement);
