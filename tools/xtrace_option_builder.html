@@ -1513,7 +1513,13 @@ function buildAndUpdateResult() {
 	// TODO: This doesn't work properly on Linux if there is an '!' in a method/tpnid field
 	//       Single quotes don't work on Windows...
 	if (document.getElementById("wrap_in_quotes").checked) {
-		// Then wrap the entire result string in quotes
+		// Escape backslashes
+		resultString = resultString.replace(/\\/g, "\\\\");
+		
+		// Escape quotes
+		resultString = resultString.replace(/"/g, "\\\"");
+		
+		// Wrap the entire result string in quotes
 		resultString = "\"" + resultString + "\"";
 	}
 
@@ -2141,16 +2147,8 @@ function getOutputResultString() {
 	if (!fileElement.disabled) {
 		var fileString = fileElement.value;
 		if (fileString != "") {
-			// Escape quotes in the filename
-			// (I'm not sure what sort of monster would put quotes in the filename, but hey)
-			fileString = fileString.replace(/"/g, "\\\"");
-
-			// Wrap the filename in quotes if the entire option isn't going to be wrapped in quotes
-			if (document.getElementById("wrap_in_quotes").checked) {
-				regularOutputString += fileString + ",";
-			} else {
-				regularOutputString += "\"" + fileString + "\",";
-			}
+			// File name
+			regularOutputString += fileString + ",";
 
 			// Max size and generations
 			var maxSize = document.getElementById("output_size").value;
@@ -2172,18 +2170,8 @@ function getOutputResultString() {
 	// This field is *mandatory* if the Exception destination is selected
 	fileElement = document.getElementById("file_text_exception");
 	if (!fileElement.disabled) {
-		var fileString = fileElement.value;
-
-		// Escape quotes in the filename
-		// (I'm not sure what sort of monster would put quotes in the filename, but hey)
-		fileString = fileString.replace(/"/g, "\\\"");
-
-		// Wrap the filename in quotes if the entire option isn't going to be wrapped in quotes
-		if (document.getElementById("wrap_in_quotes").checked) {
-			exceptionOutputString += fileString + ",";
-		} else {
-			exceptionOutputString += "\"" + fileString + "\",";
-		}
+		// File name
+		exceptionOutputString += fileElement.value + ",";
 
 		// Maximum size
 		var maxSize = document.getElementById("output_size_exception").value;

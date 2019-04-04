@@ -616,17 +616,9 @@ function buildAndUpdateResult() {
 	}
 
 	// msg_filter
-	var messageFilterString = document.getElementById("event_throwable_msg_filter").value;
-	if (document.getElementById("event_throwable_msg_filter").disabled == false && messageFilterString != "") {
-		// Escape quotes in the filter
-		messageFilterString = messageFilterString.replace(/"/g, "\\\"");
-
-		// Wrap the command in quotes if the entire option isn't going to be wrapped in quotes
-		if (document.getElementById("wrap_in_quotes").checked) {
-			resultString += ",msg_filter=" + messageFilterString;
-		} else {
-			resultString += ",msg_filter=\"" + messageFilterString + "\"";
-		}
+	var messageFilterStringElement = document.getElementById("event_throwable_msg_filter");
+	if (messageFilterStringElement.disabled == false && messageFilterStringElement.value != "") {
+		resultString += ",msg_filter=" + messageFilterStringElement.value;
 	}
 
 	// range
@@ -656,15 +648,7 @@ function buildAndUpdateResult() {
 	if (document.getElementById("agent_tool").checked) {
         var execString = document.getElementById("exec").value;
 		if (execString != "") {
-			// Escape quotes in the command
-			execString = execString.replace(/"/g, "\\\"");
-
-			// Wrap the command in quotes if the entire option isn't going to be wrapped in quotes
-			if (document.getElementById("wrap_in_quotes").checked) {
-				resultString += ",exec=" + execString;
-			} else {
-				resultString += ",exec=\"" + execString + "\"";
-			}
+			resultString += ",exec=" + execString;
 		}
 		
 		// opts
@@ -708,21 +692,19 @@ function buildAndUpdateResult() {
 		resultString += ",file=";
 		var fileString = document.getElementById("file_text").value;
 		if (fileString != "") {
-			// Escape quotes in the filename
-			// (I'm not sure what sort of monster would put quotes in the filename, but hey)
-			fileString = fileString.replace(/"/g, "\\\"");
-
-			// Wrap the filename in quotes if the entire option isn't going to be wrapped in quotes
-			if (document.getElementById("wrap_in_quotes").checked) {
-				resultString += fileString;
-			} else {
-				resultString += "\"" + fileString + "\"";
-			}
+			resultString += fileString;
 		}
 	}
 
 	// Wrap in quotes if option checked
 	if (document.getElementById("wrap_in_quotes").checked) {
+		// Escape backslashes
+		resultString = resultString.replace(/\\/g, "\\\\");
+
+		// Escape quotes
+		resultString = resultString.replace(/"/g, "\\\"");
+
+		// Wrap the entire result string in quotes
 		resultString = "\"" + resultString + "\"";
 	}
 
@@ -1464,7 +1446,7 @@ ul {
 		<b><p id="result" style="font-size: 14pt; font-family:courier;">&nbsp;</p></b>
 		<hr>
 		<p>
-			<input type="checkbox" id="wrap_in_quotes" name="wrap_in_quotes" value="wrap_in_quotes" onchange="processChange(this)">
+			<input type="checkbox" id="wrap_in_quotes" name="wrap_in_quotes" value="wrap_in_quotes" onchange="processChange(this)" checked>
 			<label for="wrap_in_quotes">Wrap in quotes (for use in a shell)</label>
 		</p>
 		<p>
