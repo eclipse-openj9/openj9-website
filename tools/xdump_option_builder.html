@@ -788,26 +788,28 @@ function buildAndUpdateResult() {
 		unsetErrorStyle(toolWaitElement);
 	}
 
-	// Check validity of the throwable class string
+	// Check validity of the throwable class filter. Rules:
+	//    1. Can start with a wildcard character
+	//    2. Can end with a wildcard character if no method filter is specified
+	//    3. Can contain just a single wildcard character on its own
+	//    4. Cannot contain a wildcard in any other location
+	//    5. Cannot contain a comma
 	var throwableClassHasError = false;
 	var throwableClassElement = document.getElementById("event_throwable_class")
 	if (!throwableClassElement.disabled) {
 		var classValue = throwableClassElement.value;
+		
 		if (classValue.lastIndexOf("*") > 0) {
-			// Note: a filter containing a single wildcard at the beginning of the string,
-			// or a filter containing just a wildcard (i.e. "*") are fine
-			if (classValue.lastIndexOf("*") != (classValue.length - 1)) {
-				// Wildcard must be placed at the beginning and/or end of the string
+			if (classValue.indexOf("*", 1) != (classValue.length - 1)) {
 				throwableClassHasError = true;
 				errorsHtml += "ERROR: Invalid Exception class filter: wildcards can only be used at the beginning and/or end of the filter<br>";
 			} else if (document.getElementById("event_throwable_method").value != "") {
-				// Wildcard not allowed at the end of the string if a method filter is enabled
 				throwableClassHasError = true
 				errorsHtml += "ERROR: Invalid Exception class filter: must not end with a wildcard when a method filter is specified<br>";
 			}
 		}
 		
-		if (throwableClassElement.value.indexOf(",") != -1) {
+		if (classValue.indexOf(",") != -1) {
 			throwableClassHasError = true;
 			errorsHtml += "ERROR: Invalid Exception class filter: must not contain a comma.<br>";
 		} 
@@ -820,28 +822,31 @@ function buildAndUpdateResult() {
 		}
 	}
 
-	// Check validity of the throwable method string	
+	// Check validity of the throwable method filter. Rules:
+	//    1. Can end with a wildcard character if no stack offset is specified
+	//    2. Cannot contain a wildcard in any other location
+	//    3. Cannot contain a comma	
 	var throwableMethodHasError = false;
 	var throwableMethodElement = document.getElementById("event_throwable_method");
 	if (!throwableMethodElement.disabled) {
 		var methodValue = throwableMethodElement.value;
-		if (methodValue.indexOf("*") != -1) {
-			if (document.getElementById("event_throwable_offset").value != "0") {
-				// No wildcard allowed if using stack offset
-				throwableMethodHasError = true;
-				errorsHtml += "ERROR: Invalid Exception method filter: must not contain a wildcard when using a stack offset.<br>";
-			} else if (methodValue.indexOf("*") != (methodValue.length - 1)) {
-				// If no stack offset, wildcard must be placed at the end
+
+		var wildcardIndex = methodValue.indexOf("*");
+		if (wildcardIndex != -1) {
+			if (wildcardIndex != (methodValue.length - 1)) {
 				throwableMethodHasError = true;
 				errorsHtml += "ERROR: Invalid Exception method filter: wildcard can only be used at the end of the filter<br>";
-			}
+			} else if (document.getElementById("event_throwable_offset").value != "0") {
+				throwableMethodHasError = true;
+				errorsHtml += "ERROR: Invalid Exception method filter: must not end with a wildcard when using a non-zero stack offset.<br>";
+			}		
 		}
-		
-		if (throwableMethodElement.value.indexOf(",") != -1) {
+
+		if (methodValue.indexOf(",") != -1) {
 			throwableMethodHasError = true;
 			errorsHtml += "ERROR: Invalid Exception method filter: must not contain a comma.<br>";
 		} 
-		
+
 		if (throwableMethodHasError) {
 			resultIsGreen = false;
 			setErrorStyle(throwableMethodElement);
