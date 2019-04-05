@@ -789,6 +789,7 @@ function buildAndUpdateResult() {
 	}
 
 	// Check validity of the throwable class string
+	var throwableClassHasError = false;
 	var throwableClassElement = document.getElementById("event_throwable_class")
 	if (!throwableClassElement.disabled) {
 		var classValue = throwableClassElement.value;
@@ -797,50 +798,53 @@ function buildAndUpdateResult() {
 			// or a filter containing just a wildcard (i.e. "*") are fine
 			if (classValue.lastIndexOf("*") != (classValue.length - 1)) {
 				// Wildcard must be placed at the beginning and/or end of the string
-				resultIsGreen = false;
-				setErrorStyle(throwableClassElement);
+				throwableClassHasError = true;
 				errorsHtml += "ERROR: Invalid Exception class filter: wildcards can only be used at the beginning and/or end of the filter<br>";
 			} else if (document.getElementById("event_throwable_method").value != "") {
 				// Wildcard not allowed at the end of the string if a method filter is enabled
-				resultIsGreen = false;
-				setErrorStyle(throwableClassElement);
+				throwableClassHasError = true
 				errorsHtml += "ERROR: Invalid Exception class filter: must not end with a wildcard when a method filter is specified<br>";
-			} else {
-				// Wildcard looks ok
-				unsetErrorStyle(throwableClassElement);
 			}
-		} else if (throwableClassElement.value.indexOf(",") != -1) {
+		}
+		
+		if (throwableClassElement.value.indexOf(",") != -1) {
+			throwableClassHasError = true;
+			errorsHtml += "ERROR: Invalid Exception class filter: must not contain a comma.<br>";
+		} 
+		
+		if (throwableClassHasError) {
 			resultIsGreen = false;
 			setErrorStyle(throwableClassElement);
-			errorsHtml += "ERROR: Invalid Exception class filter: must not contain a comma.<br>";
 		} else {
 			unsetErrorStyle(throwableClassElement);
 		}
 	}
 
 	// Check validity of the throwable method string	
+	var throwableMethodHasError = false;
 	var throwableMethodElement = document.getElementById("event_throwable_method");
 	if (!throwableMethodElement.disabled) {
 		var methodValue = throwableMethodElement.value;
 		if (methodValue.indexOf("*") != -1) {
 			if (document.getElementById("event_throwable_offset").value != "0") {
 				// No wildcard allowed if using stack offset
-				resultIsGreen = false;
-				setErrorStyle(throwableMethodElement);
+				throwableMethodHasError = true;
 				errorsHtml += "ERROR: Invalid Exception method filter: must not contain a wildcard when using a stack offset.<br>";
 			} else if (methodValue.indexOf("*") != (methodValue.length - 1)) {
 				// If no stack offset, wildcard must be placed at the end
-				resultIsGreen = false;
-				setErrorStyle(throwableMethodElement);
+				throwableMethodHasError = true;
 				errorsHtml += "ERROR: Invalid Exception method filter: wildcard can only be used at the end of the filter<br>";
-			} else {
-				// Wildcard looks ok
-				unsetErrorStyle(throwableMethodElement);
 			}
-		} else if (throwableMethodElement.value.indexOf(",") != -1) {
+		}
+		
+		if (throwableMethodElement.value.indexOf(",") != -1) {
+			throwableMethodHasError = true;
+			errorsHtml += "ERROR: Invalid Exception method filter: must not contain a comma.<br>";
+		} 
+		
+		if (throwableMethodHasError) {
 			resultIsGreen = false;
 			setErrorStyle(throwableMethodElement);
-			errorsHtml += "ERROR: Invalid Exception method filter: must not contain a comma.<br>";
 		} else {
 			unsetErrorStyle(throwableMethodElement);
 		}

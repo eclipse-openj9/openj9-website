@@ -1656,14 +1656,13 @@ function buildAndUpdateResult() {
 				setErrorStyle(methodSpecElement);
 				errorsHtml += "ERROR: Missing method specification in trigger<br>";
 			} else {
-				// Method spec is present
-				unsetErrorStyle(methodSpecElement);
-
 				// Check whether the method spec looks valid
 				if (methodSpecElement.value.indexOf(",") != -1) {
 					resultIsGreen = false;
 					setErrorStyle(methodSpecElement);
 					errorsHtml += "ERROR: Invalid method specification: must not contain a comma: \"" + escapeHTML(methodSpecElement.value) + "\"<br>";
+				} else {
+					unsetErrorStyle(methodSpecElement);
 				}
 
 				// Check that an entry or exit action is provided
@@ -1768,17 +1767,19 @@ function buildAndUpdateResult() {
 		if (!isOutputFileSpecified()) {
 			// Warning only - output file is not manadatory
 			warningsHtml += "WARNING: No output file specified for trace buffers (trace will still be visible in snap dumps)<br>";
-		} else if (fileTextElement.value.indexOf(",") != -1) {
+		} else if (containsReservedChars(fileTextElement.value)) {
+			warningsHtml += "WARNING: Trace buffer output file name contains a character that is disallowed on some platforms<br>";
+		}
+
+		// We have to do this separately (instead of in an else if) to ensure that the
+		// error style always gets unset after removing the comma
+		if (fileTextElement.value.indexOf(",") != -1) {
 			resultIsGreen = false;
 			setErrorStyle(fileTextElement);
 			errorsHtml += "ERROR: Invalid trace buffer output file name: must not contain a comma.<br>";
 		} else {
 			unsetErrorStyle(fileTextElement);
-		}
-		
-		if (containsReservedChars(fileTextElement.value)) {
-			warningsHtml += "WARNING: Trace buffer output file name contains a character that is disallowed on some platforms<br>";
-		}
+		}	
 	}
 	var exceptionFileTextElement = document.getElementById("file_text_exception");
 	if (!exceptionFileTextElement.disabled) {
