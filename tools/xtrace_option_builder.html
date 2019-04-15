@@ -1356,17 +1356,21 @@ function fixTracepointIdCase(id) {
 		"Audio"
 	];
 
-	// If the specified component matches an component in the table (case insensitive match), return the correct form
-	var idArray = id.split(".");
-	var component = idArray[0];
-	var tracepointNumber = idArray[1];
-	for (var i = 0; i < knownComponents.length; i++) {
-		if (component.toLowerCase() == knownComponents[i].toLowerCase()) {
-			return knownComponents[i] + "." + tracepointNumber;
+	// If the ID looks valid and the specified component matches an component in the table
+	// (case insensitive match), return the correct form
+	if (id.match(/^([a-zA-Z0-9])+\.\d+(-\d+)?$/) != null) {
+		var idArray = id.split(".");
+		var component = idArray[0];
+		var tracepointNumber = idArray[1];
+		for (var i = 0; i < knownComponents.length; i++) {
+			if (component.toLowerCase() == knownComponents[i].toLowerCase()) {
+				return knownComponents[i] + "." + tracepointNumber;
+			}
 		}
 	}
 
-	// If we reach here the ID contains an unknown component, so just return it without making any changes
+	// If we reach here the tracepoint ID is either invalid or contains an unknown component,
+	// so just return it without making any changes
 	return id;
 }
 
@@ -1513,7 +1517,13 @@ function buildAndUpdateResult() {
 	// TODO: This doesn't work properly on Linux if there is an '!' in a method/tpnid field
 	//       Single quotes don't work on Windows...
 	if (document.getElementById("wrap_in_quotes").checked) {
-		// Then wrap the entire result string in quotes
+		// Escape backslashes
+		resultString = resultString.replace(/\\/g, "\\\\");
+		
+		// Escape quotes
+		resultString = resultString.replace(/"/g, "\\\"");
+		
+		// Wrap the entire result string in quotes
 		resultString = "\"" + resultString + "\"";
 	}
 
@@ -1573,12 +1583,16 @@ function buildAndUpdateResult() {
 	for (var i = 0; i < methodCounter; i++) {
 		var methodSpecElement = document.getElementById("meth_text_" + i);
 
-		// Check that each method option actually contains a method spec
+		// Check that each method option actually contains a valid-looking method spec
 		if (methodSpecElement != null) {
 			if (methodSpecElement.value == "") {
 				resultIsGreen = false;
 				setErrorStyle(methodSpecElement);
 				errorsHtml += "ERROR: Missing method specification in method trace<br>";
+			} else if (methodSpecElement.value.indexOf(",") != -1) {
+				resultIsGreen = false;
+				setErrorStyle(methodSpecElement);
+				errorsHtml += "ERROR: Invalid method specification: must not contain a comma: \"" + escapeHTML(methodSpecElement.value) + "\"<br>";
 			} else {
 				unsetErrorStyle(methodSpecElement);
 			}
@@ -1642,17 +1656,23 @@ function buildAndUpdateResult() {
 				setErrorStyle(methodSpecElement);
 				errorsHtml += "ERROR: Missing method specification in trigger<br>";
 			} else {
-				// Method spec is present
-				unsetErrorStyle(methodSpecElement);
+				// Check whether the method spec looks valid
+				if (methodSpecElement.value.indexOf(",") != -1) {
+					resultIsGreen = false;
+					setErrorStyle(methodSpecElement);
+					errorsHtml += "ERROR: Invalid method specification: must not contain a comma: \"" + escapeHTML(methodSpecElement.value) + "\"<br>";
+				} else {
+					unsetErrorStyle(methodSpecElement);
+				}
 
 				// Check that an entry or exit action is provided
 				var entryActionElement = getSelectedElement(document.getElementById("trig_meth_ent_" + i));
 				var exitActionElement = getSelectedElement(document.getElementById("trig_meth_ex_" + i));
 				if (entryActionElement.value == "none" && exitActionElement.value == "none") {
-						resultIsGreen = false;
+					resultIsGreen = false;
 					setErrorStyle(entryActionElement);
 					setErrorStyle(exitActionElement);
-					errorsHtml += "ERROR: No entry/exit action selected for method trigger: " + methodSpecElement.value + "<br>";
+					errorsHtml += "ERROR: No entry/exit action selected for method trigger: " + escapeHTML(methodSpecElement.value) + "<br>";
 				} else {
 					unsetErrorStyle(entryActionElement);
 					unsetErrorStyle(exitActionElement);
@@ -1748,8 +1768,18 @@ function buildAndUpdateResult() {
 			// Warning only - output file is not manadatory
 			warningsHtml += "WARNING: No output file specified for trace buffers (trace will still be visible in snap dumps)<br>";
 		} else if (containsReservedChars(fileTextElement.value)) {
-			warningsHtml += "WARNING: Trace buffer output file contains a character that is disallowed on some platforms<br>";
+			warningsHtml += "WARNING: Trace buffer output file name contains a character that is disallowed on some platforms<br>";
 		}
+
+		// We have to do this separately (instead of in an else if) to ensure that the
+		// error style always gets unset after removing the comma
+		if (fileTextElement.value.indexOf(",") != -1) {
+			resultIsGreen = false;
+			setErrorStyle(fileTextElement);
+			errorsHtml += "ERROR: Invalid trace buffer output file name: must not contain a comma.<br>";
+		} else {
+			unsetErrorStyle(fileTextElement);
+		}	
 	}
 	var exceptionFileTextElement = document.getElementById("file_text_exception");
 	if (!exceptionFileTextElement.disabled) {
@@ -1758,12 +1788,16 @@ function buildAndUpdateResult() {
 			resultIsGreen = false;
 			setErrorStyle(exceptionFileTextElement);
 			errorsHtml += "ERROR: No output file specified for Exception trace buffers<br>";
+		} else if (exceptionFileTextElement.value.indexOf(",") != -1) {
+			resultIsGreen = false;
+			setErrorStyle(fileTextElement);
+			errorsHtml += "ERROR: Invalid Exception trace buffer output file name: must not contain a comma.<br>";
 		} else {
 			unsetErrorStyle(exceptionFileTextElement);
 		}
 
 		if (containsReservedChars(exceptionFileTextElement.value)) {
-			warningsHtml += "WARNING: Exception trace buffer output file contains a character that is disallowed on some platforms<br>";
+			warningsHtml += "WARNING: Exception trace buffer output file name contains a character that is disallowed on some platforms<br>";
 		}
 	} else {
 		unsetErrorStyle(exceptionFileTextElement);
@@ -2141,16 +2175,8 @@ function getOutputResultString() {
 	if (!fileElement.disabled) {
 		var fileString = fileElement.value;
 		if (fileString != "") {
-			// Escape quotes in the filename
-			// (I'm not sure what sort of monster would put quotes in the filename, but hey)
-			fileString = fileString.replace(/"/g, "\\\"");
-
-			// Wrap the filename in quotes if the entire option isn't going to be wrapped in quotes
-			if (document.getElementById("wrap_in_quotes").checked) {
-				regularOutputString += fileString + ",";
-			} else {
-				regularOutputString += "\"" + fileString + "\",";
-			}
+			// File name
+			regularOutputString += fileString + ",";
 
 			// Max size and generations
 			var maxSize = document.getElementById("output_size").value;
@@ -2172,18 +2198,8 @@ function getOutputResultString() {
 	// This field is *mandatory* if the Exception destination is selected
 	fileElement = document.getElementById("file_text_exception");
 	if (!fileElement.disabled) {
-		var fileString = fileElement.value;
-
-		// Escape quotes in the filename
-		// (I'm not sure what sort of monster would put quotes in the filename, but hey)
-		fileString = fileString.replace(/"/g, "\\\"");
-
-		// Wrap the filename in quotes if the entire option isn't going to be wrapped in quotes
-		if (document.getElementById("wrap_in_quotes").checked) {
-			exceptionOutputString += fileString + ",";
-		} else {
-			exceptionOutputString += "\"" + fileString + "\",";
-		}
+		// File name
+		exceptionOutputString += fileElement.value + ",";
 
 		// Maximum size
 		var maxSize = document.getElementById("output_size_exception").value;

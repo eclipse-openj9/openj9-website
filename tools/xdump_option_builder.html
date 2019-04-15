@@ -616,17 +616,9 @@ function buildAndUpdateResult() {
 	}
 
 	// msg_filter
-	var messageFilterString = document.getElementById("event_throwable_msg_filter").value;
-	if (document.getElementById("event_throwable_msg_filter").disabled == false && messageFilterString != "") {
-		// Escape quotes in the filter
-		messageFilterString = messageFilterString.replace(/"/g, "\\\"");
-
-		// Wrap the command in quotes if the entire option isn't going to be wrapped in quotes
-		if (document.getElementById("wrap_in_quotes").checked) {
-			resultString += ",msg_filter=" + messageFilterString;
-		} else {
-			resultString += ",msg_filter=\"" + messageFilterString + "\"";
-		}
+	var messageFilterStringElement = document.getElementById("event_throwable_msg_filter");
+	if (messageFilterStringElement.disabled == false && messageFilterStringElement.value != "") {
+		resultString += ",msg_filter=" + messageFilterStringElement.value;
 	}
 
 	// range
@@ -656,15 +648,7 @@ function buildAndUpdateResult() {
 	if (document.getElementById("agent_tool").checked) {
         var execString = document.getElementById("exec").value;
 		if (execString != "") {
-			// Escape quotes in the command
-			execString = execString.replace(/"/g, "\\\"");
-
-			// Wrap the command in quotes if the entire option isn't going to be wrapped in quotes
-			if (document.getElementById("wrap_in_quotes").checked) {
-				resultString += ",exec=" + execString;
-			} else {
-				resultString += ",exec=\"" + execString + "\"";
-			}
+			resultString += ",exec=" + execString;
 		}
 		
 		// opts
@@ -708,21 +692,19 @@ function buildAndUpdateResult() {
 		resultString += ",file=";
 		var fileString = document.getElementById("file_text").value;
 		if (fileString != "") {
-			// Escape quotes in the filename
-			// (I'm not sure what sort of monster would put quotes in the filename, but hey)
-			fileString = fileString.replace(/"/g, "\\\"");
-
-			// Wrap the filename in quotes if the entire option isn't going to be wrapped in quotes
-			if (document.getElementById("wrap_in_quotes").checked) {
-				resultString += fileString;
-			} else {
-				resultString += "\"" + fileString + "\"";
-			}
+			resultString += fileString;
 		}
 	}
 
 	// Wrap in quotes if option checked
 	if (document.getElementById("wrap_in_quotes").checked) {
+		// Escape backslashes
+		resultString = resultString.replace(/\\/g, "\\\\");
+
+		// Escape quotes
+		resultString = resultString.replace(/"/g, "\\\"");
+
+		// Wrap the entire result string in quotes
 		resultString = "\"" + resultString + "\"";
 	}
 
@@ -780,10 +762,18 @@ function buildAndUpdateResult() {
 
 	// Check that a command has been specified if the tool agent is selected
 	var execElement = document.getElementById("exec");
-	if (document.getElementById("agent_tool").checked && execElement.value == "") {
-		resultIsGreen = false;
-		setErrorStyle(execElement);
-		errorsHtml += "ERROR: Shell command (tool) agent is checked, but no shell command has been specified<br>";		
+	if (document.getElementById("agent_tool").checked) {
+		if (execElement.value == "") {
+			resultIsGreen = false;
+			setErrorStyle(execElement);
+			errorsHtml += "ERROR: Shell command (tool) agent is checked, but no shell command has been specified<br>";
+		} else if (execElement.value.indexOf(",") != -1) {
+			resultIsGreen = false;
+			setErrorStyle(execElement);
+			errorsHtml += "ERROR: Invalid shell command: must not contain a comma.<br>";
+		} else {
+			unsetErrorStyle(execElement);
+		}
 	} else {
 		unsetErrorStyle(execElement);
 	}
@@ -798,55 +788,91 @@ function buildAndUpdateResult() {
 		unsetErrorStyle(toolWaitElement);
 	}
 
-	// Check validity of the throwable class string
+	// Check validity of the throwable class filter. Rules:
+	//    1. Can start with a wildcard character
+	//    2. Can end with a wildcard character if no method filter is specified
+	//    3. Can contain just a single wildcard character on its own
+	//    4. Cannot contain a wildcard in any other location
+	//    5. Cannot contain a comma
+	var throwableClassHasError = false;
 	var throwableClassElement = document.getElementById("event_throwable_class")
 	if (!throwableClassElement.disabled) {
 		var classValue = throwableClassElement.value;
+		
 		if (classValue.lastIndexOf("*") > 0) {
-			if (classValue.lastIndexOf("*") != (classValue.length - 1)) {
-				// Wildcard must be placed at the beginning and/or end of the string
-				resultIsGreen = false;
-				setErrorStyle(throwableClassElement);
-				errorsHtml += "ERROR: Exception class filter wildcards can only be used at the beginning and/or end of the filter<br>";
+			if (classValue.indexOf("*", 1) != (classValue.length - 1)) {
+				throwableClassHasError = true;
+				errorsHtml += "ERROR: Invalid Exception class filter: wildcards can only be used at the beginning and/or end of the filter<br>";
 			} else if (document.getElementById("event_throwable_method").value != "") {
-				// Wildcard not allowed at the end of the string if a method filter is enabled
-				resultIsGreen = false;
-				setErrorStyle(throwableClassElement);
-				errorsHtml += "ERROR: Exception class filter must not end with a wildcard when a method filter is specified<br>";
-			} else {
-				// Wildcard looks ok
-				unsetErrorStyle(throwableClassElement);
+				throwableClassHasError = true
+				errorsHtml += "ERROR: Invalid Exception class filter: must not end with a wildcard when a method filter is specified<br>";
 			}
+		}
+		
+		if (classValue.indexOf(",") != -1) {
+			throwableClassHasError = true;
+			errorsHtml += "ERROR: Invalid Exception class filter: must not contain a comma.<br>";
+		} 
+		
+		if (throwableClassHasError) {
+			resultIsGreen = false;
+			setErrorStyle(throwableClassElement);
 		} else {
-			// No wildcard, or a single wildcard at the beginning of the string
-			// Note: A filter containing just a wildcard (i.e. "*") is also fine
 			unsetErrorStyle(throwableClassElement);
-		}		
+		}
 	}
 
-	// Check validity of any wildcard in the throwable method string	
+	// Check validity of the throwable method filter. Rules:
+	//    1. Can end with a wildcard character if no stack offset is specified
+	//    2. Cannot contain a wildcard in any other location
+	//    3. Cannot contain a comma	
+	var throwableMethodHasError = false;
 	var throwableMethodElement = document.getElementById("event_throwable_method");
 	if (!throwableMethodElement.disabled) {
 		var methodValue = throwableMethodElement.value;
-		if (methodValue.indexOf("*") != -1) {
-			if (document.getElementById("event_throwable_offset").value != "0") {
-				// No wildcard allowed if using stack offset
-				resultIsGreen = false;
-				setErrorStyle(throwableMethodElement);
-				errorsHtml += "ERROR: Exception method filter must not contain a wildcard when using a stack offset.<br>";
-			} else if (methodValue.indexOf("*") != (methodValue.length - 1)) {
-				// If no stack offset, wildcard must be placed at the end
-				resultIsGreen = false;
-				setErrorStyle(throwableMethodElement);
-				errorsHtml += "ERROR: Exception method filter wildcard can only be used at the end of the filter<br>";
-			} else {
-				// Wildcard looks ok
-				unsetErrorStyle(throwableMethodElement);
-			}
+
+		var wildcardIndex = methodValue.indexOf("*");
+		if (wildcardIndex != -1) {
+			if (wildcardIndex != (methodValue.length - 1)) {
+				throwableMethodHasError = true;
+				errorsHtml += "ERROR: Invalid Exception method filter: wildcard can only be used at the end of the filter<br>";
+			} else if (document.getElementById("event_throwable_offset").value != "0") {
+				throwableMethodHasError = true;
+				errorsHtml += "ERROR: Invalid Exception method filter: must not end with a wildcard when using a non-zero stack offset.<br>";
+			}		
+		}
+
+		if (methodValue.indexOf(",") != -1) {
+			throwableMethodHasError = true;
+			errorsHtml += "ERROR: Invalid Exception method filter: must not contain a comma.<br>";
+		} 
+
+		if (throwableMethodHasError) {
+			resultIsGreen = false;
+			setErrorStyle(throwableMethodElement);
 		} else {
-			// No wildcard
 			unsetErrorStyle(throwableMethodElement);
 		}
+	}
+
+	// Check validity of the throwable message filter string
+	var throwableMessageElement = document.getElementById("event_throwable_msg_filter");
+	if (throwableMessageElement.value.indexOf(",") != -1) {
+		resultIsGreen = false;
+		setErrorStyle(throwableMessageElement);
+		errorsHtml += "ERROR: Invalid Exception message filter: must not contain a comma.<br>";	
+	} else {
+		unsetErrorStyle(throwableMessageElement);
+	}
+
+	// Check validity of the class load/unload filter string
+	var classFilterElement = document.getElementById("event_class_filter");
+	if (classFilterElement.value.indexOf(",") != -1) {
+		resultIsGreen = false;
+		setErrorStyle(classFilterElement);
+		errorsHtml += "ERROR: Invalid class load/unload filter: must not contain a comma.<br>";	
+	} else {
+		unsetErrorStyle(classFilterElement);
 	}
 
 	// Check that a priority has been specified if the dump priority option is selected
@@ -866,6 +892,10 @@ function buildAndUpdateResult() {
 			resultIsGreen = false;
 			setErrorStyle(priorityValueElement);
 			errorsHtml += "ERROR: Dump file option is checked, but no file name has been specified<br>";
+		} else if (dumpFileElement.value.indexOf(",") != -1) {
+			resultIsGreen = false;
+			setErrorStyle(dumpFileElement);
+			errorsHtml += "ERROR: Invalid dump file name: must not contain a comma.<br>";
 		} else {
 			unsetErrorStyle(priorityValueElement);
 		}
@@ -1464,7 +1494,7 @@ ul {
 		<b><p id="result" style="font-size: 14pt; font-family:courier;">&nbsp;</p></b>
 		<hr>
 		<p>
-			<input type="checkbox" id="wrap_in_quotes" name="wrap_in_quotes" value="wrap_in_quotes" onchange="processChange(this)">
+			<input type="checkbox" id="wrap_in_quotes" name="wrap_in_quotes" value="wrap_in_quotes" onchange="processChange(this)" checked>
 			<label for="wrap_in_quotes">Wrap in quotes (for use in a shell)</label>
 		</p>
 		<p>
