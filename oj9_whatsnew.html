@@ -81,14 +81,62 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <span class="intro-text">Covering project news, events, milestones, and of course... new and cool stuff!</span>
       </div>
 
-    <div class="f-section-item" id="openj90120">
+    <div class="f-section-item" id="openj90140">
+    <div class="f-content-container">
+      <h3>Eclipse OpenJ9 version 0.14.0 released</h3>
+      <p><i>18th April 2019</i></p>
+	  <p>Our latest release is now available, supporting OpenJDK versions 8, 11, and 12. Release builds of OpenJDK with OpenJ9 can be obtained from 
+	  the <a href="https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9" target="_blank">AdoptOpenJDK community project</a>
+	  <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>, which contain the latest
+	  quarterly Critical Patch Update (CPU).</p>
+      <p><i class="fa fa-pencil" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <b>Note:</b> On OpenJDK 8 and 11, OpenSSL pre-requisites have changed. For more information,
+      see <a href="https://www.eclipse.org/openj9/docs/adoptopenjdk/">AdoptOpenJDK builds</a>.
+      </p>
+	  <p>We've recently been working on improving the performance of JVMTI watched fields. So far, the work is complete only on x86 platforms 
+	  (Windows&reg;, macOS&reg;, and Linux&reg;), but the results are impressive. A customer who tested adding and removing field watches with 
+	  the new code reported a ~40X improvement for adding field watches and a ~15X improvement for removing field watches. The function is not 
+	  currently enabled by default, but if you are interested in giving it a try, you can enable it with the <a href="https://www.eclipse.org/openj9/docs/xxjitinlinewatches/" target="_blank">
+      -XX:[+|-]JITInlineWatches</a> option.</p>	  
+      <p>To help users adopt OpenJ9, we have continued to work on compatibility with the reference implementation by introducing the following
+		new options and tools:
+		<ul>
+           <li>By default, the OpenJ9 VM ignores any <tt>-XX:</tt> options that it does not recognize, which prevents an application from 
+		   failing to start. However, if you are switching to OpenJ9 from HotSpot and you set a lot of <tt>-XX:</tt> options on the command
+           line, you will want to identify which options are ignored and determine whether an equivalent OpenJ9 option is required. Use the
+		   <tt>-XX:-IgnoreUnrecognizedXXColonOptions</tt> option to prevent options being ignored and read <a href="https://www.eclipse.org/openj9/docs/openj9_newuser/">Switching to OpenJ9</a>
+		   for a list of compatible options.</li>
+		   <li>OpenJ9 now includes a Java stack tool (<tt>jstack</tt>) that you can use to obtain Java stack traces and thread information
+		   for processes. The tool is similar to the HotSpot tool of the same name, but is an independent implementation.</li>
+		   <li>The Java process status tool (<tt>jps</tt>) introduced in OpenJ9 0.13.0 for OpenJDK 12 is now available for OpenJDK 8 and 11 users.
+		   Although similar in function to the HotSpot <tt>jps</tt> tool, it is implemented differently by using the Attach API.
+        </ul>
+	   </p>
+	   <p>Other changes in this release include support for OpenSSL v1.0.2 (OpenJDK 8 & 11) and improved platform support for our pause-less garbage collection
+	   mode of the <tt>gencon</tt> policy.</p>
+	   <p>To find out more about the changes in v0.14.0, read the <a href="https://www.eclipse.org/openj9/docs/version0.14/">Release notes</a> in the 
+	   OpenJ9 user documentation.</p>
+      
+
+<!-- Keep as-is except edit ID in URL and change "text=" -->
+<a href="https://twitter.com/share?
+url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openj90140&
+via=openj9&
+hashtags=openj9,java&
+text=V0.14.0%20released;%20More%20help%20for%20moving%20to%20OpenJ9!"
+class="twitter-share-button"
+data-show-count="false">Tweet</a>
+
+        </div>
+  </div>	  
+	  
+    <div class="f-section-item" id="openj90130">
     <div class="f-content-container">
       <h3>Eclipse OpenJ9 version 0.13.0 released</h3>
       <p><i>20th March 2019</i></p>
 	  <p>OpenJ9 version 0.13.0 adds support for OpenJDK version 12, the latest release of the Java SE Platform. 
 	  Builds of OpenJDK with OpenJ9 are now available at the <a href="https://adoptopenjdk.net/releases.html?variant=openjdk12&jvmVariant=openj9" target="_blank">AdoptOpenJDK community project</a>
 	  <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.</p>
-      <p><i class="fa fa-pencil" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> OpenSSL pre-requisites have changed. For more information,
+      <p><i class="fa fa-pencil" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <b>Note:</b> OpenSSL pre-requisites have changed. For more information,
       see <a href="https://www.eclipse.org/openj9/docs/adoptopenjdk/">AdoptOpenJDK builds</a>.
       </p>
       <p>There are a number of new features and capabilities delivered in this release:
