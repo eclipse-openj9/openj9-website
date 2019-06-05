@@ -440,6 +440,9 @@ function processChange(option) {
 				option.value = option.value.replace(".", "/");
 			}
 		}
+		
+		// Remove any whitespace
+		option.value = option.value.replace(/\s/g,'');
 
 		// Remove brackets if present
 		option.value = option.value.replace(/\(|\)/g, '');
@@ -806,7 +809,7 @@ function addMethod() {
 
 	var methodTextElement = document.getElementById("meth_text_" + methodCounter);
 
-	// Tooltip: Method text field
+	// Tooltip: Method Specification
 	var tooltipText = "Examples:\n" +
 		"    - java/lang/String.indexOf\n" +
 		"    - java/nio/ByteBuffer.*\n" +
@@ -814,6 +817,7 @@ function addMethod() {
 		"    - *.readObject\n" +
 		"    - *.*\n" +
 		"\n" +
+		"Wildcards are allowed at the beginning and/or end of the class name and method name.\n" +
 		"Note that method parameters cannot be specified.\n" +
 		"All methods matching the specified name will be traced.";
 	methodTextElement.title = tooltipText;
@@ -971,7 +975,7 @@ function addTrigger(type) {
 	if (type == "method") {
 		methodSpecElement = document.getElementById("trig_meth_spec_" + triggerCounter);
 
-		// Tooltip: Tracepoint ID
+		// Tooltip: Method Specification
 		var tooltipText = "Examples:\n" +
 			"    - java/lang/String.indexOf\n" +
 			"    - java/nio/ByteBuffer.*\n" +
@@ -979,7 +983,8 @@ function addTrigger(type) {
 			"    - MyClass.*\n" +
 			"    - *.*\n" +
 			"\n" +
-			"Note that methods parameters cannot be specified.\n" +
+			"Wildcards are allowed at the beginning and/or end of the class name and method name.\n" +
+			"Note that method parameters cannot be specified.\n" +
 			"All methods matching the specified name will fire the trigger.";
 		document.getElementById("trig_meth_spec_" + triggerCounter).title = tooltipText;
 
@@ -1459,7 +1464,7 @@ function removeFinalAmpersandIfPresent(string) {
 }
 
 // Checks a string for invalid tracepoint specifications
-// If a invalid specs are found, an HTML formatted string describing them is returned.
+// If invalid specs are found, an HTML formatted string describing them is returned.
 // Otherwise an empty string is returned.
 function findInvalidTracepointSpecs(value) {
 	// Spec may contain multiple elements separated by commas
@@ -1475,6 +1480,55 @@ function findInvalidTracepointSpecs(value) {
 		}
 	}
 	return invalidSpecs;
+}
+
+// Check validity of a method specification string. Rules:
+//    1. Class name can start and/or end with a wildcard character
+//    2. Method name can start and/or end with a wildcard character
+//    3. Can contain just a single wildcard character on its own
+//    4. Cannot contain a wildcard in any other location
+//    5. Cannot contain a comma
+// If the spec is invalid, an HTML formatted string describing it is returned.
+// Otherwise an empty string is returned.
+function findInvalidMethodSpec(methodSpecElement) {
+	var invalidSpec = "";	
+	if (methodSpecElement != null) {
+		var methodSpecValue = methodSpecElement.value;
+		if (methodSpecValue == "") {
+			invalidSpec += "ERROR: Missing method specification<br>";
+		} else {
+			if (methodSpecValue.indexOf(",") != -1) {
+				invalidSpec += "ERROR: Invalid method specification: must not contain a comma: \"" + escapeHTML(methodSpecElement.value) + "\"<br>";
+			}
+			
+			var methodSpecParts = methodSpecValue.split(".");
+			if (methodSpecParts.length != 2) {
+				if (hasInvalidWildcard(methodSpecValue)) {
+					invalidSpec += "ERROR: Invalid method specification: wildcards can only be used at the beginning and/or end of the class/method name: \"" + escapeHTML(methodSpecElement.value) + "\"<br>";
+				}
+			} else {
+				var methodSpecClass = methodSpecParts[0];
+				if (hasInvalidWildcard(methodSpecClass)) {
+					invalidSpec += "ERROR: Invalid method specification: wildcards can only be used at the beginning and/or end of the class name: \"" + escapeHTML(methodSpecClass) + "\"<br>";
+				}
+				
+				var methodSpecMethod = methodSpecParts[1];
+				if (hasInvalidWildcard(methodSpecMethod)) {
+					invalidSpec += "ERROR: Invalid method specification: wildcards can only be used at the beginning and/or end of the method name: \"" + escapeHTML(methodSpecMethod) + "\"<br>";
+				}
+			}
+		}
+	}
+	return invalidSpec;
+}
+
+// Check for invalid wildcards in method specification class/method names.
+// Wildcards are allowed at the beginning and/or end of the string
+function hasInvalidWildcard(classOrMethod) {
+	if ((classOrMethod.lastIndexOf("*") > 0) && (classOrMethod.indexOf("*", 1) != classOrMethod.length - 1)) {
+		return true;
+	}
+	return false;
 }
 
 function buildAndUpdateResult() {
@@ -1583,38 +1637,35 @@ function buildAndUpdateResult() {
 	for (var i = 0; i < methodCounter; i++) {
 		var methodSpecElement = document.getElementById("meth_text_" + i);
 
-		// Check that each method option actually contains a valid-looking method spec
 		if (methodSpecElement != null) {
-			if (methodSpecElement.value == "") {
+			// Check validity of method specification
+			var invalidSpec = findInvalidMethodSpec(methodSpecElement);
+			if (invalidSpec != "") {
 				resultIsGreen = false;
 				setErrorStyle(methodSpecElement);
-				errorsHtml += "ERROR: Missing method specification in method trace<br>";
-			} else if (methodSpecElement.value.indexOf(",") != -1) {
-				resultIsGreen = false;
-				setErrorStyle(methodSpecElement);
-				errorsHtml += "ERROR: Invalid method specification: must not contain a comma: \"" + escapeHTML(methodSpecElement.value) + "\"<br>";
+				errorsHtml += invalidSpec;
 			} else {
 				unsetErrorStyle(methodSpecElement);
 			}
-		}
+			
+			// Check whether argument and return value tracing is enabled.
+			// The warning includes an example JIT exclude option.
+			if (document.getElementById("meth_args_" + i).checked) {
+				argTracingEnabled = true;
+				var methodSpecValue = methodSpecElement.value;
 
-		// Check whether argument and return value tracing is enabled.
-		// The warning includes an example JIT exclude option.
-		if (methodSpecElement != null && document.getElementById("meth_args_" + i).checked) {
-			argTracingEnabled = true;
-			var methodSpecValue = methodSpecElement.value;
+				// Method specs for JIT excludes must specify parameters or match them with a wildcard,
+				// so we append a '*' if the method spec doesn't already end in one
+				if (methodSpecValue.length > 0) {
+					if (methodSpecValue.lastIndexOf("*") != methodSpecValue.length - 1) {
+						methodSpecValue += "*";
+					}
 
-			// Method specs for JIT excludes must specify parameters or match them with a wildcard,
-			// so we append a '*' if the method spec doesn't already end in one
-			if (methodSpecValue.length > 0) {
-				if (methodSpecValue.lastIndexOf("*") != methodSpecValue.length - 1) {
-					methodSpecValue += "*";
-				}
-
-				if (methodSpecForJitExclude == "") {
-					methodSpecForJitExclude += methodSpecValue;
-				} else {
-					methodSpecForJitExclude += "|" + methodSpecValue;
+					if (methodSpecForJitExclude == "") {
+						methodSpecForJitExclude += methodSpecValue;
+					} else {
+						methodSpecForJitExclude += "|" + methodSpecValue;
+					}
 				}
 			}
 		}
@@ -1622,13 +1673,13 @@ function buildAndUpdateResult() {
 	if (argTracingEnabled) {
 		if (methodSpecForJitExclude != "") {
 			var jitExcludeOption = "-Xjit:exclude={" + methodSpecForJitExclude + "}";
-			warningsHtml += "WARNING: Arguments and return values will only be traced for interpreted methods. Use this JIT exclude option if necessary: <span style=\"white-space: nowrap\">" + jitExcludeOption + "</span><br>";
+			warningsHtml += "WARNING: Arguments and return values will only be traced for interpreted methods. Use this JIT exclude option if necessary: <span style=\"white-space: nowrap\">\"" + jitExcludeOption + "\"</span><br>";
 		} else {
 			warningsHtml += "WARNING: Arguments and return values will only be traced for interpreted methods. Use a JIT exclude option if necessary.<br>";
 		}
 	}
 
-	// Check that each ID tracepoint has a tpnid
+	// Check validity of tracepoint IDs
 	for (var i = 0; i < tracepointCounter; i++) {
 		var tracepointIdElement = document.getElementById("tp_id_" + i);
 		if (tracepointIdElement != null) {
@@ -1644,39 +1695,31 @@ function buildAndUpdateResult() {
 	}
 
 	// Trigger checks
-	var resumeSelectedEntry = false;
-	var resumeSelectedExit = false;
 	for (var i = 0; i < triggerCounter; i++) {
-			// Method trigger checks
+		// Method trigger checks
 		var methodSpecElement = document.getElementById("trig_meth_spec_" + i);
 		if (methodSpecElement != null) {
-			// Check whether a method spec is provided
-			if (methodSpecElement.value == "") {
+			// Check validity of method specification
+			var invalidSpec = findInvalidMethodSpec(methodSpecElement);
+			if (invalidSpec != "") {
 				resultIsGreen = false;
 				setErrorStyle(methodSpecElement);
-				errorsHtml += "ERROR: Missing method specification in trigger<br>";
+				errorsHtml += invalidSpec;
 			} else {
-				// Check whether the method spec looks valid
-				if (methodSpecElement.value.indexOf(",") != -1) {
-					resultIsGreen = false;
-					setErrorStyle(methodSpecElement);
-					errorsHtml += "ERROR: Invalid method specification: must not contain a comma: \"" + escapeHTML(methodSpecElement.value) + "\"<br>";
-				} else {
-					unsetErrorStyle(methodSpecElement);
-				}
-
-				// Check that an entry or exit action is provided
-				var entryActionElement = getSelectedElement(document.getElementById("trig_meth_ent_" + i));
-				var exitActionElement = getSelectedElement(document.getElementById("trig_meth_ex_" + i));
-				if (entryActionElement.value == "none" && exitActionElement.value == "none") {
-					resultIsGreen = false;
-					setErrorStyle(entryActionElement);
-					setErrorStyle(exitActionElement);
-					errorsHtml += "ERROR: No entry/exit action selected for method trigger: " + escapeHTML(methodSpecElement.value) + "<br>";
-				} else {
-					unsetErrorStyle(entryActionElement);
-					unsetErrorStyle(exitActionElement);
-				}
+				unsetErrorStyle(methodSpecElement);
+			}
+			
+			// Check that an entry or exit action is provided
+			var entryActionElement = getSelectedElement(document.getElementById("trig_meth_ent_" + i));
+			var exitActionElement = getSelectedElement(document.getElementById("trig_meth_ex_" + i));
+			if (entryActionElement.value == "none" && exitActionElement.value == "none") {
+				resultIsGreen = false;
+				setErrorStyle(entryActionElement);
+				setErrorStyle(exitActionElement);
+				errorsHtml += "ERROR: No entry/exit action selected for method trigger: " + escapeHTML(methodSpecElement.value) + "<br>";
+			} else {
+				unsetErrorStyle(entryActionElement);
+				unsetErrorStyle(exitActionElement);
 			}
 		}
 
