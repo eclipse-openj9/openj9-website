@@ -473,11 +473,11 @@ function processChange(option) {
 		option.value = result;
 	}
 
-	// Enable the disable_predefined checkbox if we are tracing to maximal buffers,
-	// and disabled otherwise. This is because the tracepoints that are enabled by
-	// default are traced to maximal buffers. We only care about them if we're
-	// tracing to the dame destination.
-	if (isMaximalTracepointDestinationEnabled()) {
+	// Enable the disable_predefined checkbox if we are tracing to maximal or
+	// exception buffers, and disabled otherwise. This is because only these two destinations
+	// have tracepoints enabled by default, and we only care about them if we're tracing to
+	// the same destination.
+	if (isMaximalOrExceptionDestinationEnabled()) {
 		enableInput(document.getElementById("disable_predefined"));
 	} else {
 		disableInput(document.getElementById("disable_predefined"));
@@ -1274,14 +1274,17 @@ function isIdTracepointEnabled(specifiedId) {
 	return false;
 }
 
-// Returns true if the "maximal" tracepoint destination is enabled
-function isMaximalTracepointDestinationEnabled() {
+// Returns true if the "maximal" or "exception" tracepoint destinations are enabled
+function isMaximalOrExceptionDestinationEnabled() {
 	for (var i = 0; i < tracepointCounter; i++) {
-		if (document.getElementById("tp_dest_maximal_" + i) != null) {
-			if (document.getElementById("tp_dest_maximal_" + i).selected) {
-				return true;
-			}
-		}
+		var maxDestElement = document.getElementById("tp_dest_maximal_" + i);
+		var excDestElement = document.getElementById("tp_dest_exception_" + i);		
+		if (maxDestElement != null && maxDestElement.selected) {
+			return true;
+		}	
+		if (excDestElement != null && excDestElement.selected) {
+			return true;
+		}		
 	}
 	return false;
 }
@@ -2650,8 +2653,8 @@ The project website pages cannot be redistributed
 		</td>
 		<td>
 			&nbsp;
-			<input disabled type="checkbox" id="disable_predefined" name="disable_predefined" value="disable_predefined" title="Disables all tracepoints that are enabled by default" checked onchange="processChange(this)">
-			<label data-disabled="true" for="disable_predefined" title="Disables all tracepoints that are enabled by default (destination: maximal buffers)">Disable default tracepoints</label>
+			<input disabled type="checkbox" id="disable_predefined" name="disable_predefined" value="disable_predefined" title="Disables all tracepoints that are enabled by default for applicable destinations:&#10;    - Maximal buffers:  all Level 1 and Level 2 tracepoints&#10;    - Exception buffers:  verbose GC logging tracepoints" checked onchange="processChange(this)">
+			<label data-disabled="true" for="disable_predefined" title="Disables all tracepoints that are enabled by default for applicable destinations:&#10;    - Maximal buffers:  all Level 1 and Level 2 tracepoints&#10;    - Exception buffers:  verbose GC logging tracepoints">Disable default tracepoints</label>
 		</td>
 	</tr>
 </table>
