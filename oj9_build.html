@@ -2,12 +2,12 @@
 <!--
 Copyright (c) 2017, 2019 IBM Corp. and others
 
-This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which accompanies this distribution and is available at http://eclipse.org/legal/epl-2.0 or the Apache License, Version 2.0 which accompanies this distribution and is available at https://www.apache.org/licenses/LICENSE-2.0. 
+This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which accompanies this distribution and is available at http://eclipse.org/legal/epl-2.0 or the Apache License, Version 2.0 which accompanies this distribution and is available at https://www.apache.org/licenses/LICENSE-2.0.
 
-This Source Code may also be made available under the following Secondary Licenses when the conditions for such availability set forth in the Eclipse Public License, v. 2.0 are satisfied: GNU General Public License, version 2 with the GNU Classpath Exception [1] and GNU General Public License, version 2 with the OpenJDK Assembly Exception [2]. 
+This Source Code may also be made available under the following Secondary Licenses when the conditions for such availability set forth in the Eclipse Public License, v. 2.0 are satisfied: GNU General Public License, version 2 with the GNU Classpath Exception [1] and GNU General Public License, version 2 with the OpenJDK Assembly Exception [2].
 
-[1] https://www.gnu.org/software/classpath/license.html  
-[2] http://openjdk.java.net/legal/assembly-exception.html 
+[1] https://www.gnu.org/software/classpath/license.html
+[2] http://openjdk.java.net/legal/assembly-exception.html
 
 SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
 
@@ -26,7 +26,8 @@ The project website pages cannot be redistributed
   <link rel="stylesheet" href="./css/oj9_common.css">
 <!-- Eclipse privacy popup -->
   <link rel="stylesheet" type="text/css" href="//www.eclipse.org/eclipse.org-common/themes/solstice/public/stylesheets/vendor/cookieconsent/cookieconsent.min.css" />
-<!-- End Eclipse privacy popup --> 
+  <script src="//www.eclipse.org/eclipse.org-common/themes/solstice/public/javascript/vendor/cookieconsent/default.min.js"></script>
+<!-- End Eclipse privacy popup -->
   <script type="text/javascript" src="./js/oj9_common.js"></script>
 <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -34,23 +35,23 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5WLCZXC');</script>
-<!-- End Google Tag Manager --> 
+<!-- End Google Tag Manager -->
 
 </head>
 
 <body onload="version('a')">
 
   <div id="main-title">
-    <script type="text/javascript">navigation(document.location.href);</script>  
+    <script type="text/javascript">navigation(document.location.href);</script>
     <div class="title">
       <a href="index.html">
         <!--<img class="title_icon" src="./assets/openj9_6a.png" alt="Eclipse OpenJ9">-->
         <img class="title_icon" src="./assets/openj9_6b.png" alt="Eclipse OpenJ9">
       </a>
-    </div>  
+    </div>
     <div class="egg">
       <a href="http://wiki.eclipse.org/Development_Resources/Process_Guidelines/What_is_Incubation" target="_blank"><img src="./assets/egg-incubation.png" alt="Eclipse Incubation"></a>
-    </div>  
+    </div>
   </div>
 
   <main class="tabs_bg" id="build">
@@ -84,7 +85,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="f-section-item">
         <span class="intro-text1" style="margin:0 4rem;">We're going to use Docker to create a Docker container where you'll build a binary from source code and run some tests on it. Just follow these steps:</span>
       </div>
-          
+
 <!-- set version x5 -->
       <div class="f-section-item">
         <ol class="toc">
@@ -93,7 +94,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <li><a href="#version-8:config" >Configure your build              </a></li>
           <li><a href="#version-8:build9" >Build OpenJDK with OpenJ9         </a></li>
           <li><a href="#version-8:test"   >Test your binary                  </a></li>
-        </ol> 
+        </ol>
       </div>
 
 
@@ -178,7 +179,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </p>
           <p>For example, the <strong>Linux 64-bit (x86-64)</strong> Dockerfile directory is: <code>linux-x86_64-normal-server-release</code>
           </p>
-          
+
         </div>
       </div>
 
@@ -223,7 +224,7 @@ OpenJDK  - 27f5b8f based on jdk8u152-b03)
       <div class="f-section-item">
         <span class="intro-text1" style="margin:0 4rem;">We're going to use Docker to create a Docker container where you'll build a binary from source code and run some tests on it. Just follow these steps:</span>
       </div>
-          
+
 <!-- set version x5 -->
       <div class="f-section-item">
         <ol class="toc">
@@ -232,7 +233,7 @@ OpenJDK  - 27f5b8f based on jdk8u152-b03)
           <li><a href="#version-11:config" >Configure your build              </a></li>
           <li><a href="#version-11:build9" >Build OpenJDK with OpenJ9         </a></li>
           <li><a href="#version-11:test"   >Test your binary                  </a></li>
-        </ol> 
+        </ol>
       </div>
 
 <!-- set version -->
@@ -311,7 +312,7 @@ OpenJDK  - 27f5b8f based on jdk8u152-b03)
           </p>
           <p>For example, the <strong>Linux 64-bit (x86-64)</strong> Dockerfile directory is: <code>linux-x86_64-normal-server-release</code>
           </p>
-          
+
         </div>
       </div>
 
@@ -356,7 +357,7 @@ JCL      - 98f2038 based on jdk-11+28)
       <div class="f-section-item">
         <span class="intro-text1" style="margin:0 4rem;">We're going to use Docker to create a Docker container where you'll build a binary from source code and run some tests on it. Just follow these steps:</span>
       </div>
-          
+
 <!-- set version x5 -->
       <div class="f-section-item">
         <ol class="toc">
@@ -365,7 +366,7 @@ JCL      - 98f2038 based on jdk-11+28)
           <li><a href="#version-12:config" >Configure your build              </a></li>
           <li><a href="#version-12:build9" >Build OpenJDK with OpenJ9         </a></li>
           <li><a href="#version-12:test"   >Test your binary                  </a></li>
-        </ol> 
+        </ol>
       </div>
 
 <!-- set version -->
@@ -444,7 +445,7 @@ JCL      - 98f2038 based on jdk-11+28)
           </p>
           <p>For example, the <strong>Linux 64-bit (x86-64)</strong> Dockerfile directory is: <code>linux-x86_64-normal-server-release</code>
           </p>
-          
+
         </div>
       </div>
 
@@ -507,7 +508,7 @@ JCL      - 9af014f based on jdk-12+29)
     </div>
 
     <p>OpenJ9 is an Eclipse Incubator project.</p>
-    
+
     <span class="no-wrap"><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="dark-link" href="http://www.eclipse.org">Eclipse Foundation website</a></span>
     <span class="no-wrap"><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="dark-link" href="http://www.eclipse.org/legal/privacy.php">Privacy policy</a></span>
     <span class="no-wrap"><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="dark-link" href="http://www.eclipse.org/legal/termsofuse.php">Website terms&nbsp;of use</a></span>

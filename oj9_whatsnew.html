@@ -33,6 +33,7 @@ The project website pages cannot be redistributed
   <link rel="stylesheet" href="./css/oj9_common.css">
 <!-- Eclipse privacy popup -->
   <link rel="stylesheet" type="text/css" href="//www.eclipse.org/eclipse.org-common/themes/solstice/public/stylesheets/vendor/cookieconsent/cookieconsent.min.css" />
+  <script src="//www.eclipse.org/eclipse.org-common/themes/solstice/public/javascript/vendor/cookieconsent/default.min.js"></script>
   <script type="text/javascript" src="./js/oj9_common.js"></script>
 <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -55,11 +56,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   };
   return t;
 }(document, "script", "twitter-wjs"));</script>
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
 
+<script>
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
 
+function checkCookie() {
+  var cookie=getCookie("eclipse_cookieconsent_status");
+
+  if (cookie === "allow") {
+    twttr.widgets.load();
+  }
+}
+</script>
 </head>
-<body>
-<script>twttr.widgets.load()</script>
+
+<body onload="checkCookie()">
   <div id="main-title">
     <script type="text/javascript">navigation(document.location.href);</script>
     <div class="title">
@@ -123,7 +149,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   class="twitter-share-button"
   data-show-count="false">Tweet</a>
 
-          </div>
+      </div>
     </div>
 
 

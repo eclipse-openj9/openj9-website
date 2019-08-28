@@ -28,7 +28,7 @@ ECLIPSE_DIR = 'staging_repo'
 
 timeout(time: 3, unit: 'HOURS') {
     timestamps {
-        node('master') {
+        node('worker') {
             try {
                 stage('Clone') {
                     // Clone PullRequest into GITHUB_DIR
@@ -64,7 +64,7 @@ timeout(time: 3, unit: 'HOURS') {
                         sh "cp -r ${WORKSPACE}/${GITHUB_DIR}/* ."
                         sh "cp -r ${WORKSPACE}/${GITHUB_DIR}/.gitignore ."
                         sh 'git status'
-                        sh 'git add .'						
+                        sh 'git add .'
                         sh 'git commit -m "Generated from commit: ${sha1}"'
                         sh "git push origin ${BRANCH}"
                         sh "git diff origin/${BRANCH}..origin/master"
