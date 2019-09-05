@@ -19,14 +19,15 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
  *******************************************************************************/
- 
+
 GITHUB_REPO = 'https://github.com/eclipse/openj9-website.git'
 ECLIPSE_REPO = 'ssh://genie.openj9@git.eclipse.org:29418/www.eclipse.org/openj9.git'
 BRANCH = 'master'
+SSH_CREDENTIAL_ID = 'git.eclipse.org-bot-ssh'
 
 timeout(time: 3, unit: 'HOURS') {
     timestamps {
-        node('master') {
+        node('worker') {
             try {
                 stage('Clone') {
                     git branch: BRANCH, url: GITHUB_REPO, poll:false, changelog: true
@@ -38,7 +39,9 @@ timeout(time: 3, unit: 'HOURS') {
                     currentBuild.description = "${LAST_COMMIT}"
                 }
                 stage('Push') {
-                    sh "git push upstream ${BRANCH}"
+                    sshagent(credentials:["${SSH_CREDENTIAL_ID}"]) {
+                        sh "git push upstream ${BRANCH}"
+                    }
                 }
             } catch(e) {
                 slackSend channel: '#jenkins', color: 'danger', message: "Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
