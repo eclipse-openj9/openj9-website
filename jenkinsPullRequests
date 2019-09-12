@@ -25,10 +25,11 @@ ECLIPSE_REPO = 'ssh://genie.openj9@git.eclipse.org:29418/www.eclipse.org/openj9.
 BRANCH = 'staging'
 GITHUB_DIR = 'github_repo'
 ECLIPSE_DIR = 'staging_repo'
+SSH_CREDENTIAL_ID = 'git.eclipse.org-bot-ssh'
 
 timeout(time: 3, unit: 'HOURS') {
     timestamps {
-        node('master') {
+        node('worker') {
             try {
                 stage('Clone') {
                     // Clone PullRequest into GITHUB_DIR
@@ -48,7 +49,8 @@ timeout(time: 3, unit: 'HOURS') {
                             extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: ECLIPSE_DIR],
                                         [$class: 'CheckoutOption'], [$class: 'LocalBranch', localBranch: BRANCH]],
                             submoduleCfg: [],
-                            userRemoteConfigs: [[url: ECLIPSE_REPO]]]
+                            userRemoteConfigs: [[credentialsId: SSH_CREDENTIAL_ID,
+                                url: ECLIPSE_REPO]]]
                 }
 
                 stage('Stage') {
@@ -64,9 +66,11 @@ timeout(time: 3, unit: 'HOURS') {
                         sh "cp -r ${WORKSPACE}/${GITHUB_DIR}/* ."
                         sh "cp -r ${WORKSPACE}/${GITHUB_DIR}/.gitignore ."
                         sh 'git status'
-                        sh 'git add .'						
+                        sh 'git add .'
                         sh 'git commit -m "Generated from commit: ${sha1}"'
-                        sh "git push origin ${BRANCH}"
+                        sshagent(credentials:["${SSH_CREDENTIAL_ID}"]) {
+                            sh "git push origin ${BRANCH}"
+                        }
                         sh "git diff origin/${BRANCH}..origin/master"
                     }
                 }
