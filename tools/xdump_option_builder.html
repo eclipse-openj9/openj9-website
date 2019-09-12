@@ -44,13 +44,18 @@ filterElementIds["allocation"] = ["event_allocation_filter_size_min", "event_all
 filterElementIds["slow"]       = ["event_slow_filter"];
 
 var agentsRequiringRequest = {};
-agentsRequiringRequest["serial"] = ["snap", "jit"];
-agentsRequiringRequest["exclusive"] = ["heap", "system", "java", "snap", "jit", "console"];
+agentsRequiringRequest["serial"] = ["snap", "jit", "ceedump"];
+agentsRequiringRequest["exclusive"] = ["heap", "system", "java", "snap", "jit", "console", "ceedump"];
 agentsRequiringRequest["prepwalk"] = ["heap", "system"];
 agentsRequiringRequest["preempt"] = ["java"];
 
 var noHeapdumpEventElementIds = ["event_gpf", "event_traceassert", "event_abort"];
 var agentsThatDumpAFileIds = ["agent_system", "agent_java", "agent_heap", "agent_snap", "agent_jit"];
+
+var fileDsnTokenTargetElement = null;
+
+var toolExecMouseDown = false;
+document.addEventListener("mouseup", clearToolExecMouseDown);
 
 function initialSetup() {
 	setupTooltips();
@@ -94,8 +99,8 @@ function setupTooltips() {
 
 	titleText = "One event can generate multiple dumps. The agents that produce each dump run sequentially and their order is " +
 	            "determined by the priority keyword set for each agent. Higher priority dump agents are started first. The " +
-	            "priorities associated with default dump agents can be view by running \"java -Xdump:what\".";
-	document.getElementById("priority_value").title = titleText;
+	            "priorities associated with default dump agents can be viewed by running \"java -Xdump:what\".";
+	document.getElementById("priority").title = titleText;
 	
 	titleText = "Specify the range of dump events on which to trigger the specified dump agents. For example, if \"First event\" is set to 5, " +
 				"and \"Last event\" set to 7, the dump event will trigger only on the 5th, 6th and 7th dump events. A value of 0 means " +
@@ -179,7 +184,7 @@ function processChange(option) {
 				enableInput(toolWaitElement);
 				execFieldElement.focus();
 			} else {
-				// If has not been modified, set it to the normal default of 1..0
+				// If range has not been modified, set it to the normal default of 1..0
 				if (rangeFirstElement.value == 1 && rangeLastElement.value == 1) {
 					rangeFirstElement.value = 1;
 					rangeLastElement.value = 0;
@@ -214,17 +219,6 @@ function processChange(option) {
 		} else {
 			disableInput(document.getElementById("range_first"));
 			disableInput(document.getElementById("range_last"));			
-		}
-	}
-
-	// Enable and focus priority number field when priority is checked
-	if (option.name == "priority") {
-		var priorityValueElement = document.getElementById("priority_value");
-		if (option.checked == true) {
-			enableInput(priorityValueElement);
-			priorityValueElement.focus();
-		} else {
-			disableInput(priorityValueElement);			
 		}
 	}
 
@@ -315,30 +309,39 @@ function processChange(option) {
 		enableInput(document.getElementById("request_compact"));
 	}
 
-	// Enable file text input if file option is checked
-	if (option.name == "file") {
-		if (option.checked == true) {
-			enableInput(document.getElementById("file_text"));
-			document.getElementById("file_text").focus();
-		} else {
-			disableInput(document.getElementById("file_text"));
-		}	
+	// Enable/disable file text field
+	var fileTextElement = document.getElementById("file_text");
+	var enableTokenButtons = false;
+	if (fileCompatibleAgentChecked()) {
+		enableInput(fileTextElement);
+		enableTokenButtons = true;
+	} else {
+		disableInput(fileTextElement);
+	}
+
+	// Enable/disable dsn text field
+	var dsnTextElement = document.getElementById("dsn_text");
+	if (document.getElementById("agent_system").checked) {
+		enableInput(dsnTextElement);
+		enableTokenButtons = true;
+	} else {
+		disableInput(dsnTextElement);
+	}
+	
+	// Enable/disable file/dsn token buttons
+	if (enableTokenButtons) { 
+		enableDumpNameTokenButtons();
+	} else {
+		disableDumpNameTokenButtons();
 	}
 
 	// Insert text in the target text input if one of the token buttons is pressed
-	if (option.type == "button" && option.getAttribute("data-target") != null) {
-		insertText(document.getElementById(option.getAttribute("data-target")), option.getAttribute("data-token"));
-	}
-
-	// Enable the file option if a compatible agent is checked
-	if (fileCompatibleAgentChecked()) {
-		enableInput(document.getElementById("file"));
-		if (document.getElementById("file").checked) {
-			enableInput(document.getElementById("file_text"));
+	if (option.type == "button") {
+		if (option.getAttribute("data-target") == null && fileDsnTokenTargetElement != null) {
+			insertText(fileDsnTokenTargetElement, option.getAttribute("data-token"));
+		} else {
+			insertText(document.getElementById(option.getAttribute("data-target")), option.getAttribute("data-token"));
 		}
-	} else {
-		disableInput(document.getElementById("file"));
-		disableInput(document.getElementById("file_text"));	
 	}
 
 	// Remove focus from input element (ensures error styling works correctly)
@@ -497,6 +500,24 @@ function enableInput(inputElement) {
 	}
 }
 
+function enableDumpNameTokenButtons() {
+	var allInputs = document.getElementsByTagName("input");
+	for (var i = 0; i < allInputs.length; i++) {
+		if (allInputs[i].id.indexOf("file_button_") != -1) {
+			allInputs[i].disabled = false;
+		}
+	}
+}
+
+function disableDumpNameTokenButtons() {
+	var allInputs = document.getElementsByTagName("input");
+	for (var i = 0; i < allInputs.length; i++) {
+		if (allInputs[i].id.indexOf("file_button_") != -1) {
+			allInputs[i].disabled = true;
+		}
+	}
+}
+
 function getLabelsForInput(inputElement) {
 	var allLabels = document.getElementsByTagName("label");
 	var results = [];
@@ -637,11 +658,9 @@ function buildAndUpdateResult() {
 	}
 	
 	// priority
-	if (document.getElementById("priority").checked == true) {
-		var priority = document.getElementById("priority_value").value;
-		if (priority != "") {
-			resultString += ",priority=" + priority;
-		}
+	var priority = document.getElementById("priority").value;
+	if (priority != "") {
+		resultString += ",priority=" + priority;
 	}
 
 	// exec
@@ -688,11 +707,18 @@ function buildAndUpdateResult() {
 	}
 
 	// Dump file name
-	if (document.getElementById("file").checked && !document.getElementById("file").disabled) {
-		resultString += ",file=";
-		var fileString = document.getElementById("file_text").value;
-		if (fileString != "") {
-			resultString += fileString;
+	var fileElement = document.getElementById("file_text");
+	if (!fileElement.disabled) {
+		if (fileElement.value != "") {
+			resultString += ",file=" + fileElement.value;
+		}
+	}
+	
+	// SYSTDUMP data set name
+	var dsnElement = document.getElementById("dsn_text");
+	if (!dsnElement.disabled) {
+		if (dsnElement.value != "") {
+			resultString += ",dsn=" + dsnElement.value;
 		}
 	}
 
@@ -762,7 +788,7 @@ function buildAndUpdateResult() {
 
 	// Check that a command has been specified if the tool agent is selected
 	var execElement = document.getElementById("exec");
-	if (document.getElementById("agent_tool").checked) {
+	if (document.getElementById("agent_tool").checked && execElement != document.activeElement && !toolExecMouseDown) {
 		if (execElement.value == "") {
 			resultIsGreen = false;
 			setErrorStyle(execElement);
@@ -875,45 +901,65 @@ function buildAndUpdateResult() {
 		unsetErrorStyle(classFilterElement);
 	}
 
-	// Check that a priority has been specified if the dump priority option is selected
-	var priorityValueElement = document.getElementById("priority_value");
-	if (document.getElementById("priority").checked && priorityValueElement.value == "") {
-		resultIsGreen = false;
-		setErrorStyle(priorityValueElement);
-		errorsHtml += "ERROR: Dump priority option is checked, but no priority value has been specified<br>";		
-	} else {
-		unsetErrorStyle(priorityValueElement);
-	}
-
 	// Dump filename checks
-	var dumpFileElement = document.getElementById("file_text");
-	if (document.getElementById("file").checked) {
-		if (dumpFileElement.value == "") {
+	var dumpFileTextElement = document.getElementById("file_text");
+	if (!dumpFileTextElement.disabled && dumpFileTextElement.value != "") {
+		if (dumpFileTextElement.value.indexOf(",") != -1) {
 			resultIsGreen = false;
-			setErrorStyle(priorityValueElement);
-			errorsHtml += "ERROR: Dump file option is checked, but no file name has been specified<br>";
-		} else if (dumpFileElement.value.indexOf(",") != -1) {
-			resultIsGreen = false;
-			setErrorStyle(dumpFileElement);
-			errorsHtml += "ERROR: Invalid dump file name: must not contain a comma.<br>";
+			setErrorStyle(dumpFileTextElement);
+			errorsHtml += "ERROR: Invalid dump file pattern: must not contain a comma.<br>";
 		} else {
-			unsetErrorStyle(priorityValueElement);
+			unsetErrorStyle(dumpFileTextElement);
 		}
 
-		if (containsReservedChars(dumpFileElement.value)) {
-			warningsHtml += "WARNING: Dump file name contains a character that is disallowed on some platforms<br>";		
+		if (containsReservedChars(dumpFileTextElement.value)) {
+			warningsHtml += "WARNING: Dump file pattern contains a character that is disallowed on some platforms<br>";		
 		}		
 	} else {
-		unsetErrorStyle(priorityValueElement);
+		unsetErrorStyle(dumpFileTextElement);
+	}
+	
+	// SYSTDUMP data set name checks
+	var datasetTextElement = document.getElementById("dsn_text");
+	if (!datasetTextElement.disabled && datasetTextElement.value != "") {
+		if (datasetTextElement.value.indexOf(",") != -1) {
+			resultIsGreen = false;
+			setErrorStyle(datasetTextElement);
+			errorsHtml += "ERROR: Invalid data set pattern: must not contain a comma.<br>";
+		} else {
+			unsetErrorStyle(datasetTextElement);
+		}
+		
+		if (dumpFileTextElement.value != "") {
+			var ok = false;
+			for (var i = 0; i < agentsThatDumpAFileIds.length; i++) {
+				if (agentsThatDumpAFileIds[i] != "agent_system" && document.getElementById(agentsThatDumpAFileIds[i]).checked) {
+					ok = true;
+				}				
+			}
+			if (!ok) {
+				resultIsGreen = false;
+				setErrorStyle(datasetTextElement);
+				setErrorStyle(dumpFileTextElement);
+				errorsHtml += "ERROR: File and data set patterns cannot both be specified when only system dumps are being generated.<br>";
+			}
+		}
+
+		if (containsReservedChars(datasetTextElement.value)) {
+			warningsHtml += "WARNING: Data set pattern contains a character that is disallowed on some platforms<br>";		
+		}		
+	} else {
+		unsetErrorStyle(datasetTextElement);
 	}
 
 	// Check the dump priority value
-	if (document.getElementById("priority").checked && (priorityValueElement.value < 0 || priorityValueElement.value > 999)) {
+	var priorityElement = document.getElementById("priority");
+	if (priorityElement.value < 0 || priorityElement.value > 999) {
 		resultIsGreen = false;
-		setErrorStyle(priorityValueElement);
+		setErrorStyle(priorityElement);
 		errorsHtml += "ERROR: Invalid dump priority value: must be > 0 and < 999<br>";		
 	} else {
-		unsetErrorStyle(priorityValueElement);
+		unsetErrorStyle(priorityElement);
 	}
 
 	// Check whether any incompatible events/agents are selected
@@ -968,11 +1014,8 @@ function containsReservedChars(string) {
 }
 
 function setErrorStyle(inputElement) {
-	// Only set the error style if this element doesn't have focus.
-	if (document.activeElement != inputElement) {
-		inputElement.style.borderColor = "red";
-		inputElement.style.borderStyle = "solid";
-	}
+	inputElement.style.borderColor = "red";
+	inputElement.style.borderStyle = "solid";
 }
 
 function unsetErrorStyle(inputElement) {
@@ -1000,8 +1043,28 @@ function removeFinalAmpersandIfPresent(string) {
 	}
 }
 
+// Register this text element as the target for the dsn/file token buttons
+function registerTokenTarget(textFieldElement) {
+	fileDsnTokenTargetElement = textFieldElement;
+}
+
+// Register when a mousedown event has occurred on a tool/exec element
+function registerToolExecMouseDown() {
+	toolExecMouseDown = true;
+}
+
+// Register when a mousedown event has finished
+function clearToolExecMouseDown() {
+	toolExecMouseDown = false;
+}
+
 // Inserts text in a target text input, replacing the current selected text
+// Target field must be enabled
 function insertText(targetElement, textToInsert) {
+	if (targetElement.disabled) {
+		return;
+	}
+	
 	var oldTextValue = targetElement.value;
 	var selectionStart = targetElement.selectionStart;
 	var selectionEnd = targetElement.selectionEnd;
@@ -1117,16 +1180,19 @@ table {
 	font-size: 10pt;
 }
 
-button {
-	font-size: 10pt;
-}
-
 label {
 	vertical-align: middle;
 }
 
 input {
 	vertical-align: middle;
+}
+
+input[type=button] {
+	font-size: 8pt;
+	height:22px;
+	text-align: center;
+	padding: 0px;
 }
 
 input[type=text] {
@@ -1164,7 +1230,7 @@ td {
 
 ul {
 	list-style-type: none;
-	padding: 0;
+	padding: 0px;
 }
 
 </style>
@@ -1177,7 +1243,7 @@ ul {
 
 <form id="XdumpForm" name="XdumpForm" onsubmit="event.preventDefault(); return handleSubmit()">
 
-<table border="0" cellspacing="0" cellpadding="4" style="width:1100px; table-layout:fixed">
+<table border="0" cellspacing="0" cellpadding="4" style="width:1150px; table-layout:fixed">
 <tr>
 	<td  class="head1" colspan="2">
 	OpenJ9: Xdump Option Builder
@@ -1296,18 +1362,18 @@ ul {
 				<table>
 					<tr>
 						<td><label data-disabled="true" for="event_throwable_class">Exception class name:</label></td>
-						<td><input style="width: 375px" type="text" id="event_throwable_class" name="throwable_class" size="41" value="" disabled onchange="processChange(this)" onBlur="processChange(this)"></td>
+						<td><input style="width: 400px" type="text" id="event_throwable_class" name="throwable_class" size="41" value="" disabled onchange="processChange(this)" onBlur="processChange(this)"></td>
 					</tr>
 					<tr>
 						<td><label data-disabled="true" for="event_throwable_method">Method name / offset:</label></td>
 						<td nowrap>
-							<input style="width: 300px" type="text" id="event_throwable_method" name="throwable_method" size="30" value="" disabled onchange="processChange(this)" onBlur="processChange(this)">
+							<input style="width: 325px" type="text" id="event_throwable_method" name="throwable_method" size="30" value="" disabled onchange="processChange(this)" onBlur="processChange(this)">
 							<input type="number" id="event_throwable_offset" name="range_first" min="0" max="999" value="0" size="4" disabled onchange="processChange(this)" onBlur="processChange(this)" onBlur="processChange(this)">
 						</td>
 					</tr>
 					<tr>
 						<td><label data-disabled="true" for="event_throwable_msg_filter">Exception message:</label></td>
-						<td><input style="width: 375px" type="text" id="event_throwable_msg_filter" name="throwable_message" size="41" value="" disabled onchange="processChange(this)" onBlur="processChange(this)"></td>
+						<td><input style="width: 400px" type="text" id="event_throwable_msg_filter" name="throwable_message" size="41" value="" disabled onchange="processChange(this)" onBlur="processChange(this)"></td>
 					</tr>
 				</table>
 			</li>
@@ -1319,7 +1385,7 @@ ul {
 			<li>
 				<input type="checkbox" id="event_unload"       name="event" value="unload"      onchange="processChange(this)" data-hasfilter="true">
 				<label for="event_unload">Class unloaded</label><br>
-				<label data-disabled="true" for="event_class_filter">Class name:</label> <input style="width: 450px" type="text" id="event_class_filter" name="class_text" size="58" value="" disabled onchange="processChange(this)" onBlur="processChange(this)">
+				<label data-disabled="true" for="event_class_filter">Class name:</label> <input style="width: 470px" type="text" id="event_class_filter" name="class_text" size="57" value="" disabled onchange="processChange(this)" onBlur="processChange(this)">
 			</li>
 		</ul>
 	</td>
@@ -1338,7 +1404,7 @@ ul {
 			</li>
 			<li>
 				<input type="checkbox" id="agent_system"  name="agent" value="system"  onchange="processChange(this)">
-				<label for="agent_system">Generate a system dump (core file)</label>
+				<label for="agent_system">Generate a system dump (core file / SYSTDUMP)</label>
 			</li>
 			<li>
 				<input type="checkbox" id="agent_java"    name="agent" value="java"    onchange="processChange(this)">
@@ -1350,49 +1416,66 @@ ul {
 			</li>
 			<li>
 				<input type="checkbox" id="agent_snap"    name="agent" value="snap"    onchange="processChange(this)">
-				<label for="agent_snap">Generate a Snap trace</label>
+				<label for="agent_snap">Generate a Snap dump (contents of the JVM's trace buffers)</label>
 			</li>
 			<li>
 				<input type="checkbox" id="agent_jit"     name="agent" value="jit"     onchange="processChange(this)">
 				<label for="agent_jit">Generate a JIT dump</label>
 			</li>
 			<li>
-				<input type="checkbox" id="agent_tool"    name="agent" value="tool"    onchange="processChange(this)">
-				<label for="agent_tool">Run a shell command:</label><br> 
-				<input style="width: 540px" type="text" id="exec" name="exec" size="72" value="" disabled onchange="processChange(this)" onBlur="processChange(this)">
+				<input type="checkbox" id="agent_ceedump" name="agent" value="ceedump" onchange="processChange(this)">
+				<label for="agent_ceedump">Generate an LE CEEDUMP dump (z/OS only)</label>
+			</li>
+			
+			<li>
+				<input type="checkbox" id="agent_tool"    name="agent" value="tool"    onchange="processChange(this)" onmousedown="registerToolExecMouseDown()">
+				<label for="agent_tool" onmousedown="registerToolExecMouseDown()">Run a shell command:</label><br> 
+				<input style="width: 565px" type="text" id="exec" name="exec" size="72" value="" disabled onchange="processChange(this)" onblur="processChange(this)">
 				<div style="padding: 4px 0px;">
-					<input type="button" data-target="exec" data-token="%Y"    id="exec_button_year4"  disabled style="font-size: 8pt; height:20px;width:55px" onclick="processChange(this)"
-						value="Year (4)" title="Year (4 digits) e.g. 2017">
-					<input type="button" data-target="exec" data-token="%y"    id="exec_button_year2"  disabled style="font-size: 8pt; height:20px;width:55px" onclick="processChange(this)"
-						value="Year (2)" title="Year (4 digits) e.g. 17">
-				        <input type="button" data-target="exec" data-token="%m"    id="exec_button_month"  disabled style="font-size: 8pt; height:20px;width:50px" onclick="processChange(this)"
-						value="Month" title="Month (2 digits) e.g. 08">
-					<input type="button" data-target="exec" data-token="%d"    id="exec_button_day"    disabled style="font-size: 8pt; height:20px;width:41px" onclick="processChange(this)"
-						value="Day" title="Day of month (2 digits) e.g. 26">
-					<input type="button" data-target="exec" data-token="%H"    id="exec_button_hour"   disabled style="font-size: 8pt; height:20px;width:41px" onclick="processChange(this)"
-						value="Hour" title="Hour of day (2 digits) e.g. 05">
-					<input type="button" data-target="exec" data-token="%M"    id="exec_button_minute" disabled style="font-size: 8pt; height:20px;width:41px" onclick="processChange(this)"
-						value="Min" title="Minute of hour (2 digits) e.g. 47">
-					<input type="button" data-target="exec" data-token="%S"    id="exec_button_second" disabled style="font-size: 8pt; height:20px;width:41px" onclick="processChange(this)"
-						value="Sec" title="Second of minute (2 digits) e.g. 35">
-						&nbsp;
-						<input type="checkbox" id="tool_async" name="tool_async" value="ASYNC" title="If checked, don't wait for the command to complete before continuing" disabled onchange="processChange(this)">
-						<label for="tool_async" data-disabled="true" title="If checked, don't wait for the command to complete before continuing">Run asynchronously</label>
+					<input type="button" data-target="exec" data-token="%Y"    id="exec_button_year4"  disabled style="width:55px" onclick="processChange(this)"
+						onmousedown="registerToolExecMouseDown()" value="Year (4)" title="Year (4 digits) e.g. 2017">
+					<input type="button" data-target="exec" data-token="%y"    id="exec_button_year2"  disabled style="width:55px" onclick="processChange(this)"
+						onmousedown="registerToolExecMouseDown()" value="Year (2)" title="Year (2 digits) e.g. 17">
+					<input type="button" data-target="exec" data-token="%m"    id="exec_button_month"  disabled style="width:48px" onclick="processChange(this)"
+						onmousedown="registerToolExecMouseDown()" value="Month" title="Month (2 digits) e.g. 08">
+					<input type="button" data-target="exec" data-token="%d"    id="exec_button_day"    disabled style="width:34px" onclick="processChange(this)"
+						onmousedown="registerToolExecMouseDown()" value="Day" title="Day of month (2 digits) e.g. 26">
+					<input type="button" data-target="exec" data-token="%H"    id="exec_button_hour"   disabled style="width:38px;" onclick="processChange(this)"
+						onmousedown="registerToolExecMouseDown()" value="Hour" title="Hour of day (2 digits) e.g. 05">
+					<input type="button" data-target="exec" data-token="%M"    id="exec_button_minute" disabled style="width:34px" onclick="processChange(this)"
+						onmousedown="registerToolExecMouseDown()" value="Min" title="Minute of hour (2 digits) e.g. 47">
+					<input type="button" data-target="exec" data-token="%S"    id="exec_button_second" disabled style="width:34px" onclick="processChange(this)"
+						onmousedown="registerToolExecMouseDown()" value="Sec" title="Second of minute (2 digits) e.g. 35">	
+					<input type="button" data-target="exec" data-token="%pid"  id="exec_button_pid"    disabled style="width:33px" onclick="processChange(this)"
+						onmousedown="registerToolExecMouseDown()" value="PID" title="JVM Process ID e.g. 27491">
+					<input type="button" data-target="exec" data-token="%job" id="exec_button_jobname" disabled style="width:65px" onclick="processChange(this)"
+						onmousedown="registerToolExecMouseDown()" value="Job Name" title="Job Name (z/OS only)">	
+					
+					&nbsp;
+					<input type="checkbox" id="tool_async" name="tool_async" value="ASYNC" title="If checked, the JVM will continue without waiting for the command to complete" disabled onchange="processChange(this)">
+					<label for="tool_async" data-disabled="true" title="Run asynchronously. If checked, the JVM will continue without waiting for the command to complete">Asyncronous</label>
 				</div>
 				<div>
-					<input type="button" data-target="exec" data-token="%pid"  id="exec_button_pid"         disabled style="font-size: 8pt; height:20px;width:43px" onclick="processChange(this)"
-						value="PID" title="JVM Process ID e.g. 27491">
-					<input type="button" data-target="exec" data-token="%uid"  id="exec_button_uname"       disabled style="font-size: 8pt; height:20px;width:50px" onclick="processChange(this)"
-						value="Uname" title="User name e.g. jbloggs">
-					<input type="button" data-target="exec" data-token="%seq"  id="exec_button_dumpcounter" disabled style="font-size: 8pt; height:20px;width:80px" onclick="processChange(this)"
-						value="Dump Count" title="Dump Counter e.g. 0004">
-					<input type="button" data-target="exec" data-token="%tick" id="exec_button_mscounter"   disabled style="font-size: 8pt; height:20px;width:80px" onclick="processChange(this)"
-						value="msec Count" title="Millisecond counter e.g. 638349">
-					<input type="button" data-target="exec" data-token="%home" id="exec_button_javahome"    disabled style="font-size: 8pt; height:20px;width:80px" onclick="processChange(this)"
-						value="Java Home" title="Java Home e.g. /home/jbloggs/java">
-						&nbsp;&nbsp;
-						<label for="tool_wait" data-disabled="true" title="Time to wait after executing the command, in milliseconds">Wait (ms): </label>
-						<input type="number" id="tool_wait" name="tool_wait" min="0" value="0" disabled title="Time to wait after executing the command, in milliseconds" onchange="processChange(this)">
+					<input type="button" data-target="exec" data-token="%uid"  id="exec_button_uname"       disabled style="width:50px" onclick="processChange(this)"
+						onmousedown="registerToolExecMouseDown()" value="Uname" title="User name e.g. jbloggs">
+					<input type="button" data-target="exec" data-token="%seq"  id="exec_button_dumpcounter" disabled style="width:45px" onclick="processChange(this)"
+						onmousedown="registerToolExecMouseDown()" value="Count" title="Dump Counter e.g. 0004">
+					<input type="button" data-target="exec" data-token="%tick" id="exec_button_mscounter"   disabled style="width:43px" onclick="processChange(this)"
+						onmousedown="registerToolExecMouseDown()" value="Ticks" title="Millisecond counter e.g. 638349">
+					<input type="button" data-target="exec" data-token="%last" id="exec_button_lastdump"    disabled style="width:70px" onclick="processChange(this)"
+						onmousedown="registerToolExecMouseDown()" value="Last Dump" title="Last dump name">
+					<input type="button" data-target="exec" data-token="%home" id="exec_button_javahome"    disabled style="width:70px" onclick="processChange(this)"
+						onmousedown="registerToolExecMouseDown()" value="Java Home" title="Java Home e.g. /home/jbloggs/java">
+					<input type="button" data-target="exec" data-token="%asid" id="exec_button_asid"        disabled style="width:45px" onclick="processChange(this)"
+						onmousedown="registerToolExecMouseDown()" value="ASID" title="Address Space ID (z/OS only)">
+					<input type="button" data-target="exec" data-token="&DS" id="exec_button_ds"            disabled style="width:30px" onclick="processChange(this)"
+						onmousedown="registerToolExecMouseDown()" value="DS" title="Dump Section (64-bit z/OS only)">
+					<input type="button" data-target="exec" data-token="%jobid" id="exec_button_jobid"      disabled style="width:48px" onclick="processChange(this)"
+						onmousedown="registerToolExecMouseDown()" value="Job ID" title="Job ID (z/OS only)">
+					
+					&nbsp;
+					<label for="tool_wait" data-disabled="true" title="Time to wait after executing the command, in milliseconds">Wait: </label>
+					<input type="number" id="tool_wait" name="tool_wait" style="width:70px" min="0" value="0" disabled title="Time to wait after executing the command, in milliseconds" onchange="processChange(this)">
 				</div>
 			</li>
 			<hr>
@@ -1404,29 +1487,6 @@ ul {
 	<td>
 		<b style="font-size: 12pt">Dump Options</b>
 		<ul id="options_input">
-			<hr>
-			<li id="range_li">
-				<table>
-					<tr>
-						<td><label for="range_first">First event:</label></td>
-						<td><input type="number" id="range_first" name="range_first" min="1" max="9999" value="1" size="4" onchange="processChange(this)" onBlur="processChange(this)"></td>
-					</tr>
-					<tr>
-						<td><label for="range_last">Last event:</label></td>
-						<td>
-							<input type="number" id="range_last" name="range_last" min="0" max="9999" value="0" size="4" onchange="processChange(this)" onBlur="processChange(this)">
-							<label for="range_last">(0 = no limit)</label>
-						</td>
-					</tr>
-				</table>
-			</li>
-			<hr>
-			<li>
-				<input type="checkbox" id="priority" name="priority" value="priority" onchange="processChange(this)">
-				<label for="priority">Dump priority:</label>
-				<input type="number" id="priority_value" name="priority_value" min="0" max="999" size="4" disabled onchange="processChange(this)" onBlur="processChange(this)">
-				<label data-disabled="true" for="priority_value">(0 [lowest] - 999 [highest])</label>
-			</li>
 			<hr>
 			<div id="request_input">
 				<li>
@@ -1449,39 +1509,69 @@ ul {
 					<input type="checkbox" id="request_preempt"   name="request" value="preempt"   onchange="processChange(this)">
 					<label for="request_preempt">Enable native thread stacks in javacore</label>
 				</li>
-		        </div>
+			</div>
+			<hr>
+			<li id="range_li">
+				<label for="range_first">First / last events:</label>
+				<input type="number" id="range_first" name="range_first" min="1" max="9999" value="1" size="4" onchange="processChange(this)" onBlur="processChange(this)">
+				&nbsp;
+				<input type="number" id="range_last" name="range_last" min="0" max="9999" value="0" size="4" onchange="processChange(this)" onBlur="processChange(this)">
+				<label for="range_last">(0 = no limit)</label>
+	
+			</li>
 			<hr>
 			<li>
-				<input type="checkbox" id="file"    name="file" value="file"  disabled  onchange="processChange(this)">
-				<label for="file" data-disabled="true">Custom dump file name (applies to all enabled dump types):</label> 
-				<input style="width: 540px" type="text" id="file_text" name="file_text" size="71" value="" disabled onchange="processChange(this)" onBlur="processChange(this)">
+				<label for="priority">Dump priority:</label>
+				<input type="number" id="priority" name="priority" min="0" max="999" size="4" onchange="processChange(this)" onBlur="processChange(this)">
+				<label for="priority">(0 [lowest] - 999 [highest])</label>
+			</li>
+			<hr>
+			<li>
+				<label for="file_text" data-disabled="true">Dump file pattern (all dumps except SYSTDUMPs and CEEDUMPs):</label> 
+				<input style="width: 565px" type="text" id="file_text" name="file_text" size="71" value="" disabled onchange="processChange(this)" onblur="registerTokenTarget(this)">
+			</li>
+			<li>
+				<label for="dsn_text" data-disabled="true">Data set pattern (SYSTDUMPs only):</label> 
+				<input style="width: 565px" type="text" id="dsn_text" name="dsn_text" size="71" value="" disabled onchange="processChange(this)" onblur="registerTokenTarget(this)">
+			</li>
+			<li>
 				<div style="padding: 4px 0px;">
-					<input type="button" data-target="file_text" data-token="%Y"    id="file_button_year4"  disabled style="font-size: 8pt; height:20px;width:55px" onclick="processChange(this)"
+					<input type="button" data-token="%Y"    id="file_button_year4"  disabled style="width:55px" onclick="processChange(this)"
 						value="Year (4)" title="Year (4 digits) e.g. 2017">
-					<input type="button" data-target="file_text" data-token="%y"    id="file_button_year2"  disabled style="font-size: 8pt; height:20px;width:55px" onclick="processChange(this)"
-						value="Year (2)" title="Year (4 digits) e.g. 17">
-					<input type="button" data-target="file_text" data-token="%m"    id="file_button_month"  disabled style="font-size: 8pt; height:20px;width:50px" onclick="processChange(this)"
+					<input type="button" data-token="%y"    id="file_button_year2"  disabled style="width:55px" onclick="processChange(this)"
+						value="Year (2)" title="Year (2 digits) e.g. 17">
+					<input type="button" data-token="%m"    id="file_button_month"  disabled style="width:48px" onclick="processChange(this)"
 						value="Month" title="Month (2 digits) e.g. 08">
-					<input type="button" data-target="file_text" data-token="%d"    id="file_button_day"    disabled style="font-size: 8pt; height:20px;width:41px" onclick="processChange(this)"
+					<input type="button" data-token="%d"    id="file_button_day"    disabled style="width:34px" onclick="processChange(this)"
 						value="Day" title="Day of month (2 digits) e.g. 26">
-					<input type="button" data-target="file_text" data-token="%H"    id="file_button_hour"   disabled style="font-size: 8pt; height:20px;width:41px" onclick="processChange(this)"
+					<input type="button" data-token="%H"    id="file_button_hour"   disabled style="width:38px" onclick="processChange(this)"
 						value="Hour" title="Hour of day (2 digits) e.g. 05">
-					<input type="button" data-target="file_text" data-token="%M"    id="file_button_minute" disabled style="font-size: 8pt; height:20px;width:41px" onclick="processChange(this)"
+					<input type="button" data-token="%M"    id="file_button_minute" disabled style="width:34px" onclick="processChange(this)"
 						value="Min" title="Minute of hour (2 digits) e.g. 47">
-					<input type="button" data-target="file_text" data-token="%S"    id="file_button_second" disabled style="font-size: 8pt; height:20px;width:41px" onclick="processChange(this)"
-						value="Sec" title="Second of minute (2 digits) e.g. 35">
+					<input type="button" data-token="%S"    id="file_button_second" disabled style="width:34px" onclick="processChange(this)"
+						value="Sec" title="Second of minute (2 digits) e.g. 35">	
+					<input type="button" data-token="%pid"  id="file_button_pid"    disabled style="width:33px" onclick="processChange(this)"
+						value="PID" title="JVM Process ID e.g. 27491">
+					<input type="button" data-token="%job" id="file_button_jobname" disabled style="width:65px" onclick="processChange(this)"
+						value="Job Name" title="Job Name (z/OS only)">	
 				</div>
 				<div>
-					<input type="button" data-target="file_text" data-token="%pid"  id="file_button_pid"         disabled style="font-size: 8pt; height:20px;width:43px" onclick="processChange(this)"
-						value="PID" title="JVM Process ID e.g. 27491">
-					<input type="button" data-target="file_text" data-token="%uid"  id="file_button_uname"       disabled style="font-size: 8pt; height:20px;width:50px" onclick="processChange(this)"
+					<input type="button" data-token="%uid"  id="file_button_uname"       disabled style="width:50px" onclick="processChange(this)"
 						value="Uname" title="User name e.g. jbloggs">
-					<input type="button" data-target="file_text" data-token="%seq"  id="file_button_dumpcounter" disabled style="font-size: 8pt; height:20px;width:80px" onclick="processChange(this)"
-						value="Dump Count" title="Dump Counter e.g. 0004">
-					<input type="button" data-target="file_text" data-token="%tick" id="file_button_mscounter"   disabled style="font-size: 8pt; height:20px;width:80px" onclick="processChange(this)"
-						value="msec Count" title="Millisecond counter e.g. 638349">
-					<input type="button" data-target="file_text" data-token="%home" id="file_button_javahome"    disabled style="font-size: 8pt; height:20px;width:80px" onclick="processChange(this)"
+					<input type="button" data-token="%seq"  id="file_button_dumpcounter" disabled style="width:45px" onclick="processChange(this)"
+						value="Count" title="Dump Counter e.g. 0004">
+					<input type="button" data-token="%tick" id="file_button_mscounter"   disabled style="width:43px" onclick="processChange(this)"
+						value="Ticks" title="Millisecond counter e.g. 638349">
+					<input type="button" data-token="%last" id="file_button_lastdump"    disabled style="width:70px" onclick="processChange(this)"
+						value="Last Dump" title="Last dump name">
+					<input type="button" data-token="%home" id="file_button_javahome"    disabled style="width:70px" onclick="processChange(this)"
 						value="Java Home" title="Java Home e.g. /home/jbloggs/java">
+					<input type="button" data-token="%asid" id="file_button_asid"        disabled style="width:45px" onclick="processChange(this)"
+						value="ASID" title="Address Space ID (z/OS only)">
+					<input type="button" data-token="&DS" id="file_button_ds"            disabled style="width:30px" onclick="processChange(this)"
+						value="DS" title="Dump Section (64-bit z/OS only)">
+					<input type="button" data-token="%jobid" id="file_button_jobid"      disabled style="width:48px" onclick="processChange(this)"
+						value="Job ID" title="Job ID (z/OS only)">
 				</div>
 			</li>
 		</ul>
