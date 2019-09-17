@@ -111,6 +111,12 @@ function setupTooltips() {
 }
 
 function parseParams() {
+	// Note that this code, and the corresponding serialization code in
+	// copyLinkToClipboard(), relies on the order of the inputs in the
+	// document to work correctly.
+	// Elements that can be enabled/disabled automatically must come *after*
+	// the elements which control that behaviour. If not, the default values
+	// will override the serialized values.
 	if (location.search != "") {
 		// Get the query part of the URL, remove the leading '?', and split on '&'
 		var params = location.search.substring(1).split("&"); // this includes the '?' so need to substring it
@@ -1112,6 +1118,12 @@ function copyTextToClipboard(element) {
 
 function copyLinkToClipboard() {
 	// Serialize the form input fields
+	// Note that this code, and the corresponding deserialization code in
+	// parseParams(), relies on the order of the inputs in the document to
+	// work correctly.
+	// Elements that can be enabled/disabled automatically must come *after*
+	// the elements which control that behaviour. If not, the default values
+	// will override the serialized values.
 	var serializedForm = "";
 	var inputs = document.getElementById("XdumpForm").getElementsByTagName("input");
 	for (var i = 0; i < inputs.length; i++) {
@@ -1119,8 +1131,9 @@ function copyLinkToClipboard() {
 		if (inputElement.type == "checkbox") {
 			if (inputElement.checked) {
 				serializedForm += inputElement.id + "=1&";
-			} else if (inputElement.id == "request_exclusive" || inputElement.id == "request_prepwalk") {
-				// These are checked by default, so if they're unchecked we need to make note.
+			} else if (inputElement.id == "event_systhrow" || inputElement.id.lastIndexOf("request_") == 0) {
+				// These specific checkboxes can be checked automatically if certain other
+				// options are checked, so if they're unchecked we need to make note.
 				serializedForm += inputElement.id + "=0&";
 			}			
 		}
