@@ -55,8 +55,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   };
   return t;
 }(document, "script", "twitter-wjs"));</script>
-
-
 </head>
 <body>
 <script>twttr.widgets.load()</script>
@@ -81,47 +79,97 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <span class="intro-text">Covering project news, events, milestones, and of course... new and cool stuff!</span>
       </div>
 
+      <div class="f-section-item" id="openj90160">
+      <div class="f-content-container">
+        <h3>Eclipse OpenJ9 version 0.16.0 released</h3>
+        <p><i>17th September 2019</i></p>
+        <p>OpenJDK builds that contain Eclipse OpenJ9 version 0.16.0 are now available from the
+        <a href="https://adoptopenjdk.net/releases.html?variant=openjdk13&jvmVariant=openj9" target="_blank">AdoptOpenJDK community project</a> <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>
+        </p>
+
+<p>OpenJ9 version 0.16.0 supports only OpenJDK version 13, the latest release of the Java SE Platform.
+</p>
+<p>Here are some of the new features that we've introduced in version 0.16.0 of OpenJ9. You can control the behavior of all the default settings mentioned with appropriate command-line options.
+</p>
+<p>As indicated, many of these enhancements will typically improve the performance of your applications. As always, you can let us know how well these performance enhancements work for you by posting in our <a href="https://join.slack.com/t/openj9/shared_invite/enQtNDU4MDI4Mjk0MTk2LWM2MjliMTQ4NWM5YjMwNTViOTgzMzM2ZDhlOWJmZTc1MjhmYmRjMDg2NDljNGM0YTAwOWRiZDE0YzI0NjgyOWI" target="_blank"> slack channel</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.<ul>
+  <li>Class data sharing is enabled by default for bootstrap classes, unless your application is running in a container. We've seen an improved Tomcat startup time of almost 30% with an out-of-the-box configuration.
+  </li>
+  <li>When you use the <tt>madvise</tt> setting on Linux on x86 systems, Transparent Huge Pages (THP) is now enabled by default. The THP setting on other systems remains disabled by default when you use <tt>madvise</tt>.
+  </li>
+  <li>For compatibility with the reference implementation, OpenJ9 now includes an independent implementation of the <tt>jcmd</tt> tool  for running diagnostic commands on a VM.
+  </li>
+  <li>Shared classes:<ul>
+    <li>Anonymous classes, those created by <tt>Unsafe.defineAnonymousClass</tt>, are now stored in the shared classes cache by default, which means they are available for ahead-of-time (AOT) compilation, potentially improving startup performance.
+    </li>
+    <li>The use at startup of GC hints in the shared classes cache to guide the expansion and sizing of the Java heap is now enabled by default as it speeds up startup time by taking advantage of the information stored from a prior run in the shared classes cache. It typically provides 3-4% improvement in Open Liberty startup time.
+    </li>
+    </ul>
+  <li>Compilation counts for AOT compilations are lowered, which improves startup time for methods that do not get invoked many times. This also improves the startup time of lighter weight frameworks. There is typically a 3-4% improvement in startup time in Open Liberty and with lighter weight frameworks such as Quarkus.
+  </li>
+  <li>Improvements in escape analysis allow optimizations to function better, in particular to cope with hot code replacement (HCR).
+  </li>
+  <li>Version 0.16.0 also sees JSR-292 (method handle) related performance improvements to method inlining and type propagation.
+  </li>
+</ul>
+To read more about the changes in version 0.16.0, read the <a href="https://www.eclipse.org/openj9/docs/version0.16/">Release notes</a> in the OpenJ9 user documentation.
+</p>
+</br>
+
+  <!-- Keep as-is except edit ID in URL and change "text=" -->
+
+<a href="https://twitter.com/share?
+url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openj90160&
+via=openj9&
+hashtags=openj9,java&
+text=V0.16.0%20released;%20with%20support%20for%20OpenJDK%2013"
+class="twitter-share-button"
+data-show-count="false">Tweet</a>
+
+
+</div>
+</div>
+
+
       <div class="f-section-item" id="openj90151">
       <div class="f-content-container">
         <h3>Eclipse OpenJ9 version 0.15.1 released</h3>
         <p><i>17th July 2019</i></p>
-  	    <p>OpenJDK builds that contain Eclipse OpenJ9 version 0.15.1 with the latest Critical Patch Update (CPU) are now available from the
-        <a href="https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9" target="_blank">AdoptOpenJDK community project</a>
-  	    <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i></p>
-  	    <p>We've introduced some cognitive behavior in this release to improve startup performance. OpenJ9 can now learn and set an appropriate initial heap size
-        for an application as an alternative to a user manually sizing and setting an <tt>-Xms</tt> value. The VM records the size of the heap when startup processing
-        ends, writing this data to the shared classes cache. An average value is set over a few restarts, helping to ensure that the value used for the initial
-        heap size is as accurate as possible. This feature is expected to become the default in a future release. To enable it now, ensure that shared classes are turned on (<tt>-Xshareclasses</tt>)
-        and set the <tt>-XX:+UseGCStartupHints</tt> option on the command line when you start your application. Our testing demonstrates ~5% startup improvement for Open Liberty, so give it a go and post in
-        our <a href="https://join.slack.com/t/openj9/shared_invite/enQtNDU4MDI4Mjk0MTk2LWM2MjliMTQ4NWM5YjMwNTViOTgzMzM2ZDhlOWJmZTc1MjhmYmRjMDg2NDljNGM0YTAwOWRiZDE0YzI0NjgyOWI" target="_blank">
-        slack channel</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> to let us know how well it works for you.
+        <p>OpenJDK builds that contain Eclipse OpenJ9 version 0.15.1 with the latest Critical Patch Update (CPU) are now available from the <a href="https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9" target="_blank">AdoptOpenJDK community project</a> <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>
+        </p>
+        <p>We've introduced some cognitive behavior in this release to improve startup performance. 
+        OpenJ9 can now learn and set an appropriate initial heap size for an application as an alternative to a user manually sizing and setting an <tt>-Xms</tt> value. 
+        The VM records the size of the heap when startup processing ends, writing this data to the shared classes cache. 
+        An average value is set over a few restarts, helping to ensure that the value used for the initial heap size is as accurate as possible. 
+        This feature is expected to become the default in a future release. 
+        To enable it now, ensure that shared classes are turned on (<tt>-Xshareclasses</tt>) and set the <tt>-XX:+UseGCStartupHints</tt> option on the command line when you start your application. 
+        Our testing demonstrates ~5% startup improvement for Open Liberty, so give it a go and post in our <a href="https://join.slack.com/t/openj9/shared_invite/enQtNDU4MDI4Mjk0MTk2LWM2MjliMTQ4NWM5YjMwNTViOTgzMzM2ZDhlOWJmZTc1MjhmYmRjMDg2NDljNGM0YTAwOWRiZDE0YzI0NjgyOWI" target="_blank"> slack channel</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> to let us know how well it works for you.
         </p>
         <p>In this release, we are also introducing more compatibility changes to help users adopt OpenJ9:
-  		    <ul>
+          <ul>
             <li>We now have an independent implementation of the popular HotSpot <tt>jmap</tt> tool for obtaining information about classes and objects in memory for a specified process.</li>
             <li>You can now use the <tt>-XX:OnOutofMemoryError</tt> command line option to run a specific command when an out of memory error is thrown (a shorter equivalent to our <tt>-Xdump:tool:events=systhrow,filter=java/lang/OutOfMemoryError,exec=</tt> option)</li>
           </ul>
-  	    </p>
-  	    <p>The following performance features, available in earlier releases for a limited set of platforms, are now extended to Linux on IBM Z&reg; systems:
+        </p>
+        <p>The following performance features, available in earlier releases for a limited set of platforms, are now extended to Linux on IBM Z&reg; systems:
           <ul>
             <li>Reduced garbage collection pause times with our Pause-less garbage collection mode (<tt>-Xgc:concurrentScavenge</tt>)</li>
             <li>Improved performance for JVMTI watched fields (now enabled by default in this release for x86 as well as Linux on Z)</li>
          </ul>
         </p>
         <p>To read more about the changes in v0.15.1, including low-overhead heap profiling (JEP 331) and ChaCha20 algorithm support in OpenSSL, read the <a href="https://www.eclipse.org/openj9/docs/version0.15/">Release notes</a> in the
-  	   OpenJ9 user documentation.</p>
+       OpenJ9 user documentation.</p>
      </br>
 
 
 
   <!-- Keep as-is except edit ID in URL and change "text=" -->
-  <a href="https://twitter.com/share?
-  url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openj90151&
-  via=openj9&
-  hashtags=openj9,java&
-  text=V0.15.1%20released;%20Introducing%20cognitive%20behavior!"
-  class="twitter-share-button"
-  data-show-count="false">Tweet</a>
+<a href="https://twitter.com/share?
+url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openj90151&
+via=openj9&
+hashtags=openj9,java&
+text=V0.15.1%20released;%20Introducing%20cognitive%20behavior!"
+class="twitter-share-button"
+data-show-count="false">Tweet</a>
 
           </div>
     </div>
@@ -131,36 +179,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="f-content-container">
       <h3>Eclipse OpenJ9 version 0.14.0 released</h3>
       <p><i>18th April 2019</i></p>
-	  <p>Our latest release is now available, supporting OpenJDK versions 8, 11, and 12. Release builds of OpenJDK with OpenJ9 can be obtained from
-	  the <a href="https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9" target="_blank">AdoptOpenJDK community project</a>
-	  <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>, which contain the latest
-	  quarterly Critical Patch Update (CPU).</p>
+    <p>Our latest release is now available, supporting OpenJDK versions 8, 11, and 12. Release builds of OpenJDK with OpenJ9 can be obtained from
+    the <a href="https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9" target="_blank">AdoptOpenJDK community project</a>
+    <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>, which contain the latest
+    quarterly Critical Patch Update (CPU).</p>
       <p><i class="fa fa-pencil" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <b>Note:</b> On OpenJDK 8 and 11, OpenSSL pre-requisites have changed. For more information,
       see <a href="https://www.eclipse.org/openj9/docs/adoptopenjdk/">AdoptOpenJDK builds</a>.
       </p>
-	  <p>We've recently been working on improving the performance of JVMTI watched fields. So far, the work is complete only on x86 platforms
-	  (Windows&reg;, macOS&reg;, and Linux&reg;), but the results are impressive. A customer who tested adding and removing field watches with
-	  the new code reported a ~40X improvement for adding field watches and a ~15X improvement for removing field watches. The function is not
-	  currently enabled by default, but if you are interested in giving it a try, you can enable it with the <a href="https://www.eclipse.org/openj9/docs/xxjitinlinewatches/" target="_blank">
+    <p>We've recently been working on improving the performance of JVMTI watched fields. So far, the work is complete only on x86 platforms
+    (Windows&reg;, macOS&reg;, and Linux&reg;), but the results are impressive. A customer who tested adding and removing field watches with
+    the new code reported a ~40X improvement for adding field watches and a ~15X improvement for removing field watches. The function is not
+    currently enabled by default, but if you are interested in giving it a try, you can enable it with the <a href="https://www.eclipse.org/openj9/docs/xxjitinlinewatches/" target="_blank">
       -XX:[+|-]JITInlineWatches</a> option.</p>
       <p>To help users adopt OpenJ9, we have continued to work on compatibility with the reference implementation by introducing the following
-		new options and tools:
-		<ul>
+    new options and tools:
+    <ul>
            <li>By default, the OpenJ9 VM ignores any <tt>-XX:</tt> options that it does not recognize, which prevents an application from
-		   failing to start. However, if you are switching to OpenJ9 from HotSpot and you set a lot of <tt>-XX:</tt> options on the command
+       failing to start. However, if you are switching to OpenJ9 from HotSpot and you set a lot of <tt>-XX:</tt> options on the command
            line, you will want to identify which options are ignored and determine whether an equivalent OpenJ9 option is required. Use the
-		   <tt>-XX:-IgnoreUnrecognizedXXColonOptions</tt> option to prevent options being ignored and read <a href="https://www.eclipse.org/openj9/docs/openj9_newuser/">Switching to OpenJ9</a>
-		   for a list of compatible options.</li>
-		   <li>OpenJ9 now includes a Java stack tool (<tt>jstack</tt>) that you can use to obtain Java stack traces and thread information
-		   for processes. The tool is similar to the HotSpot tool of the same name, but is an independent implementation.</li>
-		   <li>The Java process status tool (<tt>jps</tt>) introduced in OpenJ9 0.13.0 for OpenJDK 12 is now available for OpenJDK 8 and 11 users.
-		   Although similar in function to the HotSpot <tt>jps</tt> tool, it is implemented differently by using the Attach API.
+       <tt>-XX:-IgnoreUnrecognizedXXColonOptions</tt> option to prevent options being ignored and read <a href="https://www.eclipse.org/openj9/docs/openj9_newuser/">Switching to OpenJ9</a>
+       for a list of compatible options.</li>
+       <li>OpenJ9 now includes a Java stack tool (<tt>jstack</tt>) that you can use to obtain Java stack traces and thread information
+       for processes. The tool is similar to the HotSpot tool of the same name, but is an independent implementation.</li>
+       <li>The Java process status tool (<tt>jps</tt>) introduced in OpenJ9 0.13.0 for OpenJDK 12 is now available for OpenJDK 8 and 11 users.
+       Although similar in function to the HotSpot <tt>jps</tt> tool, it is implemented differently by using the Attach API.
         </ul>
-	   </p>
-	   <p>Other changes in this release include support for OpenSSL v1.0.2 (OpenJDK 8 & 11) and improved platform support for our pause-less garbage collection
-	   mode of the <tt>gencon</tt> policy.</p>
-	   <p>To find out more about the changes in v0.14.0, read the <a href="https://www.eclipse.org/openj9/docs/version0.14/">Release notes</a> in the
-	   OpenJ9 user documentation.</p>
+     </p>
+     <p>Other changes in this release include support for OpenSSL v1.0.2 (OpenJDK 8 & 11) and improved platform support for our pause-less garbage collection
+     mode of the <tt>gencon</tt> policy.</p>
+     <p>To find out more about the changes in v0.14.0, read the <a href="https://www.eclipse.org/openj9/docs/version0.14/">Release notes</a> in the
+     OpenJ9 user documentation.</p>
 
 
 <!-- Keep as-is except edit ID in URL and change "text=" -->
@@ -179,22 +227,22 @@ data-show-count="false">Tweet</a>
     <div class="f-content-container">
       <h3>Eclipse OpenJ9 version 0.13.0 released</h3>
       <p><i>20th March 2019</i></p>
-	  <p>OpenJ9 version 0.13.0 adds support for OpenJDK version 12, the latest release of the Java SE Platform.
-	  Builds of OpenJDK with OpenJ9 are now available at the <a href="https://adoptopenjdk.net/releases.html?variant=openjdk12&jvmVariant=openj9" target="_blank">AdoptOpenJDK community project</a>
-	  <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.</p>
+    <p>OpenJ9 version 0.13.0 adds support for OpenJDK version 12, the latest release of the Java SE Platform.
+    Builds of OpenJDK with OpenJ9 are now available at the <a href="https://adoptopenjdk.net/releases.html?variant=openjdk12&jvmVariant=openj9" target="_blank">AdoptOpenJDK community project</a>
+    <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.</p>
       <p><i class="fa fa-pencil" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <b>Note:</b> OpenSSL pre-requisites have changed. For more information,
       see <a href="https://www.eclipse.org/openj9/docs/adoptopenjdk/">AdoptOpenJDK builds</a>.
       </p>
       <p>There are a number of new features and capabilities delivered in this release:
-		<ul>
+    <ul>
            <li>Support for OpenSLL v1.0.2 for the Digest, CBC, GCM, and RSA algorithms for improved cryptographic performance. </li>
            <li>The ability to query running Java&trade; processes with our new Java process status tool (<tt>jps</tt>).</li>
            <li>Improved platform support for pause-less garbage collection, with the addition of Linux&reg; on POWER LE and AIX&reg;.</li>
-		   <li>The ability to write a Java dump file to STDOUT or STDERR as an alternative to writing to a file.</li>
-		   <li>Better diagnostic information for Linux systems that implement control groups.</li>
+       <li>The ability to write a Java dump file to STDOUT or STDERR as an alternative to writing to a file.</li>
+       <li>Better diagnostic information for Linux systems that implement control groups.</li>
       </ul>
       To find out more about these changes, read the <a href="https://www.eclipse.org/openj9/docs/version0.13/">OpenJ9 user documentation.</a>
-	  </p>
+    </p>
 
 
 <!-- Keep as-is except edit ID in URL and change "text=" -->
@@ -214,35 +262,35 @@ data-show-count="false">Tweet</a>
     <div class="f-content-container">
       <h3>Eclipse OpenJ9 version 0.12.1 released</h3>
       <p><i>5th Februrary 2019</i></p>
-	  <p>We've released a minor update to version 0.12.0 due to issue <a href="https://github.com/eclipse/openj9/issues/4530" target="_blank">4530</a>
-	  <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>,
-		which affects OpenSSL cryptographic acceleration with the Digest algorithm. Support for the Digest algorithm is currently turned off.</p>
+    <p>We've released a minor update to version 0.12.0 due to issue <a href="https://github.com/eclipse/openj9/issues/4530" target="_blank">4530</a>
+    <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>,
+    which affects OpenSSL cryptographic acceleration with the Digest algorithm. Support for the Digest algorithm is currently turned off.</p>
       <p>Eclipse OpenJ9 V0.12.0 contains a number of improvements and new benefits. Here are the highlights:
       </p>
-	  <p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Support for macOS&reg;</strong>
+    <p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Support for macOS&reg;</strong>
       </p>
       <p>This release adds support for OpenJDK 8 with OpenJ9 on the 64-bit macOS platform.</p>
       <p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Extended support for pause-less garbage collection</strong>
       </p>
       <p>Concurrent scavenge mode is now available on 64-bit Windows platforms. Support for 64-bit Linux x86 platforms is now extended for applications that require large heap (non-compressed references) VMs. </p>
-	  <p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Improved cryptographic performance for the RSA algorithm.</strong>
+    <p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Improved cryptographic performance for the RSA algorithm.</strong>
       </p>
-	  <p>OpenSSL 1.1.x support is now available for the RSA algorithm, in addition to Digest, CBC, and GCM. In our tests, we measured a 2-3&times; increase in RSA performance.</p>
+    <p>OpenSSL 1.1.x support is now available for the RSA algorithm, in addition to Digest, CBC, and GCM. In our tests, we measured a 2-3&times; increase in RSA performance.</p>
 
       <p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>OpenJ9 performance gets better and better:</strong><ul>
         <li>Improvements to AOT-compiled code during startup processing, which generates 10% startup time savings in AOT <i>warm</i> runs.</li>
         <li>Improved density of AOT-compiled code in the shared classes cache by reducing the number of duplicated validation records. This change
-		allows more AOT-compiled code to be stored, with faster load times.</li>
+    allows more AOT-compiled code to be stored, with faster load times.</li>
         <li>2&times; performance improvement when cloning arrays.</li>
       </ul>
       </p>
       <p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Documentation changes</strong></p>
       <p>We are now hosting two sets of user documentation:
-	  <ul>
-	  <li>Documentation to support the latest release of Eclipse OpenJ9 is hosted at <a href="https://www.eclipse.org/openj9/docs" target="_blank">https://www.eclipse.org/openj9/docs</a>. </li>
-	  <li>Draft documentation for our next release is now hosted at <a href="https://eclipse.github.io/openj9-docs" target="_blank">https://eclipse.github.io/openj9-docs</a>.</li>
-	  </ul>
-	  If you are building OpenJDK with OpenJ9 against the latest OpenJ9 code base, any new features and changes can be found in the draft documentation.</p>
+    <ul>
+    <li>Documentation to support the latest release of Eclipse OpenJ9 is hosted at <a href="https://www.eclipse.org/openj9/docs" target="_blank">https://www.eclipse.org/openj9/docs</a>. </li>
+    <li>Draft documentation for our next release is now hosted at <a href="https://eclipse.github.io/openj9-docs" target="_blank">https://eclipse.github.io/openj9-docs</a>.</li>
+    </ul>
+    If you are building OpenJDK with OpenJ9 against the latest OpenJ9 code base, any new features and changes can be found in the draft documentation.</p>
 
 
       <p>You can read more about the changes in this release in our <a href="https://www.eclipse.org/openj9/docs/version0.12/"><i>user documentation</i></a>.
@@ -267,7 +315,7 @@ data-show-count="false">Tweet</a>
           <p>Our latest release of Eclipse OpenJ9 is now complete and comes with extended support and performance benefits:
       <p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Support for the macOS&reg; platform</strong></p>
       <p>OpenJDK with OpenJ9 is now available on macOS. Early builds of OpenJDK 11 with OpenJ9 are now available at the <a href="https://adoptopenjdk.net/nightly.html?variant=openjdk11&jvmVariant=openj9">AdoptOpenJDK project</a>
-	  <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>,
+    <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>,
       with OpenJDK 8 coming soon.</p>
       <p><i class="fa fa-hand-o-right" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> <strong>Improved cryptographic performance with support for OpenSSL</strong></p>
       <p>OpenJ9 now supports OpenSSL v1.1.x for native cryptographic operations on OpenJDK 8, providing performance improvements over the default OpenJDK 8
