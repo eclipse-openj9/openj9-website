@@ -1237,13 +1237,10 @@ label[data-disabled=false] {
 	color: #000;
 }
 
-td {
-	vertical-align: top;
-}
-
 ul {
 	list-style-type: none;
 	padding: 0px;
+	margin-block-end: 0;
 }
 
 </style>
@@ -1264,10 +1261,10 @@ ul {
 </tr>
 
 <tr>
-	<td rowspan="2">	
+	<td style="vertical-align: top;" rowspan="2">	
 		<b style="font-size: 12pt">Dump Events</b>
+		<hr>
 		<ul id="event_input">
-			<hr>
 			<li>
 				<input type="checkbox" id="event_user"         name="event" value="user"        onchange="processChange(this)" data-hasfilter="false">
 				<label for="event_user">User signal i.e. SIGQUIT ("kill -3") / SIGBREAK</label>
@@ -1403,10 +1400,10 @@ ul {
 		</ul>
 	</td>
 
-	<td>
+	<td style="vertical-align: top;">
 		<b style="font-size: 12pt">Dump Agents</b>
+		<hr>
 		<ul id="agent_input">
-			<hr>
 			<li>
 				<input type="checkbox" id="agent_stack"   name="agent" value="stack"   onchange="processChange(this)">
 				<label for="agent_stack">Write current Java&trade; thread stack to stderr</label>
@@ -1443,7 +1440,7 @@ ul {
 			<li>
 				<input type="checkbox" id="agent_tool"    name="agent" value="tool"    onchange="processChange(this)" onmousedown="registerToolExecMouseDown()">
 				<label for="agent_tool" onmousedown="registerToolExecMouseDown()">Run a shell command:</label><br> 
-				<input style="width: 565px" type="text" id="exec" name="exec" size="72" value="" disabled onchange="processChange(this)" onblur="processChange(this)">
+				<input style="width: 558px" type="text" id="exec" name="exec" size="71" value="" disabled onchange="processChange(this)" onblur="processChange(this)">
 				<div style="padding: 4px 0px;">
 					<input type="button" data-target="exec" data-token="%Y"    id="exec_button_year4"  disabled style="width:55px" onclick="processChange(this)"
 						onmousedown="registerToolExecMouseDown()" value="Year (4)" title="Year (4 digits) e.g. 2017">
@@ -1499,8 +1496,8 @@ ul {
 <tr>
 	<td>
 		<b style="font-size: 12pt">Dump Options</b>
+		<hr>
 		<ul id="options_input">
-			<hr>
 			<div id="request_input">
 				<li>
 					<input type="checkbox" id="request_exclusive" name="request" value="exclusive" onchange="processChange(this)">
@@ -1541,11 +1538,11 @@ ul {
 			<hr>
 			<li>
 				<label for="file_text" data-disabled="true">Dump file pattern (all dumps except SYSTDUMPs and CEEDUMPs):</label> 
-				<input style="width: 565px" type="text" id="file_text" name="file_text" size="71" value="" disabled onchange="processChange(this)" onblur="registerTokenTarget(this)">
+				<input style="width: 558px" type="text" id="file_text" name="file_text" size="71" value="" disabled onchange="processChange(this)" onblur="registerTokenTarget(this)">
 			</li>
 			<li>
 				<label for="dsn_text" data-disabled="true">Data set pattern (SYSTDUMPs only):</label> 
-				<input style="width: 565px" type="text" id="dsn_text" name="dsn_text" size="71" value="" disabled onchange="processChange(this)" onblur="registerTokenTarget(this)">
+				<input style="width: 558px" type="text" id="dsn_text" name="dsn_text" size="71" value="" disabled onchange="processChange(this)" onblur="registerTokenTarget(this)">
 			</li>
 			<li>
 				<div style="padding: 4px 0px;">
