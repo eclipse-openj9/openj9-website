@@ -21,6 +21,8 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 
 The project website pages cannot be redistributed
 -->
+# This website is not built from the master source, but is a prototype for a new website, built from the gh-pages branch.
+
 # Eclipse OpenJ9 website
 
 
