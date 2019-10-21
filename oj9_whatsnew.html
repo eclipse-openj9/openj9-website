@@ -79,6 +79,67 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <span class="intro-text">Covering project news, events, milestones, and of course... new and cool stuff!</span>
       </div>
 
+
+
+<div class="f-section-item" id="openj90170">
+<div class="f-content-container">
+<h3>Eclipse OpenJ9 version 0.17.0 released</h3>
+<p><i>18th October 2019</i>
+</p>
+<p>OpenJ9 version 0.17.0 supports OpenJDK 8, 11, and 13. OpenJDK builds that contain Eclipse OpenJ9 version 0.17.0 are now available from the AdoptOpenJDK community project:
+</p>
+<p align=center><a href="https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9" target="_blank">OpenJDK version 8 <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i></a>
+<br/><a href="https://adoptopenjdk.net/releases.html?variant=openjdk11&jvmVariant=openj9" target="_blank">OpenJDK version 11 <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i></a>
+<br/><a href="https://adoptopenjdk.net/releases.html?variant=openjdk13&jvmVariant=openj9" target="_blank">OpenJDK version 13 <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i></a>
+</p>
+<p>Note: The last release of OpenJDK 8 and 11 from AdoptOpenJDK is Eclipse OpenJ9 0.15.1. To read about other features and changes in the VM since 0.15.1, check the Version 0.16.0 release notes too.
+</p>
+
+<p>Here are some of the new features that we've introduced in version 0.17.0 of OpenJ9. You can control the behavior of all the default settings mentioned with appropriate command-line options.
+</p>
+<p>Do let us know how well these enhancements work for you by posting in our <a href="https://join.slack.com/t/openj9/shared_invite/enQtNDU4MDI4Mjk0MTk2LWM2MjliMTQ4NWM5YjMwNTViOTgzMzM2ZDhlOWJmZTc1MjhmYmRjMDg2NDljNGM0YTAwOWRiZDE0YzI0NjgyOWI" target="_blank"> slack channel</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.
+
+<ul>
+<li><b>z15 processor support.</b> This release adds JIT compiler support for exploiting z15 processor instructions.
+</li>
+<li><b>New shared classes cache suboption to skip disk space check.</b> When creating a persistent shared classes cache, the OpenJ9 VM checks that there is sufficient disk space available on the file system. For file systems that do not support the checking of free space, you can set the <tt>-Xshareclasses:noPersistentDiskSpaceCheck</tt> option, which causes the VM to skip the space checking operation. If there isn't enough disk space available when the cache is written, a <tt>SIGBUS</tt> or <tt>SIGSEGV</tt> signal occurs and the VM ends.
+</li>
+<li><b>"Unsafe" classes are stored in the shared classes cache.</b> By default, classes created through <tt>Unsafe.defineClass</tt> are now stored in the shared classes cache. You can use the <tt>-XX:-ShareUnsafeClasses</tt> option to change this behavior.
+</li>
+<li><b>There is now an option to record class relationships in the verifier.</b> A new command line option <tt>-XX:+ClassRelationshipVerifier</tt> allows you to record class relationships in the verifier, which avoids unnecessary class loading and reduces VM startup time. This is a new approach to bytecode verification that delays validating the relationships between classes until the classes are required to be loaded for a program's execution thus loading only those classes that are needed.
+</li>
+<li><b>You can now create layered caches (64-bit only).</b> Where a cache builds on another cache with the same name, you can use suboptions for <tt>-Xshareclasses</tt> to create layered caches and save space: good for building a Docker container, for example. The suboptions are: <tt>createLayer</tt>, <tt>layer=&lt;number&gt;</tt>, <tt>printTopLayerStats</tt>, and <tt>destroyAllLayers</tt>. <b>Note:</b> These suboptions are experimental, so <i>do not</i> use them in a production environment.
+</li>
+<li><b>The restriction on Direct Dump Reader (DDR) has been removed.</b> Prior to this version, you had to use a 32-bit VM to look at a 32-bit core, and a 64-bit VM to look at a 64-bit core when using DDR. This restriction has now been removed.
+</li>
+<li><b>The format of the HOOKS section of a Java dump has changed</b> to show recorded times in microseconds to provide increased precision. There is also a new field, <tt>3HKTOTALTIME</tt>, which gives the total duration of previous events. For more information and an example of the new format, see documentation for Java dump.
+</li>
+<li><b>LUDCL caching disabled by default.</b> By caching the Latest User Defined Class Loader (LUDCL), Java applications that use deserialization extensively can see a performance improvement. This capability is controlled by the <tt>-Dcom.ibm.enableClassCaching</tt> system property and is now disabled by default. (Note that previous versions of the documentation incorrectly identified this property as disabled by default when it was actually enabled by default in the VM.)
+</li>
+<li><b>Support for the Digest algorithm is re-enabled.</b> For more information about this support, see Cryptographic operations in the documentation.
+</li>
+</ul>
+To read more about the changes in version 0.17.0, read the <a href="https://www.eclipse.org/openj9/docs/version0.17/">Release notes</a> in the OpenJ9 user documentation, which will also give you detailed information about the options mentioened here.
+</p>
+</br>
+
+  <!-- Keep as-is except edit ID in URL and change "text=". Ensure no indents! -->
+
+<a href="https://twitter.com/share?
+url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openj90170&
+via=openj9&
+hashtags=openj9,java&
+text=V0.17.0%20released;%20with%20support%20for%20OpenJDK%2013"
+class="twitter-share-button"
+data-show-count="false">Tweet</a>
+
+
+</div>
+</div>
+
+
+
+
       <div class="f-section-item" id="openj90160">
       <div class="f-content-container">
         <h3>Eclipse OpenJ9 version 0.16.0 released</h3>
