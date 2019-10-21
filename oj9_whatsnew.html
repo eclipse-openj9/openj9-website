@@ -97,7 +97,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <p>Here are some of the new features that we've introduced in version 0.17.0 of OpenJ9. You can control the behavior of all the default settings mentioned with appropriate command-line options.
 </p>
-<p>Do let us know how well these enhancements work for you by posting in our <a href="https://join.slack.com/t/openj9/shared_invite/enQtNDU4MDI4Mjk0MTk2LWM2MjliMTQ4NWM5YjMwNTViOTgzMzM2ZDhlOWJmZTc1MjhmYmRjMDg2NDljNGM0YTAwOWRiZDE0YzI0NjgyOWI" target="_blank"> slack channel</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.
+<p>Do let us know how well these enhancements work for you by posting in our <a href="https://join.slack.com/t/openj9/shared_invite/enQtNDU4MDI4Mjk0MTk2LWVhNTMzMGY1N2JkODQ1OWE0NTNmZjM4ZDcxOTBiMjk3NGFjM2U0ZDNhMmY0MDZlNzU0ZjAyNzQ1ODlmYjg3MjA" target="_blank"> slack channel</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.
 
 <ul>
 <li><b>z15 processor support.</b> This release adds JIT compiler support for exploiting z15 processor instructions.
@@ -119,7 +119,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><b>Support for the Digest algorithm is re-enabled.</b> For more information about this support, see Cryptographic operations in the documentation.
 </li>
 </ul>
-To read more about the changes in version 0.17.0, read the <a href="https://www.eclipse.org/openj9/docs/version0.17/">Release notes</a> in the OpenJ9 user documentation, which will also give you detailed information about the options mentioened here.
+To read more about the changes in version 0.17.0, read the <a href="https://www.eclipse.org/openj9/docs/version0.17/">Release notes</a> in the OpenJ9 user documentation, which will also give you detailed information about the options mentioned here.
 </p>
 </br>
 
@@ -129,7 +129,7 @@ To read more about the changes in version 0.17.0, read the <a href="https://www.
 url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openj90170&
 via=openj9&
 hashtags=openj9,java&
-text=V0.17.0%20released;%20with%20support%20for%20OpenJDK%2013"
+text=V0.17.0%20released;%20with%20support%20for%20z15%2C%20new%20shared%20classes%20suboptions%2C%20and%20more%21"
 class="twitter-share-button"
 data-show-count="false">Tweet</a>
 
@@ -152,7 +152,7 @@ data-show-count="false">Tweet</a>
 </p>
 <p>Here are some of the new features that we've introduced in version 0.16.0 of OpenJ9. You can control the behavior of all the default settings mentioned with appropriate command-line options.
 </p>
-<p>As indicated, many of these enhancements will typically improve the performance of your applications. As always, you can let us know how well these performance enhancements work for you by posting in our <a href="https://join.slack.com/t/openj9/shared_invite/enQtNDU4MDI4Mjk0MTk2LWM2MjliMTQ4NWM5YjMwNTViOTgzMzM2ZDhlOWJmZTc1MjhmYmRjMDg2NDljNGM0YTAwOWRiZDE0YzI0NjgyOWI" target="_blank"> slack channel</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.<ul>
+<p>As indicated, many of these enhancements will typically improve the performance of your applications. As always, you can let us know how well these performance enhancements work for you by posting in our <a href="https://join.slack.com/t/openj9/shared_invite/enQtNDU4MDI4Mjk0MTk2LWVhNTMzMGY1N2JkODQ1OWE0NTNmZjM4ZDcxOTBiMjk3NGFjM2U0ZDNhMmY0MDZlNzU0ZjAyNzQ1ODlmYjg3MjA" target="_blank"> slack channel</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.<ul>
   <li>Class data sharing is enabled by default for bootstrap classes, unless your application is running in a container. We've seen an improved Tomcat startup time of almost 30% with an out-of-the-box configuration.
   </li>
   <li>When you use the <tt>madvise</tt> setting on Linux on x86 systems, Transparent Huge Pages (THP) is now enabled by default. The THP setting on other systems remains disabled by default when you use <tt>madvise</tt>.
@@ -203,7 +203,7 @@ data-show-count="false">Tweet</a>
         An average value is set over a few restarts, helping to ensure that the value used for the initial heap size is as accurate as possible. 
         This feature is expected to become the default in a future release. 
         To enable it now, ensure that shared classes are turned on (<tt>-Xshareclasses</tt>) and set the <tt>-XX:+UseGCStartupHints</tt> option on the command line when you start your application. 
-        Our testing demonstrates ~5% startup improvement for Open Liberty, so give it a go and post in our <a href="https://join.slack.com/t/openj9/shared_invite/enQtNDU4MDI4Mjk0MTk2LWM2MjliMTQ4NWM5YjMwNTViOTgzMzM2ZDhlOWJmZTc1MjhmYmRjMDg2NDljNGM0YTAwOWRiZDE0YzI0NjgyOWI" target="_blank"> slack channel</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> to let us know how well it works for you.
+        Our testing demonstrates ~5% startup improvement for Open Liberty, so give it a go and post in our <a href="https://join.slack.com/t/openj9/shared_invite/enQtNDU4MDI4Mjk0MTk2LWVhNTMzMGY1N2JkODQ1OWE0NTNmZjM4ZDcxOTBiMjk3NGFjM2U0ZDNhMmY0MDZlNzU0ZjAyNzQ1ODlmYjg3MjA" target="_blank"> slack channel</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> to let us know how well it works for you.
         </p>
         <p>In this release, we are also introducing more compatibility changes to help users adopt OpenJ9:
           <ul>
@@ -322,7 +322,7 @@ data-show-count="false">Tweet</a>
     <div class="f-section-item" id="openj90120">
     <div class="f-content-container">
       <h3>Eclipse OpenJ9 version 0.12.1 released</h3>
-      <p><i>5th Februrary 2019</i></p>
+      <p><i>5th February 2019</i></p>
     <p>We've released a minor update to version 0.12.0 due to issue <a href="https://github.com/eclipse/openj9/issues/4530" target="_blank">4530</a>
     <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>,
     which affects OpenSSL cryptographic acceleration with the Digest algorithm. Support for the Digest algorithm is currently turned off.</p>
@@ -439,8 +439,8 @@ data-show-count="false">Tweet</a>
       see <a href="https://www.eclipse.org/openj9/docs/openj9_support/index.html">Supported environments</a>
       <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.</p>
 
-      <p>To help users adopt OpenJ9 we have been busy adding compatibility for a number of Hotspot options. We
-      are also writing content for the user documentation to help you compare Hotspot and OpenJ9 non-standard options and
+      <p>To help users adopt OpenJ9 we have been busy adding compatibility for a number of HotSpot options. We
+      are also writing content for the user documentation to help you compare HotSpot and OpenJ9 non-standard options and
       garbage collection policies. So if you haven't already tried an OpenJDK with OpenJ9 or you've stumbled into problems
       because command-line options you are familiar with are not recognised, we're working hard to improve the experience. If
       you have a migration problem, please help us out by posting details in a GitHub <a href="https://github.com/eclipse/openj9/issues/2332">issue</a>
@@ -502,7 +502,7 @@ data-show-count="false">Tweet</a>
     <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>    topic.
       </p>
 
-      <p>If you are interested in trying the OpenJDK 8 Windows binaries, we've run some Eclipse performance tests to compare OpenJ9 and the Hotspot JVM.
+      <p>If you are interested in trying the OpenJDK 8 Windows binaries, we've run some Eclipse performance tests to compare OpenJ9 and the HotSpot JVM.
     Our results indicate that OpenJ9 is <strong>43% faster</strong> and uses <strong>42% less memory</strong>. Read more about these amazing results
     in <a href="https://blog.openj9.org/2018/06/15/eclipse-openj9-performance-a-bake-off-on-windows/" target="_blank">Eclipse OpenJ9; a
     bake off on Windows</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.
@@ -627,7 +627,7 @@ data-show-count="false">Tweet</a>
       with OpenJ9. If you just want to come and listen, well that's fine too!</p>
       <p>Schedules, agendas, minutes, and recordings are posted in the OpenJ9 slack workspace, in the #planning channel.
       <p>To update your Google calendar: <a target="_blank" href="https://calendar.google.com/calendar?cid=YjBnYjB0ZzNxaTZhb3NhZGZnbG0wa3BjY29AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ">add OpenJ9 hangouts</a>.</p>
-      To join slack:  <a href="https://join.slack.com/t/openj9/shared_invite/enQtNDU4MDI4Mjk0MTk2LWM2MjliMTQ4NWM5YjMwNTViOTgzMzM2ZDhlOWJmZTc1MjhmYmRjMDg2NDljNGM0YTAwOWRiZDE0YzI0NjgyOWI">request an invitation</a>.
+      To join slack:  <a href="https://join.slack.com/t/openj9/shared_invite/enQtNDU4MDI4Mjk0MTk2LWVhNTMzMGY1N2JkODQ1OWE0NTNmZjM4ZDcxOTBiMjk3NGFjM2U0ZDNhMmY0MDZlNzU0ZjAyNzQ1ODlmYjg3MjA" target="_blank">request an invitation</a>.
           </p>
 
 <!-- Keep as-is except edit ID in URL and change "text=" -->
@@ -648,7 +648,7 @@ data-show-count="false">Tweet</a>
           <p><i>5th December 2017</i></p>
           <p>We're pleased to announce the introduction of a new slack workspace, which we hope will become a popular medium for collaborating with the OpenJ9 project team in addition to our Eclipse mailing list. Whether you have questions to ask or experiences to  share, we'd love to hear from you.
           </p>
-          <p>Join slack:  <a href="https://join.slack.com/t/openj9/shared_invite/enQtNDU4MDI4Mjk0MTk2LWM2MjliMTQ4NWM5YjMwNTViOTgzMzM2ZDhlOWJmZTc1MjhmYmRjMDg2NDljNGM0YTAwOWRiZDE0YzI0NjgyOWI">request an invitation</a>.
+          <p>Join slack:  <a href="https://join.slack.com/t/openj9/shared_invite/enQtNDU4MDI4Mjk0MTk2LWVhNTMzMGY1N2JkODQ1OWE0NTNmZjM4ZDcxOTBiMjk3NGFjM2U0ZDNhMmY0MDZlNzU0ZjAyNzQ1ODlmYjg3MjA" target="_blank">request an invitation</a>.
           </p>
 
 <!-- Keep as-is except edit ID in URL and change "text=" -->
