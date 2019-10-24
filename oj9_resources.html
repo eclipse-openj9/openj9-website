@@ -23,7 +23,7 @@ The project website pages cannot be redistributed
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css">
   <link rel="stylesheet" href="./css/oj9_media.css">
-  <link rel="stylesheet" href="./css/oj9_common.css">  
+  <link rel="stylesheet" href="./css/oj9_common.css">
   <script type="text/javascript" src="./js/oj9_common.js"></script>
  <!-- Eclipse privacy popup -->
   <link rel="stylesheet" type="text/css" href="//www.eclipse.org/eclipse.org-common/themes/solstice/public/stylesheets/vendor/cookieconsent/cookieconsent.min.css" />
@@ -33,20 +33,30 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5WLCZXC');</script>
-<!-- End Google Tag Manager --> 
+<!-- End Google Tag Manager -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-105616558-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-105616558-3', { 'anonymize_ip': true });
+</script>
+ <!-- End Global site tag (gtag.js) - Google Analytics -->
 </head>
 <body>
   <div id="main-title">
-    <script type="text/javascript">navigation(document.location.href);</script>	
+    <script type="text/javascript">navigation(document.location.href);</script>
     <div class="title">
       <a href="index.html">
         <!--<img class="title_icon" src="./assets/openj9_6a.png" alt="Eclipse OpenJ9">-->
         <img class="title_icon" src="./assets/openj9_6b.png" alt="Eclipse OpenJ9">
       </a>
-    </div>  
+    </div>
     <div class="egg">
       <a href="http://wiki.eclipse.org/Development_Resources/Process_Guidelines/What_is_Incubation" target="_blank"><img src="./assets/egg-incubation.png" alt="Eclipse Incubation"></a>
-    </div>  
+    </div>
   </div>
 
   <main>
@@ -68,10 +78,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <ul>
 			<li><i><a href="https://mstoodle.github.io/EclipseOpenJ9JitVerboseLogs/" target="_blank">
               Eclipse OpenJ9 verbose JIT logs</a></i> by Mark Stoodley</li>
-		
+
 			<li><i><a href="https://www.eclipse.org/community/eclipse_newsletter/2018/april/openj9.php" target="_blank">
               Eclipse OpenJ9 - not just any Java&trade; Virtual Machine</a></i> by Dan Heidinga and Sue Chaplain</li>
-			  
+
             <li><i><a href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader7.md" target="_blank">
               OpenJDK&trade; 8 performance with Eclipse OpenJ9</a></i> by Vijay Sundaresan and Marius Pirvu<br/>
               "Benchmark testing demonstrates significantly better performance for OpenJDK 8 when using the Eclipse OpenJ9 VM, than with the Hotspot VM - just as for OpenJDK 9."</li>
@@ -122,10 +132,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             <li><i><a href="https://developer.ibm.com/javasdk/2016/10/14/ibm-java-runtime-release-to-release-performance-improvements/" target="_blank">
               IBM Java runtime: Release-to-release performance improvements</a></i> by Vijay Sundaresan</li>
-        
+
             <li><i><a href="https://www.ibm.com/developerworks/library/j-class-sharing-openj9/" target="_blank">
               Class sharing In Eclipse OpenJ9</a></i> by Ben Corrie and Hang Shao</li>
-              
+
             <li><i><a href="https://www.ibm.com/developerworks/java/library/j-sharedclasses/" target="_blank">
               Enhance performance with class sharing</a></i> by Adam Pilkington and Graham Rawson</li>
 
@@ -194,7 +204,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 
     <p>OpenJ9 is an Eclipse Incubator project.</p>
-    
+
     <span class="no-wrap"><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="dark-link" href="http://www.eclipse.org">Eclipse Foundation website</a></span>
     <span class="no-wrap"><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="dark-link" href="http://www.eclipse.org/legal/privacy.php">Privacy policy</a></span>
     <span class="no-wrap"><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="dark-link" href="http://www.eclipse.org/legal/termsofuse.php">Website terms&nbsp;of use</a></span>

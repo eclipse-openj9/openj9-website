@@ -26,7 +26,7 @@ The project website pages cannot be redistributed
   <link rel="stylesheet" href="./css/oj9_common.css">
   <!-- Eclipse privacy popup -->
   <link rel="stylesheet" type="text/css" href="//www.eclipse.org/eclipse.org-common/themes/solstice/public/stylesheets/vendor/cookieconsent/cookieconsent.min.css" />
-  <script src="//www.eclipse.org/eclipse.org-common/themes/solstice/public/javascript/vendor/cookieconsent/default.min.js"></script>   
+  <script src="//www.eclipse.org/eclipse.org-common/themes/solstice/public/javascript/vendor/cookieconsent/default.min.js"></script>
   <script type="text/javascript" src="./js/oj9_common.js"></script>
   <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -34,18 +34,28 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5WLCZXC');</script>
-<!-- End Google Tag Manager --> 
+<!-- End Google Tag Manager -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-105616558-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-105616558-3', { 'anonymize_ip': true });
+</script>
+ <!-- End Global site tag (gtag.js) - Google Analytics -->
 </head>
 <body>
   <div id="main-title">
-    <script type="text/javascript">navigation(document.location.href);</script>	
+    <script type="text/javascript">navigation(document.location.href);</script>
     <div class="title">
     	<!--<img class="title_icon" src="./assets/openj9_6a.png" alt="Eclipse OpenJ9">-->
     	<img class="title_icon" src="./assets/openj9_6b.png" alt="Eclipse OpenJ9">
-    </div>  
+    </div>
     <div class="egg">
       <a href="http://wiki.eclipse.org/Development_Resources/Process_Guidelines/What_is_Incubation" target="_blank"><img src="./assets/egg-incubation.png" alt="Eclipse Incubation"></a>
-    </div>  
+    </div>
   </div>
 
   <main>
@@ -63,14 +73,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <a href="oj9_performance.html">Show me the data!</a><br/><br/>
         Want an OpenJDK&trade; build that contains an enterprise grade, open source, Java virtual machine?<br/>
         Grab a pre-built binary for Linux, Windows, or macOS and try it for yourself...
-      </p> 
+      </p>
       <a class="button external-button" style="width:17em; margin-top:1rem;" href="https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9">Download Now
         <i class="fa fa-download" aria-hidden="true"></i></a>
-		
+
       <h2 id="performance">
         Give your Java application a thrill<br/>
         Run it on OpenJDK with Eclipse OpenJ9
-      </h2> 
+      </h2>
 
 <!--
       <div style="text-align:left; max-width: 23rem; margin: 0 auto; margin-bottom:5rem; line-height: 1.9rem; font-size:1.1rem;">
@@ -78,7 +88,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <li>Around 50% smaller memory footprint</li>
           <li>Over 40% faster startup time</li>
           <li>5&times; faster to full throughput</li>
-        </ul> 
+        </ul>
 
         <p class="read-more-link">Read more about <a href="oj9_performance.html">OpenJ9 performance</a>.
         </p>
@@ -87,7 +97,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="home-button-row">
       <a class="button external-button" style="width:10em; margin-top:1rem;" href="oj9_whatsnew.html">What's new?
         <i class="fa fa-bullhorn" aria-hidden="true"></i></a>
-      <a class="button external-button" style="width:10em; margin-top:1rem;" href="https://blog.openj9.org/">OpenJ9 blog 
+      <a class="button external-button" style="width:10em; margin-top:1rem;" href="https://blog.openj9.org/">OpenJ9 blog
         <i class="fa fa-comment-o" aria-hidden="true"></i></a>
       </div>
 
@@ -95,12 +105,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div id="read-more-button">
         Learn more <i id="read-more-button-icon" class="fa fa-plus-circle" aria-hidden="true"></i>
       </div>
-	
+
       <div id="read-more-text" class="closed">
         <p id="performance">Eclipse OpenJ9 is a high performance, scalable, Java virtual machine (JVM) implementation that represents hundreds of person-years of effort. Contributed to the Eclipse project by IBM, the OpenJ9 JVM underpins the IBM SDK, Java Technology Edition product that is a core component of many IBM Enterprise software products. Continued development of OpenJ9 at the Eclipse foundation ensures wider collaboration, fresh innovation, and the opportunity to influence the development of OpenJ9 for the next generation of Java applications.
         </p>
         <h2 id="smaller">Saving costs in the cloud</h2>
-        <p>OpenJ9 is highly optimized for cloud workloads. The memory footprint is around half the size of other JVM implementations. 
+        <p>OpenJ9 is highly optimized for cloud workloads. The memory footprint is around half the size of other JVM implementations.
         </p>
         <p>Whether you are a cloud user or a cloud provider, a smaller footprint generates immediate cost savings when running applications on most cloud services. You can also take advantage of a tuning mechanism that detects when the JVM is idle, releasing free memory pages to keep the footprint as small as possible and keep your running costs to a minimum.
         </p>
@@ -127,7 +137,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <a class="button internal-button" style="width:10em; margin-top:1rem;" href="#get-started"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i> Get started</a>
         <a class="button internal-button" style="width:10em; margin-top:1rem;" href="#contributing"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i> Get involved</a>
       </div>
-	  
+
     </div> <!-- end: INTRO -->
 
 
@@ -141,7 +151,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="f-section-item">
         <span class="intro-text">It's easy to get started with Eclipse OpenJ9!</span>
       </div>
-          
+
       <div class="f-section-item">
         <div class="f-content-container">
           <p><span class="first-word">Try it out</span>
@@ -234,26 +244,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 	  <div class="f-section-item">
         <div class="f-button-container">
-          <a class="button external-button" href="https://openj9.slack.com" target="_blank">OpenJ9 Slack 
+          <a class="button external-button" href="https://openj9.slack.com" target="_blank">OpenJ9 Slack
           <i class="fa fa-slack" aria-hidden="true"></i>
           </a>
 	  </div>
-		
-		
+
+
         <div class="f-button-container">
-          <a class="button external-button" href="https://dev.eclipse.org/mailman/listinfo/openj9-dev" target="_blank">Eclipse mailing list 
+          <a class="button external-button" href="https://dev.eclipse.org/mailman/listinfo/openj9-dev" target="_blank">Eclipse mailing list
           <i class="fa fa-envelope-o" aria-hidden="true"></i>
           </a>
         </div>
 
         <div class="f-button-container">
-          <a class="button external-button" href="https://github.com/eclipse/openj9/blob/master/CONTRIBUTING.md" target="_blank">Contribute on GitHub 
+          <a class="button external-button" href="https://github.com/eclipse/openj9/blob/master/CONTRIBUTING.md" target="_blank">Contribute on GitHub
           <i class="fa fa-github" aria-hidden="true"></i></a>
         </div>
       </div>
 
     </div> <!-- end: GET INVOLVED -->
-          
+
 </div> <!-- end: main-content -->
 
   </main>
@@ -291,6 +301,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </footer>
 
   <script src="./js/app.js"></script>
-  
+
   </body>
 </html>

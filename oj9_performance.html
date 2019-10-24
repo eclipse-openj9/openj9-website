@@ -3,12 +3,12 @@
 <!--
 Copyright (c) 2017, 2019 IBM Corp. and others
 
-This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which accompanies this distribution and is available at http://eclipse.org/legal/epl-2.0 or the Apache License, Version 2.0 which accompanies this distribution and is available at https://www.apache.org/licenses/LICENSE-2.0. 
+This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which accompanies this distribution and is available at http://eclipse.org/legal/epl-2.0 or the Apache License, Version 2.0 which accompanies this distribution and is available at https://www.apache.org/licenses/LICENSE-2.0.
 
-This Source Code may also be made available under the following Secondary Licenses when the conditions for such availability set forth in the Eclipse Public License, v. 2.0 are satisfied: GNU General Public License, version 2 with the GNU Classpath Exception [1] and GNU General Public License, version 2 with the OpenJDK Assembly Exception [2]. 
+This Source Code may also be made available under the following Secondary Licenses when the conditions for such availability set forth in the Eclipse Public License, v. 2.0 are satisfied: GNU General Public License, version 2 with the GNU Classpath Exception [1] and GNU General Public License, version 2 with the OpenJDK Assembly Exception [2].
 
-[1] https://www.gnu.org/software/classpath/license.html  
-[2] http://openjdk.java.net/legal/assembly-exception.html 
+[1] https://www.gnu.org/software/classpath/license.html
+[2] http://openjdk.java.net/legal/assembly-exception.html
 
 SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
 
@@ -26,7 +26,7 @@ The project website pages cannot be redistributed
   <link rel="stylesheet" href="./css/oj9_media.css">
   <link rel="stylesheet" href="./css/oj9_common.css">
 <!-- Eclipse privacy popup -->
-  <link rel="stylesheet" type="text/css" href="//www.eclipse.org/eclipse.org-common/themes/solstice/public/stylesheets/vendor/cookieconsent/cookieconsent.min.css" />  
+  <link rel="stylesheet" type="text/css" href="//www.eclipse.org/eclipse.org-common/themes/solstice/public/stylesheets/vendor/cookieconsent/cookieconsent.min.css" />
   <script type="text/javascript" src="./js/oj9_common.js"></script>
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -34,19 +34,29 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5WLCZXC');</script>
-<!-- End Google Tag Manager --> 
+<!-- End Google Tag Manager -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-105616558-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-105616558-3', { 'anonymize_ip': true });
+</script>
+ <!-- End Global site tag (gtag.js) - Google Analytics -->
 </head>
 <body>
   <div id="main-title">
-    <script type="text/javascript">navigation(document.location.href);</script>	
+    <script type="text/javascript">navigation(document.location.href);</script>
     <div class="title">
       <a href="index.html">
         <img class="title_icon" src="./assets/openj9_6b.png" alt="Eclipse OpenJ9">
       </a>
-    </div>  
+    </div>
     <div class="egg">
       <a href="http://wiki.eclipse.org/Development_Resources/Process_Guidelines/What_is_Incubation" target="_blank"><img src="./assets/egg-incubation.png" alt="Eclipse Incubation"></a>
-    </div>  
+    </div>
   </div>
 
   <main>
@@ -69,9 +79,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </p>
       	</div>
       </div>
-	  
+
       <div class="f-section-item">
-        <div id="perf-cards" class="f-content-container">	  
+        <div id="perf-cards" class="f-content-container">
 			<div class="card">
 				<div class="card-content">
 				  <h4>66% smaller footprint after startup</h4>
@@ -97,28 +107,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				</div>
 			</div>
 			<div class="card">
-				<div class="card-content">			
+				<div class="card-content">
 				  <h4>Comparable throughput</h4>
 				  <p><img width="299" height="180" src="assets/perf_v8_ramp_throughput.png" alt="Throughput during ramp up"/>
 				  Although both OpenJDK 8 with OpenJ9 and OpenJDK 8 with Hotspot reach a similar peak throughput, OpenJDK 8 with OpenJ9 reaches that peak about 1 minute faster.
 				  </p>
-				</div>			  
+				</div>
 			</div>
 			<div class="card">
-				<div class="card-content">			
+				<div class="card-content">
 				  <h4>Faster ramp-up time in the cloud</h4>
 				  <p><img width="299" height="180" src="assets/perf_v8_ramp_footprint_1core.png" alt="Throughput during ramp up in a CPU-constrained environment"/>
 				  OpenJ9 reaches peak throughput on a single CPU core in 8.5 minutes compared with 30 minutes for Hotspot. Doing more work more quickly is important for short-lived VMs running in resource-constrained environments like the cloud.
 				  </p>
-				</div>			  
-			</div>			
+				</div>
+			</div>
 		</div>
 	  </div>
       <div class="f-section-item">
 	    <div class="f-content-container">
 		  <p>These results show that OpenJ9 achieves a good balance between (often conflicting) performance metrics: it offers excellent footprint savings and faster start-up time with the help of AOT technology, while also delivering throughput performance that is competitive with Hotspot.</p>
 		  <p>Due to its low memory footprint, OpenJ9 is particularly well suited for cloud computing environments where memory savings translate into cost savings for cloud users and providers alike.</p>
-		  <p style="padding:1rem 0 0rem 0;"><i><b>You can read the full account of how the data was generated and details of the results obtained at <a href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader7.md">OpenJDK 8 performance with OpenJ9</a>.</b></i></p>	       
+		  <p style="padding:1rem 0 0rem 0;"><i><b>You can read the full account of how the data was generated and details of the results obtained at <a href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader7.md">OpenJDK 8 performance with OpenJ9</a>.</b></i></p>
 		</div>
 	  </div>
 
@@ -149,7 +159,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 
     <p>OpenJ9 is an Eclipse Incubator project.</p>
-    
+
     <span class="no-wrap"><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="dark-link" href="http://www.eclipse.org">Eclipse Foundation website</a></span>
     <span class="no-wrap"><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="dark-link" href="http://www.eclipse.org/legal/privacy.php">Privacy policy</a></span>
     <span class="no-wrap"><i class="fa fa-chevron-circle-right f_mini" aria-hidden="true"></i><a class="dark-link" href="http://www.eclipse.org/legal/termsofuse.php">Website terms&nbsp;of use</a></span>
