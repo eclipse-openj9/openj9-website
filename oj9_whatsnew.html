@@ -41,7 +41,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5WLCZXC');</script>
 <!-- End Google Tag Manager -->
-  <script>window.twttr = (function(d, s, id) {
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-105616558-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-105616558-3', { 'anonymize_ip': true });
+</script>
+ <!-- End Global site tag (gtag.js) - Google Analytics -->
+ <!-- Disable twitter web intent -->
+ <!--<script>window.twttr = (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0],
     t = window.twttr || {};
   if (d.getElementById(id)) return t;
@@ -54,10 +65,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     t._e.push(f);
   };
   return t;
-}(document, "script", "twitter-wjs"));</script>
+}(document, "script", "twitter-wjs"));</script>-->
 </head>
 <body>
-<script>twttr.widgets.load()</script>
+<!--<script>twttr.widgets.load()</script>-->
   <div id="main-title">
     <script type="text/javascript">navigation(document.location.href);</script>
     <div class="title">
@@ -125,13 +136,13 @@ To read more about the changes in version 0.17.0, read the <a href="https://www.
 
   <!-- Keep as-is except edit ID in URL and change "text=". Ensure no indents! -->
 
-<a href="https://twitter.com/share?
+<!--<a href="https://twitter.com/share?
 url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openj90170&
 via=openj9&
 hashtags=openj9,java&
 text=V0.17.0%20released;%20with%20support%20for%20z15%2C%20new%20shared%20classes%20suboptions%2C%20and%20more%21"
 class="twitter-share-button"
-data-show-count="false">Tweet</a>
+data-show-count="false">Tweet</a>-->
 
 
 </div>
@@ -178,13 +189,13 @@ To read more about the changes in version 0.16.0, read the <a href="https://www.
 
   <!-- Keep as-is except edit ID in URL and change "text=" -->
 
-<a href="https://twitter.com/share?
+<!--<a href="https://twitter.com/share?
 url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openj90160&
 via=openj9&
 hashtags=openj9,java&
 text=V0.16.0%20released;%20with%20support%20for%20OpenJDK%2013"
 class="twitter-share-button"
-data-show-count="false">Tweet</a>
+data-show-count="false">Tweet</a>-->
 
 
 </div>
@@ -197,12 +208,12 @@ data-show-count="false">Tweet</a>
         <p><i>17th July 2019</i></p>
         <p>OpenJDK builds that contain Eclipse OpenJ9 version 0.15.1 with the latest Critical Patch Update (CPU) are now available from the <a href="https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9" target="_blank">AdoptOpenJDK community project</a> <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>
         </p>
-        <p>We've introduced some cognitive behavior in this release to improve startup performance. 
-        OpenJ9 can now learn and set an appropriate initial heap size for an application as an alternative to a user manually sizing and setting an <tt>-Xms</tt> value. 
-        The VM records the size of the heap when startup processing ends, writing this data to the shared classes cache. 
-        An average value is set over a few restarts, helping to ensure that the value used for the initial heap size is as accurate as possible. 
-        This feature is expected to become the default in a future release. 
-        To enable it now, ensure that shared classes are turned on (<tt>-Xshareclasses</tt>) and set the <tt>-XX:+UseGCStartupHints</tt> option on the command line when you start your application. 
+        <p>We've introduced some cognitive behavior in this release to improve startup performance.
+        OpenJ9 can now learn and set an appropriate initial heap size for an application as an alternative to a user manually sizing and setting an <tt>-Xms</tt> value.
+        The VM records the size of the heap when startup processing ends, writing this data to the shared classes cache.
+        An average value is set over a few restarts, helping to ensure that the value used for the initial heap size is as accurate as possible.
+        This feature is expected to become the default in a future release.
+        To enable it now, ensure that shared classes are turned on (<tt>-Xshareclasses</tt>) and set the <tt>-XX:+UseGCStartupHints</tt> option on the command line when you start your application.
         Our testing demonstrates ~5% startup improvement for Open Liberty, so give it a go and post in our <a href="https://join.slack.com/t/openj9/shared_invite/enQtNDU4MDI4Mjk0MTk2LWVhNTMzMGY1N2JkODQ1OWE0NTNmZjM4ZDcxOTBiMjk3NGFjM2U0ZDNhMmY0MDZlNzU0ZjAyNzQ1ODlmYjg3MjA" target="_blank"> slack channel</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> to let us know how well it works for you.
         </p>
         <p>In this release, we are also introducing more compatibility changes to help users adopt OpenJ9:
@@ -224,13 +235,13 @@ data-show-count="false">Tweet</a>
 
 
   <!-- Keep as-is except edit ID in URL and change "text=" -->
-<a href="https://twitter.com/share?
+<!--<a href="https://twitter.com/share?
 url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openj90151&
 via=openj9&
 hashtags=openj9,java&
 text=V0.15.1%20released;%20Introducing%20cognitive%20behavior!"
 class="twitter-share-button"
-data-show-count="false">Tweet</a>
+data-show-count="false">Tweet</a>-->
 
           </div>
     </div>
@@ -273,13 +284,13 @@ data-show-count="false">Tweet</a>
 
 
 <!-- Keep as-is except edit ID in URL and change "text=" -->
-<a href="https://twitter.com/share?
+<!--<a href="https://twitter.com/share?
 url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openj90140&
 via=openj9&
 hashtags=openj9,java&
 text=V0.14.0%20released;%20More%20help%20for%20moving%20to%20OpenJ9!"
 class="twitter-share-button"
-data-show-count="false">Tweet</a>
+data-show-count="false">Tweet</a>-->
 
         </div>
   </div>
@@ -307,13 +318,13 @@ data-show-count="false">Tweet</a>
 
 
 <!-- Keep as-is except edit ID in URL and change "text=" -->
-<a href="https://twitter.com/share?
+<!--<a href="https://twitter.com/share?
 url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openj90130&
 via=openj9&
 hashtags=openj9,java&
 text=V0.13.0%20released;%20Supporting%20OpenJDK%2012%20with%20OpenJ9!"
 class="twitter-share-button"
-data-show-count="false">Tweet</a>
+data-show-count="false">Tweet</a>-->
 
         </div>
   </div>
@@ -359,13 +370,13 @@ data-show-count="false">Tweet</a>
       </p>
 
 <!-- Keep as-is except edit ID in URL and change "text=" -->
-<a href="https://twitter.com/share?
+<!--<a href="https://twitter.com/share?
 url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openj90120&
 via=openj9&
 hashtags=openj9,java&
 text=V0.12.0%20released;%20macOS%20support%20on%20version%208%20and%20more!"
 class="twitter-share-button"
-data-show-count="false">Tweet</a>
+data-show-count="false">Tweet</a>-->
         </div>
   </div>
 
@@ -415,13 +426,13 @@ So if you're running an app that requires a large Java heap but depends on fast 
 
 
 <!-- Keep as-is except edit ID in URL and change "text=" -->
-<a href="https://twitter.com/share?
+<!--<a href="https://twitter.com/share?
 url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openj90110&
 via=openj9&
 hashtags=openj9,java&
 text=V0.11.0%20released;%20Improved%20cryptographic%20performance%20with%20OpenSSL."
 class="twitter-share-button"
-data-show-count="false">Tweet</a>
+data-show-count="false">Tweet</a>-->
         </div>
   </div>
 
@@ -457,13 +468,13 @@ data-show-count="false">Tweet</a>
 
 
 <!-- Keep as-is except edit ID in URL and change "text=" -->
-<a href="https://twitter.com/share?
+<!--<a href="https://twitter.com/share?
 url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openj90100&
 via=openj9&
 hashtags=openj9,java&
 text=OpenJ9%20V0.10.0%20released;%20OpenJDK%20v11%20builds%20now%20available."
 class="twitter-share-button"
-data-show-count="false">Tweet</a>
+data-show-count="false">Tweet</a>-->
         </div>
   </div>
 
@@ -518,13 +529,13 @@ data-show-count="false">Tweet</a>
 
 
 <!-- Keep as-is except edit ID in URL and change "text=" -->
-<a href="https://twitter.com/share?
+<!--<a href="https://twitter.com/share?
 url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openj9090&
 via=openj9&
 hashtags=openj9,java&
 text=V0.9.0%20released;%20new%2032-bit%20Windows%20builds,%20container-aware%20features,%20and%20much%20more."
 class="twitter-share-button"
-data-show-count="false">Tweet</a>
+data-show-count="false">Tweet</a>-->
         </div>
   </div>
 
@@ -538,14 +549,13 @@ data-show-count="false">Tweet</a>
       <p>Why not hop over and check it out!</p>
 
 
-<!-- Keep as-is except edit ID in URL and change "text=" -->
-<a href="https://twitter.com/share?
+<!--<a href="https://twitter.com/share?
 url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openj9blog&
 via=openj9&
 hashtags=openj9,java&
 text=Introducing%20the%20OpenJ9%20blog"
 class="twitter-share-button"
-data-show-count="false">Tweet</a>
+data-show-count="false">Tweet</a>-->
         </div>
       </div>
 
@@ -559,13 +569,13 @@ data-show-count="false">Tweet</a>
           </p>
 
 <!-- Keep as-is except edit ID in URL and change "text=" -->
-<a href="https://twitter.com/share?
+<!--<a href="https://twitter.com/share?
 url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23otherblogs&
 via=openj9&
 hashtags=openj9,java&
 text=What%20are%20others%20saying%20about%20OpenJ9%3F"
 class="twitter-share-button"
-data-show-count="false">Tweet</a>
+data-show-count="false">Tweet</a>-->
         </div>
       </div>
 
@@ -582,13 +592,13 @@ data-show-count="false">Tweet</a>
           </p>
 
 <!-- Keep as-is except edit ID in URL and change "text=" -->
-<a href="https://twitter.com/share?
+<!--<a href="https://twitter.com/share?
 url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23perf8&
 via=openj9&
 hashtags=openj9,java&
 text=Both%20OpenJDK%208%20and%209%20perform%20better%20with%20Eclipse%20OpenJ9%21"
 class="twitter-share-button"
-data-show-count="false">Tweet</a>
+data-show-count="false">Tweet</a>-->
         </div>
       </div>
 
@@ -605,13 +615,13 @@ data-show-count="false">Tweet</a>
           </p>
 
 <!-- Keep as-is except edit ID in URL and change "text=" -->
-<a href="https://twitter.com/share?
+<!--<a href="https://twitter.com/share?
 url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23v0.8&
 via=openj9&
 hashtags=openj9,java&
 text=Our%20first%20release%20is%20out.%20Why%20not%20give%20it%20a%20test%20drive!"
 class="twitter-share-button"
-data-show-count="false">Tweet</a>
+data-show-count="false">Tweet</a>-->
         </div>
       </div>
 
@@ -631,13 +641,13 @@ data-show-count="false">Tweet</a>
           </p>
 
 <!-- Keep as-is except edit ID in URL and change "text=" -->
-<a href="https://twitter.com/share?
+<!--<a href="https://twitter.com/share?
 url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23hangout&
 via=openj9&
 hashtags=openj9,java&
 text=Come%20hangout%20with%20the%20OpenJ9%20community.%20We%20meet%20every%20week%20to%20chat%20and%20would%20love%20you%20to%20join%20us!"
 class="twitter-share-button"
-data-show-count="false">Tweet</a>
+data-show-count="false">Tweet</a>-->
         </div>
       </div>
 
@@ -652,13 +662,13 @@ data-show-count="false">Tweet</a>
           </p>
 
 <!-- Keep as-is except edit ID in URL and change "text=" -->
-<a href="https://twitter.com/share?
+<!--<a href="https://twitter.com/share?
 url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23slack_ga&
 via=openj9&
 hashtags=openj9,java&
 text=Join%20the%20OpenJ9%20community%20on%20Slack%20and%20collaborate%20directly%20with%20our%20developers."
 class="twitter-share-button"
-data-show-count="false">Tweet</a>
+data-show-count="false">Tweet</a>-->
         </div>
       </div>
 
@@ -693,13 +703,13 @@ data-show-count="false">Tweet</a>
           <i>Mark, Dan, Peter, and Jonathan</i></p>
 
 <!-- Keep as-is except edit ID in URL and change "text=" -->
-<a href="https://twitter.com/share?
+<!--<a href="https://twitter.com/share?
 url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openjdk8_ga&
 via=openj9&
 hashtags=openj9,java&
 text=Run%20OpenJDK8%20with%20the%20OpenJ9%20VM%20and%20discover%20the%20difference!"
 class="twitter-share-button"
-data-show-count="false">Tweet</a>
+data-show-count="false">Tweet</a>-->
         </div>
     </div>
 
