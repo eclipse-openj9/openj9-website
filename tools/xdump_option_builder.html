@@ -108,6 +108,9 @@ function setupTooltips() {
 				"The default is first = 1 and last = 0 except for when the shell command (tool) agent is enabled, whereby the default " +
 				" becomes first = 1 and last = 1.";
 	document.getElementById("range_li").title = titleText;
+
+	titleText = "The exit agent is only supported from OpenJ9 release 0.18.0 and up.";
+	document.getElementById("agent_exit_li").title = titleText;
 }
 
 function parseParams() {
@@ -1435,6 +1438,10 @@ ul {
 			<li>
 				<input type="checkbox" id="agent_ceedump" name="agent" value="ceedump" onchange="processChange(this)">
 				<label for="agent_ceedump">Generate an LE CEEDUMP dump (z/OS only)</label>
+			</li>
+			<li id="agent_exit_li">
+				<input type="checkbox" id="agent_exit" name="agent" value="exit" onchange="processChange(this)">
+				<label for="agent_exit">Shutdown the JVM</label>
 			</li>
 			
 			<li>
