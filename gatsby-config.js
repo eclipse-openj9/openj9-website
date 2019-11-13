@@ -7,5 +7,5 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
   ],
-  pathPrefix: "/OpenJ9-Website"
+  pathPrefix: "/openj9-website"
 }
