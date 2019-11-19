@@ -1,0 +1,566 @@
+:root {
+  --colour-scheme-1: #69c1bd;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Nunito', sans-serif;
+}
+
+.footer-lists{
+  width: 15em;
+  color: white;
+}
+
+.bg-img{
+  /* The image used */
+  background-image: url("../images/desktop_header_design.jpg");
+  height: 60vh;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /* Needed to position the navbar */
+  position: relative;
+}
+
+.nav-link {
+  color: white !important;
+  float: right !important;
+}
+
+.top-section {
+  text-align: left;
+  position: absolute;
+  top: 50%;
+  left: 65%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.btn-primary {
+  color: var(--white) !important;
+  background-color: var(--colour-scheme-1) !important;
+  border: 2px solid var(--colour-scheme-1) !important;
+  border-radius: 20px !important;
+  width: 15em;
+}
+
+section.landing-section {
+  padding: 4em 0;
+}
+
+
+.btn-primary {
+  color: var(--white) !important;
+  background-color: var(--colour-scheme-1) !important;
+  border: 2px solid var(--colour-scheme-1) !important;
+  border-radius: 10px !important;
+}
+
+.card {
+  padding: 0.5em 1em 1em 1em;
+  margin: 0 auto;
+  width: 80em;
+  height: 20em;
+  box-shadow: 1px 4px 15px rgba(0, 0, 0, .35);
+  border-radius: 20px;
+}
+
+.tile {
+  padding: 2em 0;
+  position: relative;
+  border-top: 5px solid var(--colour-scheme-1);
+}
+
+.landing-section .btn.read-performance{
+  margin-left: 42.5% !important;
+  width: 17em;
+}
+
+.carousel-item .card{
+  width: 30em;
+  height: 15em;
+  margin: 0 auto;
+}
+
+.carousel-indicators {
+  position: relative;
+  bottom: -320px;
+  margin: 0 auto;
+}
+
+.egg {
+  width: 50px;
+  margin-left: 10em;
+  position: relative;
+  top: -15px;
+  left: -15x;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .carousel-inner .row{
+    margin-right: 0;
+    margin-left: 6em;
+    margin-bottom: 3em;
+  }
+
+  .carousel-inner .tile.card.text-center{
+    height: 12em
+  }
+
+  .egg {
+    width: 30px;
+    margin-left: 10em;
+    position: relative;
+    top: -4px;
+    left: -15x;
+  }
+  
+  footer {
+    font-size: 0.65em;
+  }
+  .tile.card.text-center{
+    width: 14em;
+    height: 12em;
+    margin: 0 auto;
+  }
+
+  .carousel-indicators {
+    position: relative;
+    margin: 0 auto;
+  }
+
+  .desktop-only.carousel.slide {
+    width: 48em;
+    margin: auto;
+    margin-bottom: 0;
+  }
+
+  .bg-img{
+    /* The image used */
+    background-image: url("../images/tablet_header_design.jpg");
+    height: 50vw;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    /* Needed to position the navbar */
+    position: relative;
+  }
+
+  h1 {
+    font-size: 1.4em;
+  }
+
+  p {
+    font-size: 0.9em;
+  }
+
+  .carousel-item .card{
+    width: 30em;
+    height: 15em;
+    margin: 0 auto;
+  }
+
+  .carousel-indicators {
+    position: relative;
+    margin: 0 auto;
+  }
+
+  .landing-section .btn.read-performance{
+    margin-left: 16em !important;
+    margin-top: 6em;
+  }
+
+  .card.desktop-only {
+    width: 80%;
+    height: 80%;
+  }
+
+  .vertical-line{
+    display: none;
+  }
+
+  .btn.btn-primary.light-gray-section-button{
+    margin-left: 0% !important;
+  }
+
+  .participation-section {
+    width: 35%;
+    margin-left: 5% !important;
+  }
+
+  .participation-section-button {
+    margin-left: 0 !important;
+  }
+
+
+  .tile.card.text-center {
+    width: 12em;
+    height: 10em;
+    margin: 0.5em 0.5em;
+    margin-left: 3.5em;
+    margin-top: 5em;
+  }
+}
+
+.nav-link {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.participation-section-margin {
+  margin-bottom: 15em;
+}
+
+@media only screen and (max-width: 767px) {
+  .participation-section-margin {
+    margin-bottom: 20em;
+  }
+
+  .nav-link {
+    color: black !important;
+    margin: 0;
+  }
+
+  .landing-section .btn {
+    text-align: center;
+    margin-left: 3.5em;
+  }
+
+  .top-section {
+    text-align: center;
+    left: 50%;
+    margin-top: 7em;
+  }
+
+  h1 {
+    font-size: 1.3em;
+  }
+
+  p {
+    font-size: 0.8em;
+  }
+
+  .landing-section .btn {
+    margin: 0 !important;
+    margin-left: 2.5em !important;
+  }
+}
+
+.bg-gray-img {
+  background-image: url("../images/gray_bg.jpg");
+  height: 40vh;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /* Needed to position the navbar */
+  position: relative;
+}
+
+.participation_section_bg {
+  background-image: url("../images/desktop_participation_section.jpg");
+  height: 40vh;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /* Needed to position the navbar */
+  position: relative;
+}
+
+.participate-section-line {
+  position: absolute;
+  top: 30%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  color: white;
+  width: 15%;
+  border: 0.15em solid yellow;
+  background-color: yellow;
+}
+
+.participate-section-text {
+  text-align: left;
+  position: absolute;
+  top: 50%;
+  left: 27%;
+  transform: translate(-50%, -50%);
+  color: white;
+  width: 30%;
+}
+
+footer {
+  background-image: url("../images/gray_bg.jpg");
+
+  box-shadow: 0 6px 29px #9B9B9B;
+  padding: 1em;
+  text-align: left;
+  margin-top: 20em;
+}
+
+footer ul {
+  margin: 0;
+  padding-left: 3em;
+  list-style-type: none;
+}
+
+footer li {
+  display: inline-block;
+  padding: 0 1em;
+}
+
+footer a {
+  color: white;
+}
+
+footer a:hover {
+  color: white;
+}
+
+.footer-line {
+  width: 93%;
+  border: 1px solid var(--colour-scheme-1);
+}
+
+@media (min-width: 768px){
+  .our-sponsors .card {
+    margin: 3em 3em;
+    margin-left: 10em ;
+  }
+  .mobile-only {
+    display: none;
+  }
+
+  .footer-social-media {
+    float: right !important;
+  }
+
+  .github-icon-footer {
+    margin-right: 2em;
+  }
+
+  .desktop-footer-line {
+    margin-left: 1em;
+  }
+
+  .participation-section {
+    width: 35%;
+    margin-left: 14em;
+  }
+}
+
+@media (max-width: 767px){
+  .bg-gray-img {
+    height: 60em
+  }
+  .our-sponsors .card {
+    margin: 1.5em 3em;
+    margin-top: 4em;
+  }
+  .egg {
+    width: 40px;
+    margin-left: 9em;
+    margin-bottom: 1em;
+    position: relative;
+    top: -4px;
+
+  }
+
+  .footer-lists{
+    width: 10em;
+    color: white;
+    font-size: 0.6em;
+  }
+
+  .navbar-nav.ml-auto {
+  flex-direction: row;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  .bg-img{
+    /* The image used */
+    background-image: url("../images/mobile_header_and_Intro_design.jpg");
+    height: 60vh;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    /* Needed to position the navbar */
+    position: relative;
+  }
+
+  .footer-line-item {
+    width: 15em;
+  }
+
+  .below-footer-line {
+    font-size: 0.7em;
+    width: 15em;
+    margin-right: 6em;
+  }
+
+  .top-row-footer {
+    margin-top: 3em;
+  }
+
+  .carousel-item .card{
+    width: 15em;
+    height: 14em;
+    margin: 0 auto;
+  }
+
+  .carousel-indicators {
+    position: relative;
+    margin: 0 auto;
+  }
+
+  .mobile-only.carousel.slide {
+    width:23em;
+    margin: auto;
+    margin-bottom: 0;
+  }
+
+  .landing-section .btn.read-performance{
+    margin-left: 15% !important;
+    margin-top: 7em !important;
+    width: 17em;
+  }
+
+  .container.mobile-only {
+    padding: 0 3em;
+  }
+
+  .btn.btn-primary.light-gray-section-button {
+    margin-top: 2em !important;
+  }
+
+  .light-gray-section-heading-mobile{
+    font-size: 1.5em;
+  }
+
+  .participate-section-line {
+    width: 35%;
+  }
+
+  .participate-section-text {
+    width: 50%;
+  }
+
+  .participate-section-second-row-mobile{
+    margin-top: 1em;
+  }
+
+  .participation-section-heading-bottom {
+    margin-bottom: 1em;
+    font-size: 1.3em;
+    margin-top: 2em;
+  }
+
+  .github-icon-footer {
+    margin-right: 0.4em;
+  }
+  
+}
+
+.carousel-control-prev-icon {
+ background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+}
+
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
+
+.carousel-indicators .active{
+    background-color: black;
+}
+
+.carousel-indicators li {
+  background-color: #A9A9A9;
+}
+
+.carousel.slide {
+  width:100em;
+  margin: auto;
+  margin-bottom: 5em;
+}
+
+.participation-section-heading {
+  margin-bottom: 1em;
+  font-size: 1.3em;
+}
+
+
+.join-coversation-section {
+  width: 30%;
+}
+
+.vertical-line {
+  border-left: 3px solid #f3f5f7;
+  height: 20em;;
+  position: absolute;
+  margin-left: 50%;
+  transform: translate(-50%, -10%);
+}
+
+.participation-section-button {
+  margin-top: 2em;
+}
+
+.light-gray-background {
+  background-color: #f3f5f7;
+}
+
+.light-gray-section-heading {
+  margin-left: 16%;
+  margin-bottom: 1em;
+}
+
+.light-gray-card-text {
+  margin-top: 3em;
+}
+
+.light-gray-section-button {
+  margin-top: 2em;
+}
+
+.incubator-description {
+  font-size: 0.9em;
+}
+
+.bg-gray-img .card {
+  width: 20em;
+  height: 14em;
+}
+
+.our-sponsors {
+  display: flex;
+}
+
+footer {
+  margin-top: 0;
+}
+
+.row {
+  margin-right: 0;
+}
+
+
