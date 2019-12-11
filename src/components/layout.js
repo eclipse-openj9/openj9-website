@@ -2,7 +2,7 @@ import React from "react";
 
 import Navbar from "./navbar"
 import Head from "./head"
-import Footer from "./Footer"
+import Footer from "./footer"
 
 export default ({ children }) => (
     <React.Fragment>
