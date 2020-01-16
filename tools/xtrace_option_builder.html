@@ -1788,8 +1788,8 @@ function buildAndUpdateResult() {
 				if (!document.getElementById("trace_initially_disabled").checked && !isTriggerActionSelected("suspendthis")) {
 					errorsHtml += "WARNING: Trigger action \"Start tracing (current thread)\" is enabled, but tracing for the current thread is never disabled. Did you mean to check the \"Trace initially stopped\" option or add a \"Stop trace (current thread)\" trigger action?<br>";
 				}				
-			} else {
-				// Must be "resume"
+			}
+			if (isTriggerActionSelected("resume")) {
 				if (!document.getElementById("trace_initially_disabled").checked && !isTriggerActionSelected("suspend")) {
 					errorsHtml += "WARNING: Trigger action \"Start tracing (all threads)\" is enabled, but tracing for all threads is never disabled. Did you mean to check the \"Trace initially stopped\" option or add a \"Stop trace (all threads)\" trigger action?<br>";
 				}
@@ -2209,10 +2209,13 @@ function getTriggerResultString() {
 			// resume must be paired with suspend
 			triggerString = "suspend," + triggerString;
 		}
-		
 		if (resumethisActionSelected) {
 			// resumethis must be paired with resumecount=1
 			triggerString = "resumecount=1," + triggerString;
+		}
+		if (!resumeActionSelected && !resumethisActionSelected) {
+			// If no resume* actions are enabled, use "suspend" (we could use either)
+			triggerString = "suspend," + triggerString;
 		}
 	}
 
