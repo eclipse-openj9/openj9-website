@@ -526,14 +526,16 @@ function processChange(option) {
 		}
 	}
 
-	// If a tracepoint action or method trigger entry action is set to start tracing, automatically disable tracing at startup
+	// If a tracepoint action or method trigger action is set to start tracing, and
+	// no trigger actions stop tracing, automatically disable tracing at startup
 	if (option.id != null
-		&& (   option.id.indexOf("trig_meth_ent_") != -1
+		&& (   option.id.indexOf("trig_meth_ex_") != -1
+			|| option.id.indexOf("trig_meth_ent_") != -1
 			|| option.id.indexOf("trig_tp_act_") != -1
 			|| option.id.indexOf("trig_grp_act_") != -1) )
 	{
 		var selectedElement = getSelectedElement(document.getElementById(option.id));
-		if (selectedElement.id.indexOf("resume") != -1) {
+		if (selectedElement.id.indexOf("resume") != -1 && !isTriggerActionSelected("suspend") && !isTriggerActionSelected("suspendthis")) {
 			document.getElementById("trace_initially_disabled").checked = true;
 		}
 	}
@@ -1137,9 +1139,8 @@ function isTracepointJStackTraceActionSelected() {
 	return false;
 }
 
-// Returns true if any triggers have an action to start tracing, false otherwise
-// If entryOnly == true, we only return true if the action is defined in an entry action
-function isTriggerResumeActionSelected(entryOnly) {
+// Returns true if any triggers use the specified action, false otherwise
+function isTriggerActionSelected(actionName) {
 	for (var i = 0; i < triggerCounter; i++) {
 		var actionElements = [
 			document.getElementById("trig_meth_ent_" + i),
@@ -1149,14 +1150,8 @@ function isTriggerResumeActionSelected(entryOnly) {
 		];
 		for (var j = 0; j < actionElements.length; j++) {
 			if (actionElements[j] != null) {
-				if (getSelectedElement(actionElements[j]).value == "resumethis"
-					|| getSelectedElement(actionElements[j]).value == "resume")
-				{
-					if (actionElements[j].id.indexOf("_ex_") != -1 && !entryOnly) {
-						return true;
-					} else {
-						return true;
-					}
+				if (getSelectedElement(actionElements[j]).value == actionName) {
+					return true;
 				}
 			}
 		}
@@ -1784,22 +1779,37 @@ function buildAndUpdateResult() {
 		}
 	}
 
-	// If any triggers have an entry action to start tracing, check:
+	// If any triggers have an action to start tracing, check:
 	//    1. Whether trace is initially disabled
 	//    2. Whether any tracepoints are enabled
-	if (isTriggerResumeActionSelected(true)) {
+	if (isTriggerActionSelected("resume") || isTriggerActionSelected("resumethis")) {
 		if (isAtLeastOneTracepointEnabled()) {
-			if (!document.getElementById("trace_initially_disabled").checked) {
-				errorsHtml += "WARNING: A trigger (entry) action is set to start tracing, but tracing is already enabled. Did you mean to check the \"Trace initially stopped\" option?<br>";
+			if (isTriggerActionSelected("resumethis")) {
+				if (!document.getElementById("trace_initially_disabled").checked && !isTriggerActionSelected("suspendthis")) {
+					errorsHtml += "WARNING: Trigger action \"Start tracing (current thread)\" is enabled, but tracing for the current thread is never disabled. Did you mean to check the \"Trace initially stopped\" option or add a \"Stop trace (current thread)\" trigger action?<br>";
+				}				
+			} else {
+				// Must be "resume"
+				if (!document.getElementById("trace_initially_disabled").checked && !isTriggerActionSelected("suspend")) {
+					errorsHtml += "WARNING: Trigger action \"Start tracing (all threads)\" is enabled, but tracing for all threads is never disabled. Did you mean to check the \"Trace initially stopped\" option or add a \"Stop trace (all threads)\" trigger action?<br>";
+				}
 			}
 		} else {
 			resultIsGreen = false;
-			errorsHtml += "ERROR: A trigger (entry) action is set to start tracing, but no tracepoints are enabled<br>";
+			errorsHtml += "ERROR: A trigger action is set to start tracing, but no tracepoints are enabled<br>";
 		}
 	}
 
+	// If trace is initially stopped using "suspend" it cannot be enabled on a per thread basis
+	// using "resumethis", and if trace is initially stopped using "resumecount=1" it cannot be
+	// enabled globally using "resume", so we cannot use these two actions together in any sane way
+	// (although Xtrace itself will not complain).
+	if (isTriggerActionSelected("resume") && isTriggerActionSelected("resumethis") && document.getElementById("trace_initially_disabled").checked) {
+		errorsHtml += "WARNING: Trigger actions \"Start trace (current thread)\" and \"Start trace (all threads)\" are both enabled, and trace is initially stopped. The former action will have no effect until the latter action has been triggered.<br>";		
+	}
+
 	// If no triggers have an action to start tracing, check that "Trace initially stopped" is not selected
-	if (!isTriggerResumeActionSelected(false)) {
+	if (!isTriggerActionSelected("resume") && !isTriggerActionSelected("resumethis")) {
 		if (isAtLeastOneTracepointEnabled()) {
 			if (document.getElementById("trace_initially_disabled").checked) {
 				errorsHtml += "WARNING: \"Trace initially stopped\" is selected, but no trigger actions enable tracing. No trace will be produced.<br>";
@@ -2051,11 +2061,8 @@ function getMethodResultString() {
 function getTriggerResultString() {
 	var triggerString = "";
 	var sleepActionSelected = false;
-
-	// Trace initially stopped/disabled?
-	if (document.getElementById("trace_initially_disabled").checked) {
-		triggerString += "resumecount=1,";
-	}
+	var resumeActionSelected = false;
+	var resumethisActionSelected = false;
 
 	for (var i = 0; i < triggerCounter; i++) {
 		var triggerListElement = document.getElementById("trigger_" + i);
@@ -2090,6 +2097,16 @@ function getTriggerResultString() {
 					if (entryActionString == "sleep" || exitActionString == "sleep") {
 						sleepActionSelected = true;
 					}
+					
+					// Resume trace on all threads (resume) action selected?
+					if (entryActionString == "resume" || exitActionString == "resume") {
+						resumeActionSelected = true;
+					}
+					
+					// Resume current thread (resumethis) action selected?
+					if (entryActionString == "resumethis" || exitActionString == "resumethis") {
+						resumethisActionSelected = true;
+					}
 
 					break;
 
@@ -2115,6 +2132,16 @@ function getTriggerResultString() {
 					if (actionString == "sleep") {
 						sleepActionSelected = true;
 					}
+					
+					// Resume all threads (resume) action selected?
+					if (actionString == "resume") {
+						resumeActionSelected = true;
+					}
+					
+					// Resume current thread (resumethis) action selected?
+					if (actionString == "resumethis") {
+						resumethisActionSelected = true;
+					}
 
 					break;
 
@@ -2136,6 +2163,16 @@ function getTriggerResultString() {
 					// Thread sleep selected?
 					if (actionString == "sleep") {
 						sleepActionSelected = true;
+					}
+					
+					// Resume all threads (resume) action selected?
+					if (actionString == "resume") {
+						resumeActionSelected = true;
+					}
+					
+					// Resume current thread (resumethis) action selected?
+					if (actionString == "resumethis") {
+						resumethisActionSelected = true;
 					}
 
 					break;
@@ -2162,6 +2199,20 @@ function getTriggerResultString() {
 
 			// Close the curly braces and add a comma
 			triggerString += "},";
+		}
+	}
+
+	// Trace initially stopped/disabled?
+	// Prepend the option(s) to the string for readability
+	if (document.getElementById("trace_initially_disabled").checked) {
+		if (resumeActionSelected) {
+			// resume must be paired with suspend
+			triggerString = "suspend," + triggerString;
+		}
+		
+		if (resumethisActionSelected) {
+			// resumethis must be paired with resumecount=1
+			triggerString = "resumecount=1," + triggerString;
 		}
 	}
 
