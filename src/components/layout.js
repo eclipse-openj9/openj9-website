@@ -1,24 +1,19 @@
-import React from "react"
-import { Global, css } from "@emotion/core"
-
-import Header from "./header"
-import Footer from "./footer"
+import React from "react";
+import { ThemeProvider } from "theme-ui";
+import theme from "../theme";
+import Header from "./header";
+import Footer from "./footer";
+import { Global } from "@emotion/core";
 
 export default ({ children, isHome }) => (
-  <>
+  <ThemeProvider theme={theme}>
     <Global
-      styles={css`
-        * {
-          font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande",
-            sans-serif;
-          padding: 0;
-          margin: 0;
-          box-sizing: border-box;
-        }
-      `}
+      styles={theme => ({
+        "*": { padding: 0, margin: 0 }
+      })}
     />
     <Header isHome={isHome} />
     {children}
     <Footer />
-  </>
-)
+  </ThemeProvider>
+);

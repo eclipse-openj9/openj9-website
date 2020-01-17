@@ -1,361 +1,206 @@
-import React from "react"
-import Layout from "../components/layout"
+import React from "react";
+import Layout from "../components/layout";
+import Button from "../components/button";
+import Card from "../components/card";
 
+import openJ9Circle from "../images/openj9-circle.svg";
+import openJ9Logo from "../images/openj9-logo.svg";
+import circlePatternBig from "../images/circle-pattern-big.svg";
 /** @jsx jsx */
-import { jsx } from "@emotion/core"
-
-import openJ9Circle from "../images/openJ9-circle.svg"
-import openJ9Logo from "../images/openj9-logo.svg"
-import circlePatternBig from "../images/circle-pattern-big.svg"
-
+import { jsx, Styled } from "theme-ui";
 export default () => (
   <Layout isHome={true}>
     <div
-      css={{
-        width: "100%",
-        backgroundColor: "#434343",
-        height: "50vh",
+      sx={{
+        backgroundColor: "primary",
+        color: "lightText",
         display: "flex",
+        minHeight: "500px",
+        flexDirection: ["column", "column", "row", "row"],
+        paddingBottom: ["4rem", "4rem", 0, 0]
       }}
     >
       <div
-        css={{
+        sx={{
           backgroundImage: `url(${openJ9Circle})`,
-          width: "30%",
-          height: "100%",
+          width: ["100%", "100%", "30%", "30%"],
+          minHeight: "200px"
         }}
       ></div>
       <div
-        css={{
+        sx={{
           height: "250px",
           width: "250px",
           borderRadius: "50%",
           backgroundColor: "#434343",
-          marginLeft: "-8em",
-          marginTop: "7em",
+          position: "absolute",
+          left: [
+            "calc(50% - 125px)",
+            "calc(50% - 125px)",
+            "calc(30% - 125px)",
+            "calc(30% - 125px)"
+          ],
+          top: ["70px", "70px", "125px", "125px"],
           border: "white solid 2px",
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
+          justifyContent: "center"
         }}
       >
         <img src={openJ9Logo}></img>
       </div>
       <section
-        css={{
-          color: "white",
-          width: "33%",
+        sx={{
+          width: ["90%", "90%", "40%", "33%"],
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          marginLeft: "5%",
-          h1: {
-            fontSize: "2.5rem",
-            fontWeight: 500,
-            marginBottom: "0.7rem",
-            marginTop: "3rem",
-          },
-          p: {
-            lineHeight: "2rem",
-            fontsize: "1.2rem",
-            color: "#D8D8D8",
-            marginBottom: "1.5rem",
-          },
-          button: {
-            width: "150px",
-            borderRadius: "23.5px",
-            height: "35px",
-            backgroundColor: "#5DA7A3",
-            border: "none",
-            color: "white",
-            fontSize: "1rem",
-            fontWeight: "500",
-          },
+          alignItems: ["center", null, "start", "start"],
+          textAlign: ["center", null, "left", "left"],
+          marginTop: ["8rem", "8rem", "3rem", "3rem"],
+          marginLeft: ["5%", "5%", "20%", "15%"]
         }}
       >
-        <h1>Unleash the Power of Java</h1>
-        <p>
+        <Styled.h1>Unleash the Power of Java</Styled.h1>
+        <Styled.p>
           Optimized to run Java applications cost-effectively in the cloud,
           Eclipse OpenJ9 is a fast and efficient JVM that delivers power and
           performance when you need it most.
-        </p>
-        <button>Get OpenJ9</button>
+        </Styled.p>
+        <Button isLink={true} text="Get OpenJ9" primary={true} />
       </section>
     </div>
     <div
-      css={{
-        display: "grid",
-        gridTemplateColumns: "10% auto auto auto 10%",
-        gridTemplateRows: "repeat(3, auto)",
-        gridRowGap: "50px",
-        padding: "150px 0 150px 0",
-      }}
-    >
-      <article
-        css={{
-          width: "500px",
-          height: "200px",
-          boxShadow: "#DADADA 0 0 20px",
-          borderRadius: "10px",
-          gridColumn: "2/3",
-          gridRow: "1/2",
-          borderTop: "#5DA7A3 10px solid",
-        }}
-      ></article>
-      <article
-        css={{
-          width: "500px",
-          height: "200px",
-          boxShadow: "#DADADA 0 0 20px",
-          borderRadius: "10px",
-          gridColumn: "4/5",
-          gridRow: "1/2",
-          borderTop: "#5DA7A3 10px solid",
-        }}
-      ></article>
-      <button
-        css={{
-          backgroundColor: "#5DA7A3",
-          border: "none",
-          color: "white",
-          fontSize: "1rem",
-          fontWeight: "500",
-          gridColumn: "3/4",
-          gridRow: "2/3",
-          width: "300px",
-          borderRadius: "23.5px",
-          height: "50px",
-          justifySelf: "center",
-        }}
-      >
-        READ PERFORMANCE DETAILS
-      </button>
-      <article
-        css={{
-          width: "500px",
-          height: "200px",
-          boxShadow: "#DADADA 0 0 20px",
-          borderRadius: "10px",
-          gridColumn: "2/3",
-          gridRow: "3/4",
-          borderTop: "#5DA7A3 10px solid",
-        }}
-      ></article>
-      <article
-        css={{
-          width: "500px",
-          height: "200px",
-          boxShadow: "#DADADA 0 0 20px",
-          borderRadius: "10px",
-          gridColumn: "4/5",
-          gridRow: "3/4",
-          borderTop: "#5DA7A3 10px solid",
-        }}
-      ></article>
-    </div>
-    <div
-      css={{
-        backgroundColor: "#F5F9FC",
-        width: "100%",
+      sx={{
         display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-        padding: "150px 0 150px 0",
+        flexWrap: "wrap",
+        justifyContent: "space-between",
+        padding: "5%"
       }}
     >
-      <h2
-        css={{
-          alignSelf: "start",
-          marginLeft: "10%",
-          marginBottom: "50px",
+      <Card flex="0 0 600px" primary={true}>
+        <h1>Example card 1</h1>
+      </Card>
+      <Card flex="0 0 600px" primary={true}>
+        <h1>Example card 1</h1>
+      </Card>
+      <div
+        sx={{
+          flex: "1 2 100%",
+          display: "flex",
+          justifyContent: "center",
+          marginY: 3,
+          order: [1, 1, 1, 0]
         }}
       >
-        Join the Conversation
-      </h2>
+        <Button isLink={true} text="Read Performance Details" primary={false} />
+      </div>
+      <Card flex="0 0 600px" primary={true}>
+        <h1>Example card 1</h1>
+      </Card>
+      <Card flex="0 0 600px" primary={true}>
+        <h1>Example card 1</h1>
+      </Card>
+    </div>
+    <div
+      sx={{
+        padding: `calc(5% + 40px)`,
+        backgroundColor: "#F5F9FC",
+        minHeight: "50vh"
+      }}
+    >
+      <Styled.h3>Join the Conversation</Styled.h3>
       <section
-        css={{
-          display: "grid",
-          gridTemplateColumns: "3% 2fr 1fr 3%",
-          gridTemplateRows: "repeat(4, auto)",
-          gridRowGap: "10px",
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
           backgroundColor: "white",
-          width: "80%",
-          borderRadius: "30px",
-          padding: "3% 0 3% 0",
-          boxSizing: "border-box",
+          borderRadius: "card",
+          padding: "5%",
+          alignItems: "flex-end",
+          justifyContent: "space-between"
         }}
       >
-        <p
-          css={{
-            gridColumn: "2/3",
-            gridRow: "1/2",
-            height: "50px",
-            width: "40%",
+        <div
+          sx={{
+            flex: "30%",
+            maxWidth: "600px",
+            minWidth: ["300px", "350px", "400px", "500px"]
           }}
         >
-          Have ideas about improvements for OpenJ9? Share them in our Slack
-          workspace.
-        </p>
-        <button
-          css={{
-            gridColumn: "2/3",
-            gridRow: "2/3",
-            width: "200px",
-            borderRadius: "23.5px",
-            height: "50px",
-            backgroundColor: "#5DA7A3",
-            border: "none",
-            color: "white",
-            fontSize: "1rem",
-            fontWeight: "500",
+          <Styled.p>
+            Interested in contributing to OpenJ9? Check out the contributor
+            guide in our GitHub repository.
+          </Styled.p>
+          <Button isLink={true} text="OpenJ9 GitHub" primary={true} />
+        </div>
+        <div
+          sx={{
+            flex: "30%",
+            maxWidth: "600px",
+            minWidth: ["300px", "350px", "400px", "500px"]
           }}
         >
-          OpenJ9 Slack
-        </button>
-        <p
-          css={{
-            gridColumn: "2/3",
-            gridRow: "3/4",
-            height: "50px",
-            width: "40%",
-          }}
-        >
-          Need help? Use the #OpenJ9 tag in Stack Overflow to discuss problems.
-        </p>
-        <button
-          css={{
-            gridColumn: "2/3",
-            gridRow: "4/5",
-            width: "200px",
-            borderRadius: "23.5px",
-            height: "50px",
-            backgroundColor: "#5DA7A3",
-            border: "none",
-            color: "white",
-            fontSize: "1rem",
-            fontWeight: "500",
-          }}
-        >
-          Stackoverflow
-        </button>
-        <button
-          css={{
-            gridColumn: "3/4",
-            gridRow: "2/3",
-            height: "50px",
-            width: "300px",
-            justifySelf: "end",
-            boxShadow: "#DADADA50 0 0 20px",
-            border: "none",
-            backgroundColor: "#FCFDFE",
-            borderRadius: "10px",
-          }}
-        >
-          Github
-        </button>
-        <button
-          css={{
-            gridColumn: "3/4",
-            gridRow: "3/4",
-            height: "50px",
-            width: "300px",
-            justifySelf: "end",
-            boxShadow: "#DADADA50 0 0 20px",
-            border: "none",
-            backgroundColor: "#FCFDFE",
-            borderRadius: "10px",
-          }}
-        >
-          Twitter
-        </button>
+          <Styled.p>
+            Have ideas about improvements for OpenJ9? Share them in our Slack
+            workspace.
+          </Styled.p>
+          <Button isLink={true} text="OpenJ9 Slack" primary={true} />
+        </div>
       </section>
     </div>
     <div
-      css={{
+      sx={{
         backgroundImage: `url(${circlePatternBig})`,
         height: "50vh",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         display: "flex",
         alignItems: "center",
+        color: "lightText",
+        paddingLeft: "15%"
       }}
     >
-      <h2
-        css={{
-          color: "white",
-          fontSize: "2.9rem",
-          fontWeight: "500",
-          width: "40%",
-          marginLeft: "13rem",
-        }}
-      >
+      <Styled.h2>
         Participate in the <br></br> Eclipse OpenJ9 Project
-      </h2>
+      </Styled.h2>
     </div>
     <div
-      css={{
+      sx={{
         display: "flex",
-        color: "rgb(79, 79, 79)",
-        padding: "150px 10%",
+        flexWrap: "wrap",
+        justifyContent: "space-between",
+        padding: "calc(5% + 40px)"
       }}
     >
       <div
-        css={{
-          display: "flex",
-          flexDirection: "column",
-          flex: 1,
+        sx={{
+          flex: "30%",
+          maxWidth: "600px",
+          minWidth: ["300px", "350px", "400px", "500px"]
         }}
       >
-        <h3 css={{ fontSize: "1.5rem", fontWeight: 400, marginBottom: "2rem" }}>
-          BECOME A CONTRIBUTOR
-        </h3>
-        <p css={{ lineHeight: "1.6rem", marginBottom: "3rem" }}>
+        <Styled.h3>BECOME A CONTRIBUTOR</Styled.h3>
+        <Styled.p>
           Interested in contributing to OpenJ9? Check out the contributor guide
           in our Github repository.
-        </p>
-        <button
-          css={{
-            width: "250px",
-            borderRadius: "23.5px",
-            height: "50px",
-            backgroundColor: "#5DA7A3",
-            border: "none",
-            color: "white",
-            fontSize: "1rem",
-          }}
-        >
-          CONTRIBUTOR GUIDE
-        </button>
+        </Styled.p>
+        <Button isLink={true} text="Contributor Guide" primary={true} />
       </div>
       <div
-        css={{
-          display: "flex",
-          flexDirection: "column",
-          flex: 1,
+        sx={{
+          flex: "30%",
+          maxWidth: "600px",
+          minWidth: ["300px", "350px", "400px", "500px"]
         }}
       >
-        <h3 css={{ fontSize: "1.5rem", fontWeight: 400, marginBottom: "2rem" }}>
-          JOIN COMMUNITY CALLS
-        </h3>
-        <p css={{ lineHeight: "1.6rem", marginBottom: "3rem" }}>
-          Our regular community hangouts are a great place to meet the team and
-          find out what is going on in the OpenJ9 project.
-        </p>
-        <button
-          css={{
-            width: "250px",
-            borderRadius: "23.5px",
-            height: "50px",
-            backgroundColor: "#5DA7A3",
-            border: "none",
-            color: "white",
-            fontSize: "1rem",
-          }}
-        >
-          ADD TO CALENDAR
-        </button>
+        <Styled.h3>JOIN COMMUNITY CALLS</Styled.h3>
+        <Styled.p>
+          Our regular community hangouts are a great place to find out what is
+          going on in the OpenJ9 project.
+        </Styled.p>
+        <Button isLink={true} text="Add to Calendar" primary={true} />
       </div>
     </div>
   </Layout>
-)
+);

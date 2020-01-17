@@ -1,17 +1,25 @@
-import React from "react"
+import React from "react";
 /** @jsx jsx */
-import { jsx } from "@emotion/core"
 
-export default ({ row, col }) => (
+import { jsx } from "theme-ui";
+
+const Card = ({ children, flex, primary }) => {
+  return (
     <article
-    css={{
-        height: "200px",
+      sx={{
+        height: "250px",
+        boxShadow: primary ? "cardShadow" : null,
+        borderRadius: "card",
+        borderTop: "cardBorder",
         backgroundColor: "white",
-        borderRadius: "10px",
-        gridColumn: col,
-        gridRow: row,
-        borderTop: "#5DA7A3 10px solid",
-        margin: "2rem 2rem",
-    }}
-    ></article>
-)
+        color: "darkText",
+        marginY: 5,
+        flex: ["0 0 100%", `0 0 100%`, `0 0 100%`, `${flex}`]
+      }}
+    >
+      {children}
+    </article>
+  );
+};
+
+export default Card;

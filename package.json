@@ -1,7 +1,7 @@
 {
-  "name": "gatsby-starter-hello-world",
+  "name": "openj9-website",
   "private": true,
-  "description": "A simplified bare-bones starter for Gatsby",
+  "description": "A website for OpenJ9",
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
@@ -15,11 +15,11 @@
   },
   "dependencies": {
     "@emotion/core": "^10.0.27",
-    "@emotion/styled": "^10.0.27",
     "gatsby": "^2.18.12",
     "gatsby-plugin-emotion": "^4.1.21",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "theme-ui": "^0.3.1"
   },
   "devDependencies": {
     "prettier": "^1.19.1"
