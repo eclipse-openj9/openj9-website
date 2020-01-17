@@ -9,7 +9,7 @@
             <g id="Participate" transform="translate(-87.000000, 2512.000000)">
                 <rect id="Blue-BG" fill="#343434" x="87" y="156" width="1440" height="365"></rect>
                 <g id="Group-10" transform="translate(87.000000, 0.000000)" fill="#5DA7A3">
-                    <rect id="Rectangle-2" x="0" y="155" width="1440" height="365"></rect>
+                    <rect id="Rectangle-2" x="0" y="155" width="1440" height="565"></rect>
                 </g>
                 <g id="Circle-Overlays" transform="translate(78.000000, 0.000000)" opacity="0.750334821" stroke="#FFFFFF">
                     <g id="Circle-Overlay" transform="translate(743.500000, 311.500000) rotate(90.000000) translate(-743.500000, -311.500000) translate(432.000000, -432.000000)">
@@ -48,7 +48,7 @@
                         </g>
                     </g>
                 </g>
-                <rect id="Rectangle-22" fill="#F5F9FC" x="734" y="520" width="793" height="2"></rect>
+                <rect id="Rectangle-22" fill="#5DA7A3" x="734" y="520" width="793" height="2"></rect>
             </g>
         </g>
     </g>
