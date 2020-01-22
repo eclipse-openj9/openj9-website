@@ -1,7 +1,7 @@
 ﻿
 <!DOCTYPE html>
 <!--
-Copyright (c) 2017, 2019 IBM Corp. and others
+Copyright (c) 2017, 2020 IBM Corp. and others
 
 This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0 which accompanies this distribution and is available at http://eclipse.org/legal/epl-2.0 or the Apache License, Version 2.0 which accompanies this distribution and is available at https://www.apache.org/licenses/LICENSE-2.0.
 
@@ -94,6 +94,58 @@ The project website pages cannot be redistributed
       </div>
 
 
+<div class="f-section-item" id="openj90180">
+<div class="f-content-container">
+<h3>Eclipse OpenJ9 version 0.18.0 released</h3>
+<p><i>20th January 2020</i>
+</p>
+<p>OpenJ9 version 0.18.0 supports OpenJDK 8, 11, and 13.  OpenJDK builds that contain Eclipse OpenJ9 version 0.18.0 are now available from the AdoptOpenJDK community project:
+</p>
+<p align=center><a href="https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9" target="_blank">OpenJDK version 8 <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i></a>
+<br/><a href="https://adoptopenjdk.net/releases.html?variant=openjdk11&jvmVariant=openj9" target="_blank">OpenJDK version 11 <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i></a>
+<br/><a href="https://adoptopenjdk.net/releases.html?variant=openjdk13&jvmVariant=openj9" target="_blank">OpenJDK version 13 <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i></a>
+</p>
+
+<p>Here are some of the new features that we've introduced in version 0.18.0 of OpenJ9.
+</p>
+<p>Do let us know how well these enhancements work for you by posting in our <a href="https://join.slack.com/t/openj9/shared_invite/enQtNDU4MDI4Mjk0MTk2LWVhNTMzMGY1N2JkODQ1OWE0NTNmZjM4ZDcxOTBiMjk3NGFjM2U0ZDNhMmY0MDZlNzU0ZjAyNzQ1ODlmYjg3MjA" target="_blank"> slack workspace</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.
+<ul>
+<li><b>An independent implementation of the jstat tool</b> for retrieving statistics on a VM is now included, for compatibility with the HotSpot implementation.
+</li>
+<li><b>The jextract tool</b> is now available on macOS&reg; platforms (as well as AIX&reg; and Linux&reg;) for _all_ current versions of OpenJDK: 8, 11, and 13.
+</li>
+<li>Similarly, <b>support for Concurrent scavenge mode (<tt>-Xgc:concurrentScavenge</tt>)</b> is now extended to macOS as well. (Also, you might not be aware that you can use the previously undocumented option <tt>-Xgc:noConcurrentScavenge</tt> to disable pause-less garbage collection.)
+</li>
+<li>You can set the <b><tt>-Xshareclasses:noTimestampChecks</tt> option</b> to turn off timestamp checking in shared classes.
+</li>
+<li><b><tt>-XX:+TransparentHugePage</tt> is enabled by default</b> on Linux systems for POWER&reg; and IBM Z&reg; as well as x86 systems. This option takes affect only when Transparent Huge Pages is set to <tt>madvise</tt> on your system. When Transparent Huge Pages are used, your application footprint might increase.
+</li>
+<li><b>The new exit dump agent</b> shuts down the VM when the specified event occurs. The exit agent is at priority level 0 and the tool agent has been moved to priority level 1 to aid in mimicking the behavior of HotSpot options.
+</li>
+<li><b>A technical preview of JITServer Technology</b> is included in this release. It's currently available for OpenJDK 8 and OpenJDK 11 running on Linux on x86-64. JITServer Technology decouples the JIT compiler from the VM and lets the JIT compiler run remotely in its own process. This mechanism prevents your Java&trade; application suffering possible negative effects due to CPU and memory consumption caused by JIT compilation. This technology can improve quality of service, robustness, and even performance of Java applications.
+</li>
+</ul>
+
+To read more about the changes in version 0.18.0, see the <a href="https://www.eclipse.org/openj9/docs/version0.18/">Release notes</a> in the OpenJ9 user documentation, which will also give you detailed information about the options mentioned here.
+
+</p>
+</br>
+
+<!-- Keep as-is except edit ID in URL and change "text=". Ensure no indents! -->
+
+<!--<a href="https://twitter.com/share?
+url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openj90180&
+via=openj9&
+hashtags=openj9,java&
+text=V0.18.0%20released;%20with%20the%20jstat%20tool,%20a%20technical%20preview%20of%20JITServer%20Technology,%20and%20lots%20more%21"
+class="twitter-share-button"
+data-show-count="false">Tweet</a>-->
+
+
+</div>
+</div>
+
+
 
 <div class="f-section-item" id="openj90170">
 <div class="f-content-container">
@@ -111,7 +163,7 @@ The project website pages cannot be redistributed
 
 <p>Here are some of the new features that we've introduced in version 0.17.0 of OpenJ9. You can control the behavior of all the default settings mentioned with appropriate command-line options.
 </p>
-<p>Do let us know how well these enhancements work for you by posting in our <a href="https://join.slack.com/t/openj9/shared_invite/enQtNDU4MDI4Mjk0MTk2LWVhNTMzMGY1N2JkODQ1OWE0NTNmZjM4ZDcxOTBiMjk3NGFjM2U0ZDNhMmY0MDZlNzU0ZjAyNzQ1ODlmYjg3MjA" target="_blank"> slack channel</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.
+<p>Do let us know how well these enhancements work for you by posting in our <a href="https://join.slack.com/t/openj9/shared_invite/enQtNDU4MDI4Mjk0MTk2LWVhNTMzMGY1N2JkODQ1OWE0NTNmZjM4ZDcxOTBiMjk3NGFjM2U0ZDNhMmY0MDZlNzU0ZjAyNzQ1ODlmYjg3MjA" target="_blank"> slack workspace</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.
 
 <ul>
 <li><b>z15 processor support.</b> This release adds JIT compiler support for exploiting z15 processor instructions.
@@ -166,7 +218,7 @@ data-show-count="false">Tweet</a>-->
 </p>
 <p>Here are some of the new features that we've introduced in version 0.16.0 of OpenJ9. You can control the behavior of all the default settings mentioned with appropriate command-line options.
 </p>
-<p>As indicated, many of these enhancements will typically improve the performance of your applications. As always, you can let us know how well these performance enhancements work for you by posting in our <a href="https://join.slack.com/t/openj9/shared_invite/enQtNDU4MDI4Mjk0MTk2LWVhNTMzMGY1N2JkODQ1OWE0NTNmZjM4ZDcxOTBiMjk3NGFjM2U0ZDNhMmY0MDZlNzU0ZjAyNzQ1ODlmYjg3MjA" target="_blank"> slack channel</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.<ul>
+<p>As indicated, many of these enhancements will typically improve the performance of your applications. As always, you can let us know how well these performance enhancements work for you by posting in our <a href="https://join.slack.com/t/openj9/shared_invite/enQtNDU4MDI4Mjk0MTk2LWVhNTMzMGY1N2JkODQ1OWE0NTNmZjM4ZDcxOTBiMjk3NGFjM2U0ZDNhMmY0MDZlNzU0ZjAyNzQ1ODlmYjg3MjA" target="_blank"> slack workspace</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.<ul>
   <li>Class data sharing is enabled by default for bootstrap classes, unless your application is running in a container. We've seen an improved Tomcat startup time of almost 30% with an out-of-the-box configuration.
   </li>
   <li>When you use the <tt>madvise</tt> setting on Linux on x86 systems, Transparent Huge Pages (THP) is now enabled by default. The THP setting on other systems remains disabled by default when you use <tt>madvise</tt>.
@@ -217,7 +269,7 @@ data-show-count="false">Tweet</a>-->
         An average value is set over a few restarts, helping to ensure that the value used for the initial heap size is as accurate as possible.
         This feature is expected to become the default in a future release.
         To enable it now, ensure that shared classes are turned on (<tt>-Xshareclasses</tt>) and set the <tt>-XX:+UseGCStartupHints</tt> option on the command line when you start your application.
-        Our testing demonstrates ~5% startup improvement for Open Liberty, so give it a go and post in our <a href="https://join.slack.com/t/openj9/shared_invite/enQtNDU4MDI4Mjk0MTk2LWVhNTMzMGY1N2JkODQ1OWE0NTNmZjM4ZDcxOTBiMjk3NGFjM2U0ZDNhMmY0MDZlNzU0ZjAyNzQ1ODlmYjg3MjA" target="_blank"> slack channel</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> to let us know how well it works for you.
+        Our testing demonstrates ~5% startup improvement for Open Liberty, so give it a go and post in our <a href="https://join.slack.com/t/openj9/shared_invite/enQtNDU4MDI4Mjk0MTk2LWVhNTMzMGY1N2JkODQ1OWE0NTNmZjM4ZDcxOTBiMjk3NGFjM2U0ZDNhMmY0MDZlNzU0ZjAyNzQ1ODlmYjg3MjA" target="_blank"> slack workspace</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i> to let us know how well it works for you.
         </p>
         <p>In this release, we are also introducing more compatibility changes to help users adopt OpenJ9:
           <ul>
@@ -262,7 +314,7 @@ data-show-count="false">Tweet</a>-->
       see <a href="https://www.eclipse.org/openj9/docs/adoptopenjdk/">AdoptOpenJDK builds</a>.
       </p>
     <p>We've recently been working on improving the performance of JVMTI watched fields. So far, the work is complete only on x86 platforms
-    (Windows&reg;, macOS&reg;, and Linux&reg;), but the results are impressive. A customer who tested adding and removing field watches with
+    (Windows&reg;, macOS, and Linux), but the results are impressive. A customer who tested adding and removing field watches with
     the new code reported a ~40X improvement for adding field watches and a ~15X improvement for removing field watches. The function is not
     currently enabled by default, but if you are interested in giving it a try, you can enable it with the <a href="https://www.eclipse.org/openj9/docs/xxjitinlinewatches/" target="_blank">
       -XX:[+|-]JITInlineWatches</a> option.</p>
@@ -311,8 +363,8 @@ data-show-count="false">Tweet</a>-->
       <p>There are a number of new features and capabilities delivered in this release:
     <ul>
            <li>Support for OpenSLL v1.0.2 for the Digest, CBC, GCM, and RSA algorithms for improved cryptographic performance. </li>
-           <li>The ability to query running Java&trade; processes with our new Java process status tool (<tt>jps</tt>).</li>
-           <li>Improved platform support for pause-less garbage collection, with the addition of Linux&reg; on POWER LE and AIX&reg;.</li>
+           <li>The ability to query running Java processes with our new Java process status tool (<tt>jps</tt>).</li>
+           <li>Improved platform support for pause-less garbage collection, with the addition of Linux&reg; on Power LE and AIX&reg;.</li>
        <li>The ability to write a Java dump file to STDOUT or STDERR as an alternative to writing to a file.</li>
        <li>Better diagnostic information for Linux systems that implement control groups.</li>
       </ul>
