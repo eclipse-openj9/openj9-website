@@ -1,11 +1,25 @@
+/**
+ * Configure your Gatsby site with this file.
+ *
+ * See: https://www.gatsbyjs.org/docs/gatsby-config/
+ */
+
 module.exports = {
-  siteMetadata: {
-    title: `OpenJ9 Website`,
-    description: `OpenJ9 Website`,
-    author: `@gatsbyjs`,
-  },
-  plugins: [
-    `gatsby-plugin-react-helmet`,
-  ],
-  pathPrefix: "/OpenJ9-Website"
-}
+  plugins: [`gatsby-plugin-emotion`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `pages`,
+        path: `${__dirname}/src/pages/`,
+      },
+    },
+
+    `gatsby-transformer-yaml`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `./news-page-content/`,
+      },
+    },
+]
+};

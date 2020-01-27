@@ -1,90 +1,208 @@
-import React from "react"
+import React from "react";
+import Layout from "../components/layout";
+import Button from "../components/button";
+import Card from "../components/card";
 
-import Layout from "../components/layout"
-import { Link } from "gatsby";
-import Carousels from "../components/carousels";
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import githubIcon from "../images/github_icon.svg";
-import twitterIcon from "../images/twitter_icon.svg";
-import slackIcon from "../images/slack_icon.svg";
-
-const IndexPage = () => (
-  <Layout>
-    <section className="bg-img">
-      <Navbar className="desktop-only">
-        <Nav className="ml-auto">
-          <Nav.Link className="nav-link" href="/about">About</Nav.Link>
-          <Nav.Link className="nav-link" href="#link">Docs</Nav.Link>
-          <Nav.Link className="nav-link" href="#link">News</Nav.Link>
-          <Nav.Link href="#"><img className="navbar-img" src={ githubIcon } alt=""></img></Nav.Link>
-          <Nav.Link href="#"><img id="twitter-nav" className="navbar-img" src={ twitterIcon } alt=""></img></Nav.Link>
-          <Nav.Link href="#"><img className="navbar-img" src={ slackIcon } alt=""></img></Nav.Link>
-        </Nav>
-      </Navbar>
-      <div className="top-section">
-        <h1>Unleash the Power of Java</h1>
-        <p>Optimized to run Java applications cost-effectively in the cloud, Eclipse OpenJ9 is a fast and efficient JVM that delivers power and performance when you need it most</p>
-        <Link to="#" className="btn btn-primary" role="button">Get OpenJ9</Link>
+import openj9Circle from "../images/openj9-circle.svg";
+import openj9Logo from "../images/openj9-logo.svg";
+import circlePatternBig from "../images/circle-pattern-big.svg";
+/** @jsx jsx */
+import { jsx, Styled } from "theme-ui";
+export default () => (
+  <Layout isHome={true}>
+    <div
+      sx={{
+        backgroundColor: "primary",
+        color: "lightText",
+        display: "flex",
+        minHeight: "500px",
+        flexDirection: ["column", "column", "row", "row"],
+        paddingBottom: ["4rem", "4rem", 0, 0]
+      }}
+    >
+      <div
+        sx={{
+          backgroundImage: `url(${openj9Circle})`,
+          width: ["100%", "100%", "30%", "30%"],
+          minHeight: "200px"
+        }}
+      ></div>
+      <div
+        sx={{
+          height: "250px",
+          width: "250px",
+          borderRadius: "50%",
+          backgroundColor: "#434343",
+          position: "absolute",
+          left: [
+            "calc(50% - 125px)",
+            "calc(50% - 125px)",
+            "calc(30% - 125px)",
+            "calc(30% - 125px)"
+          ],
+          top: ["70px", "70px", "125px", "125px"],
+          border: "white solid 2px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center"
+        }}
+      >
+        <img src={openj9Logo}></img>
       </div>
-    </section>
-
-    <section className="landing-section">
-      <Carousels/>
-      <Link to="#" className="btn btn-primary mt-5 mx-auto read-performance" role="button">READ PERFORMANCE DETAILS</Link>
-    </section>
-
-    <section className="landing-section light-gray-background">
-      <div className="desktop-only">
-        <h2 className="light-gray-section-heading">Join the Conversation</h2>
+      <section
+        sx={{
+          width: ["90%", "90%", "40%", "33%"],
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: ["center", null, "start", "start"],
+          textAlign: ["center", null, "left", "left"],
+          marginTop: ["8rem", "8rem", "3rem", "3rem"],
+          marginLeft: ["5%", "5%", "20%", "15%"]
+        }}
+      >
+        <Styled.h1>Unleash the Power of Java</Styled.h1>
+        <Styled.p>
+          Optimized to run Java applications cost-effectively in the cloud,
+          Eclipse OpenJ9 is a fast and efficient JVM that delivers power and
+          performance when you need it most.
+        </Styled.p>
+        <Button isLink={true} text="Get OpenJ9" primary={true} />
+      </section>
+    </div>
+    <div
+      sx={{
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "space-between",
+        padding: "5%"
+      }}
+    >
+      <Card flex="0 0 600px" primary={true}>
+        <h1>Example card 1</h1>
+      </Card>
+      <Card flex="0 0 600px" primary={true}>
+        <h1>Example card 1</h1>
+      </Card>
+      <div
+        sx={{
+          flex: "1 2 100%",
+          display: "flex",
+          justifyContent: "center",
+          marginY: 3,
+          order: [1, 1, 1, 0]
+        }}
+      >
+        <Button isLink={true} text="Read Performance Details" primary={false} />
       </div>
-      <div className="card desktop-only ">
-        <div className="container">
-          <div className="row">
-            <div className="col">
-              <p className="light-gray-card-text">Interested in contributing to OpenJ9? Check out the contributor guide in our Github repository.</p>
-              <Link to="#" className="btn btn-primary light-gray-section-button" role="button">OpenJ9 GitHub</Link>
-            </div>
-            <div className="col">
-              <p className="light-gray-card-text">Interested in contributing to OpenJ9? Check out the contributor guide in our Github repository.</p>
-              <Link to="#" className="btn btn-primary light-gray-section-button" role="button">OpenJ9 Slack</Link>
-            </div>
-          </div>
-
+      <Card flex="0 0 600px" primary={true}>
+        <h1>Example card 1</h1>
+      </Card>
+      <Card flex="0 0 600px" primary={true}>
+        <h1>Example card 1</h1>
+      </Card>
+    </div>
+    <div
+      sx={{
+        padding: `calc(5% + 40px)`,
+        backgroundColor: "#F5F9FC",
+        minHeight: "50vh"
+      }}
+    >
+      <Styled.h3>Join the Conversation</Styled.h3>
+      <section
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          backgroundColor: "white",
+          borderRadius: "card",
+          padding: "5%",
+          alignItems: "flex-end",
+          justifyContent: "space-between"
+        }}
+      >
+        <div
+          sx={{
+            flex: "30%",
+            maxWidth: "600px",
+            minWidth: ["300px", "350px", "400px", "500px"],
+            marginBottom: "2rem"
+          }}
+        >
+          <Styled.p sx={{width:"80%"}}>
+            Interested in contributing to OpenJ9? Check out the contributor
+            guide in our GitHub repository.
+          </Styled.p>
+          <Button isLink={true} text="OpenJ9 GitHub" primary={true} />
         </div>
-      </div>
-
-      <div className="container mobile-only">
-        <h2 className="light-gray-section-heading-mobile">Join the Conversation</h2>
-        <div className="row">
-            <p className="light-gray-card-text">Interested in contributing to OpenJ9? Check out the contributor guide in our Github repository.</p>
-            <Link to="#" className="btn btn-primary light-gray-section-button" role="button">OpenJ9 GitHub</Link>
-            <p className="light-gray-card-text">Interested in contributing to OpenJ9? Check out the contributor guide in our Github repository.</p>
-            <Link to="#" className="btn btn-primary light-gray-section-button" role="button">OpenJ9 Slack</Link>
+        <div
+          sx={{
+            flex: "30%",
+            maxWidth: "600px",
+            minWidth: ["300px", "350px", "400px", "500px"]
+          }}
+        >
+          <Styled.p sx={{width:"80%"}}>
+            Have ideas about improvements for OpenJ9? Share them in our Slack
+            workspace.
+          </Styled.p>
+          <Button isLink={true} text="OpenJ9 Slack" primary={true} />
         </div>
+      </section>
+    </div>
+    <div
+      sx={{
+        backgroundImage: `url(${circlePatternBig})`,
+        height: "50vh",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        display: "flex",
+        alignItems: "center",
+        color: "lightText",
+        paddingLeft: "15%"
+      }}
+    >
+      <Styled.h2>
+        Participate in the <br></br> Eclipse OpenJ9 Project
+      </Styled.h2>
+    </div>
+    <div
+      sx={{
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "space-between",
+        padding: "calc(5% + 40px)"
+      }}
+    >
+      <div
+        sx={{
+          flex: "30%",
+          maxWidth: "600px",
+          minWidth: ["300px", "350px", "400px", "500px"],
+          marginBottom: "2rem"
+        }}
+      >
+        <Styled.h3>BECOME A CONTRIBUTOR</Styled.h3>
+        <Styled.p sx={{width:"90%"}}>
+          Interested in contributing to OpenJ9? Check out the contributor guide
+          in our Github repository.
+        </Styled.p >
+        <Button isLink={true} text="Contributor Guide" primary={true} />
       </div>
-
-    </section>
-
-    <section className="participation_section_bg">
-    <hr className="participate-section-line"></hr>
-    <h1 className="participate-section-text">Participate in the Eclipse OpenJ9 Project</h1>
-    </section>
-
-    <section className="landing-section participation-section-margin">
-      <div className="container float-left participation-section">
-        <h2 className="participation-section-heading">BECOME A CONTRIBUTOR</h2>
-        <p>Interested in contributing to OpenJ9? Check out the contributor guide in our Github repository.</p>
-        <Link to="#" className="btn btn-primary participation-section-button" role="button">CONTRIBUTOR GUIDE</Link>
+      <div
+        sx={{
+          flex: "30%",
+          maxWidth: "600px",
+          minWidth: ["300px", "350px", "400px", "500px"]
+        }}
+      >
+        <Styled.h3>JOIN COMMUNITY CALLS</Styled.h3>
+        <Styled.p sx={{width:"90%"}}>
+          Our regular community hangouts are a great place to find out what is
+          going on in the OpenJ9 project.
+        </Styled.p>
+        <Button isLink={true} text="Add to Calendar" primary={true} />
       </div>
-      <div className="desktop-only vertical-line"></div>
-      <div className="container float-left participation-section" >
-        <h2 className="participation-section-heading participation-section-heading-bottom">JOIN COMMUNITY CALLS</h2>
-        <p>Interested in contributing to OpenJ9? Check out the contributor guide in our Github repository.</p>
-        <Link to="#" className="btn btn-primary participation-section-button" role="button">ADD TO CALENDAR</Link>
-      </div>
-    </section>
+    </div>
   </Layout>
-)
-
-export default IndexPage
+);
