@@ -1,95 +1,269 @@
 import React from "react"
-
 import Layout from "../components/layout"
-import { Link } from "gatsby";
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import githubIcon from "../images/github_icon.svg";
-import twitterIcon from "../images/twitter_icon.svg";
-import slackIcon from "../images/slack_icon.svg";
-import Tile from "../components/tile";
 
-const AboutPage = () => (
-    <Layout>
-        <Navbar className="text-light bg-dark desktop-only">
-            <Nav>
-                <Nav.Link className="nav-link" href="/">OpenJ9</Nav.Link>
-            </Nav>
-            <Nav className="ml-auto">
-                <Nav.Link className="nav-link" href="/about">About</Nav.Link>
-                <Nav.Link className="nav-link" href="#link">Docs</Nav.Link>
-                <Nav.Link className="nav-link" href="#link">News</Nav.Link>
-                <Nav.Link href="#"><img className="navbar-img" src={ githubIcon } alt=""></img></Nav.Link>
-                <Nav.Link href="#"><img id="twitter-nav" className="navbar-img" src={ twitterIcon } alt=""></img></Nav.Link>
-                <Nav.Link href="#"><img className="navbar-img" src={ slackIcon } alt=""></img></Nav.Link>
-            </Nav>
-        </Navbar>
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core'
 
-        <section className="landing-section light-gray-background">
-            <div className="desktop-only">
-                <h2 className="light-gray-section-heading">More About OpenJ9</h2>
-            </div>
-            <div className="card desktop-only ">
-                <div className="container">
-                    <div className="row">
-                        <div className="col">
-                            <p className="light-gray-card-text">Interested in contributing to OpenJ9? Check out the contributor guide in our Github repository.</p>
-                            <Link to="#" className="btn btn-primary light-gray-section-button" role="button">Call to Action</Link>
-                        </div>
-                    </div>
-                </div>
-            </div>
+import circlePatternBig from "../images/circle-pattern-big.svg"
+import Card from "../components/card"
 
-            <div className="container mobile-only">
-                <h2 className="light-gray-section-heading-mobile">More About OpenJ9</h2>
-                <div className="row">
-                    <p className="light-gray-card-text">Interested in contributing to OpenJ9? Check out the contributor guide in our Github repository.</p>
-                    <Link to="#" className="btn btn-primary light-gray-section-button" role="button">OpenJ9 GitHub</Link>
-                </div>
-            </div>
-        </section>
+export default () => (
+  <Layout isHome={false}>
+    <div
+      css={{
+        backgroundColor: "#F5F9FC",
+        width: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "column",
+        padding: "150px 0 150px 0",
+      }}
+    >
+      <h2
+        css={css`
+          align-self: start;
+          margin-left: 10%;
+          margin-bottom: 2rem;
 
-        <section className="bg-gray-img">
-            <div className="our-sponsors row">
-                <Tile heading="Sponsor Name" desc="Sponsorship and support via" className="sponsor-tile col-xs-12"/>
-                <Tile heading="Sponsor Name" desc="Sponsorship and support via" className="sponsor-tile col-xs-12"/>
-                <Tile heading="Sponsor Name" desc="Sponsorship and support via" className="sponsor-tile col-xs-12"/>
-            </div>
-        </section>
+          @media (max-width: 767px) {
+            margin-left: 0;
+            align-self: center;
+          }
+        `}
+      >
+        More About OpenJ9
+      </h2>
+      <section
+        css={{
+          display: "grid",
+          gridTemplateColumns: "3% 2fr 3%",
+          gridTemplateRows: "repeat(2, auto)",
+          gridRowGap: "10px",
+          backgroundColor: "white",
+          width: "80%",
+          borderRadius: "30px",
+          padding: "3% 0 3% 0",
+          boxSizing: "border-box",
+          marginBottom: "100px",
+        }}
+      >
+        <p
+          css={css`
+            grid-column: 2/3;
+            grid-row: 1/2;
+            height: 50px;
+            padding: 0.5rem;
+            @media (max-width: 767px) {
+              text-align: center;
+            }
+          `}
+        >
+          Have ideas about improvements for OpenJ9? Share them in our Slack
+          workspace.
+        </p>
+        <button
+          css={css`
+            grid-column: 2/3;
+            grid-row: 2/3;
+            width: 200px;
+            border-radius: 23.5px;
+            height: 50px;
+            background-color: #5DA7A3;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-top: 4rem;
+            @media (max-width: 767px) {
+              margin: 2rem  auto;
+            }
+          `}
+        >
+          Call to Action
+        </button>
+      </section>
+      <div
+      css={css`
+        width:100%;
+        background-color: #434343; 
+        @media (min-width: 767px) {
+          display: grid;
+          grid-template-columns: 10% repeat(3, auto) 10%;
+          grid-template-rows: repeat(3, auto);
+        }
+        
+        padding: 2.5rem 0;
+        @media (max-width: 767px) {
+          display: block;
+          margin: 1rem 0
+        }
+      }`}
+    >
+      <h2
+        css={css`
+        font-size: 30px;
+        align-self: center;
+        color: white;
+        grid-column: 2/5;
+        grid-row: 1/2;
+        @media (max-width: 767px) {
+          text-align:center;
+        }`
+        }
+      >
+        Our Sponsors
+      </h2>
+      
+      <p
+        css={css`
+          alignSelf: ${"start"};
+          color: white;
+          grid-column: 2/5;
+          grid-row: 2/3;
+          padding: 1rem 0 4rem 0;
+          @media (max-width: 767px) {
+            text-align:center;
+            margin: 0 2rem;
+          }
+        }`}
+      >
+        Have ideas about improvements for OpenJ9? Share them in our Slack workspace.
+      </p>
+      <Card row="3/4" col="2/3"/>
+      <Card row="3/4" col="3/4"/>
+      <Card row="3/4" col="4/5"/>
+      </div>
 
-        <section className="landing-section light-gray-background">
-        <div className="desktop-only">
-            <h2 className="light-gray-section-heading">Our Future</h2>
+      
+    <div
+      css={css`
+        background-image: url(${circlePatternBig});
+        height: 50vh;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        flex-direction:column;
+        align-items: center;
+        width: 100%;
+        @media (max-width: 767px) {
+          display:none;
+        }
+      `}
+    >
+      <h2
+        css={{
+            color: "white",
+            fontSize: "2.9rem",
+            fontWeight: "500",
+            width: "40%",
+            marginLeft: "-30%",
+            marginTop: "5rem",
+        }}
+      >
+        Our Future
+      </h2>
+      <p
+        css={{
+          color: "white",
+          fontSize: "1.5rem",
+          width: "30%",
+          marginLeft: "-40%",
+          marginTop: "1rem",   
+        }}
+      >
+       Interested in contributing to OpenJ9? Check out the contributor guide
+          in our Github repository.
+      </p>
+    </div>
+      
+    <section
+        css={{
+         
+          backgroundColor: "white",
+          width: "80%",
+          borderRadius: "30px",
+          padding: "3% 3% 3% 3%",
+          boxSizing: "border-box",
+          marginTop: "100px",
+        }}
+      >
+        
+        <div
+          css={css`
+            display: flex;
+            color: rgb(79, 79, 79);
+            padding: 40px 10%;
+            @media (max-width: 767px) {
+              flex-direction: column;
+            }
+        `}
+        >
+          
+          <div
+            css={{
+              display: "flex",
+              flexDirection: "column",
+              flex: 1,
+            }}
+          >
+            <h3 css={{ fontSize: "1.5rem", fontWeight: 400, marginBottom: "2rem" }}>
+              Docs
+            </h3>
+            <p css={{ lineHeight: "1.6rem", marginBottom: "3rem", height:"8rem" }}>
+              Interested in contributing to OpenJ9? Check out the contributor guide
+              in our Github repository.
+            </p>
+            <button
+              css={css`
+                width: 75%;
+                border-radius: 23.5px;
+                height: 50px;
+                background-color: #5DA7A3;
+                border: none;
+                color: white;
+                font-size: 1rem;
+
+                @media (max-width: 767px) {
+                  margin-bottom: 2rem;
+                }
+              `}
+            >
+              Go To Docs
+            </button>
+          </div>
+          <div
+            css={{
+              display: "flex",
+              flexDirection: "column",
+              flex: 1,
+            }}
+          >
+            <h3 css={{ fontSize: "1.5rem", fontWeight: 400, marginBottom: "2rem" }}>
+              Blogs
+            </h3>
+            <p css={{ lineHeight: "1.6rem", marginBottom: "3rem", height: "8rem" }}>
+              Our regular community hangouts are a great place to meet the team and
+              find out what is going on in the OpenJ9 project.
+            </p>
+            <button
+              css={{
+                width: "75%",
+                borderRadius: "23.5px",
+                height: "50px",
+                backgroundColor: "#5DA7A3",
+                border: "none",
+                color: "white",
+                fontSize: "1rem",
+              }}
+            >
+              Go To Blogs
+            </button>
+          </div>
         </div>
-        <div className="card desktop-only ">
-            <div className="container">
-            <div className="row">
-                <div className="col">
-                <p className="light-gray-card-text">Interested in contributing to OpenJ9? Check out the contributor guide in our Github repository.</p>
-                <Link to="#" className="btn btn-primary light-gray-section-button" role="button">Go to Docs</Link>
-                </div>
-                <div className="col">
-                <p className="light-gray-card-text">Interested in contributing to OpenJ9? Check out the contributor guide in our Github repository.</p>
-                <Link to="#" className="btn btn-primary light-gray-section-button" role="button">Go to  Blogs</Link>
-                </div>
-            </div>
-
-            </div>
-        </div>
-
-        <div className="container mobile-only">
-            <h2 className="light-gray-section-heading-mobile">Our Future</h2>
-            <div className="row">
-                <p className="light-gray-card-text">Interested in contributing to OpenJ9? Check out the contributor guide in our Github repository.</p>
-                <Link to="#" className="btn btn-primary light-gray-section-button" role="button">Go to Docs</Link>
-                <p className="light-gray-card-text">Interested in contributing to OpenJ9? Check out the contributor guide in our Github repository.</p>
-                <Link to="#" className="btn btn-primary light-gray-section-button" role="button">Go to Blogs</Link>
-            </div>
-        </div>
-
-        </section>
-
-    </Layout>
+      </section>
+    </div>
+    
+    
+  </Layout>
 )
-
-export default AboutPage
