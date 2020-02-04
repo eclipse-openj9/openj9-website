@@ -1,14 +1,12 @@
-import React from "react";
 import Layout from "../components/layout";
+import { graphql } from 'gatsby'
 
 /** @jsx jsx */
 import { jsx, Styled } from "theme-ui";
 
-import circlePatternBig from "../images/circle-pattern-big.svg";
-import Card from "../components/card";
 import Button from "../components/button";
 
-export default () => (
+export default ({data}) => (
   <Layout isHome={false}>
     <div sx={{ backgroundColor: "#F5F9FC", paddingX: "10%", paddingY: "5%" }}>
       <Styled.h1>What’s new in OpenJ9</Styled.h1>
@@ -52,7 +50,7 @@ export default () => (
           }}
         >
           <Styled.h5>Products Updates</Styled.h5>
-          <Styled.p sx={{minHeight: "150px", width:"90%"}}>
+          <Styled.p sx={{minHeight: "15rem", width:"90%"}}>
           This text should be the introduction of the most recent udpate about the product. We might also want to consider using tags or something as a way to draw additional attention to topics not introduced in the product update lead-in.  Ultimately this should lead to a GIT Hub page. 
           </Styled.p>
           <Button isLink={true} text="NEW RELEASE INFO" primary={false} />
@@ -67,14 +65,13 @@ export default () => (
           }}
         >
           <Styled.h5 
-          >Upcoming Event</Styled.h5>
-          <Styled.p sx={{minHeight: "150px", width:"90%"}}>
-            MM-DD-YY - Event Title: Event Details <br/>
-            MM-DD-YY - Event Title: Event Details <br/>
-            MM-DD-YY - Event Title: Event Details <br/>
-            MM-DD-YY - Event Title: Event Details <br/>
-          </Styled.p>
-          <Button isLink={true} text="CALENDAR" primary={false} />
+          >Events</Styled.h5>
+            <ul sx={{minHeight: "17rem"}}>
+              {data.allUpcomingEventsYaml.edges.map((event) => {
+                return <li sx={{listStyleType: "none"}}> {event.node.title} - {event.node.date} - {event.node.details}</li>
+              })}
+            </ul>
+        
           
         </article>
       </div>
@@ -97,7 +94,7 @@ export default () => (
           }}
         >
           
-          <Styled.p sx={{width: "90%"}}>
+          <Styled.p sx={{width:"90%"}}>
             Blog title here - MM-DD-YY (Most Recent)
             This text should be the first few sentences for this blog post. We might also want to consider using tags or something as a way to draw additional attention to topics not introduced…see more
           </Styled.p>
@@ -109,12 +106,7 @@ export default () => (
             minWidth: ["300px", "350px", "400px", "500px"],
           }}
         >
-          {/* <Styled.h5  sx={{
-           visibility: "hidden",
-          }}
-          
-          >Blogs</Styled.h5> */}
-          <Styled.p sx={{width: "90%"}}>
+          <Styled.p sx={{width:"90%"}}>
             Blog title here - MM-DD-YY
             This text should be the first few sentences for this blog post. We might also want to consider using tags or something as a way to draw additional attention to topics not introduced…see more
           </Styled.p>
@@ -129,3 +121,17 @@ export default () => (
     </div>
   </Layout>
 );
+
+export const query = graphql`
+{
+  allUpcomingEventsYaml(sort: {fields: date, order: ASC} limit: 5) {
+    edges {
+      node {
+        id
+        title
+        date(formatString:"DD-MM-YYYY")
+        details
+      }
+    }
+  }
+}`

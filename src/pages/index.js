@@ -1,4 +1,3 @@
-import React from "react";
 import Layout from "../components/layout";
 import Button from "../components/button";
 import Card from "../components/card";
@@ -126,10 +125,10 @@ export default () => (
             flex: "30%",
             maxWidth: "600px",
             minWidth: ["300px", "350px", "400px", "500px"],
-            marginBottom: "2rem",
+            marginBottom: "2rem"
           }}
         >
-          <Styled.p sx={{width: "80%"}}>
+          <Styled.p sx={{width:"80%"}}>
             Interested in contributing to OpenJ9? Check out the contributor
             guide in our GitHub repository.
           </Styled.p>
@@ -142,7 +141,7 @@ export default () => (
             minWidth: ["300px", "350px", "400px", "500px"]
           }}
         >
-          <Styled.p sx={{width: "80%"}}>
+          <Styled.p sx={{width:"80%"}}>
             Have ideas about improvements for OpenJ9? Share them in our Slack
             workspace.
           </Styled.p>
@@ -179,14 +178,14 @@ export default () => (
           flex: "30%",
           maxWidth: "600px",
           minWidth: ["300px", "350px", "400px", "500px"],
-          marginBottom: "2rem",
+          marginBottom: "2rem"
         }}
       >
         <Styled.h3>BECOME A CONTRIBUTOR</Styled.h3>
-        <Styled.p>
+        <Styled.p sx={{width:"90%"}}>
           Interested in contributing to OpenJ9? Check out the contributor guide
           in our Github repository.
-        </Styled.p>
+        </Styled.p >
         <Button isLink={true} text="Contributor Guide" primary={true} />
       </div>
       <div
@@ -197,7 +196,7 @@ export default () => (
         }}
       >
         <Styled.h3>JOIN COMMUNITY CALLS</Styled.h3>
-        <Styled.p>
+        <Styled.p sx={{width:"90%"}}>
           Our regular community hangouts are a great place to find out what is
           going on in the OpenJ9 project.
         </Styled.p>

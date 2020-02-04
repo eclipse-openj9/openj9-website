@@ -5,6 +5,22 @@
  */
 
 module.exports = {
-  plugins: [`gatsby-plugin-emotion`],
-  pathPrefix: "/openj9-website"
+  plugins: [`gatsby-plugin-emotion`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `pages`,
+        path: `${__dirname}/src/pages/`,
+      },
+    },
+
+    `gatsby-transformer-yaml`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `./news-page-content/`,
+      },
+    },
+],
+pathPrefix: "/openj9-website"
 };
