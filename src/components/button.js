@@ -2,16 +2,17 @@ import React from "react"
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 
-const Button = ({ isLink, text, primary }) => {
+const Button = ({ isLink, text, primary, link }) => {
   const variant = primary ? "buttons.primary" : "buttons.secondary"
   if (isLink) {
     return (
-      <a
+      <a href= {link}
         sx={{
           variant: variant,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          textDecoration: "none",
         }}
       >
         {text}
