@@ -21,5 +21,6 @@ module.exports = {
         path: `./news-page-content/`,
       },
     },
-]
+],
+pathPrefix: "/openj9-website"
 };

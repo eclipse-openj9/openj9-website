@@ -1,4 +1,3 @@
-import React from "react";
 import Layout from "../components/layout";
 import Button from "../components/button";
 import Card from "../components/card";

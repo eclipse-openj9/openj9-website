@@ -1,4 +1,3 @@
-import React from "react";
 import Layout from "../components/layout";
 import { graphql } from 'gatsby'
 
@@ -67,8 +66,6 @@ export default ({data}) => (
         >
           <Styled.h5 
           >Events</Styled.h5>
-    
-          {console.log(data)}
             <ul sx={{minHeight: "17rem"}}>
               {data.allUpcomingEventsYaml.edges.map((event) => {
                 return <li sx={{listStyleType: "none"}}> {event.node.title} - {event.node.date} - {event.node.details}</li>
