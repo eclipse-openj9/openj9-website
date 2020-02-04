@@ -3,8 +3,8 @@ import Layout from "../components/layout";
 import Button from "../components/button";
 import Card from "../components/card";
 
-import openJ9Circle from "../images/openJ9-circle.svg";
-import openJ9Logo from "../images/openj9-logo.svg";
+import openj9Circle from "../images/openj9-circle.svg";
+import openj9Logo from "../images/openj9-logo.svg";
 import circlePatternBig from "../images/circle-pattern-big.svg";
 /** @jsx jsx */
 import { jsx, Styled } from "theme-ui";
@@ -22,7 +22,7 @@ export default () => (
     >
       <div
         sx={{
-          backgroundImage: `url(${openJ9Circle})`,
+          backgroundImage: `url(${openj9Circle})`,
           width: ["100%", "100%", "30%", "30%"],
           minHeight: "200px"
         }}
@@ -47,7 +47,7 @@ export default () => (
           justifyContent: "center"
         }}
       >
-        <img src={openJ9Logo}></img>
+        <img src={openj9Logo}></img>
       </div>
       <section
         sx={{
