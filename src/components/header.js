@@ -1,35 +1,63 @@
-import React from "react"
+import React from "react";
+import { Link } from "gatsby";
+
+import openJ9Logo from "../images/openJ9-header-logo.svg";
+import slackIcon from "../images/slack-icon.svg";
+import githubLogo from "../images/github-logo.svg";
+import twitterLogo from "../images/twitter-logo.svg";
+
 /** @jsx jsx */
-import { jsx } from "@emotion/core"
+import { jsx } from "theme-ui";
 
 export default ({ isHome }) => (
   <header
-    css={{
-      backgroundColor: isHome ? "#43434300" : "#434343",
-      display: "flex",
-      color: "white",
-      height: "100px",
-      alignItems: "center",
-      padding: "0 30px",
-      position: "absolute",
+    sx={{
+      display: ["none", "none", "flex", "flex"],
+      backgroundColor: isHome ? "#00000000" : "primary",
+      position: isHome ? "absolute" : null,
       width: "100%",
+      color: "lightText",
+      paddingX: 5,
+      paddingY: 4,
+      alignItems: "center"
     }}
   >
-    <div css={{ flex: 2, opacity: isHome ? 0 : 1 }}>
-      <img src="http://place-puppy.com/150x50" alt="OpenJ9 Logo"></img>
+    <div
+      sx={{
+        flex: 1,
+        opacity: isHome ? 0 : 1,
+        pointerEvents: isHome ? "none" : "all"
+      }}
+    >
+      <Link to="/">
+        <img src={openJ9Logo} alt="OpenJ9 Logo"></img>
+      </Link>
     </div>
-    <nav css={{ flex: 1 }}>
-      <ul
-        css={{
-          listStyle: "none",
-          display: "flex",
-          li: { margin: "0 4%" },
-        }}
-      >
-        <li>ABOUT</li>
-        <li>DOCS</li>
-        <li>NEWS</li>
+    <nav sx={{ flex: 2 }}>
+      <ul sx={{ variant: "lists.navRow" }}>
+        <li>
+          <Link to="/about">ABOUT</Link>
+        </li>
+        <li>
+          <a href="https://www.eclipse.org/openj9/docs/">DOCS</a>
+        </li>
+        <li>
+          <Link to="/news">NEWS</Link>
+        </li>
+      </ul>
+    </nav>
+    <nav sx={{ flex: 1 }}>
+      <ul sx={{ variant: "lists.navRow" }}>
+        <li>
+          <img src={twitterLogo} alt="Twitter Logo"></img>
+        </li>
+        <li>
+          <img src={githubLogo} alt="GitHub Logo"></img>
+        </li>
+        <li>
+          <img src={slackIcon} alt="Slack logo"></img>
+        </li>
       </ul>
     </nav>
   </header>
-)
+);

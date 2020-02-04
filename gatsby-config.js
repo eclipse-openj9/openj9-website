@@ -6,4 +6,5 @@
 
 module.exports = {
   plugins: [`gatsby-plugin-emotion`],
-}
+  pathPrefix: "/openj9-website"
+};
