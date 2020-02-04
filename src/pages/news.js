@@ -52,7 +52,7 @@ export default () => (
           }}
         >
           <Styled.h5>Products Updates</Styled.h5>
-          <Styled.p sx={{minHeight: "150px"}}>
+          <Styled.p sx={{minHeight: "150px", width:"90%"}}>
           This text should be the introduction of the most recent udpate about the product. We might also want to consider using tags or something as a way to draw additional attention to topics not introduced in the product update lead-in.  Ultimately this should lead to a GIT Hub page. 
           </Styled.p>
           <Button isLink={true} text="NEW RELEASE INFO" primary={false} />
@@ -68,7 +68,7 @@ export default () => (
         >
           <Styled.h5 
           >Upcoming Event</Styled.h5>
-          <Styled.p sx={{minHeight: "150px"}}>
+          <Styled.p sx={{minHeight: "150px", width:"90%"}}>
             MM-DD-YY - Event Title: Event Details <br/>
             MM-DD-YY - Event Title: Event Details <br/>
             MM-DD-YY - Event Title: Event Details <br/>
@@ -97,7 +97,7 @@ export default () => (
           }}
         >
           
-          <Styled.p>
+          <Styled.p sx={{width: "90%"}}>
             Blog title here - MM-DD-YY (Most Recent)
             This text should be the first few sentences for this blog post. We might also want to consider using tags or something as a way to draw additional attention to topics not introduced…see more
           </Styled.p>
@@ -114,7 +114,7 @@ export default () => (
           }}
           
           >Blogs</Styled.h5> */}
-          <Styled.p>
+          <Styled.p sx={{width: "90%"}}>
             Blog title here - MM-DD-YY
             This text should be the first few sentences for this blog post. We might also want to consider using tags or something as a way to draw additional attention to topics not introduced…see more
           </Styled.p>

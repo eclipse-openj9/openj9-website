@@ -125,10 +125,11 @@ export default () => (
           sx={{
             flex: "30%",
             maxWidth: "600px",
-            minWidth: ["300px", "350px", "400px", "500px"]
+            minWidth: ["300px", "350px", "400px", "500px"],
+            marginBottom: "2rem",
           }}
         >
-          <Styled.p>
+          <Styled.p sx={{width: "80%"}}>
             Interested in contributing to OpenJ9? Check out the contributor
             guide in our GitHub repository.
           </Styled.p>
@@ -141,7 +142,7 @@ export default () => (
             minWidth: ["300px", "350px", "400px", "500px"]
           }}
         >
-          <Styled.p>
+          <Styled.p sx={{width: "80%"}}>
             Have ideas about improvements for OpenJ9? Share them in our Slack
             workspace.
           </Styled.p>
@@ -177,7 +178,8 @@ export default () => (
         sx={{
           flex: "30%",
           maxWidth: "600px",
-          minWidth: ["300px", "350px", "400px", "500px"]
+          minWidth: ["300px", "350px", "400px", "500px"],
+          marginBottom: "2rem",
         }}
       >
         <Styled.h3>BECOME A CONTRIBUTOR</Styled.h3>
