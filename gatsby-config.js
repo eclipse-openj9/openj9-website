@@ -33,6 +33,14 @@ module.exports = {
         useACF: false
       }
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `markdown-pages`,
+        path: `${__dirname}//news-page-content`,
+      },
+    },
+    `gatsby-transformer-remark`,
 ],
 pathPrefix: "/openj9-website",
 };
