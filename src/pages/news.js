@@ -49,7 +49,7 @@ export default ({data}) => (
             minWidth: ["300px", "350px", "400px", "500px"]
           }}
         >
-          <Styled.h5>Products Updates</Styled.h5>
+          <Styled.h3>Products Updates</Styled.h3>
           <Styled.p sx={{minHeight: "15rem", width:"90%"}}>
           This text should be the introduction of the most recent udpate about the product. We might also want to consider using tags or something as a way to draw additional attention to topics not introduced in the product update lead-in.  Ultimately this should lead to a GIT Hub page. 
           </Styled.p>
@@ -64,15 +64,13 @@ export default ({data}) => (
                 marginY: ["3rem", "3rem", "0", "0"],
           }}
         >
-          <Styled.h5 
-          >Events</Styled.h5>
+          <Styled.h3 
+          >Events</Styled.h3>
             <ul sx={{minHeight: "17rem"}}>
               {data.allUpcomingEventsYaml.edges.map((event) => {
                 return <li sx={{listStyleType: "none"}}> {event.node.title} - {event.node.date} - {event.node.details}</li>
               })}
             </ul>
-        
-          
         </article>
       </div>
 
@@ -84,7 +82,7 @@ export default ({data}) => (
           paddingY: "5%",      
         }}
       >
-        <Styled.h5>Recent Blogs</Styled.h5>
+        <Styled.h3>Recent Blogs</Styled.h3>
         <div sx={{display: "flex", flexWrap: "wrap", justifyContent: "space-between"}}>
           <article
           sx={{
@@ -95,8 +93,9 @@ export default ({data}) => (
         >
           
           <Styled.p sx={{width:"90%"}}>
-            Blog title here - MM-DD-YY (Most Recent)
-            This text should be the first few sentences for this blog post. We might also want to consider using tags or something as a way to draw additional attention to topics not introduced…see more
+          <b>{data.allWordpressPost.nodes[0].title} - {data.allWordpressPost.nodes[0].date}<br/></b>
+          {(((data.allWordpressPost.nodes[0].excerpt).replace(/(<([^>]+)>)/ig,"")).replace("&nbsp;", " ")).replace("&nbsp;", " ").replace("Continue reading", "")}
+          <a href={data.allWordpressPost.nodes[0].excerpt.match(/href="([^"]*)/g)[0].replace('href="', "")}>see more</a>
           </Styled.p>
         </article>
         <article
@@ -107,15 +106,16 @@ export default ({data}) => (
           }}
         >
           <Styled.p sx={{width:"90%"}}>
-            Blog title here - MM-DD-YY
-            This text should be the first few sentences for this blog post. We might also want to consider using tags or something as a way to draw additional attention to topics not introduced…see more
+            <b>{data.allWordpressPost.nodes[1].title} - {data.allWordpressPost.nodes[1].date} <br/></b>
+            {(data.allWordpressPost.nodes[1].excerpt).replace(/(<([^>]+)>)/ig,"").replace("Continue reading", "")}
+            <a href={data.allWordpressPost.nodes[1].excerpt.match(/href="([^"]*)/g)[0].replace('href="', "")}>see more</a>
           </Styled.p>
         </article>
         </div>
         
       </div>
       <div sx={{display: ["block", "block", "block", "flex"], justifyContent: "center", paddingX: "5%",}}>
-        <Button isLink={true} text="SEE ALL BLOGS" primary={false} />
+        <Button link="https://blog.openj9.org/" isLink={true} text="SEE ALL BLOGS" primary={false} />
       </div>
       
     </div>
@@ -133,5 +133,12 @@ export const query = graphql`
         details
       }
     }
-  }
+  },
+    allWordpressPost(limit: 2) {
+      nodes {
+        title
+        date(formatString:"DD-MM-YYYY")
+        excerpt
+      }
+    }
 }`

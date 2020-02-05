@@ -21,6 +21,18 @@ module.exports = {
         path: `./news-page-content/`,
       },
     },
+    {
+      resolve: `gatsby-source-wordpress`,
+      options: {
+        // your WordPress source
+        baseUrl: `blog.openj9.org/`,
+        protocol: `https`,
+        // is it hosted on wordpress.com, or self-hosted?
+        hostingWPCOM: false,
+        // does your site use the Advanced Custom Fields Plugin?
+        useACF: false
+      }
+    },
 ],
-pathPrefix: "/openj9-website"
+pathPrefix: "/openj9-website",
 };
