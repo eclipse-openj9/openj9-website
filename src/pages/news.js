@@ -51,9 +51,9 @@ export default ({data}) => (
         >
           <Styled.h3>Products Updates</Styled.h3>
           <Styled.p sx={{minHeight: "15rem", width:"90%"}}>
-          This text should be the introduction of the most recent udpate about the product. We might also want to consider using tags or something as a way to draw additional attention to topics not introduced in the product update lead-in.  Ultimately this should lead to a GIT Hub page. 
+            {((data.allMarkdownRemark.edges[0].node.html).replace(/(<([^>]+)>)/ig,""))}
           </Styled.p>
-          <Button isLink={true} text="NEW RELEASE INFO" primary={false} />
+          <Button link="https://www.eclipse.org/openj9/docs/version0.18/" isLink={true} text="NEW RELEASE INFO" primary={false} target={true}/>
         </article>
         <article
           sx={{
@@ -92,10 +92,15 @@ export default ({data}) => (
           }}
         >
           
+          <Styled.h4 sx={{width:"90%", marginBottom: "0.8rem"}}>
+            {data.allWordpressPost.nodes[0].title}
+          </Styled.h4>
+          <Styled.p sx={{width:"90%", marginBottom: "1rem"}}>
+            <b>{data.allWordpressPost.nodes[0].date}</b>
+          </Styled.p>
           <Styled.p sx={{width:"90%"}}>
-          <b>{data.allWordpressPost.nodes[0].title} - {data.allWordpressPost.nodes[0].date}<br/></b>
-          {(((data.allWordpressPost.nodes[0].excerpt).replace(/(<([^>]+)>)/ig,"")).replace("&nbsp;", " ")).replace("&nbsp;", " ").replace("Continue reading", "")}
-          <a href={data.allWordpressPost.nodes[0].excerpt.match(/href="([^"]*)/g)[0].replace('href="', "")}>see more</a>
+            {(((data.allWordpressPost.nodes[0].excerpt).replace(/(<([^>]+)>)/ig,"")).replace("&nbsp;", " ")).replace("&nbsp;", " ").replace("Continue reading", "")}
+            <a target="_blank" href={data.allWordpressPost.nodes[0].excerpt.match(/href="([^"]*)/g)[0].replace('href="', "")}>see more</a>
           </Styled.p>
         </article>
         <article
@@ -105,17 +110,22 @@ export default ({data}) => (
             minWidth: ["300px", "350px", "400px", "500px"],
           }}
         >
-          <Styled.p sx={{width:"90%"}}>
-            <b>{data.allWordpressPost.nodes[1].title} - {data.allWordpressPost.nodes[1].date} <br/></b>
-            {(data.allWordpressPost.nodes[1].excerpt).replace(/(<([^>]+)>)/ig,"").replace("Continue reading", "")}
-            <a href={data.allWordpressPost.nodes[1].excerpt.match(/href="([^"]*)/g)[0].replace('href="', "")}>see more</a>
+          <Styled.h4 sx={{width:"90%", marginBottom:"0.8rem"}}>
+            {data.allWordpressPost.nodes[1].title}
+          </Styled.h4>
+          <Styled.p sx={{width:"90%", marginBottom: "1rem"}}>
+            <b>{data.allWordpressPost.nodes[1].date}</b>
           </Styled.p>
+          <Styled.p sx={{width:"90%", marginBottom: "1rem"}}>
+            {(data.allWordpressPost.nodes[1].excerpt).replace(/(<([^>]+)>)/ig,"").replace("Continue reading", "")}
+            <a target="_blank" href={data.allWordpressPost.nodes[1].excerpt.match(/href="([^"]*)/g)[0].replace('href="', "")}>see more</a>
+          </Styled.p>          
         </article>
         </div>
         
       </div>
       <div sx={{display: ["block", "block", "block", "flex"], justifyContent: "center", paddingX: "5%",}}>
-        <Button link="https://blog.openj9.org/" isLink={true} text="SEE ALL BLOGS" primary={false} />
+        <Button link="https://blog.openj9.org/" isLink={true} text="SEE ALL BLOGS" primary={false} target={true} />
       </div>
       
     </div>
@@ -129,7 +139,7 @@ export const query = graphql`
       node {
         id
         title
-        date(formatString:"DD-MM-YYYY")
+        date(formatString:"MMMM-DD-YYYY")
         details
       }
     }
@@ -137,8 +147,15 @@ export const query = graphql`
     allWordpressPost(limit: 2) {
       nodes {
         title
-        date(formatString:"DD-MM-YYYY")
+        date(formatString:"MMMM-DD-YYYY")
         excerpt
+      }
+    },
+    allMarkdownRemark {
+      edges {
+        node {
+          html
+        }
       }
     }
 }`
