@@ -125,7 +125,7 @@ export default () => (
             flex: "30%",
             maxWidth: "600px",
             minWidth: ["250px", "350px", "400px", "500px"],
-            marginBottom: ["6rem", 0, 0, 0],
+            marginBottom: ["6rem", "6rem", 0, 0],
             marginTop: ["1rem", 0, 0, 0]
           }}
         >
