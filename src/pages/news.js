@@ -38,7 +38,8 @@ export default ({data}) => (
           justifyContent: "space-between",
           backgroundColor: "white",
           paddingX: "5%",
-          paddingY: "5%",
+          paddingTop: "5%",
+          paddingBottom: "3%",
           borderRadius: "card"        
         }}
       >
@@ -49,7 +50,7 @@ export default ({data}) => (
           }}
         >
           <Styled.h3>Products Updates</Styled.h3>
-          <Styled.p sx={{minHeight: "13rem", width:"90%", marginBottom: "1rem"}}>
+          <Styled.p sx={{minHeight: "13rem", width:"90%", marginBottom: ["3rem", "0", 0, 0]}}>
             {((data.allMarkdownRemark.edges[0].node.html).replace(/(<([^>]+)>)/ig,""))}
           </Styled.p>
           
@@ -60,7 +61,7 @@ export default ({data}) => (
             flex: "1 1 30%",
             maxWidth: "600px",
             minWidth: ["250px", "350px", "400px", "500px"],
-            marginTop: ["5rem", "5rem", "0", "0"],
+            marginTop: ["5rem", "5rem", "5rem", "0"],
           }}
         >
           <Styled.h3 
@@ -89,12 +90,11 @@ export default ({data}) => (
           <article
           sx={{
             flex: "1 1 30%",
-            maxWidth: "600px",
             minWidth: ["250px", "350px", "400px", "500px"]
           }}
         >
           
-          <Styled.h4 sx={{width:"90%", marginBottom: "0.8rem", height: "3rem"}}>
+          <Styled.h4 sx={{width:"90%", marginBottom: "0.8rem", height: ["5.5rem", "2.5rem", "2.5rem", "3rem"]}}>
             {data.allWordpressPost.nodes[0].title}
           </Styled.h4>
           <Styled.p sx={{width:"90%", marginBottom: "1rem"}}>
@@ -108,11 +108,10 @@ export default ({data}) => (
         <article
           sx={{
             flex: "1 1 30%",
-            maxWidth: "600px",
             minWidth: ["250px", "350px", "400px", "500px"],
           }}
         >
-          <Styled.h4 sx={{width:"90%", marginBottom:"0.8rem", height: "3rem"}}>
+          <Styled.h4 sx={{width:"90%", marginBottom:"0.8rem", height: ["5.5rem", "2.5rem", "2.5rem", "3rem"]}}>
             {data.allWordpressPost.nodes[1].title}
           </Styled.h4>
           <Styled.p sx={{width:"90%", marginBottom: "1rem"}}>

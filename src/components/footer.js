@@ -15,7 +15,7 @@ export default () => (
       flexWrap: "wrap",
       paddingX: 5,
       paddingTop: 4, 
-      paddingBottom: ["3rem", "0", "0", "0"]
+      paddingBottom: ["3rem", "3rem", "0", "0"]
     }}
   >
       <section
