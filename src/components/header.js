@@ -35,7 +35,7 @@ export default ({ isHome }) => (
     </div>
     <nav sx={{ flex: 2 }}>
       <ul sx={{ variant: "lists.navRow" }}>
-      <li>
+        <li>
           <Link to="/">Home</Link>
         </li>
         <li>
