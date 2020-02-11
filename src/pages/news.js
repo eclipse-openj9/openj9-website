@@ -118,7 +118,7 @@ export default ({data}) => (
             <b>{data.allWordpressPost.nodes[1].date}</b>
           </Styled.p>
           <Styled.p sx={{width:"90%", marginBottom: "1rem"}}>
-            {(data.allWordpressPost.nodes[1].excerpt).replace(/(<([^>]+)>)/ig,"").replace("Continue reading", "")}
+            {(((data.allWordpressPost.nodes[1].excerpt).replace(/(<([^>]+)>)/ig,"")).replace("&nbsp;", " ")).replace("&nbsp;", " ").replace("Continue reading", "")}
             <a target="_blank" href={data.allWordpressPost.nodes[1].excerpt.match(/href="([^"]*)/g)[0].replace('href="', "")}>see more</a>
           </Styled.p>          
         </article>
