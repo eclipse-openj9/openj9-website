@@ -124,8 +124,9 @@ export default () => (
           sx={{
             flex: "30%",
             maxWidth: "600px",
-            minWidth: ["300px", "350px", "400px", "500px"],
-            marginBottom: "2rem"
+            minWidth: ["250px", "350px", "400px", "500px"],
+            marginBottom: ["6rem", 0, 0, 0],
+            marginTop: ["1rem", 0, 0, 0]
           }}
         >
           <Styled.p sx={{width:"80%"}}>
@@ -138,7 +139,7 @@ export default () => (
           sx={{
             flex: "30%",
             maxWidth: "600px",
-            minWidth: ["300px", "350px", "400px", "500px"]
+            minWidth: ["250px", "350px", "400px", "500px"]
           }}
         >
           <Styled.p sx={{width:"80%"}}>
@@ -177,7 +178,7 @@ export default () => (
         sx={{
           flex: "30%",
           maxWidth: "600px",
-          minWidth: ["300px", "350px", "400px", "500px"],
+          minWidth: ["250px", "350px", "400px", "500px"],
           marginBottom: "2rem"
         }}
       >
@@ -192,7 +193,7 @@ export default () => (
         sx={{
           flex: "30%",
           maxWidth: "600px",
-          minWidth: ["300px", "350px", "400px", "500px"]
+          minWidth: ["250px", "350px", "400px", "500px"]
         }}
       >
         <Styled.h3>JOIN COMMUNITY CALLS</Styled.h3>

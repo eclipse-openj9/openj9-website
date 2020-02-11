@@ -46,7 +46,7 @@ export default ({data}) => (
           sx={{
             flex: "0 0 30%",
             maxWidth: "600px",
-            minWidth: ["300px", "350px", "400px", "500px"]
+            minWidth: ["250px", "350px", "400px", "500px"]
           }}
         >
           <Styled.h3>Products Updates</Styled.h3>
@@ -59,14 +59,17 @@ export default ({data}) => (
           sx={{
             flex: "0 0 30%",
             maxWidth: "600px",
-            minWidth: ["300px", "350px", "400px", "500px"],
+            minWidth: ["250px", "350px", "400px", "500px"],
             
                 marginY: ["3rem", "3rem", "0", "0"],
           }}
         >
           <Styled.h3 
           >Events</Styled.h3>
-            <ul sx={{minHeight: "17rem"}}>
+            <ul sx={{minHeight: "17rem", width: "90%", 
+            li: {
+              padding: ["0.5rem", "0.2rem", "0.2rem", "0.2rem"]
+            }}}>
               {data.allUpcomingEventsYaml.edges.map((event) => {
                 return <li sx={{listStyleType: "none"}}> {event.node.title} - {event.node.date} - {event.node.details}</li>
               })}
@@ -88,7 +91,7 @@ export default ({data}) => (
           sx={{
             flex: "0 0 30%",
             maxWidth: "600px",
-            minWidth: ["300px", "350px", "400px", "500px"]
+            minWidth: ["250px", "350px", "400px", "500px"]
           }}
         >
           
@@ -107,7 +110,7 @@ export default ({data}) => (
           sx={{
             flex: "0 0 30%",
             maxWidth: "600px",
-            minWidth: ["300px", "350px", "400px", "500px"],
+            minWidth: ["250px", "350px", "400px", "500px"],
           }}
         >
           <Styled.h4 sx={{width:"90%", marginBottom:"0.8rem"}}>

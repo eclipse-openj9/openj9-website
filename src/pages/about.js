@@ -111,7 +111,7 @@ export default () => (
           sx={{
             flex: "30%",
             maxWidth: "600px",
-            minWidth: ["300px", "350px", "400px", "500px"],
+            minWidth: ["250px", "350px", "400px", "500px"],
             marginBottom:"2rem"
           }}
         >
@@ -125,7 +125,7 @@ export default () => (
           sx={{
             flex: "30%",
             maxWidth: "600px",
-            minWidth: ["300px", "350px", "400px", "500px"]
+            minWidth: ["250px", "350px", "400px", "500px"]
           }}
         >
           <Styled.h3>BLOGS</Styled.h3>

@@ -42,7 +42,7 @@ export default {
         cursor: "pointer"
       }
     },
-    secondary: { variant: "buttons.primary", width: "250px" }
+    secondary: { variant: "buttons.primary", width: "200px" }
   },
   text: {
     heading: {
@@ -72,7 +72,8 @@ export default {
     },
     h4: {
       variant: "text.heading",
-      fontSize: 2
+      fontSize: 2,
+
     },
     h5: {
       variant: "text.heading",
