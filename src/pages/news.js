@@ -38,35 +38,35 @@ export default ({data}) => (
           justifyContent: "space-between",
           backgroundColor: "white",
           paddingX: "5%",
-          paddingY: "5%",
+          paddingTop: "5%",
+          paddingBottom: "3%",
           borderRadius: "card"        
         }}
       >
         <article
           sx={{
-            flex: "0 0 30%",
-            maxWidth: "600px",
+            flex: "1 1 30%",
             minWidth: ["250px", "350px", "400px", "500px"]
           }}
         >
           <Styled.h3>Products Updates</Styled.h3>
-          <Styled.p sx={{minHeight: "15rem", width:"90%"}}>
+          <Styled.p sx={{minHeight: "13rem", width:"90%", marginBottom: ["3rem", "0", 0, 0]}}>
             {((data.allMarkdownRemark.edges[0].node.html).replace(/(<([^>]+)>)/ig,""))}
           </Styled.p>
+          
           <Button link="https://www.eclipse.org/openj9/docs/version0.18/" isLink={true} text="NEW RELEASE INFO" primary={false} target={true}/>
         </article>
         <article
           sx={{
-            flex: "0 0 30%",
+            flex: "1 1 30%",
             maxWidth: "600px",
             minWidth: ["250px", "350px", "400px", "500px"],
-            
-                marginY: ["3rem", "3rem", "0", "0"],
+            marginTop: ["5rem", "5rem", "5rem", "0"],
           }}
         >
           <Styled.h3 
           >Events</Styled.h3>
-            <ul sx={{minHeight: "17rem", width: "90%", 
+            <ul sx={{minHeight: "14rem", width: "90%", 
             li: {
               padding: ["0.5rem", "0.2rem", "0.2rem", "0.2rem"]
             }}}>
@@ -89,13 +89,12 @@ export default ({data}) => (
         <div sx={{display: "flex", flexWrap: "wrap", justifyContent: "space-between"}}>
           <article
           sx={{
-            flex: "0 0 30%",
-            maxWidth: "600px",
+            flex: "1 1 30%",
             minWidth: ["250px", "350px", "400px", "500px"]
           }}
         >
           
-          <Styled.h4 sx={{width:"90%", marginBottom: "0.8rem"}}>
+          <Styled.h4 sx={{width:"90%", marginBottom: "0.8rem", height: ["5.5rem", "2.5rem", "2.5rem", "3rem"]}}>
             {data.allWordpressPost.nodes[0].title}
           </Styled.h4>
           <Styled.p sx={{width:"90%", marginBottom: "1rem"}}>
@@ -108,12 +107,11 @@ export default ({data}) => (
         </article>
         <article
           sx={{
-            flex: "0 0 30%",
-            maxWidth: "600px",
+            flex: "1 1 30%",
             minWidth: ["250px", "350px", "400px", "500px"],
           }}
         >
-          <Styled.h4 sx={{width:"90%", marginBottom:"0.8rem"}}>
+          <Styled.h4 sx={{width:"90%", marginBottom:"0.8rem", height: ["5.5rem", "2.5rem", "2.5rem", "3rem"]}}>
             {data.allWordpressPost.nodes[1].title}
           </Styled.h4>
           <Styled.p sx={{width:"90%", marginBottom: "1rem"}}>
@@ -127,7 +125,7 @@ export default ({data}) => (
         </div>
         
       </div>
-      <div sx={{display: ["block", "block", "block", "flex"], justifyContent: "center", paddingX: "5%",}}>
+      <div sx={{display: ["block", "flex", "flex", "flex"], justifyContent: "center", paddingX: "5%",}}>
         <Button link="https://blog.openj9.org/" isLink={true} text="SEE ALL BLOGS" primary={false} target={true} />
       </div>
       

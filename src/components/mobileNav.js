@@ -5,7 +5,7 @@ import { jsx, Styled } from "theme-ui";
 
 const MobileNav = () => (
     <nav sx={{
-        display: ["flex", "none", "none", "none"], 
+        display: ["flex", "flex", "none", "none"], 
         justifyContent: "center", 
         alignItems: "center", 
         position:"fixed", 
