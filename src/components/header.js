@@ -36,13 +36,16 @@ export default ({ isHome }) => (
     <nav sx={{ flex: 2 }}>
       <ul sx={{ variant: "lists.navRow" }}>
         <li>
-          <Link to="/about">ABOUT</Link>
+          <Link to="/">Home</Link>
         </li>
         <li>
-          <a href="https://www.eclipse.org/openj9/docs/">DOCS</a>
+          <Link to="/about">About</Link>
         </li>
         <li>
-          <Link to="/news">NEWS</Link>
+          <a href="https://www.eclipse.org/openj9/docs/">Docs</a>
+        </li>
+        <li>
+          <Link to="/news">News</Link>
         </li>
       </ul>
     </nav>

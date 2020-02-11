@@ -14,7 +14,8 @@ export default () => (
       color: "lightText",
       flexWrap: "wrap",
       paddingX: 5,
-      paddingTop: 4
+      paddingTop: 4, 
+      paddingBottom: ["3rem", "0", "0", "0"]
     }}
   >
     <nav sx={{ display: ["none", "none", "flex", "flex"], flex: "50%" }}>

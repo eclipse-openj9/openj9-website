@@ -10,7 +10,8 @@ export default {
     primary: "#434343",
     secondary: "#5DA7A3",
     accent: "#F8D000",
-    background: "#FFFFFF"
+    background: "#FFFFFF",
+    lightGrey: "#F1F1F1"
   },
   radii: {
     button: "35px",
