@@ -28,7 +28,7 @@ export default () => (
           the important role that Open Source plays in helping OpenJ9 achieve
           its goals and empower its users. Etc, etc, etc….
         </Styled.p>
-        <Button isLink={true} text="Call to Action" primary={true} />
+        <Button isLink={true} primary={true}>Call to Action</Button>
       </div>
     </div>
     <div
@@ -119,7 +119,7 @@ export default () => (
           <Styled.p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </Styled.p>
-          <Button isLink={true} text="Go To Docs" primary={true} />
+          <Button isLink={true} primary={true}>Go To Docs</Button>
         </article>
         <article
           sx={{
@@ -132,7 +132,7 @@ export default () => (
           <Styled.p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </Styled.p>
-          <Button isLink={true} text="Go To Blogs" primary={true} />
+          <Button isLink={true} primary={true}>Go To Blogs</Button>
         </article>
       </div>
     </div>

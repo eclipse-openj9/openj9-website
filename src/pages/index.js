@@ -5,6 +5,14 @@ import Card from "../components/card";
 import openj9Circle from "../images/openj9-circle.svg";
 import openj9Logo from "../images/openj9-logo.svg";
 import circlePatternBig from "../images/circle-pattern-big.svg";
+import FortyTwoPercentStartup from "../images/FortyTwoPercentStartup.png";
+import SixtySixPercentSmallerFootprint from "../images/sixtySixPercentSmallerFootprint.png";
+import TwentyEightPercentFaster from "../images/twentyEightPercentFaster.png";
+import SixtyThreePercentSmallerFootprint from "../images/sixtyThreePercentSmallerFootprint.png";
+import adoptopenJDK from "../images/adoptopenJDK.png";
+import slackIcon from "../images/slack-icon.svg";
+import githubIcon from "../images/github-logo.svg";
+
 /** @jsx jsx */
 import { jsx, Styled } from "theme-ui";
 export default () => (
@@ -60,13 +68,19 @@ export default () => (
           marginLeft: ["5%", "5%", "20%", "15%"]
         }}
       >
-        <Styled.h1>Unleash the Power of Java</Styled.h1>
+        <Styled.h1>Unleash the power of Java</Styled.h1>
         <Styled.p>
-          Optimized to run Java applications cost-effectively in the cloud,
-          Eclipse OpenJ9 is a fast and efficient JVM that delivers power and
-          performance when you need it most.
+          Optimized to run Java&trade; applications cost-effectively in the cloud, 
+          Eclipse OpenJ9 is a fast and efficient JVM that delivers power and performance when you need it most.
         </Styled.p>
-        <Button isLink={true} text="Get OpenJ9" primary={true} />
+        <Styled.p>
+          Grab a pre-built binary of OpenJDK with OpenJ9 from the AdoptOpenJDK community.
+        </Styled.p>
+        <Button isLink={true} primary={false} link="https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9" target={true}>
+          <img sx={{
+            width: "80%",
+          }}src={adoptopenJDK} alt="adoptopenJDK Logo"></img>
+        </Button>
       </section>
     </div>
     <div
@@ -77,11 +91,25 @@ export default () => (
         padding: "5%"
       }}
     >
-      <Card flex="0 0 600px" primary={true}>
-        <h1>Example card 1</h1>
+      <Card flex="0 0 600px"  primary={true}>
+        <Styled.h2>Application startup</Styled.h2>
+        <img sx={{
+          width:"50%",
+          height:"50%"
+        }}src={FortyTwoPercentStartup} alt="Eclipse Incubator Logo"></img>
+        <Styled.p sx={{
+          marginTop:"1rem"
+        }}>42% faster</Styled.p>
       </Card>
       <Card flex="0 0 600px" primary={true}>
-        <h1>Example card 1</h1>
+        <Styled.h2>Application startup</Styled.h2>
+        <img sx={{
+          width:"50%",
+          height:"50%"
+        }}src={SixtySixPercentSmallerFootprint} alt="Eclipse Incubator Logo"></img>
+        <Styled.p sx={{
+          marginTop:"1rem"
+        }}>66% smaller footprint</Styled.p>
       </Card>
       <div
         sx={{
@@ -92,13 +120,27 @@ export default () => (
           order: [1, 1, 1, 0]
         }}
       >
-        <Button isLink={true} text="Read Performance Details" primary={false} />
+        <Button isLink={true} primary={false} link="/performance">Read performance details</Button>
       </div>
       <Card flex="0 0 600px" primary={true}>
-        <h1>Example card 1</h1>
+        <Styled.h2>Application rampup</Styled.h2>
+        <img sx={{
+          width:"50%",
+          height:"50%"
+        }}src={TwentyEightPercentFaster} alt="Eclipse Incubator Logo"></img>
+        <Styled.p sx={{
+          marginTop:"1rem"
+        }}>28% faster in the cloud</Styled.p>
       </Card>
       <Card flex="0 0 600px" primary={true}>
-        <h1>Example card 1</h1>
+        <Styled.h2>Application rampup</Styled.h2>
+        <img sx={{
+          width:"50%",
+          height:"50%"
+        }}src={SixtyThreePercentSmallerFootprint} alt="Eclipse Incubator Logo"></img>
+        <Styled.p sx={{
+          marginTop:"1rem"
+        }}>63% smaller footprint</Styled.p>
       </Card>
     </div>
     <div
@@ -108,7 +150,7 @@ export default () => (
         minHeight: "50vh"
       }}
     >
-      <Styled.h3>Join the Conversation</Styled.h3>
+      <Styled.h3>Join the conversation</Styled.h3>
       <section
         sx={{
           display: "flex",
@@ -130,10 +172,15 @@ export default () => (
           }}
         >
           <Styled.p sx={{width:"80%"}}>
-            Interested in contributing to OpenJ9? Check out the contributor
-            guide in our GitHub repository.
+            Ask questions and chat to our developers in the OpenJ9 slack community
           </Styled.p>
-          <Button isLink={true} text="OpenJ9 GitHub" primary={true} />
+          <Button isLink={true} primary={false} target={true} link="https://openj9.slack.com/join/shared_invite/enQtNDU4MDI4Mjk0MTk2LWVhNTMzMGY1N2JkODQ1OWE0NTNmZjM4ZDcxOTBiMjk3NGFjM2U0ZDNhMmY0MDZlNzU0ZjAyNzQ1ODlmYjg3MjA">
+            Join OpenJ9 slack
+            <img sx={{
+            width: "10%",
+            marginLeft: "0.8rem"
+          }}src={slackIcon} alt="slack Logo"></img>
+          </Button>
         </div>
         <div
           sx={{
@@ -143,10 +190,16 @@ export default () => (
           }}
         >
           <Styled.p sx={{width:"80%"}}>
-            Have ideas about improvements for OpenJ9? Share them in our Slack
-            workspace.
+            If you hit a problem or you just have a suggestion, raise an issue in our GitHub repository
           </Styled.p>
-          <Button isLink={true} text="OpenJ9 Slack" primary={true} />
+          
+          <Button isLink={true} primary={false} link="https://github.com/eclipse/openj9/issues">
+            See OpenJ9 issues
+            <img sx={{
+            width: "10%",
+            marginLeft: "0.8rem"
+          }}src={githubIcon} alt="GitHub Logo"></img>
+          </Button>
         </div>
       </section>
     </div>
@@ -158,12 +211,12 @@ export default () => (
         backgroundSize: "cover",
         display: "flex",
         alignItems: "center",
-        color: "lightText",
+        color: "white",
         paddingLeft: "15%"
       }}
     >
       <Styled.h2>
-        Participate in the <br></br> Eclipse OpenJ9 Project
+        Participate in the <br></br> Eclipse OpenJ9 project
       </Styled.h2>
     </div>
     <div
@@ -182,12 +235,13 @@ export default () => (
           marginBottom: "2rem"
         }}
       >
-        <Styled.h3>BECOME A CONTRIBUTOR</Styled.h3>
+        <Styled.h3>Become a contributor</Styled.h3>
         <Styled.p sx={{width:"90%"}}>
-          Interested in contributing to OpenJ9? Check out the contributor guide
-          in our Github repository.
+          Interested in contributing to OpenJ9? Check out the contributor guide in our GitHub repository. 
         </Styled.p >
-        <Button isLink={true} text="Contributor Guide" primary={true} />
+        <Button isLink={true} primary={true} target={true} link="https://github.com/eclipse/openj9/blob/master/CONTRIBUTING.md">
+          Contributor Guide
+        </Button>
       </div>
       <div
         sx={{
@@ -196,12 +250,14 @@ export default () => (
           minWidth: ["250px", "350px", "400px", "500px"]
         }}
       >
-        <Styled.h3>JOIN COMMUNITY CALLS</Styled.h3>
+        <Styled.h3>Join community calls</Styled.h3>
         <Styled.p sx={{width:"90%"}}>
           Our regular community hangouts are a great place to find out what is
           going on in the OpenJ9 project.
         </Styled.p>
-        <Button isLink={true} text="Add to Calendar" primary={true} />
+        <Button isLink={true} primary={true} target={true} link="https://calendar.google.com/calendar?cid=YjBnYjB0ZzNxaTZhb3NhZGZnbG0wa3BjY29AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ">
+          Add to Calendar
+        </Button>
       </div>
     </div>
   </Layout>

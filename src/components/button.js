@@ -2,7 +2,7 @@ import React from "react"
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 
-const Button = ({ isLink, text, primary, link, target}) => {
+const Button = ({ isLink, children, primary, link, target}) => {
   const variant = primary ? "buttons.primary" : "buttons.secondary"
   if (isLink && target) {
     return (
@@ -15,7 +15,7 @@ const Button = ({ isLink, text, primary, link, target}) => {
           textDecoration: "none",
         }}
       >
-        {text}
+        {children}
       </a>
     )
   } else if (link) {
@@ -29,13 +29,13 @@ const Button = ({ isLink, text, primary, link, target}) => {
             textDecoration: "none",
           }}
         >
-          {text}
+          {children}
         </a>
       )
   }
   
   else {
-    return <button sx={{ variant: variant }}>{text}</button>
+    return <button sx={{ variant: variant }}>{children}</button>
   }
 }
 

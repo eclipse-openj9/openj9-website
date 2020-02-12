@@ -11,7 +11,7 @@ export default () => (
     sx={{
       display: "flex",
       backgroundColor: "primary",
-      color: "lightText",
+      color: "white",
       flexWrap: "wrap",
       paddingX: 5,
       paddingTop: 4, 
@@ -26,7 +26,7 @@ export default () => (
         flexDirection: "column"
       }}
     >
-      <img src={incubatorLogo} alt="Eclipse Incubator Logo"></img>
+      <a href="https://wiki.eclipse.org/Development_Resources/Process_Guidelines/What_is_Incubation"><img src={incubatorLogo} alt="Eclipse Incubator Logo"></img></a>
       <Styled.h6 sx={{fontSize:"0.8rem"}}>OpenJ9 is an Eclipse Incubator Project</Styled.h6>
     </section>
 
@@ -40,9 +40,9 @@ export default () => (
             padding: 0,
           }
            }}>
-          <li>New to OpenJ9</li>
-          <li>Getting Started</li>
-          <li>Command Line Options</li>
+          <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/openj9/docs/openj9_newuser/">New to OpenJ9</a></li>
+          <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/openj9/docs/introduction/">Getting Started</a></li>
+          <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/openj9/docs/cmdline_specifying/">Command Line Options</a></li>
         </ul>
       </section>
       <section sx={{ flex: 1, paddingLeft:["2rem", 0, 0, 0] }}>
@@ -52,8 +52,8 @@ export default () => (
             padding: 0,
           }
           }}>
-          <li>About</li>
-          <li>Performance</li>
+          <li><a sx={{textDecoration:"none", color:"white"}}href="/about">About</a></li>
+          <li><a sx={{textDecoration:"none", color:"white"}}href="/performance">Performance</a></li>
         </ul>
       </section>
       <section sx={{ flex: 1, paddingLeft:["2rem", 0, 0, 0] }}>
@@ -63,8 +63,8 @@ export default () => (
             padding: 0,
           }
        }}>
-          <li>News</li>
-          <li>Blogs</li>
+          <li><a sx={{textDecoration:"none", color:"white"}}href="/news">News</a></li>
+          <li><a sx={{textDecoration:"none", color:"white"}}href="https://blog.openj9.org/">Blogs</a></li>
         </ul>
       </section>
     </nav>
@@ -77,7 +77,7 @@ export default () => (
       }}
     >
       <Styled.h5>OpenJ9 is an Eclipse Incubator Project</Styled.h5>
-      <img src={incubatorLogo} alt="Eclipse Incubator Logo"></img>
+      <a href="https://wiki.eclipse.org/Development_Resources/Process_Guidelines/What_is_Incubation"><img src={incubatorLogo} alt="Eclipse Incubator Logo"></img></a>
     </section>
     <div
       sx={{
@@ -96,10 +96,12 @@ export default () => (
           fontSize: ["0.7rem", "1rem", "1rem", "1rem"]
         },
         }}>
-        <li>Privacy Policy</li>
-        <li>Terms of Use</li>
-        <li>Copyright Agent</li>
-        <li>Legal</li>
+          
+        <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/">Eclipse Foundation Website </a></li>
+        <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/legal/privacy.php">Privacy Policy</a></li>
+        <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/legal/termsofuse.php">Terms of Use</a></li>
+        <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/legal/copyright.php">Copyright Agent</a></li>
+        <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/legal/">Legal</a></li>
       </ul>
     </nav>
     <nav sx={{ display: ["inline", "inline", "block", "block"], flex: "30%" }}>
