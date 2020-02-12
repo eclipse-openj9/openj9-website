@@ -106,14 +106,14 @@ export default () => (
     </nav>
     <nav sx={{ display: ["inline", "inline", "block", "block"], flex: "30%" }}>
       <ul sx={{ variant: "lists.navRow", justifyContent: ["center", "flex-end","flex-end", "flex-end"] }}>
-        <li>
-          <img src={twitterLogo} alt="Twitter Logo"></img>
+        <li> 
+          <a href="https://twitter.com/openj9/"> <img src={twitterLogo} alt="Twitter Logo"></img></a>
         </li>
         <li>
-          <img src={githubLogo} alt="GitHub Logo"></img>
+          <a href="https://github.com/eclipse/openj9"> <img src={githubLogo} alt="GitHub Logo"></img></a>
         </li>
         <li>
-          <img src={slackIcon} alt="Slack logo"></img>
+          <a href="https://openj9.slack.com/"><img src={slackIcon} alt="Slack logo"></img></a>
         </li>
       </ul>
     </nav>
