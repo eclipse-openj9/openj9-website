@@ -42,7 +42,7 @@ export default ({ isHome }) => (
           <Link to="/about">About</Link>
         </li>
         <li>
-          <a href="https://www.eclipse.org/openj9/docs/">Docs</a>
+          <a href="https://www.eclipse.org/openj9/docs/" target="_blank">Docs</a>
         </li>
         <li>
           <Link to="/news">News</Link>
@@ -52,13 +52,13 @@ export default ({ isHome }) => (
     <nav sx={{ flex: 1 }}>
       <ul sx={{ variant: "lists.navRow" }}>
         <li> 
-          <a href="https://twitter.com/openj9/"> <img src={twitterLogo} alt="Twitter Logo"></img></a>
+          <a href="https://twitter.com/openj9/" target="_blank"> <img src={twitterLogo} alt="Twitter Logo"></img></a>
         </li>
         <li>
-          <a href="https://github.com/eclipse/openj9"> <img src={githubLogo} alt="GitHub Logo"></img></a>
+          <a href="https://github.com/eclipse/openj9" target="_blank"> <img src={githubLogo} alt="GitHub Logo"></img></a>
         </li>
         <li>
-          <a href="https://openj9.slack.com/"><img src={slackIcon} alt="Slack logo"></img></a>
+          <a href="https://openj9.slack.com/" target="_blank"><img src={slackIcon} alt="Slack logo"></img></a>
         </li>
       </ul>
     </nav>

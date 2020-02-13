@@ -5,11 +5,11 @@ import Card from "../components/card";
 import openj9Circle from "../images/openj9-circle.svg";
 import openj9Logo from "../images/openj9-logo.svg";
 import circlePatternBig from "../images/circle-pattern-big.svg";
-import FortyTwoPercentStartup from "../images/FortyTwoPercentStartup.png";
-import SixtySixPercentSmallerFootprint from "../images/sixtySixPercentSmallerFootprint.png";
-import TwentyEightPercentFaster from "../images/twentyEightPercentFaster.png";
-import SixtyThreePercentSmallerFootprint from "../images/sixtyThreePercentSmallerFootprint.png";
-import adoptopenJDK from "../images/adoptopenJDK.png";
+import FortyTwoPercentStartup from "../images/forty-two-percent-startup.png";
+import SixtySixPercentSmallerFootprint from "../images/sixty-six-percent-smaller-footprint.png";
+import TwentyEightPercentFaster from "../images/twenty-eight-percent-faster.png";
+import SixtyThreePercentSmallerFootprint from "../images/sixty-three-percent-smaller-footprint.png";
+import adoptopenJDK from "../images/adopt-open-jdk.png";
 import slackIcon from "../images/slack-icon.svg";
 import githubIcon from "../images/github-logo.svg";
 
@@ -193,7 +193,7 @@ export default () => (
             If you hit a problem or you just have a suggestion, raise an issue in our GitHub repository
           </Styled.p>
           
-          <Button isLink={true} primary={false} link="https://github.com/eclipse/openj9/issues">
+          <Button isLink={true} primary={false} target={true} link="https://github.com/eclipse/openj9/issues">
             See OpenJ9 issues
             <img sx={{
             width: "10%",
