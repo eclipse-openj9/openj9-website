@@ -41,8 +41,8 @@ export default () => (
           }
            }}>
           <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/openj9/docs/openj9_newuser/" rel="noopener noreferrer" target="_blank">New to OpenJ9</a></li>
-          <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/openj9/docs/introduction/" rel="noopener noreferrer" target="_blank">Getting Started</a></li>
-          <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/openj9/docs/cmdline_specifying/" rel="noopener noreferrer" target="_blank">Command Line Options</a></li>
+          <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/openj9/docs/introduction/" rel="noopener noreferrer" target="_blank">Getting started</a></li>
+          <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/openj9/docs/cmdline_specifying/" rel="noopener noreferrer" target="_blank">Command-line options</a></li>
         </ul>
       </section>
       <section sx={{ flex: 1, paddingLeft:["2rem", 0, 0, 0] }}>
