@@ -1,4 +1,3 @@
-import React from "react";
 import Layout from "../components/layout";
 
 /** @jsx jsx */
@@ -159,7 +158,7 @@ export default () => (
 
       <Styled.p sx={{marginTop:"8rem", marginBottom:"1rem"}}>Ready to get started?</Styled.p>
       <Styled.p sx={{marginTop:"0rem", marginBottom:"1rem"}}>See how your applications perform when the OpenJ9 JVM is at work</Styled.p>
-      <Styled.p sx={{marginTop:"0rem"}}><a href="https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9" target="_blank">Download</a> a pre-built OpenJDK binary from AdoptOpenJDK to install on your system</Styled.p>
+      <Styled.p sx={{marginTop:"0rem"}}><a href="https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9" rel="noopener noreferrer" target="_blank">Download</a> a pre-built OpenJDK binary from AdoptOpenJDK to install on your system</Styled.p>
     </div>
  
   </Layout>

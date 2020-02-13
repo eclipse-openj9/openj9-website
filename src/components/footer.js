@@ -1,4 +1,3 @@
-import React from "react";
 import slackIcon from "../images/slack-icon.svg";
 import githubLogo from "../images/github-logo.svg";
 import twitterLogo from "../images/twitter-logo.svg";
@@ -27,7 +26,7 @@ export default () => (
         flexDirection: "column"
       }}
     >
-      <a href="https://wiki.eclipse.org/Development_Resources/Process_Guidelines/What_is_Incubation" target="_blank"><img src={incubatorLogo} alt="Eclipse Incubator Logo"></img></a>
+      <a href="https://wiki.eclipse.org/Development_Resources/Process_Guidelines/What_is_Incubation" rel="noopener noreferrer" target="_blank"><img src={incubatorLogo} alt="Eclipse Incubator Logo"></img></a>
       <Styled.h6 sx={{fontSize:"0.8rem"}}>OpenJ9 is an Eclipse Incubator Project</Styled.h6>
     </section>
 
@@ -41,9 +40,9 @@ export default () => (
             padding: 0,
           }
            }}>
-          <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/openj9/docs/openj9_newuser/" target="_blank">New to OpenJ9</a></li>
-          <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/openj9/docs/introduction/" target="_blank">Getting Started</a></li>
-          <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/openj9/docs/cmdline_specifying/" target="_blank">Command Line Options</a></li>
+          <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/openj9/docs/openj9_newuser/" rel="noopener noreferrer" target="_blank">New to OpenJ9</a></li>
+          <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/openj9/docs/introduction/" rel="noopener noreferrer" target="_blank">Getting Started</a></li>
+          <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/openj9/docs/cmdline_specifying/" rel="noopener noreferrer" target="_blank">Command Line Options</a></li>
         </ul>
       </section>
       <section sx={{ flex: 1, paddingLeft:["2rem", 0, 0, 0] }}>
@@ -65,7 +64,7 @@ export default () => (
           }
        }}>
           <li><Link sx={{textDecoration:"none", color:"white"}} to="/news">News</Link></li>
-          <li><a sx={{textDecoration:"none", color:"white"}}href="https://blog.openj9.org/" target="_blank">Blogs</a></li>
+          <li><a sx={{textDecoration:"none", color:"white"}}href="https://blog.openj9.org/" rel="noopener noreferrer" target="_blank">Blogs</a></li>
         </ul>
       </section>
     </nav>
@@ -78,7 +77,7 @@ export default () => (
       }}
     >
       <Styled.h5>OpenJ9 is an Eclipse Incubator Project</Styled.h5>
-      <a href="https://wiki.eclipse.org/Development_Resources/Process_Guidelines/What_is_Incubation" target="_blank"><img src={incubatorLogo} alt="Eclipse Incubator Logo"></img></a>
+      <a href="https://wiki.eclipse.org/Development_Resources/Process_Guidelines/What_is_Incubation" rel="noopener noreferrer" target="_blank"><img src={incubatorLogo} alt="Eclipse Incubator Logo"></img></a>
     </section>
     <div
       sx={{
@@ -98,23 +97,23 @@ export default () => (
         },
         }}>
           
-        <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/" target="_blank">Eclipse Foundation Website </a></li>
-        <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/legal/privacy.php" target="_blank">Privacy Policy</a></li>
-        <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/legal/termsofuse.php" target="_blank">Terms of Use</a></li>
-        <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/legal/copyright.php" target="_blank">Copyright Agent</a></li>
-        <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/legal/" target="_blank">Legal</a></li>
+        <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/" rel="noopener noreferrer" target="_blank">Eclipse Foundation Website </a></li>
+        <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/legal/privacy.php" rel="noopener noreferrer" target="_blank">Privacy Policy</a></li>
+        <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/legal/termsofuse.php" rel="noopener noreferrer" target="_blank">Terms of Use</a></li>
+        <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/legal/copyright.php" rel="noopener noreferrer" target="_blank">Copyright Agent</a></li>
+        <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/legal/" rel="noopener noreferrer" target="_blank">Legal</a></li>
       </ul>
     </nav>
     <nav sx={{ display: ["inline", "inline", "block", "block"], flex: "30%" }}>
       <ul sx={{ variant: "lists.navRow", justifyContent: ["center", "flex-end","flex-end", "flex-end"] }}>
         <li> 
-          <a href="https://twitter.com/openj9/" target="_blank"> <img src={twitterLogo} alt="Twitter Logo"></img></a>
+          <a href="https://twitter.com/openj9/" rel="noopener noreferrer" target="_blank"> <img src={twitterLogo} alt="Twitter Logo"></img></a>
         </li>
         <li>
-          <a href="https://github.com/eclipse/openj9" target="_blank"> <img src={githubLogo} alt="GitHub Logo"></img></a>
+          <a href="https://github.com/eclipse/openj9" rel="noopener noreferrer" target="_blank"> <img src={githubLogo} alt="GitHub Logo"></img></a>
         </li>
         <li>
-          <a href="https://openj9.slack.com/" target="_blank"><img src={slackIcon} alt="Slack logo"></img></a>
+          <a href="https://openj9.slack.com/" rel="noopener noreferrer" target="_blank"><img src={slackIcon} alt="Slack logo"></img></a>
         </li>
       </ul>
     </nav>

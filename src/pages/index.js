@@ -54,7 +54,7 @@ export default () => (
           justifyContent: "center"
         }}
       >
-        <img src={openj9Logo}></img>
+        <img src={openj9Logo} alt="OpenJ9 Logo"></img>
       </div>
       <section
         sx={{
