@@ -40,7 +40,7 @@ export default () => (
             padding: 0,
           }
            }}>
-          <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/openj9/docs/openj9_newuser/" rel="noopener noreferrer" target="_blank">New to OpenJ9</a></li>
+          <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/openj9/docs/openj9_newuser/" rel="noopener noreferrer" target="_blank">New to OpenJ9?</a></li>
           <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/openj9/docs/introduction/" rel="noopener noreferrer" target="_blank">Getting started</a></li>
           <li><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/openj9/docs/cmdline_specifying/" rel="noopener noreferrer" target="_blank">Command-line options</a></li>
         </ul>
