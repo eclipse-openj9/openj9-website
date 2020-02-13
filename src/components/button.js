@@ -1,4 +1,3 @@
-import React from "react"
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 
@@ -6,7 +5,7 @@ const Button = ({ isLink, children, primary, link, target}) => {
   const variant = primary ? "buttons.primary" : "buttons.secondary"
   if (isLink && target) {
     return (
-      <a href= {link} target="_blank"
+      <a href= {link} rel="noopener noreferrer" target="_blank"
         sx={{
           variant: variant,
           display: "flex",
