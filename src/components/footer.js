@@ -2,6 +2,7 @@ import slackIcon from "../images/slack-icon.svg";
 import githubLogo from "../images/github-logo.svg";
 import twitterLogo from "../images/twitter-logo.svg";
 import incubatorLogo from "../images/incubator-logo.svg";
+import stackoverflowLogo from "../images/stackoverflow-logo.svg";
 import { Link } from "gatsby";
 /** @jsx jsx */
 import { jsx, Styled } from "theme-ui";
@@ -114,6 +115,9 @@ export default () => (
         </li>
         <li>
           <a href="https://openj9.slack.com/" rel="noopener noreferrer" target="_blank"><img src={slackIcon} alt="Slack logo"></img></a>
+        </li>
+        <li>
+          <a href="https://stackoverflow.com/search?q=%23OpenJ9" rel="noopener noreferrer" target="_blank"><img src={stackoverflowLogo} alt="Stack Overflow logo"></img></a>
         </li>
       </ul>
     </nav>

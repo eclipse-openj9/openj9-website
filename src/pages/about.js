@@ -6,7 +6,7 @@ import { jsx, Styled } from "theme-ui";
 import circlePatternBig from "../images/circle-pattern-big.svg";
 import ibmLogo from "../images/ibm-logo.svg";
 import oregonStateUniLogo from "../images/oregon-state-university-logo.svg";
-import newBrunswickUniLogo from "../images/Uni-new-brunswick.svg";
+import newBrunswickUniLogo from "../images/uni-new-brunswick.svg";
 import Card from "../components/card";
 import Button from "../components/button";
 

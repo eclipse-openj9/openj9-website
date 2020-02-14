@@ -10,7 +10,7 @@ import SixtySixPercentSmallerFootprint from "../images/sixty-six-percent-smaller
 import TwentyEightPercentFaster from "../images/twenty-eight-percent-faster.png";
 import SixtyThreePercentSmallerFootprint from "../images/sixty-three-percent-smaller-footprint.png";
 import adoptopenJDK from "../images/adopt-open-jdk.png";
-import slackIcon from "../images/slack-icon.svg";
+import whiteSlackIcon from "../images/white-slack-logo.svg"
 import githubIcon from "../images/github-logo.svg";
 
 /** @jsx jsx */
@@ -179,8 +179,8 @@ export default () => (
             Join OpenJ9 slack
             <img sx={{
             width: "10%",
-            marginLeft: "0.8rem"
-          }}src={slackIcon} alt="slack Logo"></img>
+            marginLeft: "0.8rem",
+          }}src={whiteSlackIcon} alt="slack Logo"></img>
           </Button>
         </div>
         <div
