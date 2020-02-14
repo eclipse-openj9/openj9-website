@@ -9,7 +9,7 @@ import Button from "../components/button";
 export default ({data}) => (
   <Layout isHome={false}>
     <div sx={{ backgroundColor: "#F5F9FC", paddingX: "10%", paddingY: "5%" }}>
-      <Styled.h1>What’s new in OpenJ9</Styled.h1>
+      <Styled.h1>What's new in the OpenJ9 project</Styled.h1>
       <div
         sx={{
           paddingY: 5,
@@ -17,9 +17,8 @@ export default ({data}) => (
         }}
       >
         <Styled.p>
-        This text should be the introduction of the overall purpose of this page.
-        It might also be beneficial to use this text to do other things.
-        To identify other important details to include in this text we can begin discussing the goals that this page will help users accomplish.
+          Find out what's happening at the project. Read about the highlights of our latest release and see upcoming events that we're involved in.
+          Catch the latest blog posts from our blog site; get top tips or deep dives about key features of OpenJ9 or simply read about experiences of working in the community.
         </Styled.p>
       </div>
     </div>
@@ -49,12 +48,12 @@ export default ({data}) => (
             minWidth: ["250px", "350px", "400px", "500px"]
           }}
         >
-          <Styled.h3>Products Updates</Styled.h3>
+          <Styled.h3>Latest release</Styled.h3>
           <Styled.p sx={{minHeight: "13rem", width:"90%", marginBottom: ["3rem", "0", 0, 0]}}>
             {((data.allMarkdownRemark.edges[0].node.html).replace(/(<([^>]+)>)/ig,""))}
           </Styled.p>
           
-          <Button link="https://www.eclipse.org/openj9/docs/version0.18/" isLink={true} primary={false} target={true}>NEW RELEASE INFO</Button>
+          <Button link="https://www.eclipse.org/openj9/docs/openj9_releases/" isLink={true} primary={false} target={true}>New release info</Button>
         </article>
         <article
           sx={{
@@ -85,7 +84,7 @@ export default ({data}) => (
           paddingY: "5%",      
         }}
       >
-        <Styled.h3>Recent Blogs</Styled.h3>
+        <Styled.h3>Recent blogs</Styled.h3>
         <div sx={{display: "flex", flexWrap: "wrap", justifyContent: "space-between"}}>
           <article
           sx={{
@@ -126,7 +125,7 @@ export default ({data}) => (
         
       </div>
       <div sx={{display: ["block", "flex", "flex", "flex"], justifyContent: "center", paddingX: "5%",}}>
-        <Button link="https://blog.openj9.org/" isLink={true} primary={false} target={true}>SEE ALL BLOGS</Button>
+        <Button link="https://blog.openj9.org/" isLink={true} primary={false} target={true}>See all blogs</Button>
       </div>
       
     </div>

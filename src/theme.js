@@ -42,7 +42,7 @@ export default {
         cursor: "pointer"
       }
     },
-    secondary: { variant: "buttons.primary", width: "200px" }
+    secondary: { variant: "buttons.primary", width: "190px" }
   },
   text: {
     heading: {
@@ -101,7 +101,7 @@ export default {
           textDecoration: "none"
         }
       },
-      "li:first-child": {
+      "li:first-of-type": {
         marginLeft: 0
       },
       "li:last-child": {

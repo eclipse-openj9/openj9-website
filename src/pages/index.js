@@ -120,7 +120,7 @@ export default () => (
           order: [1, 1, 1, 0]
         }}
       >
-        <Button isLink={true} primary={false} link="/performance">Read performance details</Button>
+        <Button widthChanged={true} isLink={true} primary={false} link="/performance">Read performance details</Button>
       </div>
       <Card flex="0 0 600px" primary={true}>
         <Styled.h2>Application rampup</Styled.h2>
@@ -159,7 +159,7 @@ export default () => (
           borderRadius: "card",
           padding: "5%",
           alignItems: "flex-end",
-          justifyContent: "space-between"
+          justifyContent: "space-between"          
         }}
       >
         <div
@@ -168,7 +168,8 @@ export default () => (
             maxWidth: "600px",
             minWidth: ["250px", "350px", "400px", "500px"],
             marginBottom: ["6rem", "6rem", "6rem", 0],
-            marginTop: ["1rem", 0, 0, 0]
+            marginTop: ["1rem", 0, 0, 0],
+            paddingRight:["1rem", 0, 0, 0]
           }}
         >
           <Styled.p sx={{width:"80%"}}>
