@@ -4,6 +4,7 @@ import openJ9Logo from "../images/openJ9-header-logo.svg";
 import slackIcon from "../images/slack-icon.svg";
 import githubLogo from "../images/github-logo.svg";
 import twitterLogo from "../images/twitter-logo.svg";
+import stackoverflowLogo from "../images/stackoverflow-logo.svg";
 
 /** @jsx jsx */
 import { jsx } from "theme-ui";
@@ -58,6 +59,9 @@ export default ({ isHome }) => (
         </li>
         <li>
           <a href="https://openj9.slack.com/" rel="noopener noreferrer" target="_blank"><img src={slackIcon} alt="Slack logo"></img></a>
+        </li>
+        <li>
+          <a href="https://stackoverflow.com/search?q=%23OpenJ9" rel="noopener noreferrer" target="_blank"><img src={stackoverflowLogo} alt="Stack Overflow logo"></img></a>
         </li>
       </ul>
     </nav>

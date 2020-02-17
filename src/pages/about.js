@@ -4,13 +4,16 @@ import Layout from "../components/layout";
 import { jsx, Styled } from "theme-ui";
 
 import circlePatternBig from "../images/circle-pattern-big.svg";
+import ibmLogo from "../images/ibm-logo.svg";
+import oregonStateUniLogo from "../images/oregon-state-university-logo.svg";
+import newBrunswickUniLogo from "../images/uni-new-brunswick.svg";
 import Card from "../components/card";
 import Button from "../components/button";
 
 export default () => (
   <Layout isHome={false}>
     <div sx={{ backgroundColor: "#F5F9FC", paddingX: "10%", paddingY: "5%" }}>
-      <Styled.h1>More About OpenJ9</Styled.h1>
+      <Styled.h1>More about OpenJ9</Styled.h1>
       <div
         sx={{
           backgroundColor: "white",
@@ -19,15 +22,14 @@ export default () => (
           borderRadius: "card"
         }}
       >
-        <Styled.h3>Our Story</Styled.h3>
+        <Styled.h3>Our story</Styled.h3>
         <Styled.p>
-          This text should introduce the history of OpenJ9. It should discuss
-          how it started, why it started, and what its goals are. This paragraph
-          could recognize past achievements, new/existing initiatives and convey
-          the important role that Open Source plays in helping OpenJ9 achieve
-          its goals and empower its users. Etc, etc, etc….
+          Eclipse OpenJ9 is a high performance, scalable, Java virtual machine (JVM) implementation that represents hundreds 
+          of person-years of effort. Contributed to the Eclipse project by IBM, the OpenJ9 JVM underpins the IBM SDK, Java 
+          Technology Edition product that is a core component of many IBM Enterprise software products. Continued development 
+          of OpenJ9 at the Eclipse foundation ensures wider collaboration, fresh innovation, and the opportunity to influence 
+          the development of OpenJ9 for the next generation of Java applications.
         </Styled.p>
-        <Button isLink={true} primary={true}>Call to Action</Button>
       </div>
     </div>
     <div
@@ -38,12 +40,14 @@ export default () => (
         paddingY: 5
       }}
     >
-      <Styled.h2>Our Sponsors</Styled.h2>
+      <Styled.h2>Our supporters</Styled.h2>
       <Styled.p>
-        This text should reiterate the acheivements, goals, and continued work
-        underway to frame the reason for this section, namely to recognize that
-        none of this would be possible without the continued sponsorship and
-        support of OpenJ9’s partners.
+        The success of the OpenJ9 project is underpinned by the generosity of our supporters,
+        to whom we would like to extend our thanks. This support comes in different forms; monetory,
+        people, system, and data center resources. People resources help us to staff the planning, development,
+        delivery, and support of OpenJ9 releases as well as pioneering new and innovative technologies.
+        Dedicated systems and hosting services allow us to run automated build and test operations,
+        which help ensure that quality and reliability is central to all our deliverables.
       </Styled.p>
       <div
         sx={{
@@ -52,14 +56,20 @@ export default () => (
           flexWrap: "wrap"
         }}
       >
-        <Card flex="0 0 400px" primary={false}>
-          <h1>Sponsor Example</h1>
+        <Card flex="0 0 400px" primary={false}> 
+          <img sx={{
+            width: "50%", 
+          }}src={ibmLogo} alt="IBM Logo"></img>
         </Card>
-        <Card flex="0 0 400px" primary={false}>
-          <h1>Sponsor Example</h1>
+        <Card flex="0 0 400px" primary={false}> 
+          <img sx={{
+            width: "50%", 
+          }}src={oregonStateUniLogo} alt="IBM Logo"></img>
         </Card>
-        <Card flex="0 0 400px" primary={false}>
-          <h1>Sponsor Example</h1>
+        <Card flex="0 0 400px" primary={false}> 
+          <img sx={{
+            width: "50%", 
+          }}src={newBrunswickUniLogo} alt="IBM Logo"></img>
         </Card>
       </div>
     </div>
@@ -76,7 +86,7 @@ export default () => (
       }}
     >
       <div sx={{ marginTop: "5rem", marginLeft: "2rem", width: "40%" }}>
-        <Styled.h2>Our Future</Styled.h2>
+        <Styled.h2>Our future</Styled.h2>
         <Styled.p sx={{ fontSize: 0 }}>
           This section could be used as a way to communicate to potential
           contributors about the OpenJ9 project, and the important role that
@@ -111,14 +121,15 @@ export default () => (
             flex: "30%",
             maxWidth: "600px",
             minWidth: ["250px", "350px", "400px", "500px"],
-            marginBottom:"2rem"
+            marginBottom:"4rem"
           }}
         >
           <Styled.h3>DOCS</Styled.h3>
-          <Styled.p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          <Styled.p sx={{height:"8rem", marginBottom:["10rem", 0, 0, 0], paddingRight:["1rem", 0, 0, 0]}}>
+            If you are new to OpenJ9, our documentation will help you get started. Out of the box, we expect you to discover a great experience,
+            but we also have many tuning options to help you ramp up application performance.
           </Styled.p>
-          <Button isLink={true} primary={true}>Go To Docs</Button>
+          <Button isLink={true} primary={true} link="https://www.eclipse.org/openj9/docs/" target={true}>Go to docs</Button>
         </article>
         <article
           sx={{
@@ -128,10 +139,11 @@ export default () => (
           }}
         >
           <Styled.h3>BLOGS</Styled.h3>
-          <Styled.p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          <Styled.p sx={{height:"8rem", marginBottom:["10rem", 0, 0, 0], paddingRight:["1rem", 0, 0, 0]}}>
+            Our blogs are written by developers, for developers. Read about their insights into up and coming technologies,
+            take deep dives into OpenJ9 development, or simply hear about their experiences of working on the project.
           </Styled.p>
-          <Button isLink={true} primary={true}>Go To Blogs</Button>
+          <Button isLink={true} primary={true} link="https://blog.openj9.org/" target={true}>Go to blogs</Button>
         </article>
       </div>
     </div>
