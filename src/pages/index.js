@@ -173,7 +173,9 @@ export default () => (
           }}
         >
           <Styled.p sx={{width:"80%"}}>
-            Ask questions and chat to our developers in the OpenJ9 slack community
+            Join us on Slack where you can ask questions and chat directly with our developers.
+            Whether you simply have a question about using OpenJ9, an idea for improvement,
+            or a problem you want to discuss, we'd love to hear from you.
           </Styled.p>
           <Button isLink={true} primary={false} target={true} link="https://openj9.slack.com/join/shared_invite/enQtNDU4MDI4Mjk0MTk2LWVhNTMzMGY1N2JkODQ1OWE0NTNmZjM4ZDcxOTBiMjk3NGFjM2U0ZDNhMmY0MDZlNzU0ZjAyNzQ1ODlmYjg3MjA">
             Join OpenJ9 slack
@@ -191,7 +193,9 @@ export default () => (
           }}
         >
           <Styled.p sx={{width:"80%"}}>
-            If you hit a problem or you just have a suggestion, raise an issue in our GitHub repository
+          Like all great open source projects,
+          we have a vibrant and busy GitHub repository where you can create issues to explore ideas,
+          request new features, or report any difficulties you are having. 
           </Styled.p>
           
           <Button isLink={true} primary={false} target={true} link="https://github.com/eclipse/openj9/issues">
@@ -233,12 +237,14 @@ export default () => (
           flex: "30%",
           maxWidth: "600px",
           minWidth: ["250px", "350px", "400px", "500px"],
-          marginBottom: "2rem"
+          marginBottom: ["4rem", "2rem", "2rem", "2rem"]
         }}
       >
         <Styled.h3>Become a contributor</Styled.h3>
-        <Styled.p sx={{width:"90%"}}>
-          Interested in contributing to OpenJ9? Check out the contributor guide in our GitHub repository. 
+        <Styled.p sx={{width:"90%", height:["24rem", "10rem", "15rem", "10rem"]}}>
+          We welcome contributions to the project in all shapes and forms.
+          If you are interested in JVM development, we'd love to hear your ideas and help you collaborate with us on the code base.
+          There are other ways you can contribute too, such as working on our website and docs. Be a part of the project and share in our success! 
         </Styled.p >
         <Button isLink={true} primary={true} target={true} link="https://github.com/eclipse/openj9/blob/master/CONTRIBUTING.md">
           Contributor Guide
@@ -252,9 +258,11 @@ export default () => (
         }}
       >
         <Styled.h3>Join community calls</Styled.h3>
-        <Styled.p sx={{width:"90%"}}>
-          Our regular community hangouts are a great place to find out what is
-          going on in the OpenJ9 project.
+        <Styled.p sx={{width:"90%", height:["25rem", "10rem", "15rem", "10rem"]}}>
+          Our regular calls are a great place to find out what is going on in the project.
+          As well as discussing our release plans and development status, we often feature lightning talks by members of the community.
+          For example, technical deep dives or overviews about new features. To see agendas and recordings,
+          look in the Slack #planning channel.
         </Styled.p>
         <Button isLink={true} primary={true} target={true} link="https://calendar.google.com/calendar?cid=YjBnYjB0ZzNxaTZhb3NhZGZnbG0wa3BjY29AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ">
           Add to Calendar
