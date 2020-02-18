@@ -8,12 +8,12 @@ import Button from "../components/button";
 
 export default ({data}) => (
   <Layout isHome={false}>
-    <div sx={{ backgroundColor: "#F5F9FC", paddingX: "10%", paddingY: "5%" }}>
+    <div sx={{ backgroundColor: "#F5F9FC", paddingX: "10%", paddingTop:"5%" }}>
       <Styled.h1>What's new in the OpenJ9 project</Styled.h1>
       <div
         sx={{
           paddingY: 5,
-          paddingX: "5%",
+          paddingX: "5%"
         }}
       >
         <Styled.p>
@@ -26,11 +26,12 @@ export default ({data}) => (
     <div
       sx={{
         paddingX: "10%",
-        paddingY: 5,
+        paddingBottom: "10%",
         backgroundColor: "#F5F9FC",
+
       }}
     >
-      <div
+       <div
         sx={{
           display: "flex",
           flexWrap: "wrap",
@@ -42,46 +43,59 @@ export default ({data}) => (
           borderRadius: "card"        
         }}
       >
+          <article>
+            <Styled.h3>Latest release</Styled.h3>
+            <Styled.p sx={{minHeight: ["10rem", "10rem", "10rem", "8rem"], width:"90%", marginBottom: ["3rem", "0", 0, 0]}}>
+              {((data.allMarkdownRemark.edges[0].node.html).replace(/(<([^>]+)>)/ig,""))}
+            </Styled.p>
+            
+            <Button link="https://www.eclipse.org/openj9/docs/openj9_releases/" isLink={true} primary={false} target={true}>New release info</Button>
+          </article>
+        </div>
+      </div>
+      <div
+        sx={{
+          backgroundColor: "primary",
+          paddingX: "10%",
+          paddingY: "5%",   
+          position: "relative",   
+        }}
+      >
         <article
           sx={{
-            flex: "1 1 30%",
-            minWidth: ["250px", "350px", "400px", "500px"]
-          }}
-        >
-          <Styled.h3>Latest release</Styled.h3>
-          <Styled.p sx={{minHeight: "13rem", width:"90%", marginBottom: ["3rem", "0", 0, 0]}}>
-            {((data.allMarkdownRemark.edges[0].node.html).replace(/(<([^>]+)>)/ig,""))}
-          </Styled.p>
-          
-          <Button link="https://www.eclipse.org/openj9/docs/openj9_releases/" isLink={true} primary={false} target={true}>New release info</Button>
-        </article>
-        <article
-          sx={{
-            flex: "1 1 30%",
-            maxWidth: "600px",
-            minWidth: ["250px", "350px", "400px", "500px"],
-            marginTop: ["5rem", "5rem", "5rem", "0"],
+            paddingX: "5%",
+            paddingY: 5,      
+            backgroundColor: "white", 
+            borderRadius: "card",
+            color:"black"
           }}
         >
           <Styled.h3 
           >Events</Styled.h3>
-            <ul sx={{minHeight: "14rem", width: "90%", 
+            <ul sx={{ 
             li: {
               padding: ["0.5rem", "0.2rem", "0.2rem", "0.2rem"]
             }}}>
               {data.allUpcomingEventsYaml.edges.map((event) => {
-                return <li sx={{listStyleType: "none"}}> {event.node.title} - {event.node.date} - {event.node.details}</li>
+                return <li key={event.node.id} sx={{listStyleType: "none"}}> {event.node.title} - {event.node.date} - {event.node.details}</li>
               })}
             </ul>
         </article>
-      </div>
 
+      </div>      
+      <div
+      sx={{
+        paddingX: "10%",
+        paddingY: 5,
+        backgroundColor: "#F5F9FC",
+      }}
+    >
       <div
         sx={{
           display: "flex",
           flexDirection: "column",
           paddingX: "5%",
-          paddingY: "5%",      
+          paddingY: "5%",   
         }}
       >
         <Styled.h3>Recent blogs</Styled.h3>
@@ -139,7 +153,7 @@ export const query = graphql`
       node {
         id
         title
-        date(formatString:"MMMM-DD-YYYY")
+        date(formatString:"DD MMMM YYYY")
         details
       }
     }
@@ -147,7 +161,7 @@ export const query = graphql`
     allWordpressPost(limit: 2) {
       nodes {
         title
-        date(formatString:"MMMM-DD-YYYY")
+        date(formatString:"DD MMMM YYYY")
         excerpt
       }
     },

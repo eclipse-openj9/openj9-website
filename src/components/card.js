@@ -6,7 +6,7 @@ const Card = ({ children, flex, primary }) => {
   return (
     <article
       sx={{
-        minHeight: "250px",
+        minHeight: "200px",
         boxShadow: primary ? "cardShadow" : null,
         borderRadius: "card",
         borderTop: "cardBorder",
@@ -17,7 +17,7 @@ const Card = ({ children, flex, primary }) => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
       }}
     >
       {children}

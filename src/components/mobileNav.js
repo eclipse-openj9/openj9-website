@@ -27,7 +27,7 @@ const MobileNav = () => (
         }}>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/about">About</Link> </li>
-            <li><a href="https://www.eclipse.org/openj9/docs/">Docs</a> </li>
+            <li><a href="https://www.eclipse.org/openj9/docs/" rel="noopener noreferrer" target="_blank">Docs</a> </li>
             <li><Link to="/news">News</Link> </li>
         </ul>
     </nav>

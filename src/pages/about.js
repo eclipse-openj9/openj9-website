@@ -3,17 +3,17 @@ import Layout from "../components/layout";
 /** @jsx jsx */
 import { jsx, Styled } from "theme-ui";
 
-import circlePatternBig from "../images/circle-pattern-big.svg";
 import ibmLogo from "../images/ibm-logo.svg";
 import oregonStateUniLogo from "../images/oregon-state-university-logo.svg";
 import newBrunswickUniLogo from "../images/uni-new-brunswick-logo.svg";
+import adoptopenJDK from "../images/adopt-open-jdk.png";
 import Card from "../components/card";
 import Button from "../components/button";
 
 export default () => (
   <Layout isHome={false}>
     <div sx={{ backgroundColor: "#F5F9FC", paddingX: "10%", paddingY: "5%" }}>
-      <Styled.h1>More about OpenJ9</Styled.h1>
+      <Styled.h1 sx={{marginBottom:"3rem"}}>More about OpenJ9</Styled.h1>
       <div
         sx={{
           backgroundColor: "white",
@@ -56,38 +56,44 @@ export default () => (
           flexWrap: "wrap"
         }}
       >
-        <Card flex="0 0 400px" primary={false}> 
+        <Card flex="0 0 260px" primary={false}> 
           <img sx={{
             width: "50%", 
+            height: "50%", 
           }}src={ibmLogo} alt="IBM Logo"></img>
         </Card>
-        <Card flex="0 0 400px" primary={false}> 
+        <Card flex="0 0 260px" primary={false}> 
+          <img sx={{
+            width: ["50%", "50%", "50%", "90%"], 
+            filter: "invert(100%)"
+          }}src={adoptopenJDK} alt="IBM Logo"></img>
+        </Card>
+        <Card flex="0 0 260px" primary={false}> 
           <img sx={{
             width: "50%", 
+            height: "50%", 
           }}src={oregonStateUniLogo} alt="IBM Logo"></img>
         </Card>
-        <Card flex="0 0 400px" primary={false}> 
+        <Card flex="0 0 260px" primary={false}> 
           <img sx={{
             width: "50%", 
+            height: "50%", 
           }}src={newBrunswickUniLogo} alt="IBM Logo"></img>
         </Card>
       </div>
     </div>
     <div
       sx={{
-        backgroundImage: `url(${circlePatternBig})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
+        backgroundColor: "#F5F9FC",
         paddingY: 5,
-        paddingX: "10%",
-        height: "50vh",
-        color: "white",
-        display: ["none", "none", "block", "block"]
+        paddingX: "5%",
+        color: "black",
+        display: "block"
       }}
     >
-      <div sx={{ marginTop: "5rem", marginLeft: "2rem", width: "40%" }}>
-        <Styled.h2>Our future</Styled.h2>
-        <Styled.p sx={{ fontSize: 0 }}>
+      <div sx={{ marginTop: "3rem", marginLeft: "5%"}}>
+        <Styled.h2 sx={{fontSize:5}}>Our future</Styled.h2>
+        <Styled.p sx={{ fontSize: 2, color:"black", width:"85%", maxHeight:"10%" }}>
           This section could be used as a way to communicate to potential
           contributors about the OpenJ9 project, and the important role that
           open source contributors play in helping to make OpenJ9 a resource
@@ -125,7 +131,7 @@ export default () => (
           }}
         >
           <Styled.h3>DOCS</Styled.h3>
-          <Styled.p sx={{height:"8rem", marginBottom:["10rem", 0, 0, 0], paddingRight:["1rem", 0, 0, 0]}}>
+          <Styled.p sx={{height:"10rem", marginBottom:["10rem", 0, 0, 0], width:"90%", paddingRight:["1rem", 0, 0, 0]}}>
             If you are new to OpenJ9, our documentation will help you get started. Out of the box, we expect you to discover a great experience,
             but we also have many tuning options to help you ramp up application performance.
           </Styled.p>
@@ -139,7 +145,7 @@ export default () => (
           }}
         >
           <Styled.h3>BLOGS</Styled.h3>
-          <Styled.p sx={{height:"8rem", marginBottom:["10rem", 0, 0, 0], paddingRight:["1rem", 0, 0, 0]}}>
+          <Styled.p sx={{height:"10rem", marginBottom:["10rem", 0, 0, 0],  width:"90%", paddingRight:["1rem", 0, 0, 0]}}>
             Our blogs are written by developers, for developers. Read about their insights into up and coming technologies,
             take deep dives into OpenJ9 development, or simply hear about their experiences of working on the project.
           </Styled.p>
