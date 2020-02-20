@@ -56,25 +56,25 @@ export default () => (
           flexWrap: "wrap"
         }}
       >
-        <Card flex="0 0 260px" primary={false}> 
+        <Card flex="0 0 260px" primary={false} borderTop={true}> 
           <img sx={{
             width: "50%", 
             height: "50%", 
           }}src={ibmLogo} alt="IBM Logo"></img>
         </Card>
-        <Card flex="0 0 260px" primary={false}> 
+        <Card flex="0 0 260px" primary={false} borderTop={true}> 
           <img sx={{
             width: ["50%", "50%", "50%", "90%"], 
             filter: "invert(100%)"
           }}src={adoptopenJDK} alt="IBM Logo"></img>
         </Card>
-        <Card flex="0 0 260px" primary={false}> 
+        <Card flex="0 0 260px" primary={false} borderTop={true}> 
           <img sx={{
             width: "50%", 
             height: "50%", 
           }}src={oregonStateUniLogo} alt="IBM Logo"></img>
         </Card>
-        <Card flex="0 0 260px" primary={false}> 
+        <Card flex="0 0 260px" primary={false} borderTop={true}> 
           <img sx={{
             width: "50%", 
             height: "50%", 
@@ -135,7 +135,7 @@ export default () => (
             If you are new to OpenJ9, our documentation will help you get started. Out of the box, we expect you to discover a great experience,
             but we also have many tuning options to help you ramp up application performance.
           </Styled.p>
-          <Button isLink={true} primary={true} link="https://www.eclipse.org/openj9/docs/" target={true}>Go to docs</Button>
+          <Button primary={true} link="https://www.eclipse.org/openj9/docs/" target={true}>Go to docs</Button>
         </article>
         <article
           sx={{
@@ -149,7 +149,7 @@ export default () => (
             Our blogs are written by developers, for developers. Read about their insights into up and coming technologies,
             take deep dives into OpenJ9 development, or simply hear about their experiences of working on the project.
           </Styled.p>
-          <Button isLink={true} primary={true} link="https://blog.openj9.org/" target={true}>Go to blogs</Button>
+          <Button primary={true} link="https://blog.openj9.org/" target={true}>Go to blogs</Button>
         </article>
       </div>
     </div>

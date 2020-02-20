@@ -49,7 +49,7 @@ export default ({data}) => (
               {((data.allMarkdownRemark.edges[0].node.html).replace(/(<([^>]+)>)/ig,""))}
             </Styled.p>
             
-            <Button link="https://www.eclipse.org/openj9/docs/openj9_releases/" isLink={true} primary={false} target={true}>New release info</Button>
+            <Button link="https://www.eclipse.org/openj9/docs/openj9_releases/" primary={false} target={true}>New release info</Button>
           </article>
         </div>
       </div>
@@ -139,7 +139,7 @@ export default ({data}) => (
         
       </div>
       <div sx={{display: ["block", "flex", "flex", "flex"], justifyContent: "center", paddingX: "5%",}}>
-        <Button link="https://blog.openj9.org/" isLink={true} primary={false} target={true}>See all blogs</Button>
+        <Button link="https://blog.openj9.org/" primary={false} target={true}>See all blogs</Button>
       </div>
       
     </div>

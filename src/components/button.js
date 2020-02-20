@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 
-const Button = ({ isLink, children, primary, link, target, widthChanged}) => {
+const Button = ({children, primary, link, target, widthChanged }) => {
   const variant = primary ? "buttons.primary" : "buttons.secondary"
-  if (isLink && target) {
+  if (target) {
     return (
       <a href= {link} rel="noopener noreferrer" target="_blank"
         sx={{
@@ -12,47 +12,27 @@ const Button = ({ isLink, children, primary, link, target, widthChanged}) => {
           alignItems: "center",
           justifyContent: "center",
           textDecoration: "none",
+          width: widthChanged ? "220px" : "190px",
         }}
       >
         {children}
       </a>
     )
-  } else if (link) {
-    if (widthChanged){
-      return (
-        <a href= {link} 
-          sx={{
-            variant: variant,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            textDecoration: "none",
-            width: "220px"
-          }}
-        >
-          {children}
-        </a>
-      )
-    } else {
-      return (
-        <a href= {link} 
-          sx={{
-            variant: variant,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            textDecoration: "none",
-          }}
-        >
-          {children}
-        </a>
-      )
-    }
-      
-  }
-  
-  else {
-    return <button sx={{ variant: variant }}>{children}</button>
+  } else {
+    return (
+      <a href= {link}
+        sx={{
+          variant: variant,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          textDecoration: "none",
+          width: widthChanged ? "220px" : "190px",
+        }}
+      >
+        {children}
+      </a>
+    )
   }
 }
 
