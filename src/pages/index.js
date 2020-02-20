@@ -5,10 +5,6 @@ import Card from "../components/card";
 import openj9Circle from "../images/openj9-circle.svg";
 import openj9Logo from "../images/openj9-logo.svg";
 import circlePatternBig from "../images/circle-pattern-big.svg";
-import FortyTwoPercentStartup from "../images/forty-two-percent-startup.png";
-import SixtySixPercentSmallerFootprint from "../images/sixty-six-percent-smaller-footprint.png";
-import TwentyEightPercentFaster from "../images/twenty-eight-percent-faster.png";
-import SixtyThreePercentSmallerFootprint from "../images/sixty-three-percent-smaller-footprint.png";
 import adoptopenJDK from "../images/adopt-open-jdk.png";
 import whiteSlackIcon from "../images/white-slack-logo.svg"
 import githubIcon from "../images/github-logo.svg";
@@ -76,7 +72,7 @@ export default () => (
         <Styled.p>
           Grab a pre-built binary of OpenJDK with OpenJ9 from the AdoptOpenJDK community.
         </Styled.p>
-        <Button isLink={true} primary={false} link="https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9" target={true}>
+        <Button primary={false} link="https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9" target={true}>
           <img sx={{
             width: "80%",
           }}src={adoptopenJDK} alt="adoptopenJDK Logo"></img>
@@ -85,64 +81,89 @@ export default () => (
     </div>
     <div
       sx={{
-        display: "flex",
+        display: ["flex", "none", "none", "flex"],
         flexWrap: "wrap",
         justifyContent: "space-between",
         padding: "5%"
       }}
     >
-      <Card flex="0 0 600px"  primary={true}>
-        <Styled.h2>Application startup</Styled.h2>
-        <img sx={{
-          width:"50%",
-          height:"50%"
-        }}src={FortyTwoPercentStartup} alt="Eclipse Incubator Logo"></img>
-        <Styled.p sx={{
-          marginTop:"1rem"
-        }}>42% faster</Styled.p>
+      <Card flex="0 0 300px" primary={false}>
+      <i className="fas fa-rocket fa-5x"></i>
+        <Styled.h4 sx={{textAlign:"center"}}>Optimized for the Cloud</Styled.h4>
+        <Styled.p sx={{textAlign:"center"}}>for microservices and monoliths too!</Styled.p>
       </Card>
-      <Card flex="0 0 600px" primary={true}>
-        <Styled.h2>Application startup</Styled.h2>
-        <img sx={{
-          width:"50%",
-          height:"50%"
-        }}src={SixtySixPercentSmallerFootprint} alt="Eclipse Incubator Logo"></img>
-        <Styled.p sx={{
-          marginTop:"1rem"
-        }}>66% smaller footprint</Styled.p>
+
+      <Card flex="0 0 300px" primary={false}>
+      <i className="fas fa-tachometer-alt fa-5x"></i>
+         <Styled.h4 sx={{textAlign:"center"}}>42% Faster Startup</Styled.h4>
+        <Styled.p sx={{textAlign:"center"}}>over HotSpot</Styled.p>
       </Card>
-      <div
-        sx={{
-          flex: "1 2 100%",
-          display: "flex",
-          justifyContent: "center",
-          marginY: 3,
-          order: [1, 1, 1, 0]
-        }}
-      >
-        <Button widthChanged={true} isLink={true} primary={false} link="/performance">Read performance details</Button>
-      </div>
-      <Card flex="0 0 600px" primary={true}>
-        <Styled.h2>Application rampup</Styled.h2>
-        <img sx={{
-          width:"50%",
-          height:"50%"
-        }}src={TwentyEightPercentFaster} alt="Eclipse Incubator Logo"></img>
-        <Styled.p sx={{
-          marginTop:"1rem"
-        }}>28% faster in the cloud</Styled.p>
+
+      <Card flex="0 0 300px" primary={false}>
+      <i className="fas fa-chart-line fa-5x"></i>
+         <Styled.h4 sx={{textAlign:"center"}}>28% Faster Ramp-up</Styled.h4>
+        <Styled.p sx={{textAlign:"center"}}>when deployed to cloud vs HotSpot</Styled.p>
       </Card>
-      <Card flex="0 0 600px" primary={true}>
-        <Styled.h2>Application rampup</Styled.h2>
-        <img sx={{
-          width:"50%",
-          height:"50%"
-        }}src={SixtyThreePercentSmallerFootprint} alt="Eclipse Incubator Logo"></img>
-        <Styled.p sx={{
-          marginTop:"1rem"
-        }}>63% smaller footprint</Styled.p>
+
+      <Card flex="0 0 300px" primary={false}>
+      <i className="fas fa-archive fa-5x"></i>
+         <Styled.h4 sx={{textAlign:"center"}}>66% Smaller</Styled.h4>
+        <Styled.p sx={{textAlign:"center"}}>when compared to HotSpot</Styled.p>
       </Card>
+
     </div>
+
+    <div
+      sx={{
+        display: ["none", "flex", "flex", "none"],
+        flexWrap: "wrap",
+        justifyContent: "space-around",
+        padding: "5%"
+      }}
+    >
+      <Card flex="0 0 300px" primary={false}>
+      <i className="fas fa-rocket fa-5x"></i>
+        <Styled.h4 sx={{textAlign:"center"}}>Built for Cloud Deployments</Styled.h4>
+        <Styled.p sx={{textAlign:"center"}}>with an intuitive CLI</Styled.p>
+      </Card>
+
+      <Card flex="0 0 300px" primary={false}>
+      <i className="fas fa-tachometer-alt fa-5x"></i>
+         <Styled.h4 sx={{textAlign:"center"}}>42% Faster Startup</Styled.h4>
+        <Styled.p sx={{textAlign:"center"}}>over HotSpot</Styled.p>
+      </Card>
+      </div>
+      <div
+      sx={{
+        display: ["none", "flex", "flex", "none"],
+        flexWrap: "wrap",
+        justifyContent: "space-around",
+        padding: "5%"
+      }}
+    >
+      <Card flex="0 0 300px" primary={false}>
+      <i className="fas fa-chart-line fa-5x"></i>
+         <Styled.h4 sx={{textAlign:"center"}}>28% Faster Ramp-up</Styled.h4>
+        <Styled.p sx={{textAlign:"center"}}>when deployed to cloud vs HotSpot</Styled.p>
+      </Card>
+
+      <Card flex="0 0 300px" primary={false}>
+      <i className="fas fa-archive fa-5x"></i>
+         <Styled.h4 sx={{textAlign:"center"}}>66% Smaller</Styled.h4>
+        <Styled.p sx={{textAlign:"center"}}>when compared to HotSpot</Styled.p>
+      </Card>
+
+    </div>
+    <div
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        paddingBottom: "5%"
+      }}
+    >
+      <Button sx={{width:"220px"}} widthChanged={true} primary={false} link="/performance">Read performance details</Button>
+
+      </div>
     <div
       sx={{
         padding: `calc(5% + 40px)`,
@@ -177,7 +198,7 @@ export default () => (
             Whether you simply have a question about using OpenJ9, an idea for improvement,
             or a problem you want to discuss, we'd love to hear from you.
           </Styled.p>
-          <Button isLink={true} primary={false} target={true} link="https://openj9.slack.com/join/shared_invite/enQtNDU4MDI4Mjk0MTk2LWVhNTMzMGY1N2JkODQ1OWE0NTNmZjM4ZDcxOTBiMjk3NGFjM2U0ZDNhMmY0MDZlNzU0ZjAyNzQ1ODlmYjg3MjA">
+          <Button primary={false} target={true} widthChanged={false} link="https://openj9.slack.com/join/shared_invite/enQtNDU4MDI4Mjk0MTk2LWVhNTMzMGY1N2JkODQ1OWE0NTNmZjM4ZDcxOTBiMjk3NGFjM2U0ZDNhMmY0MDZlNzU0ZjAyNzQ1ODlmYjg3MjA">
             Join OpenJ9 slack
             <img sx={{
             width: "10%",
@@ -198,7 +219,7 @@ export default () => (
           request new features, or report any difficulties you are having. 
           </Styled.p>
           
-          <Button isLink={true} primary={false} target={true} link="https://github.com/eclipse/openj9/issues">
+          <Button primary={false} target={true} widthChanged={false} link="https://github.com/eclipse/openj9/issues">
             See OpenJ9 issues
             <img sx={{
             width: "10%",
@@ -246,7 +267,7 @@ export default () => (
           If you are interested in JVM development, we'd love to hear your ideas and help you collaborate with us on the code base.
           There are other ways you can contribute too, such as working on our website and docs. Be a part of the project and share in our success! 
         </Styled.p >
-        <Button isLink={true} primary={true} target={true} link="https://github.com/eclipse/openj9/blob/master/CONTRIBUTING.md">
+        <Button primary={true} target={true} link="https://github.com/eclipse/openj9/blob/master/CONTRIBUTING.md">
           Contributor Guide
         </Button>
       </div>
@@ -264,7 +285,7 @@ export default () => (
           For example, technical deep dives or overviews about new features. To see agendas and recordings,
           look in the Slack #planning channel.
         </Styled.p>
-        <Button isLink={true} primary={true} target={true} link="https://calendar.google.com/calendar?cid=YjBnYjB0ZzNxaTZhb3NhZGZnbG0wa3BjY29AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ">
+        <Button primary={true} target={true} link="https://calendar.google.com/calendar?cid=YjBnYjB0ZzNxaTZhb3NhZGZnbG0wa3BjY29AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ">
           Add to Calendar
         </Button>
       </div>
