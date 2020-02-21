@@ -51,7 +51,7 @@ export default () => (
       </Styled.p>
       <div
         sx={{
-          display: "flex",
+          display: ["flex","none","none", "flex"],
           justifyContent: "space-between",
           flexWrap: "wrap"
         }}
@@ -68,6 +68,47 @@ export default () => (
             filter: "invert(100%)"
           }}src={adoptopenJDK} alt="IBM Logo"></img>
         </Card>
+        <Card flex="0 0 260px" primary={false} borderTop={true}> 
+          <img sx={{
+            width: "50%", 
+            height: "50%", 
+          }}src={oregonStateUniLogo} alt="IBM Logo"></img>
+        </Card>
+        <Card flex="0 0 260px" primary={false} borderTop={true}> 
+          <img sx={{
+            width: "50%", 
+            height: "50%", 
+          }}src={newBrunswickUniLogo} alt="IBM Logo"></img>
+        </Card>
+      </div>
+
+      <div
+        sx={{
+          display: ["none", "flex", "flex", "none"],
+          justifyContent: "space-around",
+          flexWrap: "wrap"
+        }}
+      >
+        <Card flex="0 0 260px" primary={false} borderTop={true}> 
+          <img sx={{
+            width: "50%", 
+            height: "50%", 
+          }}src={ibmLogo} alt="IBM Logo"></img>
+        </Card>
+        <Card flex="0 0 260px" primary={false} borderTop={true}> 
+          <img sx={{
+            width: ["50%", "50%", "50%", "90%"], 
+            filter: "invert(100%)"
+          }}src={adoptopenJDK} alt="IBM Logo"></img>
+        </Card>
+        </div>
+        <div
+        sx={{
+          display: ["none", "flex", "flex", "none"],
+          justifyContent: "space-around",
+          flexWrap: "wrap"
+        }}
+      >
         <Card flex="0 0 260px" primary={false} borderTop={true}> 
           <img sx={{
             width: "50%", 
