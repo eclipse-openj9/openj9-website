@@ -26,7 +26,7 @@ export default () => (
           height:["240px", "240px", "240px", "240px"],
           marginRight:["0", "6rem", "6rem", "6rem"],
           marginBottom:["3rem", 0, 0, 0]
-        }}src={SixtySixPercentSmallerFootprint} alt="Eclipse Incubator Logo"></img>
+        }}src={SixtySixPercentSmallerFootprint} alt="Sixty Six Percent Smaller Footprint Graph"></img>
         <Styled.p>
         OpenJ9 is highly optimized for cloud workloads, where minimising memory footprint is important.
         Even with other optimizations enabled, the footprint stays about the same.
@@ -51,7 +51,7 @@ export default () => (
            width:["240px", "240px", "240px", "320px"],
            height:["240px", "240px", "240px", "240px"],
            marginBottom:["3rem", 0, 0, 0]
-        }}src={SixtyThreePercentSmallerFootprint} alt="Eclipse Incubator Logo"></img>
+        }}src={SixtyThreePercentSmallerFootprint} alt="Sixty Three Percent Smaller Footprint Graph"></img>
       </div>
 
       <div
@@ -68,7 +68,7 @@ export default () => (
             height:["240px", "240px", "240px", "240px"],
             marginRight:["0", "6rem", "6rem", "6rem"],
             marginBottom:["3rem", 0, 0, 0],
-        }}src={FortyTwoPercentStartup} alt="Eclipse Incubator Logo"></img>
+        }}src={FortyTwoPercentStartup} alt="Forty Two Percent Startup "></img>
         <Styled.p>
             Shared classes and Ahead-of-Time (AOT) technologies typically reduce startup time.
             By using -Xquickstart mode as well, you can reduce startup time by up to 42%.
@@ -93,7 +93,7 @@ export default () => (
           width:["240px", "240px", "240px", "320px"],
           height:["240px", "240px", "240px", "240px"],
           marginBottom:["3rem", 0, 0, 0],
-        }}src={ComaparableThroughput} alt="Eclipse Incubator Logo"></img>
+        }}src={ComaparableThroughput} alt="Comaparable Throughput Graph"></img>
       </div>
 
       <div
@@ -110,7 +110,7 @@ export default () => (
          height:["240px", "240px", "240px", "240px"],
          marginRight:["0", "6rem", "6rem", "6rem"],
          marginBottom:["3rem", 0, 0, 0],
-        }}src={TwentyEightPercentFaster} alt="Eclipse Incubator Logo"></img>
+        }}src={TwentyEightPercentFaster} alt="Twenty Eight Percent Faster Graph"></img>
         <Styled.p>
             OpenJ9 reaches peak throughput on a single CPU core in 8.5 minutes compared with 30 minutes for Hotspot.
             Doing more work more quickly is important for short-lived VMs running in resource-constrained environments like the cloud.
