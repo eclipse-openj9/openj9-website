@@ -2,14 +2,13 @@
 
 import { jsx } from "theme-ui";
 
-const Card = ({ children, flex, primary, borderTop, flexTablet }) => {
+const Card = ({ children, flex, primary }) => {
   return (
     <article
       sx={{
         minHeight: "200px",
         boxShadow: primary ? "cardShadow" : null,
         borderRadius: "card",
-        borderTop: borderTop ? "cardBorder": null,
         backgroundColor: "white",
         color: "darkText",
         marginY: 5,
