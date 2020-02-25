@@ -66,19 +66,19 @@ export default () => (
           <img sx={{
             width: ["50%", "50%", "50%", "90%"], 
             filter: "invert(100%)"
-          }}src={adoptopenJDK} alt="IBM Logo"></img>
+          }}src={adoptopenJDK} alt="AdoptOpenJDK Logo"></img>
         </Card>
         <Card flex="0 0 260px" primary={false}> 
           <img sx={{
             width: "50%", 
             height: "50%", 
-          }}src={oregonStateUniLogo} alt="IBM Logo"></img>
+          }}src={oregonStateUniLogo} alt="Oregon State University Logo"></img>
         </Card>
         <Card flex="0 0 260px" primary={false}> 
           <img sx={{
             width: "50%", 
             height: "50%", 
-          }}src={newBrunswickUniLogo} alt="IBM Logo"></img>
+          }}src={newBrunswickUniLogo} alt="New Brunswick University Logo"></img>
         </Card>
       </div>
 
