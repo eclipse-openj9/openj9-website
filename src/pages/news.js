@@ -44,8 +44,8 @@ export default ({data}) => (
         }}
       >
           <article>
-            <Styled.h3>Latest release</Styled.h3>
-            <Styled.p sx={{minHeight: ["10rem", "10rem", "10rem", "8rem"], width:"90%", marginBottom: ["3rem", "0", 0, 0]}}>
+            <Styled.h2>Latest release</Styled.h2>
+            <Styled.p sx={{minHeight: ["10rem", "13rem", "10rem", "8rem"], width:"90%", marginBottom: ["3rem", "0", 0, 0]}}>
               {((data.allMarkdownRemark.edges[0].node.html).replace(/(<([^>]+)>)/ig,""))}
             </Styled.p>
             
@@ -70,14 +70,33 @@ export default ({data}) => (
             color:"black"
           }}
         >
-          <Styled.h3 
-          >Events</Styled.h3>
+          <Styled.h2
+          >Events</Styled.h2>
             <ul sx={{ 
             li: {
               padding: ["0.5rem", "0.2rem", "0.2rem", "0.2rem"]
             }}}>
               {data.allUpcomingEventsYaml.edges.map((event) => {
-                return <li key={event.node.id} sx={{listStyleType: "none"}}> {event.node.title} - {event.node.date} - {event.node.details}</li>
+                return <li key={event.node.id} sx={{listStyleType: "none"}}> 
+                <Styled.h4 sx={{width:"90%", marginBottom: "0rem", height: ["5.5rem", "2.5rem", "2.5rem", "2rem"]}}>
+                  Title: {event.node.title}
+                </Styled.h4>
+                <Styled.p sx={{width:"90%", marginBottom: "0.5rem"}}>
+                    Confrence: <b>{event.node.confrence}</b>
+                </Styled.p>
+                <Styled.p sx={{width:"90%", marginBottom: "0.5rem"}}>
+                   Speaker: <b>{event.node.speaker}</b>
+                </Styled.p>
+                <Styled.p sx={{width:"90%", marginBottom: "0.5rem"}}>
+                   Date: <b> {event.node.date}</b>
+                </Styled.p>
+                <Styled.p sx={{width:"90%", marginBottom: "0.5rem"}}>
+                    Location: <b>{event.node.location}</b>
+                </Styled.p>
+                <Styled.p sx={{width:"90%"}}>
+                  <b>Description: </b>{event.node.description} <a href={event.node.link} target="_blank" rel="noopener noreferrer">see more</a>
+                </Styled.p>
+                </li>
               })}
             </ul>
         </article>
@@ -98,7 +117,7 @@ export default ({data}) => (
           paddingY: "5%",   
         }}
       >
-        <Styled.h3>Recent blogs</Styled.h3>
+        <Styled.h2>Recent blogs</Styled.h2>
         <div sx={{display: "flex", flexWrap: "wrap", justifyContent: "space-between"}}>
           <article
           sx={{
@@ -153,8 +172,12 @@ export const query = graphql`
       node {
         id
         title
+        link
+        confrence
         date(formatString:"DD MMMM YYYY")
-        details
+        location
+        speaker
+        description
       }
     }
   },
