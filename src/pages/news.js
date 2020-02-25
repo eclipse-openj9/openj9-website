@@ -82,7 +82,7 @@ export default ({data}) => (
                   Title: {event.node.title}
                 </Styled.h4>
                 <Styled.p sx={{width:"90%", marginBottom: "0.5rem"}}>
-                    Confrence: <b>{event.node.confrence}</b>
+                  Conference: <b>{event.node.conference}</b>
                 </Styled.p>
                 <Styled.p sx={{width:"90%", marginBottom: "0.5rem"}}>
                    Speaker: <b>{event.node.speaker}</b>
@@ -173,7 +173,7 @@ export const query = graphql`
         id
         title
         link
-        confrence
+        conference
         date(formatString:"DD MMMM YYYY")
         location
         speaker
