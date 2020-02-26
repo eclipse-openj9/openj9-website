@@ -1,5 +1,5 @@
 - title: "It's always sunny with OpenJ9!"
-  confrence: "Devnexus 2020"
+  conference: "Devnexus 2020"
   date: "2020-02-20"
   location: "Atlanta"
   speaker: "Dan Heidinga"
@@ -10,7 +10,7 @@
   
 
 - title: "OpenJDK panel"
-  confrence: "Devnexus 2020"
+  conference: "Devnexus 2020"
   date: "2020-02-21"
   location: "Atlanta"
   speaker: "Dan Heidinga & others"
