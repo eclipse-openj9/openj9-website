@@ -26,7 +26,7 @@ export default ({data}) => (
     <div
       sx={{
         paddingX: "10%",
-        paddingBottom: "10%",
+        paddingBottom: "3%",
         backgroundColor: "#F5F9FC",
 
       }}
@@ -54,58 +54,9 @@ export default ({data}) => (
         </div>
       </div>
       <div
-        sx={{
-          backgroundColor: "primary",
-          paddingX: "10%",
-          paddingY: "5%",   
-          position: "relative",   
-        }}
-      >
-        <article
-          sx={{
-            paddingX: "5%",
-            paddingY: 5,      
-            backgroundColor: "white", 
-            borderRadius: "card",
-            color:"black"
-          }}
-        >
-          <Styled.h2
-          >Events</Styled.h2>
-            <ul sx={{ 
-            li: {
-              padding: ["0.5rem", "0.2rem", "0.2rem", "0.2rem"]
-            }}}>
-              {data.allUpcomingEventsYaml.edges.map((event) => {
-                return <li key={event.node.id} sx={{listStyleType: "none"}}> 
-                <Styled.h4 sx={{width:"90%", marginBottom: "0rem", height: ["5.5rem", "2.5rem", "2.5rem", "2rem"]}}>
-                  Title: {event.node.title}
-                </Styled.h4>
-                <Styled.p sx={{width:"90%", marginBottom: "0.5rem"}}>
-                  Conference: <b>{event.node.conference}</b>
-                </Styled.p>
-                <Styled.p sx={{width:"90%", marginBottom: "0.5rem"}}>
-                   Speaker: <b>{event.node.speaker}</b>
-                </Styled.p>
-                <Styled.p sx={{width:"90%", marginBottom: "0.5rem"}}>
-                   Date: <b> {event.node.date}</b>
-                </Styled.p>
-                <Styled.p sx={{width:"90%", marginBottom: "0.5rem"}}>
-                    Location: <b>{event.node.location}</b>
-                </Styled.p>
-                <Styled.p sx={{width:"90%"}}>
-                  <b>Description: </b>{event.node.description} <a href={event.node.link} target="_blank" rel="noopener noreferrer">see more</a>
-                </Styled.p>
-                </li>
-              })}
-            </ul>
-        </article>
-
-      </div>      
-      <div
       sx={{
-        paddingX: "10%",
-        paddingY: 5,
+        paddingX: "5%",
+        paddingBottom: 5,
         backgroundColor: "#F5F9FC",
       }}
     >
@@ -113,7 +64,7 @@ export default ({data}) => (
         sx={{
           display: "flex",
           flexDirection: "column",
-          paddingX: "5%",
+          paddingX: "10%",
           paddingY: "5%",   
         }}
       >
@@ -133,7 +84,7 @@ export default ({data}) => (
             <b>{data.allWordpressPost.nodes[0].date}</b>
           </Styled.p>
           <Styled.p sx={{width:"90%"}}>
-            {(((data.allWordpressPost.nodes[0].excerpt).replace(/(<([^>]+)>)/ig,"")).replace("&nbsp;", " ")).replace("&nbsp;", " ").replace("Continue reading", "")}
+            {(((data.allWordpressPost.nodes[0].excerpt).replace(/(<([^>]+)>)/ig,"")).replace("&nbsp;", " ")).replace("&nbsp;", " ").replace("Continue reading", "")}...
             <a target="_blank" rel="noopener noreferrer" href={data.allWordpressPost.nodes[0].excerpt.match(/href="([^"]*)/g)[0].replace('href="', "")}>see more</a>
           </Styled.p>
         </article>
@@ -150,14 +101,15 @@ export default ({data}) => (
             <b>{data.allWordpressPost.nodes[1].date}</b>
           </Styled.p>
           <Styled.p sx={{width:"90%", marginBottom: "1rem"}}>
-            {(((data.allWordpressPost.nodes[1].excerpt).replace(/(<([^>]+)>)/ig,"")).replace("&nbsp;", " ")).replace("&nbsp;", " ").replace("Continue reading", "")}
+            {(((data.allWordpressPost.nodes[1].excerpt).replace(/(<([^>]+)>)/ig,"")).replace("&nbsp;", " ")).replace("&nbsp;", " ").replace("Continue reading", "")}...
             <a target="_blank" rel="noopener noreferrer" href={data.allWordpressPost.nodes[1].excerpt.match(/href="([^"]*)/g)[0].replace('href="', "")}>see more</a>
           </Styled.p>          
         </article>
         </div>
         
       </div>
-      <div sx={{display: ["block", "flex", "flex", "flex"], justifyContent: "center", paddingX: "5%",}}>
+      
+      <div sx={{display: ["flex", "flex", "flex", "flex"], justifyContent: "center", paddingX: "5%",}}>
         <Button link="https://blog.openj9.org/" primary={false} target={true}>See all blogs</Button>
       </div>
       
@@ -167,32 +119,18 @@ export default ({data}) => (
 
 export const query = graphql`
 {
-  allUpcomingEventsYaml(sort: {fields: date, order: ASC} limit: 5) {
-    edges {
-      node {
-        id
-        title
-        link
-        conference
-        date(formatString:"DD MMMM YYYY")
-        location
-        speaker
-        description
-      }
+  allWordpressPost(limit: 2) {
+    nodes {
+      title
+      date(formatString:"DD MMMM YYYY")
+      excerpt
     }
   },
-    allWordpressPost(limit: 2) {
-      nodes {
-        title
-        date(formatString:"DD MMMM YYYY")
-        excerpt
-      }
-    },
-    allMarkdownRemark {
-      edges {
-        node {
-          html
-        }
+  allMarkdownRemark {
+    edges {
+      node {
+        html
       }
     }
+  }
 }`
