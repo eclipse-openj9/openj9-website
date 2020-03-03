@@ -22,13 +22,14 @@ export default () => (
           borderRadius: "card"
         }}
       >
-        <Styled.h3>Our story</Styled.h3>
+        <Styled.h2>Our future</Styled.h2>
         <Styled.p>
-          Eclipse OpenJ9 is a high performance, scalable, Java virtual machine (JVM) implementation that represents hundreds 
-          of person-years of effort. Contributed to the Eclipse project by IBM, the OpenJ9 JVM underpins the IBM SDK, Java 
-          Technology Edition product that is a core component of many IBM Enterprise software products. Continued development 
-          of OpenJ9 at the Eclipse foundation ensures wider collaboration, fresh innovation, and the opportunity to influence 
-          the development of OpenJ9 for the next generation of Java applications.
+          This section could be used as a way to communicate to potential
+          contributors about the OpenJ9 project, and the important role that
+          open source contributors play in helping to make OpenJ9 a resource
+          that developers not only use, but contriibute to as well. The last
+          line of this paragraph can be an invitation to check out whatever docs
+          or content that would help them learn more about Contributor Guidelines for OpenJ9.
         </Styled.p>
       </div>
     </div>
@@ -133,15 +134,13 @@ export default () => (
       }}
     >
       <div sx={{ marginTop: "3rem", marginLeft: "5%"}}>
-        <Styled.h2 sx={{fontSize:5}}>Our future</Styled.h2>
+        <Styled.h2 sx={{fontSize:5}}>Our story</Styled.h2>
         <Styled.p sx={{ fontSize: 2, color:"black", width:"85%", maxHeight:"10%" }}>
-          This section could be used as a way to communicate to potential
-          contributors about the OpenJ9 project, and the important role that
-          open source contributors play in helping to make OpenJ9 a resource
-          that developers not only use, but contriibute to as well. The last
-          line of this paragraph can be an invitation to check out whatever docs
-          or content that would help them learn more about Contributor
-          Guidelines for OpenJ9.
+          Eclipse OpenJ9 is a high performance, scalable, Java virtual machine (JVM) implementation that represents hundreds 
+          of person-years of effort. Contributed to the Eclipse project by IBM, the OpenJ9 JVM underpins the IBM SDK, Java 
+          Technology Edition product that is a core component of many IBM Enterprise software products. Continued development 
+          of OpenJ9 at the Eclipse foundation ensures wider collaboration, fresh innovation, and the opportunity to influence 
+          the development of OpenJ9 for the next generation of Java applications.
         </Styled.p>
       </div>
     </div>

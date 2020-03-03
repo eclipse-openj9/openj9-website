@@ -21,7 +21,6 @@
     "gatsby-source-filesystem": "^2.1.48",
     "gatsby-source-wordpress": "^3.1.60",
     "gatsby-transformer-remark": "^2.6.50",
-    "gatsby-transformer-yaml": "^2.2.23",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "theme-ui": "^0.3.1"
