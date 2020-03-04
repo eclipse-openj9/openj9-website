@@ -96,6 +96,54 @@ The project website pages cannot be redistributed
 
 <div class="f-section-item" id="openj90180">
 <div class="f-content-container">
+<h3>Eclipse OpenJ9 version 0.19.0 released</h3>
+<p><i>17 March 2020</i>
+</p>
+<p>OpenJ9 version 0.19.0 supports only OpenJDK version 14, the latest release of the Java SE Platform. OpenJDK builds that contain Eclipse OpenJ9 version 0.19.0 are now available from the AdoptOpenJDK community project:
+</p>
+<p align=center><a href="https://adoptopenjdk.net/releases.html?variant=openjdk14&jvmVariant=openj9" target="_blank">OpenJDK version 14 <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i></a>
+</p>
+
+<p>As well as providing support for the latest release of OpenJDK, here are some of the new features and other changes that we've introduced in version 0.19.0 of OpenJ9.
+</p>
+<p>Do let us know how well these work for you by posting in our <a href="https://join.slack.com/t/openj9/shared_invite/enQtNDU4MDI4Mjk0MTk2LWVhNTMzMGY1N2JkODQ1OWE0NTNmZjM4ZDcxOTBiMjk3NGFjM2U0ZDNhMmY0MDZlNzU0ZjAyNzQ1ODlmYjg3MjA" target="_blank"> slack workspace</a><i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i>.
+<ul>
+<li>There are a number of performance improvements in this releases, including:
+<ul>
+<li>Up to 10% better application rampup on multi-CPU systems due to the invocation count threshold being lowered for JIT compilation, when shared classes are not in use.</li>
+<li>Improvements to the class relationship verifier (originally released in version 0.17.0) with shared classes have seen a doubling of the performance benefit from the option <tt style="white-space:nowrap">-XX:+ClassRelationshipVerifier</tt>.</li>
+</ul>
+</li>
+<li>A new command line option, <tt style="white-space:nowrap">-XX:+PrintCodeCache</tt>, allows you to print the code cache memory usage to <tt>stderr</tt> when the VM shuts down.
+</li>
+<li>
+A 1 G <tt>char[]</tt> or larger <tt>StringBuffer</tt> and <tt>StringBuilder</tt> now immediately grows to the maximum possible size for <i>all</i> current versions of Java, including OpenJDK 8. For OpenJDK 8 only, you can revert to the previous behavior of growing only as much as necessary to accommodate the <tt>String</tt> being added, by using the option <tt style="white-space:nowrap">-Djava.lang.stringBuffer.growAggressively=false</tt>.
+</li>
+<li>The <b>jpackage</b> utility is described in JEP 343 as a tool that "packages a Java application into a platform-specific package that includes all of the necessary dependencies." Full details of the tool are available at <a href="https://openjdk.java.net/jeps/343">JEP 343: Packaging Tool</a>. Be aware that <b>jpackage</b> is supported on only the following OpenJ9 platforms: Linux&reg;, macOS&reg;, and Windows&trade;. It is <i>not</i> supported on AIX&reg; or z/OS&reg; platforms.
+</li>
+</ul>
+
+To read more about the changes in version 0.19.0, see the <a href="https://www.eclipse.org/openj9/docs/version0.19/">Release notes</a> in the OpenJ9 user documentation, which will also give you detailed information about the options mentioned here.
+
+</p>
+</br>
+
+<!-- Keep as-is except edit ID in URL and change "text=". Ensure no indents! -->
+
+<!--<a href="https://twitter.com/share?
+url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openj90190&
+via=openj9&
+hashtags=openj9,java&
+text=V0.19.0%20released;%20with%20support%20for%20OpenJDK%20version%2014"
+class="twitter-share-button"
+data-show-count="false">Tweet</a>-->
+
+</div>
+</div>
+
+
+<div class="f-section-item" id="openj90180">
+<div class="f-content-container">
 <h3>Eclipse OpenJ9 version 0.18.0 released</h3>
 <p><i>20th January 2020</i>
 </p>
@@ -112,7 +160,7 @@ The project website pages cannot be redistributed
 <ul>
 <li><b>An independent implementation of the jstat tool</b> for retrieving statistics on a VM is now included, for compatibility with the HotSpot implementation.
 </li>
-<li><b>The jextract tool</b> is now available on macOS&reg; platforms (as well as AIX&reg; and Linux&reg;) for _all_ current versions of OpenJDK: 8, 11, and 13.
+<li><b>The jextract tool</b> is now available on macOS platforms (as well as AIX and Linux) for _all_ current versions of OpenJDK: 8, 11, and 13.
 </li>
 <li>Similarly, <b>support for Concurrent scavenge mode (<tt>-Xgc:concurrentScavenge</tt>)</b> is now extended to macOS as well. (Also, you might not be aware that you can use the previously undocumented option <tt>-Xgc:noConcurrentScavenge</tt> to disable pause-less garbage collection.)
 </li>
@@ -314,7 +362,7 @@ data-show-count="false">Tweet</a>-->
       see <a href="https://www.eclipse.org/openj9/docs/adoptopenjdk/">AdoptOpenJDK builds</a>.
       </p>
     <p>We've recently been working on improving the performance of JVMTI watched fields. So far, the work is complete only on x86 platforms
-    (Windows&reg;, macOS, and Linux), but the results are impressive. A customer who tested adding and removing field watches with
+    (Windows, macOS, and Linux), but the results are impressive. A customer who tested adding and removing field watches with
     the new code reported a ~40X improvement for adding field watches and a ~15X improvement for removing field watches. The function is not
     currently enabled by default, but if you are interested in giving it a try, you can enable it with the <a href="https://www.eclipse.org/openj9/docs/xxjitinlinewatches/" target="_blank">
       -XX:[+|-]JITInlineWatches</a> option.</p>
