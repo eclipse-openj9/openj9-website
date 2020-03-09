@@ -39,13 +39,26 @@ export default ({data}) => (
           backgroundColor: "white",
           paddingX: "5%",
           paddingTop: "5%",
-          paddingBottom: "3%",
+          paddingBottom: "5%",
           borderRadius: "card"        
         }}
       >
-          <article>
+          <article sx={{width:"100%"}}>
             <Styled.h2>Latest release</Styled.h2>
-            <Styled.p sx={{minHeight: ["10rem", "13rem", "10rem", "8rem"], marginBottom: ["3rem", "0", 0, 0]}} dangerouslySetInnerHTML={{__html: ((data.allMarkdownRemark.edges[0].node.html))}}>
+            <Styled.p sx={{
+                wordWrap: "break-word",
+                minHeight: ["10rem", "13rem", "10rem", "8rem"], 
+                marginBottom: "3rem",
+                 p: {
+                  margin: "1rem 0"
+                 },
+                 ul: {
+                   marginLeft:"5%",
+                   p:{
+                    margin:0
+                   }
+                 }
+              }} dangerouslySetInnerHTML={{__html: ((data.allMarkdownRemark.edges[0].node.html))}}>
             </Styled.p>
             
             <Button link="https://www.eclipse.org/openj9/docs/openj9_releases/" primary={false} target={true}>New release info</Button>
