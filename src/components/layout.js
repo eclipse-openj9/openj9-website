@@ -13,7 +13,6 @@ export default ({ children, isHome }) => (
         "*": { padding: 0, margin: 0 }
       })}
     />
-     
     <Header isHome={isHome} />
     <MobileNav />
     {children}

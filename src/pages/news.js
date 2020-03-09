@@ -45,8 +45,7 @@ export default ({data}) => (
       >
           <article>
             <Styled.h2>Latest release</Styled.h2>
-            <Styled.p sx={{minHeight: ["10rem", "13rem", "10rem", "8rem"], width:"90%", marginBottom: ["3rem", "0", 0, 0]}}>
-              {((data.allMarkdownRemark.edges[0].node.html).replace(/(<([^>]+)>)/ig,""))}
+            <Styled.p sx={{minHeight: ["10rem", "13rem", "10rem", "8rem"], marginBottom: ["3rem", "0", 0, 0]}} dangerouslySetInnerHTML={{__html: ((data.allMarkdownRemark.edges[0].node.html))}}>
             </Styled.p>
             
             <Button link="https://www.eclipse.org/openj9/docs/openj9_releases/" primary={false} target={true}>New release info</Button>
