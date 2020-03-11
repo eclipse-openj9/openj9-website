@@ -38,7 +38,32 @@ module.exports = {
         path: `${__dirname}//news-page-content`,
       },
     },
-    `gatsby-transformer-remark`,
+    // {
+    //   resolve: `gatsby-plugin-google-analytics`,
+    //   options: {
+    //     // The property ID; the tracking code won't be generated without it
+    //     trackingId: "UA-105616558-3",
+    //     // Defines where to place the tracking script - `true` in the head and `false` in the body
+    //     head: false,
+    //     // Setting this parameter is optional
+    //     anonymize: true,
+    //   },
+    // },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+        {
+          resolve: "gatsby-remark-external-links",
+          options: {
+            target: "_blank",
+            rel: "nofollow"
+           }
+          }
+        ]
+      }
+    },
+    
 ],
 pathPrefix: "/openj9-website",
 };
