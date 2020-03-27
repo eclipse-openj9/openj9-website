@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="250" height="120" viewBox="0 0 250 120">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="88" height="73" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect width="90" height="67" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Group_1" data-name="Group 1" transform="translate(-648 -519)">
+    <rect id="Rectangle_117" data-name="Rectangle 117" width="250" height="120" transform="translate(648 519)" fill="#434343"/>
+    <g id="Rectangle_118" data-name="Rectangle 118" transform="translate(658 527)" fill="#434343" stroke="#fff" stroke-width="1">
+      <rect width="100" height="85" stroke="none"/>
+      <rect x="0.5" y="0.5" width="99" height="84" fill="none"/>
+    </g>
+    <g id="Rectangle_119" data-name="Rectangle 119" transform="translate(788 527)" fill="#434343" stroke="#fff" stroke-width="1">
+      <rect width="100" height="85" stroke="none"/>
+      <rect x="0.5" y="0.5" width="99" height="84" fill="none"/>
+    </g>
+    <text id="OpenJ9" transform="translate(710 628)" fill="#fff" font-size="16" font-family="HelveticaNeue, Helvetica Neue"><tspan x="-28.168" y="0">OpenJ9</tspan></text>
+    <text id="HotSpot" transform="translate(836 628)" fill="#fff" font-size="16" font-family="HelveticaNeue, Helvetica Neue"><tspan x="-29.928" y="0">HotSpot</tspan></text>
+    <g id="Repeat_Grid_17" data-name="Repeat Grid 17" transform="translate(664 533)" clip-path="url(#clip-path)">
+      <g transform="translate(-98 -316)">
+        <rect id="Rectangle_9" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-83 -316)">
+        <rect id="Rectangle_9-2" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-68 -316)">
+        <rect id="Rectangle_9-3" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-53 -316)">
+        <rect id="Rectangle_9-4" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-38 -316)">
+        <rect id="Rectangle_9-5" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-23 -316)">
+        <rect id="Rectangle_9-6" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-98 -301)">
+        <rect id="Rectangle_9-7" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-83 -301)">
+        <rect id="Rectangle_9-8" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-68 -301)">
+        <rect id="Rectangle_9-9" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-53 -301)">
+        <rect id="Rectangle_9-10" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-38 -301)">
+        <rect id="Rectangle_9-11" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-23 -301)">
+        <rect id="Rectangle_9-12" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-98 -286)">
+        <rect id="Rectangle_9-13" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-83 -286)">
+        <rect id="Rectangle_9-14" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-68 -286)">
+        <rect id="Rectangle_9-15" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-53 -286)">
+        <rect id="Rectangle_9-16" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-38 -286)">
+        <rect id="Rectangle_9-17" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-23 -286)">
+        <rect id="Rectangle_9-18" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-98 -271)">
+        <rect id="Rectangle_9-19" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-83 -271)">
+        <rect id="Rectangle_9-20" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-68 -271)">
+        <rect id="Rectangle_9-21" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-53 -271)">
+        <rect id="Rectangle_9-22" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-38 -271)">
+        <rect id="Rectangle_9-23" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-23 -271)">
+        <rect id="Rectangle_9-24" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-98 -256)">
+        <rect id="Rectangle_9-25" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-83 -256)">
+        <rect id="Rectangle_9-26" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-68 -256)">
+        <rect id="Rectangle_9-27" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-53 -256)">
+        <rect id="Rectangle_9-28" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-38 -256)">
+        <rect id="Rectangle_9-29" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+      <g transform="translate(-23 -256)">
+        <rect id="Rectangle_9-30" data-name="Rectangle 9" width="13" height="13" transform="translate(98 316)" fill="#5da7a3"/>
+      </g>
+    </g>
+    <g id="Repeat_Grid_18" data-name="Repeat Grid 18" transform="translate(793 536)" clip-path="url(#clip-path-2)">
+      <g transform="translate(-231 -319)">
+        <rect id="Rectangle_10" data-name="Rectangle 10" width="21" height="21" transform="translate(231 319)" fill="#ea6753"/>
+      </g>
+      <g transform="translate(-208 -319)">
+        <rect id="Rectangle_10-2" data-name="Rectangle 10" width="21" height="21" transform="translate(231 319)" fill="#ea6753"/>
+      </g>
+      <g transform="translate(-185 -319)">
+        <rect id="Rectangle_10-3" data-name="Rectangle 10" width="21" height="21" transform="translate(231 319)" fill="#ea6753"/>
+      </g>
+      <g transform="translate(-162 -319)">
+        <rect id="Rectangle_10-4" data-name="Rectangle 10" width="21" height="21" transform="translate(231 319)" fill="#ea6753"/>
+      </g>
+      <g transform="translate(-231 -296)">
+        <rect id="Rectangle_10-5" data-name="Rectangle 10" width="21" height="21" transform="translate(231 319)" fill="#ea6753"/>
+      </g>
+      <g transform="translate(-208 -296)">
+        <rect id="Rectangle_10-6" data-name="Rectangle 10" width="21" height="21" transform="translate(231 319)" fill="#ea6753"/>
+      </g>
+      <g transform="translate(-185 -296)">
+        <rect id="Rectangle_10-7" data-name="Rectangle 10" width="21" height="21" transform="translate(231 319)" fill="#ea6753"/>
+      </g>
+      <g transform="translate(-162 -296)">
+        <rect id="Rectangle_10-8" data-name="Rectangle 10" width="21" height="21" transform="translate(231 319)" fill="#ea6753"/>
+      </g>
+      <g transform="translate(-231 -273)">
+        <rect id="Rectangle_10-9" data-name="Rectangle 10" width="21" height="21" transform="translate(231 319)" fill="#ea6753"/>
+      </g>
+      <g transform="translate(-208 -273)">
+        <rect id="Rectangle_10-10" data-name="Rectangle 10" width="21" height="21" transform="translate(231 319)" fill="#ea6753"/>
+      </g>
+      <g transform="translate(-185 -273)">
+        <rect id="Rectangle_10-11" data-name="Rectangle 10" width="21" height="21" transform="translate(231 319)" fill="#ea6753"/>
+      </g>
+      <g transform="translate(-162 -273)">
+        <rect id="Rectangle_10-12" data-name="Rectangle 10" width="21" height="21" transform="translate(231 319)" fill="#ea6753"/>
+      </g>
+    </g>
+  </g>
+</svg>

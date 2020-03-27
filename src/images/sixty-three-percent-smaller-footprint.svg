@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="250" height="120" viewBox="0 0 250 120">
+  <g id="Group_4" data-name="Group 4" transform="translate(-273 -518)">
+    <rect id="Rectangle_46" data-name="Rectangle 46" width="250" height="120" transform="translate(273 518)" fill="#434343"/>
+    <g id="Rectangle_47" data-name="Rectangle 47" transform="translate(283 526)" fill="#434343" stroke="#fff" stroke-width="1">
+      <rect width="100" height="85" stroke="none"/>
+      <rect x="0.5" y="0.5" width="99" height="84" fill="none"/>
+    </g>
+    <g id="Rectangle_48" data-name="Rectangle 48" transform="translate(413 526)" fill="#434343" stroke="#fff" stroke-width="1">
+      <rect width="100" height="85" stroke="none"/>
+      <rect x="0.5" y="0.5" width="99" height="84" fill="none"/>
+    </g>
+    <text id="OpenJ9" transform="translate(335 627)" fill="#fff" font-size="16" font-family="HelveticaNeue, Helvetica Neue"><tspan x="-28.168" y="0">OpenJ9</tspan></text>
+    <text id="HotSpot" transform="translate(461 627)" fill="#fff" font-size="16" font-family="HelveticaNeue, Helvetica Neue"><tspan x="-29.928" y="0">HotSpot</tspan></text>
+    <path id="Path_8" data-name="Path 8" d="M6816.578,368.236l97.944-39.33v39.546Z" transform="translate(-6532.591 241.729)" fill="#5da7a3"/>
+    <path id="Path_10" data-name="Path 10" d="M6816.578,363.576l97.944-70.015v70.215Z" transform="translate(-6402.591 246.405)" fill="#ea6753"/>
+  </g>
+</svg>
