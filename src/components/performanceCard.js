@@ -41,7 +41,7 @@ const PerformanceCard = ({ children, flex, primary, image, heading }) => {
         alignItems: "center",
       }}
     >
-        <h5 sx={{fontSize:"0.9rem",marginTop:"-2rem" }}>{heading}</h5>
+        <h5 sx={{fontSize:"1.1rem",margin:"-1rem 1rem 0 1rem", textAlign:"center", height:"3rem",}}>{heading}</h5>
         <img sx={{
           margin:"1rem",
           }}src={image} alt={heading + " graph"} ></img>
