@@ -1,12 +1,34 @@
+// Copyright (c) 2017, 2020 IBM Corp. and others
+
+// This program and the accompanying materials are made available under
+// the terms of the Eclipse Public License 2.0 which accompanies this
+// distribution and is available at https://www.eclipse.org/legal/epl-2.0/
+// or the Apache License, Version 2.0 which accompanies this distribution and
+// is available at https://www.apache.org/licenses/LICENSE-2.0.
+
+// This Source Code may also be made available under the following
+// Secondary Licenses when the conditions for such availability set
+// forth in the Eclipse Public License, v. 2.0 are satisfied: GNU
+// General Public License, version 2 with the GNU Classpath
+// Exception [1] and GNU General Public License, version 2 with the
+// OpenJDK Assembly Exception [2].
+
+// [1] https://www.gnu.org/software/classpath/license.html
+// [2] http://openjdk.java.net/legal/assembly-exception.html
+
+// SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
+
+// The project website pages cannot be redistributed
+
 import Layout from "../components/layout";
 
 /** @jsx jsx */
 import { jsx, Styled } from "theme-ui";
 
-import FortyTwoPercentStartup from "../images/forty-two-percent-startup.png";
-import SixtySixPercentSmallerFootprint from "../images/sixty-six-percent-smaller-footprint.png";
-import TwentyEightPercentFaster from "../images/twenty-eight-percent-faster.png";
-import SixtyThreePercentSmallerFootprint from "../images/sixty-three-percent-smaller-footprint.png";
+import FortyTwoPercentStartup from "../images/forty-two-percent-startup.svg";
+import SixtySixPercentSmallerFootprint from "../images/sixty-six-percent-smaller-footprint.svg";
+import TwentyEightPercentFaster from "../images/twenty-eight-percent-faster.svg";
+import SixtyThreePercentSmallerFootprint from "../images/sixty-three-percent-smaller-footprint.svg";
 import PerformanceCard from "../components/performanceCard";
 
 export default () => (
@@ -38,19 +60,19 @@ export default () => (
           flexWrap: "wrap"
         }}
       >
-        <PerformanceCard image={SixtySixPercentSmallerFootprint} heading="66% smaller footprint after startup" flex="0 0 260px" primary={true}> 
+        <PerformanceCard image={SixtySixPercentSmallerFootprint} heading="66% smaller footprint after startup" flex="0 0 250px" primary={true}> 
          <p>OpenJ9 is highly optimized for cloud workloads, where minimising memory footprint is important.
            Even with other optimizations enabled, the footprint stays about the same.</p>
         </PerformanceCard>
-        <PerformanceCard image={SixtyThreePercentSmallerFootprint} heading="63% smaller footprint during ramp up" flex="0 0 260px" primary={true}> 
+        <PerformanceCard image={SixtyThreePercentSmallerFootprint} heading="63% smaller footprint during ramp up" flex="0 0 250px" primary={true}> 
         <p>Memory footprint increases rapidly when load is applied, but at steady state,
           OpenJDK 8 with OpenJ9 used around 63% less physical memory than OpenJDK 8 with HotSpot.</p>
         </PerformanceCard>
-        <PerformanceCard image={FortyTwoPercentStartup} heading="42% faster startup time" flex="0 0 260px" primary={true}> 
+        <PerformanceCard image={FortyTwoPercentStartup} heading="42% faster startup time" flex="0 0 250px" primary={true}> 
         <p>Shared classes and Ahead-of-Time (AOT) technologies typically reduce startup time.
           By using -Xquickstart mode as well, you can reduce startup time by up to 42%.</p>
         </PerformanceCard>
-        <PerformanceCard image={TwentyEightPercentFaster} heading="Faster ramp-up time in the cloud" flex="0 0 260px" primary={true}> 
+        <PerformanceCard image={TwentyEightPercentFaster} heading="Faster ramp-up time in the cloud" flex="0 0 250px" primary={true}> 
         <p>OpenJ9 reaches peak throughput on a single CPU core in 8.5 minutes compared with 30 minutes for Hotspot.
           Doing more work more quickly is important for short-lived VMs running in resource-constrained environments like the cloud.</p>
         </PerformanceCard>
@@ -63,11 +85,11 @@ export default () => (
           flexWrap: "wrap"
         }}
       >
-        <PerformanceCard image={SixtySixPercentSmallerFootprint} heading="66% smaller footprint after startup" flex="0 0 260px" primary={true}> 
+        <PerformanceCard image={SixtySixPercentSmallerFootprint} heading="66% smaller footprint after startup" flex="0 0 250px" primary={true}> 
         <p>OpenJ9 is highly optimized for cloud workloads, where minimising memory footprint is important.
           Even with other optimizations enabled, the footprint stays about the same.</p>
         </PerformanceCard>
-        <PerformanceCard image={SixtyThreePercentSmallerFootprint} heading="63% smaller footprint during ramp up" flex="0 0 260px" primary={true}> 
+        <PerformanceCard image={SixtyThreePercentSmallerFootprint} heading="63% smaller footprint during ramp up" flex="0 0 250px" primary={true}> 
         <p>Memory footprint increases rapidly when load is applied,
           but at steady state, OpenJDK 8 with OpenJ9 used around 63% less physical memory than OpenJDK 8 with HotSpot.</p>
         </PerformanceCard>
@@ -79,11 +101,11 @@ export default () => (
           flexWrap: "wrap"
         }}
       >
-        <PerformanceCard image={FortyTwoPercentStartup} heading="42% faster startup time" flex="0 0 260px" primary={true}> 
+        <PerformanceCard image={FortyTwoPercentStartup} heading="42% faster startup time" flex="0 0 250px" primary={true}> 
         <p>Shared classes and Ahead-of-Time (AOT) technologies typically reduce startup time.
           By using -Xquickstart mode as well, you can reduce startup time by up to 42%.</p>
         </PerformanceCard>
-        <PerformanceCard image={TwentyEightPercentFaster} heading="Faster ramp-up time in the cloud" flex="0 0 260px" primary={true}> 
+        <PerformanceCard image={TwentyEightPercentFaster} heading="Faster ramp-up time in the cloud" flex="0 0 250px" primary={true}> 
         <p>OpenJ9 reaches peak throughput on a single CPU core in 8.5 minutes compared with 30 minutes for Hotspot.
           Doing more work more quickly is important for short-lived VMs running in resource-constrained environments like the cloud.</p>
         </PerformanceCard>
@@ -101,7 +123,7 @@ export default () => (
         alignItems: "center",
         justifyContent: "center",
         textDecoration: "none",
-        width:"260px",
+        width:"250px",
         marginTop:"2rem"
         }} 
         href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader7.md" rel="noopener noreferrer" target="_blank">Read more performance details</a>
