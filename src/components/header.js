@@ -67,6 +67,9 @@ export default ({ isHome }) => (
           <a href="https://www.eclipse.org/openj9/docs/" rel="noopener noreferrer" target="_blank">Docs</a>
         </li>
         <li>
+          <Link to="/performance">Performance</Link>
+        </li>
+        <li>
           <Link to="/news">News</Link>
         </li>
       </ul>
