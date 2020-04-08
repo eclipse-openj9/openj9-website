@@ -94,7 +94,54 @@ The project website pages cannot be redistributed
       </div>
 
 
-<div class="f-section-item" id="openj90180">
+      <div class="f-section-item" id="openj90200">
+      <div class="f-content-container">
+      <h3>Eclipse OpenJ9 version 0.20.0 released</h3>
+      <p><i>14 April 2020</i>
+      </p>
+      <p>OpenJ9 version 0.20.0 supports OpenJDK version 8, 11, and 14. OpenJDK builds that contain version 0.20.0 are now available from the AdoptOpenJDK community project:
+      </p>
+      <p align=center><a href="https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9" target="_blank">OpenJDK version 8 <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i></a>
+      <br/><a href="https://adoptopenjdk.net/releases.html?variant=openjdk11&jvmVariant=openj9" target="_blank">OpenJDK version 11 <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i></a>
+      <br/><a href="https://adoptopenjdk.net/releases.html?variant=openjdk13&jvmVariant=openj9" target="_blank">OpenJDK version 13 <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i></a>
+      </p>
+
+      <p>In addition to the usual Linux distributions available, we're pleased to introduce an early access release of OpenJDK 11 for the 64-bit ARM
+      architecture (AArch64). You can find this binary on the <a href="https://adoptopenjdk.net/releases.html?variant=openjdk11&jvmVariant=openj9" target="_blank">Latest Release <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i></a> page.
+      We'd like as many people as possible to try it out and we'd really appreciate any feedback you have. If you do find a problem that we're not
+      already trying to fix (see <a href="https://github.com/eclipse/openj9/blob/master/doc/release-notes/0.20/0.20.md#known-issues" target="_blank">OpenJ9 Known Issues <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i></a>), please open
+      an issue at the <a href="https://github.com/eclipse/openj9/issues" target="_blank">OpenJ9 GitHub repo <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i></a>.</p>
+
+      <p>In this release, we've introduced a new option (<tt>-XX:+GlobalLockReservation</tt>) that aims to speed up the handling of object locks. Heuristics are
+      used to try and determine when an object will be exclusively locked by a single thread, so that faster, more specialized code can be used for
+      locking the object. Performance improvements are expected for applications with lots of uncontended locked objects. On the IBM Power Systems&trade; platform,
+      we have observed improvements of up to 12% on some big data queries that are part of the
+      <a href="https://relational.fit.cvut.cz/dataset/TPCDS" target="_blank">TPCDS suite <i class="fa fa-external-link" aria-hidden="true" style="color: #407471;opacity: 0.7; font-size:.9rem"></i></a>.</p>
+
+      <p>We've also made improvements to several cryptographic algorithms on the IBM Power Systems platform with almost a 6x performance improvement when verifying with
+      the ECDSA algorithm and a 10-20% improvement when signing with the RSA, ECDH, and ECDSA algorithms.</p>
+
+      <p>OpenJ9 Version 0.20.0 also contains a few improvements to existing command line options, some of which change behavior, so make sure
+      you read the <a href="https://www.eclipse.org/openj9/docs/version0.20/" target="_blank"> Version 0.20.0 release notes</a>. If you are obtaining OpenJDK 8 or 11 from the
+      AdoptOpenJDK community, you should also read the <a href="https://www.eclipse.org/openj9/docs/version0.19/" target="_blank">Version 0.19.0 release notes</a>
+      to learn about all the other features and changes in the VM since their last OpenJDK 8 and 11 binaries were made available.</p>
+      </br>
+
+      <!-- Keep as-is except edit ID in URL and change "text=". Ensure no indents! -->
+
+      <!--<a href="https://twitter.com/share?
+      url=https%3A%2F%2Fwww.eclipse.org%2Fopenj9%2Foj9_whatsnew.html%23openj90190&
+      via=openj9&
+      hashtags=openj9,java&
+      text=V0.19.0%20released;%20with%20support%20for%20OpenJDK%20version%2014"
+      class="twitter-share-button"
+      data-show-count="false">Tweet</a>-->
+
+      </div>
+      </div>
+
+
+<div class="f-section-item" id="openj90190">
 <div class="f-content-container">
 <h3>Eclipse OpenJ9 version 0.19.0 released</h3>
 <p><i>17 March 2020</i>
