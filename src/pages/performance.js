@@ -74,7 +74,7 @@ export default () => (
         </PerformanceCard>
         <PerformanceCard image={TwentyEightPercentFaster} heading="Faster ramp-up time in the cloud" flex="0 0 250px" primary={true}> 
         <p>OpenJ9 reaches peak throughput on a single CPU core in 8.5 minutes compared with 30 minutes for Hotspot.
-          Doing more work more quickly is important for short-lived VMs running in resource-constrained environments like the cloud.</p>
+          Ideal for short-lived VMs running in the cloud.</p>
         </PerformanceCard>
       </div>
 
@@ -107,7 +107,7 @@ export default () => (
         </PerformanceCard>
         <PerformanceCard image={TwentyEightPercentFaster} heading="Faster ramp-up time in the cloud" flex="0 0 250px" primary={true}> 
         <p>OpenJ9 reaches peak throughput on a single CPU core in 8.5 minutes compared with 30 minutes for Hotspot.
-          Doing more work more quickly is important for short-lived VMs running in resource-constrained environments like the cloud.</p>
+          Ideal for short-lived VMs running in the cloud.</p>
         </PerformanceCard>
       </div>
       <div
