@@ -53,9 +53,10 @@ export default () => (
       <Styled.p>
         The result is that OpenJDK 8 with OpenJ9 demonstrates significantly better performance than with Hotspot.
       </Styled.p>
+
       <div
         sx={{
-          display: ["flex","none","none", "flex"],
+          display: "flex",
           justifyContent: "space-between",
           flexWrap: "wrap"
         }}
@@ -68,39 +69,6 @@ export default () => (
         <p>Memory footprint increases rapidly when load is applied, but at steady state,
           OpenJDK 8 with OpenJ9 used around 63% less physical memory than OpenJDK 8 with HotSpot.</p>
         </PerformanceCard>
-        <PerformanceCard image={FortyTwoPercentStartup} heading="42% faster startup time" flex="0 0 250px" primary={true}> 
-        <p>Shared classes and Ahead-of-Time (AOT) technologies typically reduce startup time.
-          By using -Xquickstart mode as well, you can reduce startup time by up to 42%.</p>
-        </PerformanceCard>
-        <PerformanceCard image={TwentyEightPercentFaster} heading="Faster ramp-up time in the cloud" flex="0 0 250px" primary={true}> 
-        <p>OpenJ9 reaches peak throughput on a single CPU core in 8.5 minutes compared with 30 minutes for Hotspot.
-          Ideal for short-lived VMs running in the cloud.</p>
-        </PerformanceCard>
-      </div>
-
-      <div
-        sx={{
-          display: ["none", "flex", "flex", "none"],
-          justifyContent: "space-around",
-          flexWrap: "wrap"
-        }}
-      >
-        <PerformanceCard image={SixtySixPercentSmallerFootprint} heading="66% smaller footprint after startup" flex="0 0 250px" primary={true}> 
-        <p>OpenJ9 is highly optimized for cloud workloads, where minimising memory footprint is important.
-          Even with other optimizations enabled, the footprint stays about the same.</p>
-        </PerformanceCard>
-        <PerformanceCard image={SixtyThreePercentSmallerFootprint} heading="63% smaller footprint during ramp up" flex="0 0 250px" primary={true}> 
-        <p>Memory footprint increases rapidly when load is applied,
-          but at steady state, OpenJDK 8 with OpenJ9 used around 63% less physical memory than OpenJDK 8 with HotSpot.</p>
-        </PerformanceCard>
-        </div>
-        <div
-        sx={{
-          display: ["none", "flex", "flex", "none"],
-          justifyContent: "space-around",
-          flexWrap: "wrap"
-        }}
-      >
         <PerformanceCard image={FortyTwoPercentStartup} heading="42% faster startup time" flex="0 0 250px" primary={true}> 
         <p>Shared classes and Ahead-of-Time (AOT) technologies typically reduce startup time.
           By using -Xquickstart mode as well, you can reduce startup time by up to 42%.</p>
