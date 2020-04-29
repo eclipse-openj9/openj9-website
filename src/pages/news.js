@@ -67,7 +67,7 @@ export default ({data}) => (
       >
           <article sx={{width:"100%"}}>
             <Styled.h2>Latest release</Styled.h2>
-            <Styled.p sx={{
+            <div sx={{
                 wordWrap: "break-word",
                 minHeight: ["10rem", "13rem", "10rem", "8rem"], 
                 marginBottom: "3rem",
@@ -81,7 +81,7 @@ export default ({data}) => (
                    }
                  }
               }} dangerouslySetInnerHTML={{__html: ((data.allMarkdownRemark.edges[0].node.html))}}>
-            </Styled.p>
+            </div>
             
             <Button link="https://www.eclipse.org/openj9/docs/openj9_releases/" primary={false} target={true}>New release info</Button>
           </article>
