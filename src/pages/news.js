@@ -39,7 +39,7 @@ export default ({data}) => (
         }}
       >
         <Styled.p>
-          Find out what's happening at the project. Read about the highlights of our latest release and see upcoming events that we're involved in.
+          Find out what's happening at the project. Read about the highlights of our latest release.
           Catch the latest blog posts from our blog site; get top tips or deep dives about key features of OpenJ9 or simply read about experiences of working in the community.
         </Styled.p>
       </div>

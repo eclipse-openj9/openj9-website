@@ -22,25 +22,20 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 The project website pages cannot be redistributed
 -->
 
-### Eclipse OpenJ9 version 0.19.0 released   
+### Eclipse OpenJ9 version 0.20.0 released 
 
-*17 March 2020*
+*17 April 2020*
 
-OpenJ9 version 0.19.0 supports only OpenJDK version 14, the latest release of the Java SE Platform. OpenJDK builds that contain Eclipse OpenJ9 version 0.19.0 are now available from the AdoptOpenJDK community project:
+OpenJ9 version 0.20.0 supports OpenJDK version 8, 11, and 14. OpenJDK builds that contain version 0.20.0 are now available from the AdoptOpenJDK community project:
 
-[OpenJDK version 14](https://adoptopenjdk.net/releases.html?variant=openjdk14&jvmVariant=openj9)
+- [OpenJDK version 8](https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9)
+- [OpenJDK version 11](https://adoptopenjdk.net/releases.html?variant=openjdk11&jvmVariant=openj9)
+- [OpenJDK version 14](https://adoptopenjdk.net/releases.html?variant=openjdk14&jvmVariant=openj9)
 
-As well as providing support for the latest release of OpenJDK, here are some of the new features and other changes that we've introduced in version 0.19.0 of OpenJ9.
+In addition to the usual Linux distributions available, we're pleased to introduce an early access release of OpenJDK 11 for the 64-bit ARM architecture (AArch64). You can find this binary on the [Latest Release](https://adoptopenjdk.net/releases.html?variant=openjdk11&jvmVariant=openj9) page. We'd like as many people as possible to try it out and we'd really appreciate any feedback you have. If you do find a problem that we're not already trying to fix (see [OpenJ9 Known Issues](https://github.com/eclipse/openj9/blob/master/doc/release-notes/0.20/0.20.md#known-issues)), please open an issue at the [OpenJ9 GitHub repo](https://github.com/eclipse/openj9/issues).
 
-Do let us know how well these work for you by posting in our [slack workspace](https://openj9.slack.com/join/shared_invite/enQtNDU4MDI4Mjk0MTk2LWVhNTMzMGY1N2JkODQ1OWE0NTNmZjM4ZDcxOTBiMjk3NGFjM2U0ZDNhMmY0MDZlNzU0ZjAyNzQ1ODlmYjg3MjA)
+In this release, we've introduced a new option (-XX:+GlobalLockReservation) that aims to speed up the handling of object locks. Heuristics are used to try and determine when an object will be exclusively locked by a single thread, so that faster, more specialized code can be used for locking the object. Performance improvements are expected for applications with lots of uncontended locked objects. On the IBM Power Systems™ platform, we have observed improvements of up to 12% on some big data queries that are part of the [TPCDS suite](https://relational.fit.cvut.cz/dataset/TPCDS).
 
-+ There are a number of performance improvements in this releases, including:
-    - Up to 10% better application rampup on multi-CPU systems due to the invocation count threshold being lowered for JIT compilation, when shared classes are not in use.
-    - Improvements to the class relationship verifier (originally released in version 0.17.0) with shared classes have seen a doubling of the performance benefit from the option *-XX:+ClassRelationshipVerifier*.
-+ A new command line option, *-XX:+PrintCodeCache*, allows you to print the code cache memory usage to stderr when the VM shuts down.
+We've also made improvements to several cryptographic algorithms on the IBM Power Systems platform with almost a 6x performance improvement when verifying with the ECDSA algorithm and a 10-20% improvement when signing with the RSA, ECDH, and ECDSA algorithms.
 
-+ A 1 G *char[]* or larger *StringBuffer* and *StringBuilder* now immediately grows to the maximum possible size for *all* current versions of Java, including OpenJDK 8. For OpenJDK 8 only, you can revert to the previous behavior of growing only as much as necessary to accommodate the *String* being added, by using the option *-Djava.lang.stringBuffer.growAggressively=false*.
-
-+ The **jpackage** utility is described in JEP 343 as a tool that "packages a Java application into a platform-specific package that includes all of the necessary dependencies." Full details of the tool are available at [JEP 343: Packaging Tool](https://openjdk.java.net/jeps/343) Be aware that **jpackage** is supported on only the following OpenJ9 platforms: Linux&reg;, macOS&reg;, and Windows&trade;. It is *not* supported on AIX&reg; or z/OS&reg; platforms.
-
-To read more about the changes in version 0.19.0, see the [Release notes](https://www.eclipse.org/openj9/docs/version0.19/) in the OpenJ9 user documentation, which will also give you detailed information about the options mentioned here.
+OpenJ9 Version 0.20.0 also contains a few improvements to existing command line options, some of which change behavior, so make sure you read the [Version 0.20.0 release notes](https://www.eclipse.org/openj9/docs/version0.20/). If you are obtaining OpenJDK 8 or 11 from the AdoptOpenJDK community, you should also read the [Version 0.19.0 release notes](https://www.eclipse.org/openj9/docs/version0.19/) to learn about all the other features and changes in the VM since their last OpenJDK 8 and 11 binaries were made available.
