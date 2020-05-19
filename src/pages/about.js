@@ -33,7 +33,7 @@ import Card from "../components/card";
 import Button from "../components/button";
 
 export default () => (
-  <Layout isHome={false}>
+  <Layout isHome={false} title="About">
     <div sx={{ backgroundColor: "#F5F9FC", paddingX: "10%", paddingY: "5%" }}>
       <Styled.h1 sx={{marginBottom:"3rem"}}>More about OpenJ9</Styled.h1>
       <div

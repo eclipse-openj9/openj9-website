@@ -32,7 +32,7 @@ import SixtyThreePercentSmallerFootprint from "../images/sixty-three-percent-sma
 import PerformanceCard from "../components/performanceCard";
 
 export default () => (
-  <Layout isHome={false}>
+  <Layout isHome={false} title="Performance">
     <div sx={{ backgroundColor: "#F5F9FC",  paddingX: "10%", paddingTop: "3%", paddingBottom: "1%" }}>
       <Styled.h1 sx={{marginBottom:"1rem"}}>Performance Overview</Styled.h1>
         <Styled.p>

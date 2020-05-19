@@ -27,6 +27,13 @@
  */
 
 module.exports = {
+  siteMetadata: {
+    title: "Eclipse OpenJ9",
+    description:
+      "A fast and efficient JVM to power the next generation of Java applications for the cloud.",
+    url: "https://www.doe.com", // No trailing slash allowed! 
+    twitterUsername: "@openj9",
+  },
   plugins: [`gatsby-plugin-emotion`,
     {
       resolve: `gatsby-source-filesystem`,

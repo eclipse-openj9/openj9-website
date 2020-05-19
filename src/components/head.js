@@ -22,11 +22,13 @@
 
 import React from 'react';
 import {Helmet} from 'react-helmet';
+import SEO from "../components/seo";
 
-export default () => (
+export default (props) => (
     <Helmet>
         <link rel="stylesheet" type="text/css" href="//www.eclipse.org/eclipse.org-common/themes/solstice/public/stylesheets/vendor/cookieconsent/cookieconsent.min.css" />
         <script src="//www.eclipse.org/eclipse.org-common/themes/solstice/public/javascript/vendor/cookieconsent/default.min.js"></script>
+        <SEO title={props.title}></SEO>
     </Helmet>
 
 );

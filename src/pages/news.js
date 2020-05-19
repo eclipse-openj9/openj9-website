@@ -29,7 +29,7 @@ import { jsx, Styled } from "theme-ui";
 import Button from "../components/button";
 
 export default ({data}) => (
-  <Layout isHome={false}>
+  <Layout isHome={false} title="News">
     <div sx={{ backgroundColor: "#F5F9FC", paddingX: "10%", paddingTop:"5%" }}>
       <Styled.h1>What's new in the OpenJ9 project</Styled.h1>
       <div
