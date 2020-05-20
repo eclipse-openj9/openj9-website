@@ -4,9 +4,8 @@ import { Helmet } from "react-helmet"
 import { useLocation } from "@reach/router"
 import { useStaticQuery, graphql } from "gatsby"
 
-const SEO = ({ title, description, image, article }) => {
-  const { pathname } = useLocation()
-  const { site } = useStaticQuery(query)
+const SEO = ({ title, description }) => {
+  const { site } = useStaticQuery(query);
 
   const {
     defaultTitle,
@@ -14,17 +13,20 @@ const SEO = ({ title, description, image, article }) => {
     defaultDescription,
     siteUrl,
     twitterUsername,
-  } = site.siteMetadata
+    defaultImage,
+  } = site.siteMetadata;
 
   const seo = {
     title: title || defaultTitle,
     description: description || defaultDescription,
-    url: `${siteUrl}${pathname}`,
-  }
-
+    image: defaultImage,
+    url: `${siteUrl}`,
+  };
+  console.log(description)
   return (
     <Helmet title={seo.title} titleTemplate={titleTemplate}>
       <meta name="description" content={seo.description} />
+      <meta name="image" content={seo.image} />
 
       {seo.url && <meta property="og:url" content={seo.url} />}
 
@@ -48,10 +50,11 @@ const SEO = ({ title, description, image, article }) => {
         <meta name="twitter:description" content={seo.description} />
       )}
 
-      {seo.image && <meta name="twitter:image" content={seo.image} />}
+      <link rel="stylesheet" type="text/css" href="//www.eclipse.org/eclipse.org-common/themes/solstice/public/stylesheets/vendor/cookieconsent/cookieconsent.min.css" />
+      <script src="//www.eclipse.org/eclipse.org-common/themes/solstice/public/javascript/vendor/cookieconsent/default.min.js"></script>
     </Helmet>
   )
-}
+};
 
 export default SEO
 
@@ -73,6 +76,7 @@ const query = graphql`
         defaultDescription: description
         siteUrl: url
         twitterUsername
+        defaultImage: image
       }
     }
   }
