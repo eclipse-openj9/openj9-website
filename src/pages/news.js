@@ -33,7 +33,7 @@ export default ({data}) => {
 
   console.log("Nodes = ", nodes)
   return(
-  <Layout isHome={false} title="News" description="djbndna">
+  <Layout isHome={false} title="What's new with Eclipse OpenJ9" description="Find out what's in the latest release; Learn about the technology directly from our developers.">
     <div sx={{ backgroundColor: "#F5F9FC", paddingX: "10%", paddingTop:"5%" }}>
       <Styled.h1>What's new in the OpenJ9 project</Styled.h1>
       <div
@@ -132,7 +132,7 @@ export default ({data}) => {
             minWidth: ["250px", "350px", "400px", "500px"],
           }}
         >
-          <Styled.h4 sx={{width:"90%", marginBottom:"0.8rem", height: ["5.5rem", "2.5rem", "2.5rem", "3rem"]}}>
+          <Styled.h4 sx={{width:"90%", marginBottom:"0.8rem",color: "black", textDecoration: "none", height: ["5.5rem", "2.5rem", "2.5rem", "3rem"]}}>
             <a href={data.allWordpressPost.nodes[1].link}> {data.allWordpressPost.nodes[1].title}</a>
           </Styled.h4>
           <Styled.p sx={{width:"90%", marginBottom: "1rem"}}>

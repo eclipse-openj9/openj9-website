@@ -32,7 +32,7 @@ import SixtyThreePercentSmallerFootprint from "../images/sixty-three-percent-sma
 import PerformanceCard from "../components/performanceCard";
 
 export default () => (
-  <Layout isHome={false} title="Performance">
+  <Layout isHome={false} title="Eclipse OpenJ9 performance" description="OpenJDK with OpenJ9 demonstrates significantly better performance than HotSpot.">
     <div sx={{ backgroundColor: "#F5F9FC",  paddingX: "10%", paddingTop: "3%", paddingBottom: "1%" }}>
       <Styled.h1 sx={{marginBottom:"1rem"}}>Performance Overview</Styled.h1>
         <Styled.p>
