@@ -24,7 +24,6 @@ import React from 'react';
 import SEO from "../components/seo";
 
 export default (props) => {
-    {console.log(props.title)}
     return(
         <SEO title={props.title} description={props.description}></SEO>
     );

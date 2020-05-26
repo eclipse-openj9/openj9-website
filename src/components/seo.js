@@ -1,7 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
-import { useLocation } from "@reach/router"
 import { useStaticQuery, graphql } from "gatsby"
 
 const SEO = ({ title, description }) => {
@@ -22,7 +21,6 @@ const SEO = ({ title, description }) => {
     image: defaultImage,
     url: `${siteUrl}`,
   };
-  console.log(description)
   return (
     <Helmet title={seo.title} titleTemplate={titleTemplate}>
       <meta name="description" content={seo.description} />

@@ -31,7 +31,6 @@ import Button from "../components/button";
 export default ({data}) => {
   const nodes = data.allWordpressPost.nodes;
 
-  console.log("Nodes = ", nodes)
   return(
   <Layout isHome={false} title="What's new with Eclipse OpenJ9" description="Find out what's in the latest release; Learn about the technology directly from our developers.">
     <div sx={{ backgroundColor: "#F5F9FC", paddingX: "10%", paddingTop:"5%" }}>
@@ -116,14 +115,22 @@ export default ({data}) => {
         >
           
           <Styled.h4 sx={{width:"90%", marginBottom: "0.8rem", height: ["5.5rem", "2.5rem", "2.5rem", "3rem"]}}>
-          <a href={data.allWordpressPost.nodes[0].link}> {data.allWordpressPost.nodes[0].title}</a>
+          <a
+            sx={{
+                  cursor: "pointer",
+                  color: "black",
+                  textDecoration: "none !important",
+                  "&:hover": {
+                    color: "#5DA7A3"
+                  }
+            }}
+            href={data.allWordpressPost.nodes[0].link}> {data.allWordpressPost.nodes[0].title}
+         </a>
           </Styled.h4>
           <Styled.p sx={{width:"90%", marginBottom: "1rem"}}>
-            {console.log("Nodes date = ", nodes[0].date)}
             <b>{nodes[0].date}</b>
           </Styled.p>
 
-          {console.log((nodes[0]).excerpt)}
           <Styled.p sx={{width:"90%"}} dangerouslySetInnerHTML={{__html:data.allWordpressPost.nodes[0].excerpt}}/>
         </article>
         <article
@@ -133,7 +140,17 @@ export default ({data}) => {
           }}
         >
           <Styled.h4 sx={{width:"90%", marginBottom:"0.8rem",color: "black", textDecoration: "none", height: ["5.5rem", "2.5rem", "2.5rem", "3rem"]}}>
-            <a href={data.allWordpressPost.nodes[1].link}> {data.allWordpressPost.nodes[1].title}</a>
+            <a 
+              sx={{
+                cursor: "pointer",
+                color: "black",
+                textDecoration: "none !important",
+                "&:hover": {
+                  color: "#5DA7A3"
+                }
+              }}
+              href={data.allWordpressPost.nodes[1].link}> {data.allWordpressPost.nodes[1].title}
+            </a>
           </Styled.h4>
           <Styled.p sx={{width:"90%", marginBottom: "1rem"}}>
             <b>{data.allWordpressPost.nodes[1].date}</b>
