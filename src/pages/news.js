@@ -117,15 +117,18 @@ export default ({data}) => {
           <Styled.h4 sx={{width:"90%", marginBottom: "0.8rem", height: ["5.5rem", "2.5rem", "2.5rem", "3rem"]}}>
           <a
             sx={{
+                  fontSize:"1.24rem",
                   cursor: "pointer",
                   color: "black",
-                  textDecoration: "none !important",
+                  textDecoration: "none",
+                  marginRight:"0.3rem",
                   "&:hover": {
                     color: "#5DA7A3"
                   }
             }}
             href={data.allWordpressPost.nodes[0].link}> {data.allWordpressPost.nodes[0].title}
          </a>
+         <i class="fas fa-external-link-alt fa-xs"></i>
           </Styled.h4>
           <Styled.p sx={{width:"90%", marginBottom: "1rem"}}>
             <b>{nodes[0].date}</b>
@@ -142,15 +145,18 @@ export default ({data}) => {
           <Styled.h4 sx={{width:"90%", marginBottom:"0.8rem",color: "black", textDecoration: "none", height: ["5.5rem", "2.5rem", "2.5rem", "3rem"]}}>
             <a 
               sx={{
+                fontSize:"1.24rem",
                 cursor: "pointer",
                 color: "black",
-                textDecoration: "none !important",
+                textDecoration: "none",
+                marginRight:"0.3rem",
                 "&:hover": {
                   color: "#5DA7A3"
                 }
               }}
               href={data.allWordpressPost.nodes[1].link}> {data.allWordpressPost.nodes[1].title}
             </a>
+            <i class="fas fa-external-link-alt fa-xs"></i>
           </Styled.h4>
           <Styled.p sx={{width:"90%", marginBottom: "1rem"}}>
             <b>{data.allWordpressPost.nodes[1].date}</b>
