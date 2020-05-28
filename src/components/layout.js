@@ -29,14 +29,14 @@ import Head from "./head";
 import MobileNav from "./mobileNav";
 import { Global } from "@emotion/core";
 
-export default ({ children, isHome }) => (
+export default ({ children, isHome, title, description }) => (
   <ThemeProvider theme={theme}>
     <Global
       styles={theme => ({
         "*": { padding: 0, margin: 0 },                          
       })}
     />
-    <Head/>
+    <Head title={title} description={description}/>
     <Header isHome={isHome} />
     <MobileNav />
     {children}

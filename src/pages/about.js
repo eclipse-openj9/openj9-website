@@ -33,7 +33,7 @@ import Card from "../components/card";
 import Button from "../components/button";
 
 export default () => (
-  <Layout isHome={false}>
+  <Layout isHome={false} title="The Eclipse OpenJ9 story" description="With a rich heritage, OpenJ9 has the credentials to deliver quality and reliability.">
     <div sx={{ backgroundColor: "#F5F9FC", paddingX: "10%", paddingY: "5%" }}>
       <Styled.h1 sx={{marginBottom:"3rem"}}>More about OpenJ9</Styled.h1>
       <div

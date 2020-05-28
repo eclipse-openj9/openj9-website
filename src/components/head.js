@@ -21,12 +21,10 @@
 // The project website pages cannot be redistributed
 
 import React from 'react';
-import {Helmet} from 'react-helmet';
+import SEO from "../components/seo";
 
-export default () => (
-    <Helmet>
-        <link rel="stylesheet" type="text/css" href="//www.eclipse.org/eclipse.org-common/themes/solstice/public/stylesheets/vendor/cookieconsent/cookieconsent.min.css" />
-        <script src="//www.eclipse.org/eclipse.org-common/themes/solstice/public/javascript/vendor/cookieconsent/default.min.js"></script>
-    </Helmet>
-
-);
+export default (props) => {
+    return(
+        <SEO title={props.title} description={props.description}></SEO>
+    );
+}

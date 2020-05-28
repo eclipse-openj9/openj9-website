@@ -28,8 +28,11 @@ import { jsx, Styled } from "theme-ui";
 
 import Button from "../components/button";
 
-export default ({data}) => (
-  <Layout isHome={false}>
+export default ({data}) => {
+  const nodes = data.allWordpressPost.nodes;
+
+  return(
+  <Layout isHome={false} title="What's new with Eclipse OpenJ9" description="Find out what's in the latest release; Learn about the technology directly from our developers.">
     <div sx={{ backgroundColor: "#F5F9FC", paddingX: "10%", paddingTop:"5%" }}>
       <Styled.h1>What's new in the OpenJ9 project</Styled.h1>
       <div
@@ -112,15 +115,26 @@ export default ({data}) => (
         >
           
           <Styled.h4 sx={{width:"90%", marginBottom: "0.8rem", height: ["5.5rem", "2.5rem", "2.5rem", "3rem"]}}>
-            {data.allWordpressPost.nodes[0].title}
+          <a
+            sx={{
+                  fontSize:"1.24rem",
+                  cursor: "pointer",
+                  color: "black",
+                  textDecoration: "none",
+                  marginRight:"0.3rem",
+                  "&:hover": {
+                    color: "#5DA7A3"
+                  }
+            }}
+            href={data.allWordpressPost.nodes[0].link}> {data.allWordpressPost.nodes[0].title}
+         </a>
+         <i class="fas fa-external-link-alt fa-xs"></i>
           </Styled.h4>
           <Styled.p sx={{width:"90%", marginBottom: "1rem"}}>
-            <b>{data.allWordpressPost.nodes[0].date}</b>
+            <b>{nodes[0].date}</b>
           </Styled.p>
-          <Styled.p sx={{width:"90%"}}>
-            {(((data.allWordpressPost.nodes[0].excerpt).replace(/(<([^>]+)>)/ig,"")).replace("&nbsp;", "")).replace("&nbsp;", "").replace("Continue reading", "").trim()+"... "}
-            <a target="_blank" rel="noopener noreferrer" href={data.allWordpressPost.nodes[0].excerpt.match(/href="([^"]*)/g)[0].replace('href="', "")}><p>Continue reading</p></a>
-          </Styled.p>
+
+          <Styled.p sx={{width:"90%"}} dangerouslySetInnerHTML={{__html:data.allWordpressPost.nodes[0].excerpt}}/>
         </article>
         <article
           sx={{
@@ -128,16 +142,26 @@ export default ({data}) => (
             minWidth: ["250px", "350px", "400px", "500px"],
           }}
         >
-          <Styled.h4 sx={{width:"90%", marginBottom:"0.8rem", height: ["5.5rem", "2.5rem", "2.5rem", "3rem"]}}>
-            {data.allWordpressPost.nodes[1].title}
+          <Styled.h4 sx={{width:"90%", marginBottom:"0.8rem",color: "black", textDecoration: "none", height: ["5.5rem", "2.5rem", "2.5rem", "3rem"]}}>
+            <a 
+              sx={{
+                fontSize:"1.24rem",
+                cursor: "pointer",
+                color: "black",
+                textDecoration: "none",
+                marginRight:"0.3rem",
+                "&:hover": {
+                  color: "#5DA7A3"
+                }
+              }}
+              href={data.allWordpressPost.nodes[1].link}> {data.allWordpressPost.nodes[1].title}
+            </a>
+            <i class="fas fa-external-link-alt fa-xs"></i>
           </Styled.h4>
           <Styled.p sx={{width:"90%", marginBottom: "1rem"}}>
             <b>{data.allWordpressPost.nodes[1].date}</b>
           </Styled.p>
-          <Styled.p sx={{width:"90%", marginBottom: "1rem"}}>
-            {(((data.allWordpressPost.nodes[1].excerpt).replace(/(<([^>]+)>)/ig,"")).replace("&nbsp;", " ")).replace("&nbsp;", " ").replace("Continue reading", "").trim()+"... "}
-            <a target="_blank" rel="noopener noreferrer" href={data.allWordpressPost.nodes[1].excerpt.match(/href="([^"]*)/g)[0].replace('href="', "")}><p>Continue reading</p></a>
-          </Styled.p>          
+          <Styled.p sx={{width:"90%", marginBottom: "1rem"}} dangerouslySetInnerHTML={{__html:data.allWordpressPost.nodes[1].excerpt}}/>    
         </article>
         </div>
         
@@ -149,7 +173,7 @@ export default ({data}) => (
       
     </div>
   </Layout>
-);
+  )}
 
 export const query = graphql`
 {
@@ -158,6 +182,7 @@ export const query = graphql`
       title
       date(formatString:"DD MMMM YYYY")
       excerpt
+      link
     }
   },
   allMarkdownRemark {
