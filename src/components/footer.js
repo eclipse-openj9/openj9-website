@@ -54,7 +54,17 @@ export default () => (
     </section>
 
 
-    <nav sx={{ display: ["flex", "flex", "flex", "flex"], flex: ["100%", "50%", "50%","50%"], flexDirection:["column", "row", "row", "row"], justifyContent:"center" }}>
+    <nav sx={{ display: ["flex", "flex", "flex", "flex"],
+          flex: ["100%", "50%", "50%","50%"], 
+          flexDirection:["column", "row", "row", "row"],
+          justifyContent:"center",
+          a: {
+            color: "white",
+            textDecoration: "none",
+            "&:hover": {
+              color: "links",
+            }
+    }}}>
       <section sx={{ flex: 1, paddingLeft:["2rem", "0.8rem", "0.8rem", "0.8rem"],  marginRight:"1.1rem", padding:["1rem", 0], fontSize:["1rem", "0.9rem", "1rem", "1rem"]}}>
         <Styled.h4 sx={{marginBottom:"0.2rem"}}>Docs</Styled.h4>
         <ul sx={{ 
@@ -120,6 +130,13 @@ export default () => (
           paddingLeft:"1rem",
           color:"white",
         },
+         a: {
+          color: "white",
+          textDecoration: "none",
+          "&:hover": {
+            color: "links",
+          }
+        }
         }}>
           
         <li sx={{ paddingLeft:["1rem", "0rem !important", "0.5rem !important", "0.5 !important"]}}><a sx={{textDecoration:"none", color:"white"}}href="https://www.eclipse.org/" rel="noopener noreferrer" target="_blank">Eclipse Foundation Website </a></li>
