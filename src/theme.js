@@ -31,6 +31,7 @@ export default {
     links: "#5DA7A3",
     primary: "#434343",
     secondary: "#5DA7A3",
+    secondaryDark:"#5d9da3",
     accent: "#F8D000",
     background: "#FFFFFF",
     lightGrey: "#F1F1F1"
@@ -61,7 +62,9 @@ export default {
       fontFamily: "body",
       fontSize: 0,
       "&:hover": {
-        cursor: "pointer"
+        cursor: "pointer",
+        backgroundColor: "secondaryDark",
+        borderColor: "secondaryDark"
       }
     },
     secondary: { variant: "buttons.primary", width: "190px" }
@@ -120,7 +123,10 @@ export default {
         marginX: 1,
         a: {
           color: "white",
-          textDecoration: "none"
+          textDecoration: "none",
+          "&:hover": {
+            color: "links",
+          }
         }
       },
       "li:first-of-type": {
@@ -145,5 +151,5 @@ export default {
   },
   shadows: {
     cardShadow: "#DADADA 0 0 20px"
-  }
+  },
 };
