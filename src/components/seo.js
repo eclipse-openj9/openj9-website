@@ -50,6 +50,7 @@ const SEO = ({ title, description }) => {
 
       <link rel="stylesheet" type="text/css" href="//www.eclipse.org/eclipse.org-common/themes/solstice/public/stylesheets/vendor/cookieconsent/cookieconsent.min.css" />
       <script src="//www.eclipse.org/eclipse.org-common/themes/solstice/public/javascript/vendor/cookieconsent/default.min.js"></script>
+      <script lang="javascript" src="dist/xlsx.full.min.js"></script>
     </Helmet>
   )
 };
