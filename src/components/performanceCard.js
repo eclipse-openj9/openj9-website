@@ -43,7 +43,7 @@ const PerformanceCard = ({ children, primary, graph, heading, chartType, xAxis, 
                 alignItems: "center",
               }}
             >
-                <h5 sx={{fontSize:"1.1rem",margin:"0.5rem 1rem 0.5rem 1rem", textAlign:"center", height:"3rem",}}>{heading}</h5>
+                <h5 sx={{fontSize:"1.1rem",margin:"0.5rem 1.5rem 0.5rem 1.5rem", textAlign:"center", height:"3rem",}}>{heading}</h5>
                  <LineChart lineChartData={graph} legendPosition="bottom" xAxis={xAxis} yAxis={yAxis}/>
               <div
               sx={{

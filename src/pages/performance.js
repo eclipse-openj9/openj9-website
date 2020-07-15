@@ -31,114 +31,13 @@ import PerformanceCard from "../components/PerformanceCard";
 class performance extends Component {
 
   state = {
-      barChartJDK11Footprint:{ 
-        labels: ['OpenJ9', 'HotSpot'],
-        datasets:[
-          {
-            data:[
-              50,              
-              100,
-            ],
-            backgroundColor:[
-              '#5DA7A3',
-              '#E58B23'
-            ]
-          }
-        ]
-      },
-      lineChartJDK11FootprintDuringLoad:{ 
-        labels: [0, 100, 200, 300, 400, 500, 600],
-        datasets:[
-          {
-            label: 'OpenJ9',
-            data:[
-              267,
-              630,
-              674,
-              680,
-              688,
-              688,
-              691
-            ],
-            fill: false,
-            borderColor: "#5DA7A3",
-            backgroundColor:'#5DA7A3'
-          },
-          {
-            label: 'HotSpot',
-            data:[
-              500,
-              786,
-              945,
-              975,
-              985,
-              1001,
-              1011
-            ],
-            fill: false,
-            borderColor:'#E58B23',
-            backgroundColor:'#E58B23'
-          },
-        ]
-      },
-      barChartJDK11Startup:{ 
-        labels: ['OpenJ9', 'HotSpot'],
-        datasets:[
-          {
-            data:[
-              49,              
-              100,
-            ],
-            backgroundColor:[
-              '#5DA7A3',
-              '#E58B23'
-            ]
-          }
-        ]
-      },
-      lineChartJDK11Throughout:{ 
-        labels: [0, 102, 204, 306, 408, 510, 600],
-        datasets:[
-          {
-            label: 'OpenJ9',
-            data:[
-              606,
-              2853,
-              3121,
-              3102,
-              3182,
-              3069,
-              3138
-            ],
-            fill: false,
-            borderColor: "#5DA7A3",
-            backgroundColor:'#5DA7A3'
-          },
-          {
-            label: 'HotSpot',
-            data:[
-              139,
-              2157,
-              3252,
-              3551,
-              3469,
-              3596,
-              3600
-            ],
-            fill: false,
-            borderColor:'#E58B23',
-            backgroundColor:'#E58B23'
-          },
-        ]
-      },
-
       barChartJDK8Footprint:{ 
         labels: ['OpenJ9', 'HotSpot'],
         datasets:[
           {
             data:[
               0.34,              
-              1,
+              1
             ],
             backgroundColor:[
               '#5DA7A3',
@@ -153,38 +52,38 @@ class performance extends Component {
           {
             label: 'OpenJ9',
             data:[
-              232460,
-              488840,
-              505460,
-              511838,
-              516682,
-              517688,
-              520284,
-              521074,
-              521890,
-              522264
+              232,
+              488,
+              505,
+              511,
+              516,
+              517,
+              520,
+              521,
+              521,
+              522
             ],
             fill: false,
             borderColor: "#5DA7A3",
             backgroundColor:'#5DA7A3'
           },
           {
-              label: 'HotSpot',
-              data:[
-                563350,
-                902652,
-                1023266,
-                1140980,
-                1200342,
-                1218640,
-                1220842,
-                1289450,
-                1359008,
-                1368194
-              ],
-              fill: false,
-              borderColor:'#E58B23',
-              backgroundColor:'#E58B23'
+            label: 'HotSpot',
+            data:[
+              563,
+              902,
+              1023,
+              1140,
+              1200,
+              1218,
+              1220,
+              1289,
+              1359,
+              1368
+            ],
+            fill: false,
+            borderColor:'#E58B23',
+            backgroundColor:'#E58B23'
           },
         ]
       },
@@ -195,7 +94,7 @@ class performance extends Component {
           {
             data:[
               0.58,              
-              1,
+              1
             ],
             backgroundColor:[
               '#5DA7A3',
@@ -248,7 +147,6 @@ class performance extends Component {
           },
         ]
       },
-
     } 
   
   render (){
@@ -261,68 +159,6 @@ class performance extends Component {
             ramp-up time, footprint, and response time, as well as throughput. At Eclipse OpenJ9, we keep a watchful eye on all
             of these metrics, making sensible tradeoffs and providing tuning options that allow the virtual machine (VM) to be optimized for different workloads.
           </Styled.p>
-      </div>
-
-      <div
-        sx={{
-          backgroundColor: "#F5F9FC",
-          paddingX: "10%",
-          paddingTop: "1%",
-          paddingBottom: "%"
-        }}
-      >
-        <Styled.h2>OpenJDK 11 performance with Eclipse OpenJ9</Styled.h2>
-        <Styled.p sx={{marginBottom:"0.5rem"}}>
-          The result is that OpenJDK 11 with OpenJ9 demonstrates significantly better performance than with Hotspot.
-        </Styled.p>
-    
-        <div className="row"
-          sx={{
-            display: "flex",
-            justifyContent: "space-around",
-            flexWrap: "wrap",
-          }}
-        >
-           <PerformanceCard graph={this.state.barChartJDK11Footprint} heading="Footprint" primary={true} yAxis="Relative performance (%)"> 
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-              when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-          </PerformanceCard>
-          <PerformanceCard graph={this.state.lineChartJDK11FootprintDuringLoad} heading="Footprint during load" primary={true} chartType="line" yAxis="Resident set size (MB)" xAxis="Time (s)"> 
-           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-             when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-          </PerformanceCard>
-          <PerformanceCard graph={this.state.barChartJDK11Startup} heading="Startup time"  primary={true} yAxis="Relative performance (%)"> 
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-             when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-          </PerformanceCard>
-          <PerformanceCard graph={this.state.lineChartJDK11Throughout} heading="Throughput" primary={true} chartType="line" xAxis="Time (s)" yAxis="Throughput (pages/s)"> 
-           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-             when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-          </PerformanceCard>
-        </div>
-        <div
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          paddingBottom: "5%"
-        }}
-      >
-       <a sx={{
-          variant: "buttons.secondary",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          textDecoration: "none",
-          width:"16rem",
-          marginTop:"5rem"
-          }} 
-          href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader7.md" rel="noopener noreferrer" target="_blank">Read more performance details</a>
-    
-        </div>
       </div>
       
       <div
@@ -346,40 +182,39 @@ class performance extends Component {
           }}
         >
           <PerformanceCard graph={this.state.barChartJDK8Footprint} heading="66% smaller footprint after startup" primary={true} chartType="bar" yAxis="Relative resident set size"> 
-           <p>OpenJ9 is highly optimized for cloud workloads, where minimising memory footprint is important.
-             Even with other optimizations enabled, the footprint stays about the same.</p>
+            <p>OpenJ9 is highly optimized for cloud workloads, where minimising memory footprint is important.
+              Even with other optimizations enabled, the footprint stays about the same.</p>
           </PerformanceCard>
-          <PerformanceCard graph={this.state.lineChartJK8FootprintDuringrampup} heading="63% smaller footprint during ramp up" primary={true} chartType="line" yAxis="Resident Set Size" xAxis="Time (s)"> 
-          <p>Memory footprint increases rapidly when load is applied, but at steady state,
-            OpenJDK 8 with OpenJ9 used around 63% less physical memory than OpenJDK 8 with HotSpot.</p>
+          <PerformanceCard graph={this.state.lineChartJK8FootprintDuringrampup} heading="63% smaller footprint during ramp up" primary={true} chartType="line" yAxis="Resident Set Size (MB)" xAxis="Time (s)"> 
+            <p>Memory footprint increases rapidly when load is applied, but at steady state,
+              OpenJDK 8 with OpenJ9 used around 63% less physical memory than OpenJDK 8 with HotSpot.</p>
           </PerformanceCard>
           <PerformanceCard graph={this.state.barChartJDK8Startup} heading="42% faster startup time" primary={true} chartType="bar" yAxis="Relative start-up time"> 
-           <p>Shared classes and Ahead-of-Time (AOT) technologies typically reduce startup time. By using -Xquickstart mode as well,
-             you can reduce startup time by up to 42%.</p>
+            <p>Shared classes and Ahead-of-Time (AOT) technologies typically reduce startup time. By using -Xquickstart mode as well,
+              you can reduce startup time by up to 42%.</p>
           </PerformanceCard>
           <PerformanceCard graph={this.state.lineChartJK8FasterRampupInTheCloud} heading="Faster ramp-up time in the cloud" primary={true} chartType="line" xAxis="Time (s)" yAxis="Throughput"> 
-          <p>OpenJ9 reaches peak throughput on a single CPU core in 8.5 minutes compared with 30 minutes for Hotspot.
-            Ideal for short-lived VMs running in the cloud.</p>
+            <p>OpenJ9 reaches peak throughput on a single CPU core in 8.5 minutes compared with 30 minutes for Hotspot.
+              Ideal for short-lived VMs running in the cloud.</p>
           </PerformanceCard>
         </div>
         <div
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          paddingBottom: "5%"
-        }}
-      >
-       <a sx={{
-          variant: "buttons.secondary",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          textDecoration: "none",
-          width:"16rem",
-          marginTop:"5rem"
-          }} 
-          href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader7.md" rel="noopener noreferrer" target="_blank">Read more performance details</a>
-    
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            paddingBottom: "5%"
+          }}
+        >
+          <a sx={{
+              variant: "buttons.secondary",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              textDecoration: "none",
+              width:"16rem",
+              marginTop:"5rem"
+              }} 
+              href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader7.md" rel="noopener noreferrer" target="_blank">Read more performance details</a>
         </div>
       </div>
     </Layout>
