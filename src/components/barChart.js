@@ -18,7 +18,7 @@ class BarChart extends Component {
                 <Bar
                     data={this.state.barChartData}
                     height={220}
-                    width={280}
+                    width={250}
                     options={{
                         scales:{
                             xAxes: [{

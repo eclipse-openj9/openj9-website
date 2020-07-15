@@ -18,7 +18,7 @@ class LineChart extends Component {
                 <Line
                     data={this.state.lineChartData}
                     height={220}
-                    width={280}
+                    width={250}
                     options={{
                         scales:{
                             xAxes: [{

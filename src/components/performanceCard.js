@@ -36,7 +36,7 @@ const PerformanceCard = ({ children, primary, graph, heading, chartType, xAxis, 
                 color: "white",
                 marginY: 5,
                 marginX: 1,
-                width:"20rem",
+                width:"18rem",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
@@ -80,7 +80,7 @@ const PerformanceCard = ({ children, primary, graph, heading, chartType, xAxis, 
                 color: "white",
                 marginY: 5,
                 marginX: 1,
-                width:"20rem",
+                width:"18rem",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
@@ -88,7 +88,7 @@ const PerformanceCard = ({ children, primary, graph, heading, chartType, xAxis, 
               }}
             >
                 <h5 sx={{fontSize:"1.1rem",margin:"0.5rem 1rem 0.5rem 1rem", textAlign:"center", height:"3rem",}}>{heading}</h5>
-                <BarChart barChartData={graph} xAxis={xAxis} yAxis={yAxis}/>
+                <BarChart barChartData={graph} yAxis={yAxis}/>
               <div
               sx={{
                 boxShadowBottom: primary ? "cardShadow" : null,
