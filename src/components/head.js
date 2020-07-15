@@ -22,7 +22,7 @@
 
 import React from "react";
 
-import SEO from "../components/SEO";
+import SEO from "../components/seo";
 
 export default (props) => {
     return (
