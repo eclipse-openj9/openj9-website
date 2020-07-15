@@ -71,7 +71,7 @@ export default () => (
         Dedicated systems and hosting services allow us to run automated build and test operations,
         which help ensure that quality and reliability is central to all our deliverables.
       </Styled.p>
-      <div className="row"
+      <div
         sx={{
           display: "flex",
           flexWrap: "wrap",

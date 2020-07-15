@@ -103,13 +103,13 @@ export default () => (
       </section>
     </div>
     
-    <div className="row"
+    <div
       sx={{
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "space-around",
         padding: "5% 5% 1% 5%",
-        marginRight:"0"
+        marginLeft: "-15px"
       }}
     >
       <Card width="20rem" primary={false}>
@@ -130,7 +130,7 @@ export default () => (
         <Styled.p sx={{textAlign:"center"}}>when deployed to cloud vs HotSpot</Styled.p>
       </Card>
 
-      <Card width="20rem" primary={false}>
+      <Card width="20rem"primary={false}>
       <i className="fas fa-archive fa-5x"></i>
          <Styled.h4 sx={{textAlign:"center", marginBottom:"4px"}}>66% Smaller</Styled.h4>
         <Styled.p sx={{textAlign:"center"}}>when compared to HotSpot</Styled.p>
