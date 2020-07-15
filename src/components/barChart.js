@@ -14,7 +14,7 @@ class BarChart extends Component {
 
     render(){
         return(
-            <div className="chart">
+            <div>
                 <Bar
                     data={this.state.barChartData}
                     height={220}
