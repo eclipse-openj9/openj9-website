@@ -102,81 +102,40 @@ export default () => (
         </Button>
       </section>
     </div>
-    <div
+    <div className="row"
       sx={{
-        display: ["flex", "none", "none", "flex"],
+        display: "flex",
         flexWrap: "wrap",
-        justifyContent: "space-between",
-        padding: "5% 5% 1% 5%"
+        justifyContent: "space-around",
+        padding: "5% 5% 1% 5%",
+        marginRight:"0"
       }}
     >
-      <Card flex="0 0 300px" primary={false}>
+      <Card primary={false}>
       <i className="fas fa-rocket fa-5x"></i>
         <Styled.h4 sx={{textAlign:"center", marginBottom:"4px"}}>Optimized for the Cloud</Styled.h4>
         <Styled.p sx={{textAlign:"center"}}>for microservices and monoliths too!</Styled.p>
       </Card>
 
-      <Card flex="0 0 300px" primary={false}>
+      <Card primary={false}>
       <i className="fas fa-tachometer-alt fa-5x"></i>
          <Styled.h4 sx={{textAlign:"center", marginBottom:"4px"}}>42% Faster Startup</Styled.h4>
         <Styled.p sx={{textAlign:"center"}}>over HotSpot</Styled.p>
       </Card>
 
-      <Card flex="0 0 300px" primary={false}>
+      <Card primary={false}>
       <i className="fas fa-chart-line fa-5x"></i>
          <Styled.h4 sx={{textAlign:"center", marginBottom:"4px"}}>28% Faster Ramp-up</Styled.h4>
         <Styled.p sx={{textAlign:"center"}}>when deployed to cloud vs HotSpot</Styled.p>
       </Card>
 
-      <Card flex="0 0 300px" primary={false}>
+      <Card primary={false}>
       <i className="fas fa-archive fa-5x"></i>
          <Styled.h4 sx={{textAlign:"center", marginBottom:"4px"}}>66% Smaller</Styled.h4>
         <Styled.p sx={{textAlign:"center"}}>when compared to HotSpot</Styled.p>
       </Card>
-
     </div>
 
-    <div
-      sx={{
-        display: ["none", "flex", "flex", "none"],
-        flexWrap: "wrap",
-        justifyContent: "space-around",
-        padding: "5%"
-      }}
-    >
-      <Card flex="0 0 300px" primary={false}>
-      <i className="fas fa-rocket fa-5x"></i>
-        <Styled.h4 sx={{textAlign:"center", marginBottom:"4px"}}>Built for Cloud Deployments</Styled.h4>
-        <Styled.p sx={{textAlign:"center"}}>with an intuitive CLI</Styled.p>
-      </Card>
-
-      <Card flex="0 0 300px" primary={false}>
-      <i className="fas fa-tachometer-alt fa-5x"></i>
-         <Styled.h4 sx={{textAlign:"center", marginBottom:"4px"}}>42% Faster Startup</Styled.h4>
-        <Styled.p sx={{textAlign:"center"}}>over HotSpot</Styled.p>
-      </Card>
-      </div>
-      <div
-      sx={{
-        display: ["none", "flex", "flex", "none"],
-        flexWrap: "wrap",
-        justifyContent: "space-around",
-        padding: "5%"
-      }}
-    >
-      <Card flex="0 0 300px" primary={false}>
-      <i className="fas fa-chart-line fa-5x"></i>
-         <Styled.h4 sx={{textAlign:"center", marginBottom:"4px"}}>28% Faster Ramp-up</Styled.h4>
-        <Styled.p sx={{textAlign:"center"}}>when deployed to cloud vs HotSpot</Styled.p>
-      </Card>
-
-      <Card flex="0 0 300px" primary={false}>
-      <i className="fas fa-archive fa-5x"></i>
-         <Styled.h4 sx={{textAlign:"center", marginBottom:"4px"}}>66% Smaller</Styled.h4>
-        <Styled.p sx={{textAlign:"center"}}>when compared to HotSpot</Styled.p>
-      </Card>
-
-    </div>
     <div
       sx={{
         display: "flex",
@@ -190,7 +149,7 @@ export default () => (
         alignItems: "center",
         justifyContent: "center",
         textDecoration: "none",
-        width:"220px",
+        width:"15rem",
         }} 
         to="/performance">Read performance details</Link>
 
