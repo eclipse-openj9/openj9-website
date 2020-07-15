@@ -82,6 +82,14 @@ export default ({data}) => {
                    p:{
                     margin:0
                    }
+                 },
+                 a: {
+                  color: "#5DA7A3",
+                  textDecoration:"none",
+                  "&:hover": {
+                    fontWeight: "bold",
+                    textDecoration:"none"
+                  }
                  }
               }} dangerouslySetInnerHTML={{__html: ((data.allMarkdownRemark.edges[0].node.html))}}>
             </div>
@@ -123,12 +131,13 @@ export default ({data}) => {
                   textDecoration: "none",
                   marginRight:"0.3rem",
                   "&:hover": {
-                    color: "#5DA7A3"
+                    color: "#5DA7A3",
+                    textDecoration: "none"
                   }
             }}
-            href={data.allWordpressPost.nodes[0].link}> {data.allWordpressPost.nodes[0].title}
+            href={data.allWordpressPost.nodes[0].link} rel="noopener noreferrer" target="_blank"> {data.allWordpressPost.nodes[0].title}
          </a>
-         <i class="fas fa-external-link-alt fa-xs"></i>
+         <i className="fas fa-external-link-alt fa-xs"></i>
           </Styled.h4>
           <Styled.p sx={{width:"90%", marginBottom: "1rem"}}>
             <b>{nodes[0].date}</b>
@@ -151,12 +160,13 @@ export default ({data}) => {
                 textDecoration: "none",
                 marginRight:"0.3rem",
                 "&:hover": {
-                  color: "#5DA7A3"
+                  color: "#5DA7A3",
+                  textDecoration: "none"
                 }
               }}
-              href={data.allWordpressPost.nodes[1].link}> {data.allWordpressPost.nodes[1].title}
+              href={data.allWordpressPost.nodes[1].link} rel="noopener noreferrer" target="_blank"> {data.allWordpressPost.nodes[1].title}
             </a>
-            <i class="fas fa-external-link-alt fa-xs"></i>
+            <i className="fas fa-external-link-alt fa-xs"></i>
           </Styled.h4>
           <Styled.p sx={{width:"90%", marginBottom: "1rem"}}>
             <b>{data.allWordpressPost.nodes[1].date}</b>
@@ -167,7 +177,7 @@ export default ({data}) => {
         
       </div>
       
-      <div sx={{display: ["flex", "flex", "flex", "flex"], justifyContent: "center", paddingX: "5%",}}>
+      <div sx={{display: "flex", justifyContent: "center", paddingX: "5%",}}>
         <Button link="https://blog.openj9.org/" primary={false} target={true}>See all blogs</Button>
       </div>
       
