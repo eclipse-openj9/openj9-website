@@ -26,7 +26,7 @@ import Layout from "../components/layout";
 import { jsx, Styled } from "theme-ui";
 import {Component} from "react";
 
-import PerformanceCard from "../components/PerformanceCard";
+import PerformanceCard from "../components/performanceCard";
 
 class performance extends Component {
 
