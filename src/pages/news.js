@@ -90,7 +90,6 @@ export default ({data}) => {
                     fontWeight: "bold",
                     textDecoration:"none"
                   }
-                  
                  }
               }} dangerouslySetInnerHTML={{__html: ((data.allMarkdownRemark.edges[0].node.html))}}>
             </div>
