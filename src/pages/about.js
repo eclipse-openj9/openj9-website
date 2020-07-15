@@ -71,73 +71,32 @@ export default () => (
         Dedicated systems and hosting services allow us to run automated build and test operations,
         which help ensure that quality and reliability is central to all our deliverables.
       </Styled.p>
-      <div
+      <div className="row"
         sx={{
-          display: ["flex","none","none", "flex"],
-          justifyContent: "space-between",
-          flexWrap: "wrap"
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-around",
         }}
       >
-        <Card flex="0 0 260px" primary={false}> 
+        <Card width="16rem" primary={false}> 
           <img sx={{
             width: "50%", 
             height: "50%", 
           }}src={ibmLogo} alt="IBM Logo"></img>
         </Card>
-        <Card flex="0 0 260px" primary={false}> 
+        <Card width="16rem" primary={false}> 
           <img sx={{
-            width: ["50%", "50%", "50%", "90%"], 
+            width: "80%", 
             filter: "invert(100%)"
           }}src={adoptopenJDK} alt="AdoptOpenJDK Logo"></img>
         </Card>
-        <Card flex="0 0 260px" primary={false}> 
+        <Card width="16rem" primary={false}> 
           <img sx={{
             width: "50%", 
             height: "50%", 
           }}src={oregonStateUniLogo} alt="Oregon State University Logo"></img>
         </Card>
-        <Card flex="0 0 260px" primary={false}> 
-          <img sx={{
-            width: "50%", 
-            height: "50%", 
-          }}src={newBrunswickUniLogo} alt="New Brunswick University Logo"></img>
-        </Card>
-      </div>
-
-      <div
-        sx={{
-          display: ["none", "flex", "flex", "none"],
-          justifyContent: "space-around",
-          flexWrap: "wrap"
-        }}
-      >
-        <Card flex="0 0 260px" primary={false}> 
-          <img sx={{
-            width: "50%", 
-            height: "50%", 
-          }}src={ibmLogo} alt="IBM Logo"></img>
-        </Card>
-        <Card flex="0 0 260px" primary={false}> 
-          <img sx={{
-            width: ["50%", "50%", "50%", "90%"], 
-            filter: "invert(100%)"
-          }}src={adoptopenJDK} alt="AdoptOpenJDK Logo"></img>
-        </Card>
-        </div>
-        <div
-        sx={{
-          display: ["none", "flex", "flex", "none"],
-          justifyContent: "space-around",
-          flexWrap: "wrap"
-        }}
-      >
-        <Card flex="0 0 260px" primary={false}> 
-          <img sx={{
-            width: "50%", 
-            height: "50%", 
-          }}src={oregonStateUniLogo} alt="Oregon State University Logo"></img>
-        </Card>
-        <Card flex="0 0 260px" primary={false}> 
+        <Card width="16rem" primary={false}> 
           <img sx={{
             width: "50%", 
             height: "50%", 
@@ -172,7 +131,7 @@ export default () => (
           }}
         >
           <Styled.h3>DOCS</Styled.h3>
-          <Styled.p sx={{height:["8rem", "12rem", "13rem", "10rem"], marginBottom:["10rem", 0, 0, 0], width:"90%", paddingRight:["1rem", 0, 0, 0]}}>
+          <Styled.p sx={{height:["8rem", "13rem", "12rem", "10rem"], marginBottom:["10rem", 0, 0, 0], width:"90%", paddingRight:["1rem", 0, 0, 0]}}>
             If you are new to OpenJ9, our documentation will help you get started. Out of the box, we expect you to discover a great experience,
             but we also have many tuning options to help you ramp up application performance.
           </Styled.p>
@@ -186,7 +145,7 @@ export default () => (
           }}
         >
           <Styled.h3>BLOGS</Styled.h3>
-          <Styled.p sx={{height:["12rem", "12rem", "13rem", "10rem"], marginBottom:["10rem", 0, 0, 0],  width:"90%", paddingRight:["1rem", 0, 0, 0]}}>
+          <Styled.p sx={{height:["8rem", "13rem", "12rem", "10rem"], marginBottom:["10rem", 0, 0, 0],  width:"90%", paddingRight:["1rem", 0, 0, 0]}}>
             Our blogs are written by developers, for developers. Read about their insights into up and coming technologies,
             take deep dives into OpenJ9 development, or simply hear about their experiences of working on the project.
           </Styled.p>

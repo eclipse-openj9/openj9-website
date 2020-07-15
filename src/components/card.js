@@ -25,7 +25,7 @@
 
 import { jsx } from "theme-ui";
 
-const Card = ({ children, flex, primary }) => {
+const Card = ({ children, primary, width }) => {
   return (
     <article
       sx={{
@@ -35,7 +35,8 @@ const Card = ({ children, flex, primary }) => {
         backgroundColor: "white",
         color: "darkText",
         marginY: 5,
-        width:"20rem",
+        marginX: 2,
+        width: width,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
