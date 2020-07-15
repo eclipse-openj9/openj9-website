@@ -24,80 +24,201 @@ import Layout from "../components/layout";
 
 /** @jsx jsx */
 import { jsx, Styled } from "theme-ui";
+import {Component} from "react";
 
-import FortyTwoPercentStartup from "../images/forty-two-percent-startup.svg";
-import SixtySixPercentSmallerFootprint from "../images/sixty-six-percent-smaller-footprint.svg";
-import TwentyEightPercentFaster from "../images/twenty-eight-percent-faster.svg";
-import SixtyThreePercentSmallerFootprint from "../images/sixty-three-percent-smaller-footprint.svg";
-import PerformanceCard from "../components/performanceCard";
+import PerformanceCard from "../components/PerformanceCard";
 
-export default () => (
-  <Layout isHome={false} title="Eclipse OpenJ9 performance" description="OpenJDK with OpenJ9 demonstrates significantly better performance than HotSpot.">
-    <div sx={{ backgroundColor: "#F5F9FC",  paddingX: "10%", paddingTop: "3%", paddingBottom: "1%" }}>
-      <Styled.h1 sx={{marginBottom:"1rem"}}>Performance Overview</Styled.h1>
-        <Styled.p>
-          Application performance can be measured using many different metrics, including startup time,
-          ramp-up time, footprint, and response time, as well as throughput. At Eclipse OpenJ9, we keep a watchful eye on all
-          of these metrics, making sensible tradeoffs and providing tuning options that allow the virtual machine (VM) to be optimized for different workloads.
-        </Styled.p>
-    </div>
-    <div
-      sx={{
-        backgroundColor: "#F5F9FC",
-        paddingX: "10%",
-        paddingTop: "1%",
-        paddingBottom: "5%"
-      }}
-    >
-      <Styled.h2>OpenJDK 8 performance with Eclipse OpenJ9</Styled.h2>
-      <Styled.p sx={{marginBottom:0}}>
-        The result is that OpenJDK 8 with OpenJ9 demonstrates significantly better performance than with Hotspot.
-      </Styled.p>
+class performance extends Component {
 
+  state = {
+      barChartJDK8Footprint:{ 
+        labels: ['OpenJ9', 'HotSpot'],
+        datasets:[
+          {
+            data:[
+              0.34,              
+              1
+            ],
+            backgroundColor:[
+              '#5DA7A3',
+              '#E58B23'
+            ]
+          }
+        ]
+      },
+      lineChartJK8FootprintDuringrampup:{ 
+        labels: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800],
+        datasets:[
+          {
+            label: 'OpenJ9',
+            data:[
+              232,
+              488,
+              505,
+              511,
+              516,
+              517,
+              520,
+              521,
+              521,
+              522
+            ],
+            fill: false,
+            borderColor: "#5DA7A3",
+            backgroundColor:'#5DA7A3'
+          },
+          {
+            label: 'HotSpot',
+            data:[
+              563,
+              902,
+              1023,
+              1140,
+              1200,
+              1218,
+              1220,
+              1289,
+              1359,
+              1368
+            ],
+            fill: false,
+            borderColor:'#E58B23',
+            backgroundColor:'#E58B23'
+          },
+        ]
+      },
+      barChartJDK8Startup:{ 
+        labels: ['OpenJ9', 'HotSpot'],
+        datasets:[
+          {
+            data:[
+              0.58,              
+              1
+            ],
+            backgroundColor:[
+              '#5DA7A3',
+              '#E58B23'
+            ]
+          }
+        ]
+      },
+      lineChartJK8FasterRampupInTheCloud:{ 
+        labels: [0, 155, 305, 455, 605, 755, 905, 1055, 1151, 1301, 1451],
+        datasets:[
+          {
+            label: 'OpenJ9',
+            data:[
+              8.5,
+              1127.5,
+              1125.5,
+              1132.5,
+              1182,
+              1061.5,
+              1096.5,
+              1148.5,
+              1089.5,
+              1066,
+              1130.5
+            ],
+            fill: false,
+            borderColor: "#5DA7A3",
+            backgroundColor:'#5DA7A3'
+          },
+          {
+            label: 'HotSpot',
+            data:[
+              10.5,
+              508,
+              675,
+              808,
+              900.5,
+              806,
+              720.5,
+              808.5,
+              938,
+              1122,
+              1166.5
+            ],
+            fill: false,
+            borderColor:'#E58B23',
+            backgroundColor:'#E58B23'
+          },
+        ]
+      },
+    } 
+  
+  render (){
+    return(
+      <Layout isHome={false} title="Eclipse OpenJ9 performance" description="OpenJDK with OpenJ9 demonstrates significantly better performance than HotSpot.">
+      <div sx={{ backgroundColor: "#F5F9FC",  paddingX: "10%", paddingTop: "3%", paddingBottom: "1%" }}>
+        <Styled.h1 sx={{marginBottom:"1rem"}}>Performance Overview</Styled.h1>
+          <Styled.p>
+            Application performance can be measured using many different metrics, including startup time,
+            ramp-up time, footprint, and response time, as well as throughput. At Eclipse OpenJ9, we keep a watchful eye on all
+            of these metrics, making sensible tradeoffs and providing tuning options that allow the virtual machine (VM) to be optimized for different workloads.
+          </Styled.p>
+      </div>
+      
       <div
         sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-around",
+          backgroundColor: "#F5F9FC",
+          paddingX: "10%",
+          paddingTop: "1%",
+          paddingBottom: "3%"
         }}
       >
-        <PerformanceCard image={SixtySixPercentSmallerFootprint} heading="66% smaller footprint after startup" primary={true}> 
-         <p>OpenJ9 is highly optimized for cloud workloads, where minimising memory footprint is important.
-           Even with other optimizations enabled, the footprint stays about the same.</p>
-        </PerformanceCard>
-        <PerformanceCard image={SixtyThreePercentSmallerFootprint} heading="63% smaller footprint during ramp up" primary={true}> 
-        <p>Memory footprint increases rapidly when load is applied, but at steady state,
-          OpenJDK 8 with OpenJ9 used around 63% less physical memory than OpenJDK 8 with HotSpot.</p>
-        </PerformanceCard>
-        <PerformanceCard image={FortyTwoPercentStartup} heading="42% faster startup time" primary={true}> 
-        <p>Shared classes and Ahead-of-Time (AOT) technologies typically reduce startup time.
-          By using -Xquickstart mode as well, you can reduce startup time by up to 42%.</p>
-        </PerformanceCard>
-        <PerformanceCard image={TwentyEightPercentFaster} heading="Faster ramp-up time in the cloud" primary={true}> 
-        <p>OpenJ9 reaches peak throughput on a single CPU core in 8.5 minutes compared with 30 minutes for Hotspot.
-          Ideal for short-lived VMs running in the cloud.</p>
-        </PerformanceCard>
+        <Styled.h2>OpenJDK 8 performance with Eclipse OpenJ9</Styled.h2>
+        <Styled.p sx={{marginBottom:"0.5rem"}}>
+          The result is that OpenJDK 8 with OpenJ9 demonstrates significantly better performance than with Hotspot.
+        </Styled.p>
+    
+        <div
+          sx={{
+            display: "flex",
+            justifyContent: "space-around",
+            flexWrap: "wrap"
+          }}
+        >
+          <PerformanceCard graph={this.state.barChartJDK8Footprint} heading="66% smaller footprint after startup" primary={true} chartType="bar" yAxis="Relative resident set size"> 
+            <p>OpenJ9 is highly optimized for cloud workloads, where minimising memory footprint is important.
+              Even with other optimizations enabled, the footprint stays about the same.</p>
+          </PerformanceCard>
+          <PerformanceCard graph={this.state.lineChartJK8FootprintDuringrampup} heading="63% smaller footprint during ramp up" primary={true} chartType="line" yAxis="Resident Set Size (MB)" xAxis="Time (s)"> 
+            <p>Memory footprint increases rapidly when load is applied, but at steady state,
+              OpenJDK 8 with OpenJ9 used around 63% less physical memory than OpenJDK 8 with HotSpot.</p>
+          </PerformanceCard>
+          <PerformanceCard graph={this.state.barChartJDK8Startup} heading="42% faster startup time" primary={true} chartType="bar" yAxis="Relative start-up time"> 
+            <p>Shared classes and Ahead-of-Time (AOT) technologies typically reduce startup time. By using -Xquickstart mode as well,
+              you can reduce startup time by up to 42%.</p>
+          </PerformanceCard>
+          <PerformanceCard graph={this.state.lineChartJK8FasterRampupInTheCloud} heading="Faster ramp-up time in the cloud" primary={true} chartType="line" xAxis="Time (s)" yAxis="Throughput"> 
+            <p>OpenJ9 reaches peak throughput on a single CPU core in 8.5 minutes compared with 30 minutes for Hotspot.
+              Ideal for short-lived VMs running in the cloud.</p>
+          </PerformanceCard>
+        </div>
+        <div
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            paddingBottom: "5%"
+          }}
+        >
+          <a sx={{
+              variant: "buttons.secondary",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              textDecoration: "none",
+              width:"16rem",
+              marginTop:"5rem"
+              }} 
+              href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader7.md" rel="noopener noreferrer" target="_blank">Read more performance details</a>
+        </div>
       </div>
-      <div
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        paddingBottom: "5%"
-      }}
-    >
-     <a sx={{
-        variant: "buttons.secondary",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        textDecoration: "none",
-        width:"16rem",
-        marginTop:"5rem"
-        }} 
-        href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader7.md" rel="noopener noreferrer" target="_blank">Read more performance details</a>
+    </Layout>
+    )
+  }
+}
 
-      </div>
-    </div>
-   
-  </Layout>
-);
+export default performance;
+ 

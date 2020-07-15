@@ -23,52 +23,96 @@
 /** @jsx jsx */
 
 import { jsx } from "theme-ui";
-
-const PerformanceCard = ({ children, flex, primary, image, heading }) => {
-  return (
-    <div
-      sx={{
-
-        boxShadow: primary ? "cardShadow" : null,
-        borderRadius: "card",
-        backgroundColor: "primary",
-        color: "white",
-        marginY: 5,
-        marginX: 1,
-        width:"18rem",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-        <h5 sx={{fontSize:"1.1rem",margin:"-1rem 1rem 0 1rem", textAlign:"center", height:"3rem",}}>{heading}</h5>
-        <img sx={{
-          margin:"1rem",
-          }}src={image} alt={heading + " graph"} ></img>
-      <div
-      sx={{
-        boxShadowBottom: primary ? "cardShadow" : null,
-        borderBottomRightRadius: "card",
-        borderBottomLeftRadius: "card",
-        backgroundColor: "white",
-        borderTop: "5px solid #5DA7A3",
-        color: "darkText",
-        height:"50%",
-        padding:"4rem 1rem",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width:"100%",
-        marginBottom:"-4rem",
-        lineHeight:"1.3"
-      }}
-    >
-      {children}
-    </div>
-    </div>
-    
-  );
+import LineChart from "../components/lineChart";
+import BarChart from "../components/barChart";
+const PerformanceCard = ({ children, primary, graph, heading, chartType, xAxis, yAxis }) => {
+    if (chartType === "line") {
+        return (
+            <div
+              sx={{
+                boxShadow: primary ? "cardShadow" : null,
+                borderRadius: "card",
+                backgroundColor: "primary",
+                color: "white",
+                marginY: 5,
+                marginX: 1,
+                width:"18rem",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+                <h5 sx={{fontSize:"1.1rem",margin:"0.5rem 1.5rem 0.5rem 1.5rem", textAlign:"center", height:"3rem",}}>{heading}</h5>
+                 <LineChart lineChartData={graph} legendPosition="bottom" xAxis={xAxis} yAxis={yAxis}/>
+              <div
+              sx={{
+                boxShadowBottom: primary ? "cardShadow" : null,
+                borderBottomRightRadius: "card",
+                borderBottomLeftRadius: "card",
+                backgroundColor: "white",
+                borderTop: "5px solid #5DA7A3",
+                color: "darkText",
+                height:"50%",
+                padding:"4rem 1rem",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width:"100%",
+                marginBottom:"-4rem",
+                marginTop:"1rem"
+ 
+              }}
+            >
+              {children}
+            </div>
+            </div>
+            
+          );
+    } else {
+        return (
+            <div
+              sx={{
+        
+                boxShadow: primary ? "cardShadow" : null,
+                borderRadius: "card",
+                backgroundColor: "primary",
+                color: "white",
+                marginY: 5,
+                marginX: 1,
+                width:"18rem",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+                <h5 sx={{fontSize:"1.1rem",margin:"0.5rem 1rem 0.5rem 1rem", textAlign:"center", height:"3rem",}}>{heading}</h5>
+                <BarChart barChartData={graph} yAxis={yAxis}/>
+              <div
+              sx={{
+                boxShadowBottom: primary ? "cardShadow" : null,
+                borderBottomRightRadius: "card",
+                borderBottomLeftRadius: "card",
+                backgroundColor: "white",
+                borderTop: "5px solid #5DA7A3",
+                color: "darkText",
+                height:"50%",
+                padding:"4rem 1rem",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width:"100%",
+                marginBottom:"-4rem",
+                marginTop:"1rem"
+              }}
+            >
+              {children}
+            </div>
+            </div>
+            
+          );
+    }
 };
 
 export default PerformanceCard;
