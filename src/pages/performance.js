@@ -127,23 +127,23 @@ class performance extends Component {
             backgroundColor:'#5DA7A3'
           },
           {
-              label: 'HotSpot',
-              data:[
-                10.5,
-                508,
-                675,
-                808,
-                900.5,
-                806,
-                720.5,
-                808.5,
-                938,
-                1122,
-                1166.5
-              ],
-              fill: false,
-              borderColor:'#E58B23',
-              backgroundColor:'#E58B23'
+            label: 'HotSpot',
+            data:[
+              10.5,
+              508,
+              675,
+              808,
+              900.5,
+              806,
+              720.5,
+              808.5,
+              938,
+              1122,
+              1166.5
+            ],
+            fill: false,
+            borderColor:'#E58B23',
+            backgroundColor:'#E58B23'
           },
         ]
       },

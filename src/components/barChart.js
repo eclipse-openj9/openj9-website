@@ -3,18 +3,15 @@ import React, {Component} from "react";
 import { Bar } from 'react-chartjs-2';
 
 class BarChart extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            barChartData:props.barChartData,
-
-        }
+    state = {
+        barChartData: this.props.barChartData,
     }
     
     static defaultProps = {
         displayLegend: false,
         legendPosition:'right',
-      }
+    }
+
     render(){
         return(
             <div className="chart">
@@ -53,7 +50,7 @@ class BarChart extends Component {
                                     display: true,
                                     labelString: this.props.yAxis,
                                     fontColor: 'white'                                    
-                                  }
+                                }
                             }]
 
                         },
@@ -64,7 +61,6 @@ class BarChart extends Component {
                         animation: {
                             duration: 2000,
                             easing: 'easeOutCubic',
-
                         },
                       }}
                 />                

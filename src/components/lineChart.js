@@ -3,18 +3,16 @@ import React, {Component} from "react";
 import { Line, } from 'react-chartjs-2';
 
 class LineChart extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            lineChartData:props.lineChartData,
+   state = {
+        lineChartData: this.props.lineChartData,
 
-        }
     }
+
     static defaultProps = {
-        displayTitle: false,
         displayLegend: true,
         legendPosition:'right',
-      }
+    }
+
     render(){
         return(
             <div>
@@ -67,8 +65,7 @@ class LineChart extends Component {
                         animation: {
                             duration: 2000,
                             easing: 'easeOutCubic',
-
-                          },
+                        },
                     }}
                 />
                 
