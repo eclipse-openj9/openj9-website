@@ -37,12 +37,6 @@ const Button = ({children, primary, link, target, widthChanged }) => {
           justifyContent: "center",
           textDecoration: "none",
           width: widthChanged ? "220px" : "190px",
-          "&:hover": {
-            textDecoration: "none",
-            color:"white",
-            backgroundColor: "secondaryDark",
-            borderColor: "secondaryDark",
-          }
         }}
       >
         {children}
@@ -58,12 +52,6 @@ const Button = ({children, primary, link, target, widthChanged }) => {
           justifyContent: "center",
           textDecoration: "none",
           width: widthChanged ? "220px" : "190px",
-          "&:hover": {
-            textDecoration: "none",
-            color:"white",
-            backgroundColor: "secondaryDark",
-            borderColor: "secondaryDark",
-          }
         }}
       >
         {children}
