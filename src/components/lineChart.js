@@ -23,10 +23,9 @@ class LineChart extends Component {
                     height={220}
                     width={280}
                     options={{
-                        // maintainAspectRatio: true,
                         scales:{
                             xAxes: [{
-                                display: true, //this will remove all the x-axis grid lines
+                                display: true,
                                 ticks: {
                                     fontColor: "white",
                                     maxTicksLimit: 3,
@@ -41,7 +40,7 @@ class LineChart extends Component {
                                   }
                             }],
                             yAxes: [{
-                                display: true, //this will remove all the x-axis grid lines
+                                display: true,
                                 ticks: {
                                     fontColor: "white",
                                     maxTicksLimit: 3,

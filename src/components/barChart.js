@@ -25,7 +25,7 @@ class BarChart extends Component {
                     options={{
                         scales:{
                             xAxes: [{
-                                display: true, //this will remove all the x-axis grid lines
+                                display: true,
                                 ticks: {
                                     fontColor: "white",
                                 },
@@ -39,7 +39,7 @@ class BarChart extends Component {
                                   }
                             }],
                             yAxes: [{
-                                display: true, //this will remove all the x-axis grid lines
+                                display: true,
                                 ticks: {
                                     fontColor: "white",
                                     maxTicksLimit: 4,
