@@ -283,7 +283,7 @@ class performance extends Component {
             flexWrap: "wrap",
           }}
         >
-           <PerformanceCard graph={this.state.barChartJDK11Footprint} heading="Footprint" primary={true} yAxis="Normalized performance (%)"> 
+           <PerformanceCard graph={this.state.barChartJDK11Footprint} heading="Footprint" primary={true} yAxis="Relative performance (%)"> 
               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
               Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
               when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
@@ -293,7 +293,7 @@ class performance extends Component {
              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
              when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
           </PerformanceCard>
-          <PerformanceCard graph={this.state.barChartJDK11Startup} heading="Startup time"  primary={true} yAxis="Normalized performance (%)"> 
+          <PerformanceCard graph={this.state.barChartJDK11Startup} heading="Startup time"  primary={true} yAxis="Relative performance (%)"> 
           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
              when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
@@ -345,19 +345,19 @@ class performance extends Component {
             flexWrap: "wrap"
           }}
         >
-          <PerformanceCard graph={this.state.barChartJDK8Footprint} heading="66% smaller footprint after startup" flex="0 0 20rem" primary={true} chartType="bar" yAxis="Normalized JVM resident set size"> 
+          <PerformanceCard graph={this.state.barChartJDK8Footprint} heading="66% smaller footprint after startup" primary={true} chartType="bar" yAxis="Relative resident set size"> 
            <p>OpenJ9 is highly optimized for cloud workloads, where minimising memory footprint is important.
              Even with other optimizations enabled, the footprint stays about the same.</p>
           </PerformanceCard>
-          <PerformanceCard graph={this.state.lineChartJK8FootprintDuringrampup} heading="63% smaller footprint during ramp up" flex="0 0 20rem" primary={true} chartType="line" yAxis="Process Resident Set Size" xAxis="Time (s)"> 
+          <PerformanceCard graph={this.state.lineChartJK8FootprintDuringrampup} heading="63% smaller footprint during ramp up" primary={true} chartType="line" yAxis="Resident Set Size" xAxis="Time (s)"> 
           <p>Memory footprint increases rapidly when load is applied, but at steady state,
             OpenJDK 8 with OpenJ9 used around 63% less physical memory than OpenJDK 8 with HotSpot.</p>
           </PerformanceCard>
-          <PerformanceCard graph={this.state.barChartJDK8Startup} heading="42% faster startup time" flex="0 0 20rem" primary={true} chartType="bar" yAxis="Normalized start-up time"> 
+          <PerformanceCard graph={this.state.barChartJDK8Startup} heading="42% faster startup time" primary={true} chartType="bar" yAxis="Relative start-up time"> 
            <p>Shared classes and Ahead-of-Time (AOT) technologies typically reduce startup time. By using -Xquickstart mode as well,
              you can reduce startup time by up to 42%.</p>
           </PerformanceCard>
-          <PerformanceCard graph={this.state.lineChartJK8FasterRampupInTheCloud} heading="Faster ramp-up time in the cloud" flex="0 0 20rem" primary={true} chartType="line" xAxis="Time (s)" yAxis="Throughput"> 
+          <PerformanceCard graph={this.state.lineChartJK8FasterRampupInTheCloud} heading="Faster ramp-up time in the cloud" primary={true} chartType="line" xAxis="Time (s)" yAxis="Throughput"> 
           <p>OpenJ9 reaches peak throughput on a single CPU core in 8.5 minutes compared with 30 minutes for Hotspot.
             Ideal for short-lived VMs running in the cloud.</p>
           </PerformanceCard>
