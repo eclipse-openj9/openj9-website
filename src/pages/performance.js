@@ -91,7 +91,7 @@ export default () => (
         alignItems: "center",
         justifyContent: "center",
         textDecoration: "none",
-        width:"250px",
+        width:"16rem",
         marginTop:"5rem"
         }} 
         href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader7.md" rel="noopener noreferrer" target="_blank">Read more performance details</a>

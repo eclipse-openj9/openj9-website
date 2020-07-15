@@ -145,7 +145,7 @@ export default () => (
           }}
         >
           <Styled.h3>BLOGS</Styled.h3>
-          <Styled.p sx={{height:["8rem", "13rem", "12rem", "10rem"], marginBottom:["10rem", 0, 0, 0],  width:"90%", paddingRight:["1rem", 0, 0, 0]}}>
+          <Styled.p sx={{height:["10rem", "13rem", "12rem", "10rem"], marginBottom:["10rem", 0, 0, 0],  width:"90%", paddingRight:["1rem", 0, 0, 0]}}>
             Our blogs are written by developers, for developers. Read about their insights into up and coming technologies,
             take deep dives into OpenJ9 development, or simply hear about their experiences of working on the project.
           </Styled.p>

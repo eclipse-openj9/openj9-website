@@ -85,6 +85,7 @@ export default ({data}) => {
                  },
                  a: {
                   color: "#5DA7A3",
+                  textDecoration:"none",
                   "&:hover": {
                     fontWeight: "bold",
                     textDecoration:"none"
