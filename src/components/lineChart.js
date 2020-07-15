@@ -5,12 +5,11 @@ import { Line, } from 'react-chartjs-2';
 class LineChart extends Component {
    state = {
         lineChartData: this.props.lineChartData,
-
     }
 
     static defaultProps = {
         displayLegend: true,
-        legendPosition:'right',
+        legendPosition:'bottom',
     }
 
     render(){

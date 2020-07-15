@@ -9,7 +9,7 @@ class BarChart extends Component {
     
     static defaultProps = {
         displayLegend: false,
-        legendPosition:'right',
+        legendPosition:'bottom',
     }
 
     render(){

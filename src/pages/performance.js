@@ -87,7 +87,6 @@ class performance extends Component {
           },
         ]
       },
-
       barChartJDK8Startup:{ 
         labels: ['OpenJ9', 'HotSpot'],
         datasets:[
@@ -103,7 +102,6 @@ class performance extends Component {
           }
         ]
       },
-
       lineChartJK8FasterRampupInTheCloud:{ 
         labels: [0, 155, 305, 455, 605, 755, 905, 1055, 1151, 1301, 1451],
         datasets:[
