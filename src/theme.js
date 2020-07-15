@@ -64,7 +64,9 @@ export default {
       "&:hover": {
         cursor: "pointer",
         backgroundColor: "secondaryDark",
-        borderColor: "secondaryDark"
+        borderColor: "secondaryDark",
+        textDecoration:"none",
+        color:"white"
       }
     },
     secondary: { variant: "buttons.primary", width: "190px" }
