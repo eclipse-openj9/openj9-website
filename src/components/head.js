@@ -20,11 +20,13 @@
 
 // The project website pages cannot be redistributed
 
-import React from 'react';
-import SEO from "../components/seo";
+import React from "react";
+
+import SEO from "../components/SEO";
 
 export default (props) => {
-    return(
+    return (
         <SEO title={props.title} description={props.description}></SEO>
     );
 }
+

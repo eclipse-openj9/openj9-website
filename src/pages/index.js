@@ -102,81 +102,41 @@ export default () => (
         </Button>
       </section>
     </div>
+    
     <div
       sx={{
-        display: ["flex", "none", "none", "flex"],
+        display: "flex",
         flexWrap: "wrap",
-        justifyContent: "space-between",
-        padding: "5% 5% 1% 5%"
+        justifyContent: "space-around",
+        padding: "5% 5% 1% 5%",
+        marginLeft: "-15px"
       }}
     >
-      <Card flex="0 0 300px" primary={false}>
+      <Card width="20rem" primary={false}>
       <i className="fas fa-rocket fa-5x"></i>
         <Styled.h4 sx={{textAlign:"center", marginBottom:"4px"}}>Optimized for the Cloud</Styled.h4>
         <Styled.p sx={{textAlign:"center"}}>for microservices and monoliths too!</Styled.p>
       </Card>
 
-      <Card flex="0 0 300px" primary={false}>
+      <Card width="20rem" primary={false}>
       <i className="fas fa-tachometer-alt fa-5x"></i>
          <Styled.h4 sx={{textAlign:"center", marginBottom:"4px"}}>42% Faster Startup</Styled.h4>
         <Styled.p sx={{textAlign:"center"}}>over HotSpot</Styled.p>
       </Card>
 
-      <Card flex="0 0 300px" primary={false}>
+      <Card width="20rem" primary={false}>
       <i className="fas fa-chart-line fa-5x"></i>
          <Styled.h4 sx={{textAlign:"center", marginBottom:"4px"}}>28% Faster Ramp-up</Styled.h4>
         <Styled.p sx={{textAlign:"center"}}>when deployed to cloud vs HotSpot</Styled.p>
       </Card>
 
-      <Card flex="0 0 300px" primary={false}>
+      <Card width="20rem"primary={false}>
       <i className="fas fa-archive fa-5x"></i>
          <Styled.h4 sx={{textAlign:"center", marginBottom:"4px"}}>66% Smaller</Styled.h4>
         <Styled.p sx={{textAlign:"center"}}>when compared to HotSpot</Styled.p>
       </Card>
-
     </div>
 
-    <div
-      sx={{
-        display: ["none", "flex", "flex", "none"],
-        flexWrap: "wrap",
-        justifyContent: "space-around",
-        padding: "5%"
-      }}
-    >
-      <Card flex="0 0 300px" primary={false}>
-      <i className="fas fa-rocket fa-5x"></i>
-        <Styled.h4 sx={{textAlign:"center", marginBottom:"4px"}}>Built for Cloud Deployments</Styled.h4>
-        <Styled.p sx={{textAlign:"center"}}>with an intuitive CLI</Styled.p>
-      </Card>
-
-      <Card flex="0 0 300px" primary={false}>
-      <i className="fas fa-tachometer-alt fa-5x"></i>
-         <Styled.h4 sx={{textAlign:"center", marginBottom:"4px"}}>42% Faster Startup</Styled.h4>
-        <Styled.p sx={{textAlign:"center"}}>over HotSpot</Styled.p>
-      </Card>
-      </div>
-      <div
-      sx={{
-        display: ["none", "flex", "flex", "none"],
-        flexWrap: "wrap",
-        justifyContent: "space-around",
-        padding: "5%"
-      }}
-    >
-      <Card flex="0 0 300px" primary={false}>
-      <i className="fas fa-chart-line fa-5x"></i>
-         <Styled.h4 sx={{textAlign:"center", marginBottom:"4px"}}>28% Faster Ramp-up</Styled.h4>
-        <Styled.p sx={{textAlign:"center"}}>when deployed to cloud vs HotSpot</Styled.p>
-      </Card>
-
-      <Card flex="0 0 300px" primary={false}>
-      <i className="fas fa-archive fa-5x"></i>
-         <Styled.h4 sx={{textAlign:"center", marginBottom:"4px"}}>66% Smaller</Styled.h4>
-        <Styled.p sx={{textAlign:"center"}}>when compared to HotSpot</Styled.p>
-      </Card>
-
-    </div>
     <div
       sx={{
         display: "flex",
@@ -190,7 +150,7 @@ export default () => (
         alignItems: "center",
         justifyContent: "center",
         textDecoration: "none",
-        width:"220px",
+        width:"15rem",
         }} 
         to="/performance">Read performance details</Link>
 
@@ -224,7 +184,7 @@ export default () => (
             paddingRight:["1rem", 0, 0, 0]
           }}
         >
-          <Styled.p sx={{width:"80%", height:["18rem", "10rem"]}}>
+          <Styled.p sx={{width:["80%", "100%", "80%", "80%"], height:["18rem", "7rem", "10rem", "10rem"]}}>
             Join us on Slack where you can ask questions and chat directly with our developers.
             Whether you simply have a question about using OpenJ9, an idea for improvement,
             or a problem you want to discuss, we'd love to hear from you.
@@ -242,10 +202,10 @@ export default () => (
             flex: "30%",
             maxWidth: "600px",
             minWidth: ["250px", "400px", "400px", "500px"],
-            marginBottom: ["0", "0", "6rem", 0],
+            marginBottom: ["1rem", "1rem", "6rem", "0rem"],
           }}
         >
-          <Styled.p sx={{width:"80%", height:["18rem","10rem"]}}>
+          <Styled.p sx={{width:["80%", "100%", "80%", "80%"], height:["15rem", "6rem", "10rem", "10rem"]}}>
           Like all great open source projects,
           we have a vibrant and busy GitHub repository where you can create issues to explore ideas,
           request new features, or report any difficulties you are having. 
@@ -261,6 +221,7 @@ export default () => (
         </div>
       </section>
     </div>
+    
     <div
       sx={{
         backgroundImage: `url(${circlePatternBig})`,
