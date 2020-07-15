@@ -21,4 +21,3 @@
 // The project website pages cannot be redistributed
 
 import '@fortawesome/fontawesome-free/css/all.css'
-import 'bootstrap/dist/css/bootstrap.min.css';

@@ -16,7 +16,6 @@
   "dependencies": {
     "@emotion/core": "^10.0.27",
     "@fortawesome/fontawesome-free": "^5.9.0",
-    "bootstrap": "^4.5.0",
     "chart.js": "^2.9.3",
     "gatsby": "^2.18.12",
     "gatsby-plugin-emotion": "^4.1.21",

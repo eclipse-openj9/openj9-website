@@ -172,7 +172,7 @@ class performance extends Component {
           The result is that OpenJDK 8 with OpenJ9 demonstrates significantly better performance than with Hotspot.
         </Styled.p>
     
-        <div className="row"
+        <div
           sx={{
             display: "flex",
             justifyContent: "space-around",
