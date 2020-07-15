@@ -10,11 +10,10 @@ class BarChart extends Component {
 
         }
     }
+    
     static defaultProps = {
-        displayTitle: false,
         displayLegend: false,
         legendPosition:'right',
-        location:'City'
       }
     render(){
         return(
@@ -22,7 +21,7 @@ class BarChart extends Component {
                 <Bar
                     data={this.state.barChartData}
                     height={220}
-                    width={300}
+                    width={280}
                     options={{
                         scales:{
                             xAxes: [{
@@ -44,7 +43,8 @@ class BarChart extends Component {
                                 ticks: {
                                     fontColor: "white",
                                     maxTicksLimit: 4,
-                                    padding:2
+                                    padding:2,
+                                    beginAtZero: true
                                 },
                                 gridLines: {
                                     color: "white",
@@ -56,11 +56,6 @@ class BarChart extends Component {
                                   }
                             }]
 
-                        },
-                        title:{
-                          display:this.props.displayTitle,
-                          text:'Largest Cities In ' + this.props.location,
-                          fontSize:25
                         },
                         legend:{
                             display:this.props.displayLegend,

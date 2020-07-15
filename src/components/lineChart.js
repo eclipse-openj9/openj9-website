@@ -17,13 +17,11 @@ class LineChart extends Component {
       }
     render(){
         return(
-            <div className="chart">
-                
-
+            <div>
                 <Line
                     data={this.state.lineChartData}
                     height={220}
-                    width={300}
+                    width={280}
                     options={{
                         // maintainAspectRatio: true,
                         scales:{

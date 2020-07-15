@@ -39,6 +39,9 @@ const Button = ({children, primary, link, target, widthChanged }) => {
           width: widthChanged ? "220px" : "190px",
           "&:hover": {
             textDecoration: "none",
+            color:"white",
+            backgroundColor: "secondaryDark",
+            borderColor: "secondaryDark",
           }
         }}
       >
@@ -57,6 +60,9 @@ const Button = ({children, primary, link, target, widthChanged }) => {
           width: widthChanged ? "220px" : "190px",
           "&:hover": {
             textDecoration: "none",
+            color:"white",
+            backgroundColor: "secondaryDark",
+            borderColor: "secondaryDark",
           }
         }}
       >
