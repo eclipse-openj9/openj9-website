@@ -109,7 +109,7 @@ export default () => (
         flexDirection: "column"
       }}
     >
-      <Styled.h6 sx={{fontSize:"0.9rem", marginTop:"1.3rem", marginLeft:"1rem"}}>OpenJ9 is an Eclipse Incubator Project</Styled.h6>
+      <Styled.h6 sx={{fontSize:"0.9rem", marginTop:"1.3rem", marginLeft:"0.6rem"}}>OpenJ9 is an Eclipse Incubator Project</Styled.h6>
       <a href="https://wiki.eclipse.org/Development_Resources/Process_Guidelines/What_is_Incubation" rel="noopener noreferrer" target="_blank"><img src={incubatorLogo} alt="Eclipse Incubator Logo"></img></a>
     </section>
     <div
