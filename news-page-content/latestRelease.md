@@ -22,20 +22,32 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 The project website pages cannot be redistributed
 -->
 
-### Eclipse OpenJ9 version 0.20.0 released 
+### Eclipse OpenJ9 version 0.21.0 released 
 
-*17 April 2020*
+*20 July 2020*
 
-OpenJ9 version 0.20.0 supports OpenJDK version 8, 11, and 14. OpenJDK builds that contain version 0.20.0 are now available from the AdoptOpenJDK community project:
+OpenJ9 version 0.21.0 supports OpenJDK version 8, 11, and 14. OpenJDK builds that contain version 0.21.0 are now available from the AdoptOpenJDK community project:
 
 - [OpenJDK version 8](https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9)
 - [OpenJDK version 11](https://adoptopenjdk.net/releases.html?variant=openjdk11&jvmVariant=openj9)
 - [OpenJDK version 14](https://adoptopenjdk.net/releases.html?variant=openjdk14&jvmVariant=openj9)
 
-In addition to the usual Linux distributions available, we're pleased to introduce an early access release of OpenJDK 11 for the 64-bit ARM architecture (AArch64). You can find this binary on the [Latest Release](https://adoptopenjdk.net/releases.html?variant=openjdk11&jvmVariant=openj9) page. We'd like as many people as possible to try it out and we'd really appreciate any feedback you have. If you do find a problem that we're not already trying to fix (see [OpenJ9 Known Issues](https://github.com/eclipse/openj9/blob/master/doc/release-notes/0.20/0.20.md#known-issues)), please open an issue at the [OpenJ9 GitHub repo](https://github.com/eclipse/openj9/issues).
+This release of OpenJ9 sees several performance enhancements: 
 
-In this release, we've introduced a new option (-XX:+GlobalLockReservation) that aims to speed up the handling of object locks. Heuristics are used to try and determine when an object will be exclusively locked by a single thread, so that faster, more specialized code can be used for locking the object. Performance improvements are expected for applications with lots of uncontended locked objects. On the IBM Power Systems™ platform, we have observed improvements of up to 12% on some big data queries that are part of the [TPCDS suite](https://relational.fit.cvut.cz/dataset/TPCDS).
+- If the `-Xtune:virtualized` command line option is used, the default JIT scratch memory limit is now reduced from 256 MB to 16 MB. This reduces the peak from JIT compilation activity, allowing you to size containers more easily, based on the particular application's memory usage.
 
-We've also made improvements to several cryptographic algorithms on the IBM Power Systems platform with almost a 6x performance improvement when verifying with the ECDSA algorithm and a 10-20% improvement when signing with the RSA, ECDH, and ECDSA algorithms.
+- If the JIT is running in a container and no swap space is defined, the JIT dynamically adjusts its scratch memory consumption based on the amount of free physical memory available, to avoid out-of-memory (OOM) occurrences.
 
-OpenJ9 Version 0.20.0 also contains a few improvements to existing command line options, some of which change behavior, so make sure you read the [Version 0.20.0 release notes](https://www.eclipse.org/openj9/docs/version0.20/). If you are obtaining OpenJDK 8 or 11 from the AdoptOpenJDK community, you should also read the [Version 0.19.0 release notes](https://www.eclipse.org/openj9/docs/version0.19/) to learn about all the other features and changes in the VM since their last OpenJDK 8 and 11 binaries were made available.
+- Several performance features were added to the AArch64 JIT compiler implementation that led to a throughput improvement on multiple applications of at least 20%. The most notable improvements were seen in global register allocation, recompilation (without profiling), CUDA support, concurrent scavenge GC policy, and the inlined code sequence for object allocations.
+
+In this release, we've introduced two new options:
+
+- `-XX:[+|-]HandleSIGABRT` affects the handling of the operating system signal `SIGABRT`. For compatibility with the reference implementation, set `-XX:-HandleSIGABRT`. 
+
+- `-XX:[+|-]PrintFlagsFinal` outputs the values of a subset of configuration parameters in a format compatible with that produced by HotSpot. This is an initial implementation, and over time, we expect more options to be added to the output.
+
+And for your convenience, the Application Programming Interface (API) documentation that applies to OpenJ9 can now be found in the user documentation for both JDK 8 and JDK 11. The documentation includes links to Oracle API documentation for information that is not specific to OpenJ9.
+
+On macOS&reg; systems: You should note that in this release, the version information for shared libraries on macOS has been updated from 0.0.0 to 1.0.0. If an application has linked against a shared library from a previous OpenJ9 release, it needs to be re-linked against the new release. Failure to re-link causes an error `Incompatible library version`, `requires version 0.0.0`.
+
+For all the details of changes and improvements in 0.21.0, read the [Version 0.21.0 "What's New" page](https://www.eclipse.org/openj9/docs/version0.21/) and see also the [OpenJ9 Release notes](https://github.com/eclipse/openj9/blob/master/doc/release-notes/0.21/0.21.md).
