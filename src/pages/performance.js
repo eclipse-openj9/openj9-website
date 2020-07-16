@@ -103,22 +103,22 @@ class performance extends Component {
         ]
       },
       lineChartJK8FasterRampupInTheCloud:{ 
-        labels: [0, 155, 305, 455, 605, 755, 905, 1055, 1151, 1301, 1451],
+        labels: [0, 150, 300, 450, 600, 750, 900, 1050, 1200, 1350],
         datasets:[
           {
             label: 'OpenJ9',
             data:[
               8.5,
-              1127.5,
+              1064,
+              1063,
+              1133,
+              1188.5,
+              1071,
               1125.5,
-              1132.5,
-              1182,
-              1061.5,
-              1096.5,
-              1148.5,
-              1089.5,
-              1066,
-              1130.5
+              1084.5,
+              1095,
+              1104.5,
+           
             ],
             fill: false,
             borderColor: "#5DA7A3",
@@ -128,16 +128,15 @@ class performance extends Component {
             label: 'HotSpot',
             data:[
               10.5,
-              508,
-              675,
-              808,
-              900.5,
-              806,
-              720.5,
-              808.5,
-              938,
-              1122,
-              1166.5
+              529.5,
+              700.5,
+              832.5,
+              796,
+              829.5,
+              698.5,
+              791.5,
+              1017,
+              1175.5,
             ],
             fill: false,
             borderColor:'#E58B23',
@@ -180,12 +179,12 @@ class performance extends Component {
           }}
         >
           <PerformanceCard graph={this.state.barChartJDK8Footprint} heading="66% smaller footprint after startup" primary={true} chartType="bar" yAxis="Relative resident set size"> 
-            <p>OpenJ9 is highly optimized for cloud workloads, where minimising memory footprint is important.
-              Even with other optimizations enabled, the footprint stays about the same.</p>
+            <p>OpenJ9 is highly optimized for cloud workloads, where minimizing memory footprint is important.
+              Out of the box, the footprint is 66% smaller than HotSpot.</p>
           </PerformanceCard>
           <PerformanceCard graph={this.state.lineChartJK8FootprintDuringrampup} heading="63% smaller footprint during ramp up" primary={true} chartType="line" yAxis="Resident Set Size (MB)" xAxis="Time (s)"> 
-            <p>Memory footprint increases rapidly when load is applied, but at steady state,
-              OpenJDK 8 with OpenJ9 used around 63% less physical memory than OpenJDK 8 with HotSpot.</p>
+            <p>Memory footprint increases rapidly when load is applied. However, at steady state,
+              OpenJ9 consistently used around 63% less physical memory than HotSpot.</p>
           </PerformanceCard>
           <PerformanceCard graph={this.state.barChartJDK8Startup} heading="42% faster startup time" primary={true} chartType="bar" yAxis="Relative start-up time"> 
             <p>Shared classes and Ahead-of-Time (AOT) technologies typically reduce startup time. By using -Xquickstart mode as well,

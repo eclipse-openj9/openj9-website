@@ -41,27 +41,7 @@ gatsby clean
 ```
 
 ## Update Latest release section
-Open `news-page-content/productUpdates.md` and edit it as required and this will automatically be converted to HTML during the build.
-
-## Update Performance Page
-1. Add a new image inside a `src/images`
-2. Add an import statement to the top of the `src/pages/performance.js` file:
-    ```
-    import <your-image-name> from "../images/<your-image-file-name>";
-    ```
-3. Add a new `performanceCard` component to the list of performance cards found in `src/pages/performance.js`.  
-Here is a template for you to use:
-    ```
-    <PerformanceCard 
-      image={<your-image-name>}
-      heading="Heading for performance card"
-      flex="0 0 250px" // do not edit
-      primary={true} // do not edit
-    > 
-      <p>This is the description for performance card.</p>
-    </PerformanceCard>
-    ```
-4. When adding a new card in the list order matters. So, if you add a component at the end of the list, the performance card will appear last in the list.
+Open `news-page-content/latestRelease.md` and edit it as required and this will automatically be converted to HTML during the build.
 
 
 
