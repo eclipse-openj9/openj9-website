@@ -31,7 +31,7 @@ module.exports = {
     title: "Eclipse OpenJ9",
     description:
       "A fast and efficient JVM to power the next generation of Java applications for the cloud.",
-    url: "https://www.doe.com", // No trailing slash allowed! 
+    url: "https://www.doe.com", // No trailing slash allowed!
     twitterUsername: "@openj9",
     image: "openj9-logo.svg"
   },
@@ -99,7 +99,6 @@ module.exports = {
         ]
       }
     },
-    
-],
-pathPrefix: "/openj9-website",
+  ],
+  pathPrefix: "/openj9",
 };
