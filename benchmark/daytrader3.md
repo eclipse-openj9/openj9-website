@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 Copyright (c) 2017, 2020 IBM Corp. and others
 
 This program and the accompanying materials are made available under
@@ -52,7 +52,7 @@ Since we published these results using OpenJDK 9 with Eclipse OpenJ9, we have re
 ### Footprint during ramp up
 
 
-![The explanation for this graph is provided in the surrounding text.](../assets/perf_rss_ramp_xmx1g_2.png)
+![The explanation for this graph is provided in the surrounding text.](./assets/perf_rss_ramp_xmx1g_2.png)
 
 **Figure.1** DayTrader 3 footprint size during ramp up with a maximum Java heap size set to 1 GB. Comparison between **OpenJDK 9 with Hotspot** and **OpenJDK 9 with OpenJ9**.
 
@@ -60,7 +60,7 @@ In all three scenarios, memory footprint (Resident Set Size) increased abruptly 
 
 ### Footprint after startup
 
-![The explanation for this graph is provided in the surrounding text.](../assets/perf_startup_footprint_xmx1g_2.png)
+![The explanation for this graph is provided in the surrounding text.](./assets/perf_startup_footprint_xmx1g_2.png)
 
 **Figure 2.** DayTrader 3 footprint after startup with a maximum Java heap size set to 1 GB. Comparison between **OpenJDK 9 with Hotspot** and **OpenJDK 9 with OpenJ9**.
 
@@ -68,7 +68,7 @@ Immediately after startup OpenJ9 shows a footprint size of around 60% less than 
 
 ### Startup time
 
-![The explanation for this graph is provided in the surrounding text.](../assets/perf_startup_xmx1g_2.png)
+![The explanation for this graph is provided in the surrounding text.](./assets/perf_startup_xmx1g_2.png)
 
 **Figure 3.** DayTrader 3 startup time with a maximum Java heap size set to 1 GB. Comparison between **OpenJDK 9 with Hotspot** and **OpenJDK 9 with OpenJ9**.
 
@@ -76,7 +76,7 @@ With no command line options OpenJ9 shows a slightly longer startup time than Ho
 
 ### Throughput
 
-![The explanation for this graph is provided in the surrounding text.](../assets/perf_thr_ramp_xmx1g_2.png)
+![The explanation for this graph is provided in the surrounding text.](./assets/perf_thr_ramp_xmx1g_2.png)
 
 **Figure 4.** DayTrader 3 throughput during ramp up with a maximum Java heap size set to 1 GB. Comparison between **OpenJDK 9 with Hotspot** and **OpenJDK 9 with OpenJ9**.
 
@@ -107,7 +107,7 @@ When `-Xtune:virtualized` is enabled, the JIT compiler is less aggressive in its
 
 Here are the results of our tests:
 
-![The explanation for this graph is provided in the surrounding text.](../assets/perf_thr_ramp_xmx1g_1core.png)
+![The explanation for this graph is provided in the surrounding text.](./assets/perf_thr_ramp_xmx1g_1core.png)
 
 **Figure 5.** DayTrader 3 throughput during ramp up. Comparison between **OpenJDK 9 with Hotspot**, **OpenJDK 9 with OpenJ9** (default settings), and **OpenJDK 9 with OpenJ9** with AOT and `-Xtune:virtualized`.
 

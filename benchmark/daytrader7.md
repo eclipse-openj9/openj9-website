@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 Copyright (c) 2017, 2020 IBM Corp. and others
 
 This program and the accompanying materials are made available under
@@ -50,7 +50,7 @@ While the specific levels of performance shown in these tests might change from 
 
 OpenJ9 is highly optimized for cloud workloads. The memory footprint (Resident Set Size) is around a third the size of other VM implementations.
 
-![The explanation for this graph is provided in the surrounding text.](../assets/perf_v8_startup_footprint.png)
+![The explanation for this graph is provided in the surrounding text.](./assets/perf_v8_startup_footprint.png)
 
 **Fig 1.** *DayTrader 7 footprint size after start up with a maximum Java heap size set to 1 GB. Comparison between OpenJDK 8 with Hotspot and OpenJDK 8 with OpenJ9.*
 
@@ -62,7 +62,7 @@ When OpenJ9 was tested with AOT enabled, and with AOT and `-Xquickstart` enabled
 
 ## Memory footprint during ramp up
 
-![The explanation for this graph is provided in the surrounding text.](../assets/perf_v8_ramp_footprint.png)
+![The explanation for this graph is provided in the surrounding text.](./assets/perf_v8_ramp_footprint.png)
 
 **Fig 2.** *DayTrader 7 footprint size during ramp up with a maximum Java heap size set to 1 GB. Comparison between OpenJDK 8 with Hotspot and OpenJDK 8 with OpenJ9.*
 
@@ -76,7 +76,7 @@ Enabling AOT on the OpenJ9 VM made almost no difference to these results.
 
 Shared classes and Ahead-of-Time (AOT) technologies typically reduce startup time while improving the overall ramp-up time of applications. As a developer you can achieve even faster startup times by using `-Xquickstart` mode as well.
 
-![The explanation for this graph is provided in the surrounding text.](../assets/perf_v8_startup_time.png)
+![The explanation for this graph is provided in the surrounding text.](./assets/perf_v8_startup_time.png)
 
 **Fig 3.** *DayTrader 7 startup time with a maximum Java heap size set to 1 GB. Comparison between OpenJDK 8 with Hotspot and OpenJDK 8 with OpenJ9.*
 
@@ -86,7 +86,7 @@ With AOT enabled, startup time for OpenJDK 8 with OpenJ9 is 36% lower than Hotsp
 
 ## Throughput
 
-![The explanation for this graph is provided in the surrounding text.](../assets/perf_v8_ramp_throughput.png)
+![The explanation for this graph is provided in the surrounding text.](./assets/perf_v8_ramp_throughput.png)
 
 **Fig 4.** *DayTrader 7 throughput during ramp up with a maximum Java heap size set to 1 GB. Comparison between OpenJDK 8 with Hotspot and OpenJDK 8 with OpenJ9.*
 
@@ -113,7 +113,7 @@ When the `-Xtune:virtualized` option is enabled, the JIT compiler is less aggres
 
 Here are the results of our tests:
 
-![The explanation for this graph is provided in the surrounding text.](../assets/perf_v8_ramp_footprint_1core.png "title")
+![The explanation for this graph is provided in the surrounding text.](./assets/perf_v8_ramp_footprint_1core.png "title")
 
 **Fig 5.** *DayTrader 7 throughput during ramp up with a maximum Java heap size set to 1 GB and the VM pinned to 1 core. Comparison between OpenJDK 8 with Hotspot and OpenJDK 8 with OpenJ9.*
 
