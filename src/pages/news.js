@@ -122,7 +122,7 @@ export default ({data}) => {
           }}
         >
           
-          <Styled.h4 sx={{width:"90%", marginBottom: "0.8rem", height: ["5.5rem", "2.5rem", "2.5rem", "3rem"]}}>
+          <Styled.h4 sx={{width:"90%", margin: "2rem 0", height: ["2rem", "1rem", "1rem", "1rem"]}}>
           <a
             sx={{
                   fontSize:"1.24rem",
@@ -151,7 +151,7 @@ export default ({data}) => {
             minWidth: ["250px", "350px", "400px", "500px"],
           }}
         >
-          <Styled.h4 sx={{width:"90%", marginBottom:"0.8rem",color: "black", textDecoration: "none", height: ["5.5rem", "2.5rem", "2.5rem", "3rem"]}}>
+          <Styled.h4 sx={{width:"90%", margin: "2rem 0", height: ["2rem", "1rem", "1rem", "1rem"], color: "black", textDecoration: "none"}}>
             <a 
               sx={{
                 fontSize:"1.24rem",
