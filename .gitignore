@@ -1,1 +1,5 @@
-.git
+node_modules/
+public/
+.cache/
+.DS_Store
+.idea/

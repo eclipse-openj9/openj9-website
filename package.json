@@ -1,0 +1,46 @@
+{
+  "name": "gatsby-starter-hello-world",
+  "private": true,
+  "description": "A simplified bare-bones starter for Gatsby",
+  "version": "0.1.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "deploy": "gatsby clean && gatsby build --prefix-paths && mkdir public/tools && cp tools/* public/tools && gh-pages -b $BRANCH -r $REPO -d public",
+    "format": "prettier --write src/**/*.{js,jsx}",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.27",
+    "@fortawesome/fontawesome-free": "^5.9.0",
+    "chart.js": "^2.9.3",
+    "gatsby": "^2.18.12",
+    "gatsby-plugin-emotion": "^4.1.21",
+    "gatsby-plugin-google-analytics": "^2.1.36",
+    "gatsby-plugin-manifest": "^2.4.8",
+    "gatsby-remark-external-links": "0.0.4",
+    "gatsby-source-filesystem": "^2.1.48",
+    "gatsby-source-wordpress": "^3.1.60",
+    "gatsby-transformer-remark": "^2.6.50",
+    "react": "^16.12.0",
+    "react-chartjs-2": "^2.9.0",
+    "react-dom": "^16.12.0",
+    "react-helmet": "^5.2.1",
+    "simple-load-script": "^1.0.2",
+    "theme-ui": "^0.3.1"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.0.1",
+    "prettier": "^1.19.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
+  },
+  "bugs": {
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  }
+}
