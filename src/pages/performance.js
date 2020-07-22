@@ -178,19 +178,19 @@ class performance extends Component {
             flexWrap: "wrap"
           }}
         >
-          <PerformanceCard graph={this.state.barChartJDK8Footprint} heading="66% smaller footprint after startup" primary={true} chartType="bar" yAxis="Relative resident set size"> 
+          <PerformanceCard graphData={this.state.barChartJDK8Footprint} heading="66% smaller footprint after startup" primary={true} chartType="bar" yAxis="Relative resident set size"> 
             <p>OpenJ9 is highly optimized for cloud workloads, where minimizing memory footprint is important.
               Out of the box, the footprint is 66% smaller than HotSpot.</p>
           </PerformanceCard>
-          <PerformanceCard graph={this.state.lineChartJK8FootprintDuringrampup} heading="63% smaller footprint during ramp up" primary={true} chartType="line" yAxis="Resident Set Size (MB)" xAxis="Time (s)"> 
+          <PerformanceCard graphData={this.state.lineChartJK8FootprintDuringrampup} heading="63% smaller footprint during ramp up" primary={true} chartType="line" yAxis="Resident Set Size (MB)" xAxis="Time (s)"> 
             <p>Memory footprint increases rapidly when load is applied. However, at steady state,
               OpenJ9 consistently used around 63% less physical memory than HotSpot.</p>
           </PerformanceCard>
-          <PerformanceCard graph={this.state.barChartJDK8Startup} heading="42% faster startup time" primary={true} chartType="bar" yAxis="Relative start-up time"> 
+          <PerformanceCard graphData={this.state.barChartJDK8Startup} heading="42% faster startup time" primary={true} chartType="bar" yAxis="Relative start-up time"> 
             <p>Shared classes and Ahead-of-Time (AOT) technologies typically reduce startup time. By using -Xquickstart mode as well,
               you can reduce startup time by up to 42%.</p>
           </PerformanceCard>
-          <PerformanceCard graph={this.state.lineChartJK8FasterRampupInTheCloud} heading="Faster ramp-up time in the cloud" primary={true} chartType="line" xAxis="Time (s)" yAxis="Throughput"> 
+          <PerformanceCard graphData={this.state.lineChartJK8FasterRampupInTheCloud} heading="Faster ramp-up time in the cloud" primary={true} chartType="line" xAxis="Time (s)" yAxis="Throughput"> 
             <p>OpenJ9 reaches peak throughput on a single CPU core in 8.5 minutes compared with 30 minutes for Hotspot.
               Ideal for short-lived VMs running in the cloud.</p>
           </PerformanceCard>
