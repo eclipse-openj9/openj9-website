@@ -118,7 +118,7 @@ export default ({data}) => {
           <article
           sx={{
             flex: "1 1 30%",
-            minWidth: ["250px", "350px", "400px", "500px"]
+            minWidth: ["16rem", "22rem", "25rem", "32rem"],
           }}
         >
           
@@ -148,7 +148,7 @@ export default ({data}) => {
         <article
           sx={{
             flex: "1 1 30%",
-            minWidth: ["250px", "350px", "400px", "500px"],
+            minWidth: ["16rem", "22rem", "25rem", "32rem"],
           }}
         >
           <Styled.h4 sx={{width:"90%", margin: "2rem 0", height: ["2rem", "1rem", "1rem", "1rem"], color: "black", textDecoration: "none"}}>

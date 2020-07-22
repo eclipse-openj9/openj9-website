@@ -114,7 +114,7 @@ export default () => (
     </section>
     <div
       sx={{
-        height: "2px",
+        height: "0.15rem",
         backgroundColor: "secondary",
         width: "100%",
         marginY: 2

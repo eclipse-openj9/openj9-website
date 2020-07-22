@@ -125,8 +125,7 @@ export default () => (
         <article
           sx={{
             flex: "30%",
-            maxWidth: "600px",
-            minWidth: ["250px", "350px", "400px", "500px"],
+            minWidth: ["16rem", "22rem", "25rem", "32rem"],
             marginBottom:["6rem", "6rem", "8rem", 0]
           }}
         >
@@ -140,8 +139,7 @@ export default () => (
         <article
           sx={{
             flex: "30%",
-            maxWidth: "600px",
-            minWidth: ["250px", "350px", "400px", "500px"]
+            minWidth: ["16rem", "22rem", "25rem", "32rem"],
           }}
         >
           <Styled.h3>BLOGS</Styled.h3>

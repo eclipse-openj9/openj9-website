@@ -41,7 +41,7 @@ export default () => (
         backgroundColor: "primary",
         color: "lightText",
         display: "flex",
-        minHeight: "500px",
+        minHeight: "32rem",
         flexDirection: ["column", "column", "row", "row"],
         paddingBottom: ["4rem", "4rem", 0, 0]
       }}
@@ -50,24 +50,24 @@ export default () => (
         sx={{
           backgroundImage: `url(${openj9Circle})`,
           width: ["100%", "100%", "30%", "30%"],
-          minHeight: "200px"
+          minHeight: "12.5rem"
         }}
       ></div>
       <div
         sx={{
-          height: "250px",
-          width: "250px",
+          height: "15rem",
+          width: "15rem",
           borderRadius: "50%",
           backgroundColor: "#434343",
           position: "absolute",
           left: [
-            "calc(50% - 125px)",
-            "calc(50% - 125px)",
-            "calc(30% - 125px)",
-            "calc(30% - 125px)"
+            "calc(50% - 8rem)",
+            "calc(50% - 8rem)",
+            "calc(30% - 8rem)",
+            "calc(30% - 8rem)"
           ],
-          top: ["70px", "70px", "125px", "125px"],
-          border: "white solid 2px",
+          top: ["4.5rem", "4.5rem", "8rem", "8rem"],
+          border: "white solid 0.15rem",
           display: "flex",
           alignItems: "center",
           justifyContent: "center"
@@ -109,30 +109,29 @@ export default () => (
         flexWrap: "wrap",
         justifyContent: "space-around",
         padding: "5% 5% 1% 5%",
-        marginLeft: "-15px"
       }}
     >
-      <Card width="20rem" primary={false}>
+      <Card width="18srem" primary={false}>
       <i className="fas fa-rocket fa-5x"></i>
-        <Styled.h4 sx={{textAlign:"center", marginBottom:"4px"}}>Optimized for the Cloud</Styled.h4>
+        <Styled.h4 sx={{textAlign:"center", marginBottom:"0.25rem"}}>Optimized for the Cloud</Styled.h4>
         <Styled.p sx={{textAlign:"center"}}>for microservices and monoliths too!</Styled.p>
       </Card>
 
-      <Card width="20rem" primary={false}>
+      <Card width="18rem" primary={false}>
       <i className="fas fa-tachometer-alt fa-5x"></i>
-         <Styled.h4 sx={{textAlign:"center", marginBottom:"4px"}}>42% Faster Startup</Styled.h4>
+         <Styled.h4 sx={{textAlign:"center", marginBottom:"0.25rem"}}>42% Faster Startup</Styled.h4>
         <Styled.p sx={{textAlign:"center"}}>over HotSpot</Styled.p>
       </Card>
 
-      <Card width="20rem" primary={false}>
+      <Card width="18rem" primary={false}>
       <i className="fas fa-chart-line fa-5x"></i>
-         <Styled.h4 sx={{textAlign:"center", marginBottom:"4px"}}>28% Faster Ramp-up</Styled.h4>
+         <Styled.h4 sx={{textAlign:"center", marginBottom:"0.25rem"}}>28% Faster Ramp-up</Styled.h4>
         <Styled.p sx={{textAlign:"center"}}>when deployed to cloud vs HotSpot</Styled.p>
       </Card>
 
-      <Card width="20rem"primary={false}>
+      <Card width="18rem"primary={false}>
       <i className="fas fa-archive fa-5x"></i>
-         <Styled.h4 sx={{textAlign:"center", marginBottom:"4px"}}>66% Smaller</Styled.h4>
+         <Styled.h4 sx={{textAlign:"center", marginBottom:"0.25rem"}}>66% Smaller</Styled.h4>
         <Styled.p sx={{textAlign:"center"}}>when compared to HotSpot</Styled.p>
       </Card>
     </div>
@@ -157,7 +156,7 @@ export default () => (
       </div>
     <div
       sx={{
-        padding: `calc(5% + 40px)`,
+        padding: `calc(5% + 2.5rem)`,
         backgroundColor: "#F5F9FC",
         minHeight: "50vh"
       }}
@@ -177,8 +176,7 @@ export default () => (
         <div
           sx={{
             flex: "30%",
-            maxWidth: "600px",
-            minWidth: ["250px", "400px", "400px", "500px"],
+            minWidth: ["16rem", "25rem", "25rem", "32rem"],
             marginBottom: ["6rem", "6rem", "6rem", 0],
             marginTop: ["1rem", 0, 0, 0],
             paddingRight:["1rem", 0, 0, 0]
@@ -200,8 +198,7 @@ export default () => (
         <div
           sx={{
             flex: "30%",
-            maxWidth: "600px",
-            minWidth: ["250px", "400px", "400px", "500px"],
+            minWidth: ["16rem", "25rem", "25rem", "32rem"],
             marginBottom: ["1rem", "1rem", "6rem", "0rem"],
           }}
         >
@@ -243,14 +240,13 @@ export default () => (
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "space-between",
-        padding: "calc(5% + 40px)"
+        padding: "calc(5% + 2.5rem)"
       }}
     >
       <div
         sx={{
           flex: "30%",
-          maxWidth: "600px",
-          minWidth: ["250px", "350px", "400px", "500px"],
+          minWidth: ["16rem", "22rem", "25rem", "32rem"],
           marginBottom: ["4rem", "4rem", "4rem", "2rem"]
         }}
       >
@@ -267,8 +263,7 @@ export default () => (
       <div
         sx={{
           flex: "30%",
-          maxWidth: "600px",
-          minWidth: ["250px", "350px", "400px", "500px"]
+          minWidth: ["16rem", "22rem", "25rem", "32rem"]
         }}
       >
         <Styled.h3>Join community calls</Styled.h3>

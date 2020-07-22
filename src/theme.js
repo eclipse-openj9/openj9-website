@@ -37,10 +37,10 @@ export default {
     lightGrey: "#F1F1F1"
   },
   radii: {
-    button: "35px",
-    card: "10px"
+    button: "2.5rem",
+    card: "0.5rem"
   },
-  breakpoints: ["560px", "1000px", "1366px", "1920px"],
+  breakpoints: ["35rem", "62.5rem", "85rem", "120rem"],
   fontSizes: [16, 18, 20, 24, 28, 36],
   space: [0, 8, 16, 24, 32, 40],
   fontWeights: {
@@ -56,8 +56,8 @@ export default {
       backgroundColor: "secondary",
       color: "white",
       borderRadius: "button",
-      height: "35px",
-      width: "150px",
+      height: "2rem",
+      width: "10rem",
       border: "none",
       fontFamily: "body",
       fontSize: 0,
@@ -69,7 +69,7 @@ export default {
         color:"white"
       }
     },
-    secondary: { variant: "buttons.primary", width: "190px" }
+    secondary: { variant: "buttons.primary", width: "12rem" }
   },
   text: {
     heading: {
@@ -149,9 +149,9 @@ export default {
     }
   },
   borders: {
-    cardBorder: "#5DA7A3 10px solid"
+    cardBorder: "#5DA7A3 0.625rem solid"
   },
   shadows: {
-    cardShadow: "#DADADA 0 0 20px"
+    cardShadow: "#DADADA 0 0 1.25rem"
   },
 };
