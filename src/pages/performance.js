@@ -149,7 +149,7 @@ class performance extends Component {
   render (){
     return(
       <Layout isHome={false} title="Eclipse OpenJ9 performance" description="OpenJDK with OpenJ9 demonstrates significantly better performance than HotSpot.">
-      <div sx={{ backgroundColor: "#F5F9FC",  paddingX: "10%", paddingTop: "3%", paddingBottom: "1%" }}>
+      <div sx={{ backgroundColor: "#F5F9FC",  paddingX: "7%", paddingTop: "3%", paddingBottom: "1%" }}>
         <Styled.h1 sx={{marginBottom:"1rem"}}>Performance Overview</Styled.h1>
           <Styled.p>
             Application performance can be measured using many different metrics, including startup time,
@@ -161,7 +161,7 @@ class performance extends Component {
       <div
         sx={{
           backgroundColor: "#F5F9FC",
-          paddingX: "10%",
+          paddingX: "7%",
           paddingTop: "1%",
           paddingBottom: "3%"
         }}
