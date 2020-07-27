@@ -35,7 +35,7 @@ const PerformanceCard = ({ children, primary, graphData, heading, chartType, xAx
                 backgroundColor: "primary",
                 color: "white",
                 marginY: 5,
-                marginX: 1,
+                marginX: 2,
                 width:"18rem",
                 display: "flex",
                 flexDirection: "column",

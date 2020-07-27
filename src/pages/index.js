@@ -111,7 +111,7 @@ export default () => (
         padding: "5% 5% 1% 5%",
       }}
     >
-      <Card width="18srem" primary={false}>
+      <Card width="18rem" primary={false}>
       <i className="fas fa-rocket fa-5x"></i>
         <Styled.h4 sx={{textAlign:"center", marginBottom:"0.25rem"}}>Optimized for the Cloud</Styled.h4>
         <Styled.p sx={{textAlign:"center"}}>for microservices and monoliths too!</Styled.p>
