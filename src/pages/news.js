@@ -33,7 +33,7 @@ export default ({data}) => {
 
   return(
   <Layout isHome={false} title="What's new with Eclipse OpenJ9" description="Find out what's in the latest release; Learn about the technology directly from our developers.">
-    <div sx={{ backgroundColor: "#F5F9FC", paddingX: "10%", paddingTop:"5%" }}>
+    <section sx={{ backgroundColor: "#F5F9FC", paddingX: "7%", paddingTop:"5%" }}>
       <Styled.h1>What's new in the OpenJ9 project</Styled.h1>
       <div
         sx={{
@@ -46,12 +46,11 @@ export default ({data}) => {
           Catch the latest blog posts from our blog site; get top tips or deep dives about key features of OpenJ9 or simply read about experiences of working in the community.
         </Styled.p>
       </div>
-    </div>
+    </section>
 
-    <div
+    <section
       sx={{
-        paddingX: "10%",
-        paddingBottom: "3%",
+        paddingX: "7%",
         backgroundColor: "#F5F9FC",
 
       }}
@@ -68,7 +67,7 @@ export default ({data}) => {
           borderRadius: "card"        
         }}
       >
-          <article sx={{width:"100%"}}>
+          <article>
             <Styled.h2>Latest release</Styled.h2>
             <div sx={{
                 wordWrap: "break-word",
@@ -97,64 +96,66 @@ export default ({data}) => {
             <Button link="https://www.eclipse.org/openj9/docs/openj9_releases/" primary={false} target={true}>New release info</Button>
           </article>
         </div>
-      </div>
-      <div
-      sx={{
-        paddingX: "5%",
-        paddingBottom: 5,
-        backgroundColor: "#F5F9FC",
-      }}
-    >
-      <div
+      </section>
+      <section
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          paddingX: "10%",
+          paddingX: "7%",
           paddingY: "5%",   
+          backgroundColor: "#F5F9FC",
         }}
       >
-        <Styled.h2>Recent blogs</Styled.h2>
-        <div sx={{display: "flex", flexWrap: "wrap", justifyContent: "space-between"}}>
-          <article
-          sx={{
-            flex: "1 1 30%",
-            minWidth: ["16rem", "22rem", "25rem", "32rem"],
-          }}
-        >
-          
-          <Styled.h4 sx={{width:"90%", margin: "2rem 0", height: ["2rem", "1rem", "1rem", "1rem"]}}>
-          <a
-            sx={{
-                  fontSize:"1.24rem",
-                  cursor: "pointer",
-                  color: "black",
-                  textDecoration: "none",
-                  marginRight:"0.3rem",
-                  "&:hover": {
-                    color: "#5DA7A3",
-                    textDecoration: "none"
-                  }
+        <Styled.h2 sx={{marginTop:"2rem"}}>Recent blogs</Styled.h2>
+      <div
+        sx={{
+          display: "grid",
+          gridGap:['3rem', '3rem', '3rem', '6rem'],
+          gridTemplateColumns:['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)'],
+        }}
+      >
+      
+        <div sx={{
+              display:'flex',
+              flexDirection:'column',
+              justifyContent:'space-between'
             }}
-            href={data.allWordpressPost.nodes[0].link} rel="noopener noreferrer" target="_blank"> {data.allWordpressPost.nodes[0].title}
-         </a>
-         <i className="fas fa-external-link-alt fa-xs"></i>
-          </Styled.h4>
-          <Styled.p sx={{width:"90%", marginBottom: "1rem"}}>
-            <b>{nodes[0].date}</b>
-          </Styled.p>
+        >
+          <div>
+            <Styled.h3>
+            <a
+              sx={{
+                    cursor: "pointer",
+                    color: "black",
+                    marginRight:'0.3rem',
+                    textDecoration: "none",
+                    "&:hover": {
+                      color: "#5DA7A3",
+                      textDecoration: "none"
+                    }
+              }}
+              href={data.allWordpressPost.nodes[0].link} rel="noopener noreferrer" target="_blank"> {data.allWordpressPost.nodes[0].title}
+          </a>
+          <i className="fas fa-external-link-alt fa-xs"></i>
+            </Styled.h3>
+            <Styled.p>
+              <b>{nodes[0].date}</b>
+            </Styled.p>
+          </div>
+          
 
-          <Styled.p sx={{width:"90%"}} dangerouslySetInnerHTML={{__html:data.allWordpressPost.nodes[0].excerpt}}/>
-        </article>
-        <article
+          <Styled.p dangerouslySetInnerHTML={{__html:data.allWordpressPost.nodes[0].excerpt}}/>
+          </div>
+        <div
           sx={{
-            flex: "1 1 30%",
-            minWidth: ["16rem", "22rem", "25rem", "32rem"],
+            display:'flex',
+            flexDirection:'column',
+            justifyContent:'flex-start',
           }}
         >
-          <Styled.h4 sx={{width:"90%", margin: "2rem 0", height: ["2rem", "1rem", "1rem", "1rem"], color: "black", textDecoration: "none"}}>
+          <div>
+          <Styled.h3>
             <a 
               sx={{
-                fontSize:"1.24rem",
+
                 cursor: "pointer",
                 color: "black",
                 textDecoration: "none",
@@ -167,13 +168,15 @@ export default ({data}) => {
               href={data.allWordpressPost.nodes[1].link} rel="noopener noreferrer" target="_blank"> {data.allWordpressPost.nodes[1].title}
             </a>
             <i className="fas fa-external-link-alt fa-xs"></i>
-          </Styled.h4>
-          <Styled.p sx={{width:"90%", marginBottom: "1rem"}}>
+          </Styled.h3>
+          <Styled.p >
             <b>{data.allWordpressPost.nodes[1].date}</b>
           </Styled.p>
-          <Styled.p sx={{width:"90%", marginBottom: "1rem"}} dangerouslySetInnerHTML={{__html:data.allWordpressPost.nodes[1].excerpt}}/>    
-        </article>
+          </div>
+         
+          <Styled.p dangerouslySetInnerHTML={{__html:data.allWordpressPost.nodes[1].excerpt}}/>    
         </div>
+  
         
       </div>
       
@@ -181,7 +184,7 @@ export default ({data}) => {
         <Button link="https://blog.openj9.org/" primary={false} target={true}>See all blogs</Button>
       </div>
       
-    </div>
+    </section>
   </Layout>
   )}
 

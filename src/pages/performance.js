@@ -29,7 +29,6 @@ import {Component} from "react";
 import PerformanceCard from "../components/performanceCard";
 
 class performance extends Component {
-
   state = {
       barChartJDK8Footprint:{ 
         labels: ['OpenJ9', 'HotSpot'],
@@ -149,16 +148,16 @@ class performance extends Component {
   render (){
     return(
       <Layout isHome={false} title="Eclipse OpenJ9 performance" description="OpenJDK with OpenJ9 demonstrates significantly better performance than HotSpot.">
-      <div sx={{ backgroundColor: "#F5F9FC",  paddingX: "7%", paddingTop: "3%", paddingBottom: "1%" }}>
+      <section sx={{ backgroundColor: "#F5F9FC",  paddingX: "7%", paddingTop: "5%", paddingBottom: "1%" }}>
         <Styled.h1 sx={{marginBottom:"1rem"}}>Performance Overview</Styled.h1>
           <Styled.p>
             Application performance can be measured using many different metrics, including startup time,
             ramp-up time, footprint, and response time, as well as throughput. At Eclipse OpenJ9, we keep a watchful eye on all
             of these metrics, making sensible tradeoffs and providing tuning options that allow the virtual machine (VM) to be optimized for different workloads.
           </Styled.p>
-      </div>
+      </section>
       
-      <div
+      <section
         sx={{
           backgroundColor: "#F5F9FC",
           paddingX: "7%",
@@ -171,6 +170,7 @@ class performance extends Component {
           The result is that OpenJDK 8 with OpenJ9 demonstrates significantly better performance than with Hotspot.
         </Styled.p>
     
+        
         <div
           sx={{
             display: "flex",
@@ -209,11 +209,11 @@ class performance extends Component {
               justifyContent: "center",
               textDecoration: "none",
               width:"16rem",
-              marginTop:"5rem"
+              marginTop:"7rem"
               }} 
               href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader7.md" rel="noopener noreferrer" target="_blank">Read more performance details</a>
         </div>
-      </div>
+      </section>
     </Layout>
     )
   }
