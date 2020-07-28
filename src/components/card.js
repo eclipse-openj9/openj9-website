@@ -29,7 +29,7 @@ const Card = ({ children, primary, width }) => {
   return (
     <article
       sx={{
-        minHeight: "200px",
+        minHeight: "12.5rem",
         boxShadow: primary ? "cardShadow" : null,
         borderRadius: "card",
         backgroundColor: "white",

@@ -36,7 +36,7 @@ const Button = ({children, primary, link, target, widthChanged }) => {
           alignItems: "center",
           justifyContent: "center",
           textDecoration: "none",
-          width: widthChanged ? "220px" : "190px",
+          width: widthChanged ? "15rem" : "12rem",
         }}
       >
         {children}
@@ -51,7 +51,7 @@ const Button = ({children, primary, link, target, widthChanged }) => {
           alignItems: "center",
           justifyContent: "center",
           textDecoration: "none",
-          width: widthChanged ? "220px" : "190px",
+          width: widthChanged ? "15rem" : "12rem",
         }}
       >
         {children}

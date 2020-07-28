@@ -34,7 +34,7 @@ const MobileNav = () => (
         bottom: "0",
         backgroundColor: "white",
         height: "3rem",
-        boxShadow: "0 10px 30px grey",
+        boxShadow: "0 0.5rem 2rem grey",
         zIndex: "9999"
         }}> 
         <ul sx={{ 

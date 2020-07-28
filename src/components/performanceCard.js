@@ -25,7 +25,7 @@
 import { jsx } from "theme-ui";
 import LineChart from "../components/lineChart";
 import BarChart from "../components/barChart";
-const PerformanceCard = ({ children, primary, graph, heading, chartType, xAxis, yAxis }) => {
+const PerformanceCard = ({ children, primary, graphData, heading, chartType, xAxis, yAxis }) => {
     if (chartType === "line") {
         return (
             <div
@@ -44,14 +44,14 @@ const PerformanceCard = ({ children, primary, graph, heading, chartType, xAxis, 
               }}
             >
                 <h5 sx={{fontSize:"1.1rem",margin:"0.5rem 1.5rem 0.5rem 1.5rem", textAlign:"center", height:"3rem",}}>{heading}</h5>
-                 <LineChart lineChartData={graph} legendPosition="bottom" xAxis={xAxis} yAxis={yAxis}/>
+                 <LineChart lineChartData={graphData} legendPosition="bottom" xAxis={xAxis} yAxis={yAxis}/>
               <div
               sx={{
                 boxShadowBottom: primary ? "cardShadow" : null,
                 borderBottomRightRadius: "card",
                 borderBottomLeftRadius: "card",
                 backgroundColor: "white",
-                borderTop: "5px solid #5DA7A3",
+                borderTop: "0.35rem solid #5DA7A3",
                 color: "darkText",
                 height:"50%",
                 padding:"4rem 1rem",
@@ -88,14 +88,14 @@ const PerformanceCard = ({ children, primary, graph, heading, chartType, xAxis, 
               }}
             >
                 <h5 sx={{fontSize:"1.1rem",margin:"0.5rem 1rem 0.5rem 1rem", textAlign:"center", height:"3rem",}}>{heading}</h5>
-                <BarChart barChartData={graph} yAxis={yAxis}/>
+                <BarChart barChartData={graphData} yAxis={yAxis}/>
               <div
               sx={{
                 boxShadowBottom: primary ? "cardShadow" : null,
                 borderBottomRightRadius: "card",
                 borderBottomLeftRadius: "card",
                 backgroundColor: "white",
-                borderTop: "5px solid #5DA7A3",
+                borderTop: "0.35rem solid #5DA7A3",
                 color: "darkText",
                 height:"50%",
                 padding:"4rem 1rem",

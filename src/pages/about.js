@@ -34,7 +34,7 @@ import Button from "../components/button";
 
 export default () => (
   <Layout isHome={false} title="The Eclipse OpenJ9 story" description="With a rich heritage, OpenJ9 has the credentials to deliver quality and reliability.">
-    <div sx={{ backgroundColor: "#F5F9FC", paddingX: "10%", paddingY: "5%" }}>
+    <section sx={{ backgroundColor: "#F5F9FC", paddingX: "7%", paddingY: "5%" }}>
       <Styled.h1 sx={{marginBottom:"3rem"}}>More about OpenJ9</Styled.h1>
       <div
         sx={{
@@ -53,12 +53,12 @@ export default () => (
           the development of OpenJ9 for the next generation of Java applications.
         </Styled.p>
       </div>
-    </div>
-    <div
+    </section>
+    <section
       sx={{
         backgroundColor: "primary",
         color: "lightText",
-        paddingX: "10%",
+        paddingX: "7%",
         paddingY: 5
       }}
     >
@@ -103,19 +103,19 @@ export default () => (
           }}src={newBrunswickUniLogo} alt="New Brunswick University Logo"></img>
         </Card>
       </div>
-    </div>
-    <div
+    </section>
+    <section
       sx={{
-        paddingX: "10%",
+        paddingX: "7%",
         paddingY: 5,
         backgroundColor: "#F5F9FC"
       }}
     >
       <div
         sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
+          display: "grid",
+          gridGap:'6rem',
+          gridTemplateColumns:['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)'],
           backgroundColor: "white",
           paddingX: "5%",
           paddingY: "5%",
@@ -124,14 +124,13 @@ export default () => (
       >
         <article
           sx={{
-            flex: "30%",
-            maxWidth: "600px",
-            minWidth: ["250px", "350px", "400px", "500px"],
-            marginBottom:["6rem", "6rem", "8rem", 0]
+            display:'flex',
+            flexDirection:'column',
+            justifyContent:'space-between'
           }}
         >
           <Styled.h3>DOCS</Styled.h3>
-          <Styled.p sx={{height:["8rem", "13rem", "12rem", "10rem"], marginBottom:["10rem", 0, 0, 0], width:"90%", paddingRight:["1rem", 0, 0, 0]}}>
+          <Styled.p>
             If you are new to OpenJ9, our documentation will help you get started. Out of the box, we expect you to discover a great experience,
             but we also have many tuning options to help you ramp up application performance.
           </Styled.p>
@@ -139,19 +138,19 @@ export default () => (
         </article>
         <article
           sx={{
-            flex: "30%",
-            maxWidth: "600px",
-            minWidth: ["250px", "350px", "400px", "500px"]
+            display:'flex',
+            flexDirection:'column',
+            justifyContent:'space-between'
           }}
         >
           <Styled.h3>BLOGS</Styled.h3>
-          <Styled.p sx={{height:["10rem", "13rem", "12rem", "10rem"], marginBottom:["10rem", 0, 0, 0],  width:"90%", paddingRight:["1rem", 0, 0, 0]}}>
+          <Styled.p>
             Our blogs are written by developers, for developers. Read about their insights into up and coming technologies,
             take deep dives into OpenJ9 development, or simply hear about their experiences of working on the project.
           </Styled.p>
           <Button primary={true} link="https://blog.openj9.org/" target={true}>Go to blogs</Button>
         </article>
       </div>
-    </div>
+    </section>
   </Layout>
 );

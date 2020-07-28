@@ -32,7 +32,7 @@ Changes merged into the master branch are automatically built and deployed to th
 
 ## Previewing pull requests (approved users only)
 
-Pull requests must be previewed before merging by triggering the [Jenkins-ci job](https://ci.eclipse.org/openj9/view/Infrastructure/job/Build_Website/)
+Pull requests must be previewed before merging by triggering the [Jenkins-ci job](https://ci.eclipse.org/openj9/view/Website-Doc/job/PullRequest-Website-staging-site/)
 To run the job, add the following trigger comment into a pull request:
 
 ```

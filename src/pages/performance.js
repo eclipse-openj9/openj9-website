@@ -29,7 +29,6 @@ import {Component} from "react";
 import PerformanceCard from "../components/performanceCard";
 
 class performance extends Component {
-
   state = {
       barChartJDK8Footprint:{ 
         labels: ['OpenJ9', 'HotSpot'],
@@ -149,19 +148,19 @@ class performance extends Component {
   render (){
     return(
       <Layout isHome={false} title="Eclipse OpenJ9 performance" description="OpenJDK with OpenJ9 demonstrates significantly better performance than HotSpot.">
-      <div sx={{ backgroundColor: "#F5F9FC",  paddingX: "10%", paddingTop: "3%", paddingBottom: "1%" }}>
+      <section sx={{ backgroundColor: "#F5F9FC",  paddingX: "7%", paddingTop: "5%", paddingBottom: "1%" }}>
         <Styled.h1 sx={{marginBottom:"1rem"}}>Performance Overview</Styled.h1>
           <Styled.p>
             Application performance can be measured using many different metrics, including startup time,
             ramp-up time, footprint, and response time, as well as throughput. At Eclipse OpenJ9, we keep a watchful eye on all
             of these metrics, making sensible tradeoffs and providing tuning options that allow the virtual machine (VM) to be optimized for different workloads.
           </Styled.p>
-      </div>
+      </section>
       
-      <div
+      <section
         sx={{
           backgroundColor: "#F5F9FC",
-          paddingX: "10%",
+          paddingX: "7%",
           paddingTop: "1%",
           paddingBottom: "3%"
         }}
@@ -171,6 +170,7 @@ class performance extends Component {
           The result is that OpenJDK 8 with OpenJ9 demonstrates significantly better performance than with Hotspot.
         </Styled.p>
     
+        
         <div
           sx={{
             display: "flex",
@@ -178,19 +178,19 @@ class performance extends Component {
             flexWrap: "wrap"
           }}
         >
-          <PerformanceCard graph={this.state.barChartJDK8Footprint} heading="66% smaller footprint after startup" primary={true} chartType="bar" yAxis="Relative resident set size"> 
+          <PerformanceCard graphData={this.state.barChartJDK8Footprint} heading="66% smaller footprint after startup" primary={true} chartType="bar" yAxis="Relative resident set size"> 
             <p>OpenJ9 is highly optimized for cloud workloads, where minimizing memory footprint is important.
               Out of the box, the footprint is 66% smaller than HotSpot.</p>
           </PerformanceCard>
-          <PerformanceCard graph={this.state.lineChartJK8FootprintDuringrampup} heading="63% smaller footprint during ramp up" primary={true} chartType="line" yAxis="Resident Set Size (MB)" xAxis="Time (s)"> 
+          <PerformanceCard graphData={this.state.lineChartJK8FootprintDuringrampup} heading="63% smaller footprint during ramp up" primary={true} chartType="line" yAxis="Resident Set Size (MB)" xAxis="Time (s)"> 
             <p>Memory footprint increases rapidly when load is applied. However, at steady state,
               OpenJ9 consistently used around 63% less physical memory than HotSpot.</p>
           </PerformanceCard>
-          <PerformanceCard graph={this.state.barChartJDK8Startup} heading="42% faster startup time" primary={true} chartType="bar" yAxis="Relative start-up time"> 
+          <PerformanceCard graphData={this.state.barChartJDK8Startup} heading="42% faster startup time" primary={true} chartType="bar" yAxis="Relative start-up time"> 
             <p>Shared classes and Ahead-of-Time (AOT) technologies typically reduce startup time. By using -Xquickstart mode as well,
               you can reduce startup time by up to 42%.</p>
           </PerformanceCard>
-          <PerformanceCard graph={this.state.lineChartJK8FasterRampupInTheCloud} heading="Faster ramp-up time in the cloud" primary={true} chartType="line" xAxis="Time (s)" yAxis="Throughput"> 
+          <PerformanceCard graphData={this.state.lineChartJK8FasterRampupInTheCloud} heading="Faster ramp-up time in the cloud" primary={true} chartType="line" xAxis="Time (s)" yAxis="Throughput"> 
             <p>OpenJ9 reaches peak throughput on a single CPU core in 8.5 minutes compared with 30 minutes for Hotspot.
               Ideal for short-lived VMs running in the cloud.</p>
           </PerformanceCard>
@@ -209,11 +209,11 @@ class performance extends Component {
               justifyContent: "center",
               textDecoration: "none",
               width:"16rem",
-              marginTop:"5rem"
+              marginTop:"7rem"
               }} 
               href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader7.md" rel="noopener noreferrer" target="_blank">Read more performance details</a>
         </div>
-      </div>
+      </section>
     </Layout>
     )
   }
