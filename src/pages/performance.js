@@ -278,20 +278,16 @@ class performance extends Component {
           }}
         >
           <PerformanceCard graphData={this.state.barChartJDK11Footprint} heading="Footprint" primary={true} chartType="bar" yAxis="Normalized performance (%)"> 
-            <p>OpenJ9 is highly optimized for cloud workloads, where minimizing memory footprint is important.
-              Out of the box, the footprint is 66% smaller than HotSpot.</p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
           </PerformanceCard>
           <PerformanceCard graphData={this.state.lineChartJK811FootprintDuringLoad} heading="Footprint during load" primary={true} chartType="line" yAxis="Resident Set Size (MB)" xAxis="Time (s)"> 
-            <p>Memory footprint increases rapidly when load is applied. However, at steady state,
-              OpenJ9 consistently used around 63% less physical memory than HotSpot.</p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
           </PerformanceCard>
           <PerformanceCard graphData={this.state.barChartJDK11Startup} heading="Startup time" primary={true} chartType="bar" yAxis="Normalized performance (%)"> 
-            <p>Shared classes and Ahead-of-Time (AOT) technologies typically reduce startup time. By using -Xquickstart mode as well,
-              you can reduce startup time by up to 42%.</p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
           </PerformanceCard>
           <PerformanceCard graphData={this.state.lineChartJK11FasterRampupInTheCloud} heading="Throughput" primary={true} chartType="line" xAxis="Time (s)" yAxis="Throughput (pages/s)"> 
-            <p>OpenJ9 reaches peak throughput on a single CPU core in 8.5 minutes compared with 30 minutes for Hotspot.
-              Ideal for short-lived VMs running in the cloud.</p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500.</p>
           </PerformanceCard>
         </div>
         <div
@@ -310,7 +306,7 @@ class performance extends Component {
               width:"16rem",
               marginTop:"7rem"
               }} 
-              href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader7.md" rel="noopener noreferrer" target="_blank">Read more performance details</a>
+              href="https://github.com/Bazif-Khan/openj9-website-1/blob/feature-bk-jdk11charts/benchmark/openjdk11-daytrader7.md" rel="noopener noreferrer" target="_blank">Read more performance details</a>
         </div>
       </section>
       

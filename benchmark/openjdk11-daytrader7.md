@@ -84,7 +84,7 @@ As with the previous metrics, the `-Xtune:virtualized` option does not appear to
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/Footprintduringloadxmx1g.png)
 
-![The explanation for this graph is provided in the surrounding text.](./assets/![The explanation for this graph is provided in the surrounding text.](./assets/footprintduringload-Xms1G-Xmx1G.png)
+![The explanation for this graph is provided in the surrounding text.](./assets/footprintduringload-Xms1G-Xmx1G.png)
 
 
 ## Ramp-up time and peak throughput
@@ -98,9 +98,9 @@ However, the recompilation process is subdued, and this makes OpenJ9 reach its p
 While both OpenJ9 with SCC/AOT and HotSpot settle for about the same peak throughput, the addition of `Xtune:virtualized` degrades peak throughput by about 10%.
 Nevertheless, we think that this configuration is very well suited for short or medium running applications where the ability to startup and ramp-up fast is more important than long term throughput.
 
-![The explanation for this graph is provided in the surrounding text.](./assets/![The explanation for this graph is provided in the surrounding text.](./assets/throughput-Xmx1G.png)
+![The explanation for this graph is provided in the surrounding text.](./assets/throughput-Xmx1G.png)
 
-![The explanation for this graph is provided in the surrounding text.](./assets/![The explanation for this graph is provided in the surrounding text.](./assets/throughput-Xms1G-Xmx1G.png)
+![The explanation for this graph is provided in the surrounding text.](./assets/throughput-Xms1G-Xmx1G.png)
 
 ## Benchmark testing details
 
