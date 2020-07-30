@@ -100,7 +100,8 @@ export default ({data}) => {
       <section
         sx={{
           paddingX: "7%",
-          paddingY: "5%",   
+          paddingTop:"2rem",
+          paddingBottom: "4rem",   
           backgroundColor: "#F5F9FC",
         }}
       >
@@ -120,7 +121,7 @@ export default ({data}) => {
             }}
         >
           <div>
-            <Styled.h3>
+            <Styled.h3 sx={{fontSize:"1.4rem"}}>
             <a
               sx={{
                     cursor: "pointer",
@@ -152,7 +153,7 @@ export default ({data}) => {
           }}
         >
           <div>
-          <Styled.h3>
+          <Styled.h3 sx={{fontSize:"1.4rem"}}>
             <a 
               sx={{
 

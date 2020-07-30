@@ -59,7 +59,7 @@ export default () => (
         backgroundColor: "primary",
         color: "lightText",
         paddingX: "7%",
-        paddingY: 5
+        paddingY: "4rem"
       }}
     >
       <Styled.h2>Our supporters</Styled.h2>
@@ -78,25 +78,25 @@ export default () => (
           justifyContent: "space-around",
         }}
       >
-        <Card width="16rem" primary={false}> 
+        <Card width="18rem" primary={false}> 
           <img sx={{
             width: "50%", 
             height: "50%", 
           }}src={ibmLogo} alt="IBM Logo"></img>
         </Card>
-        <Card width="16rem" primary={false}> 
+        <Card width="18rem" primary={false}> 
           <img sx={{
             width: "80%", 
             filter: "invert(100%)"
           }}src={adoptopenJDK} alt="AdoptOpenJDK Logo"></img>
         </Card>
-        <Card width="16rem" primary={false}> 
+        <Card width="18rem" primary={false}> 
           <img sx={{
             width: "50%", 
             height: "50%", 
           }}src={oregonStateUniLogo} alt="Oregon State University Logo"></img>
         </Card>
-        <Card width="16rem" primary={false}> 
+        <Card width="18rem" primary={false}> 
           <img sx={{
             width: "50%", 
             height: "50%", 
@@ -107,7 +107,7 @@ export default () => (
     <section
       sx={{
         paddingX: "7%",
-        paddingY: 5,
+        paddingY: "4rem",
         backgroundColor: "#F5F9FC"
       }}
     >

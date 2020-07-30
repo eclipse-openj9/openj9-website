@@ -242,7 +242,8 @@ export default () => (
         display: "grid",
         gridGap:'6rem',
         gridTemplateColumns:['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)'],
-        padding: "calc(5% + 2.5rem)"
+        padding: "calc(5% + 2.5rem)",
+        paddingBottom:"4rem"
       }}
     >
       <div
