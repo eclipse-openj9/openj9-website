@@ -220,7 +220,7 @@ class performance extends Component {
           },
         ]
       },
-      lineChartJK811FootprintDuringLoad:{ 
+      lineChartJK11FootprintDuringLoad:{ 
         labels: [0, 100, 200, 300, 400, 500, 600],
         datasets:[
           {
@@ -356,7 +356,7 @@ class performance extends Component {
           <PerformanceCard graphData={this.state.lineChartJK11FasterRampupInTheCloud} heading="Faster ramp-up time in the cloud" primary={true} chartType="line" xAxis="Time (s)" yAxis="Throughput (pages/s)"> 
             <p>When optimized for short-running applications, OpenJ9 reaches peak throughput much faster than HotSpot.</p>
           </PerformanceCard>
-          <PerformanceCard graphData={this.state.lineChartJK811FootprintDuringLoad} heading="33% smaller footprint during load" primary={true} chartType="line" yAxis="Resident Set Size (MB)" xAxis="Time (s)"> 
+          <PerformanceCard graphData={this.state.lineChartJK11FootprintDuringLoad} heading="33% smaller footprint during load" primary={true} chartType="line" yAxis="Resident Set Size (MB)" xAxis="Time (s)"> 
             <p>Consistent with the startup results, the OpenJ9 footprint remains much smaller than HotSpot when load is applied.</p>
           </PerformanceCard>
         </div>
