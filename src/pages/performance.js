@@ -375,7 +375,7 @@ class performance extends Component {
               width:"16rem",
               marginTop:"7rem"
               }} 
-              href="https://github.com/Bazif-Khan/openj9-website-1/blob/feature-bk-jdk11charts/benchmark/openjdk11-daytrader7.md" rel="noopener noreferrer" target="_blank">Read more performance details</a>
+              href="https://github.com/eclipse/openj9-website/blob/master/benchmark/openjdk11-daytrader7.md" rel="noopener noreferrer" target="_blank">Read more performance details</a>
         </div>
       </section>
     </Layout>
