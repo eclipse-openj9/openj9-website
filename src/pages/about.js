@@ -34,12 +34,12 @@ import Button from "../components/button";
 
 export default () => (
   <Layout isHome={false} title="The Eclipse OpenJ9 story" description="With a rich heritage, OpenJ9 has the credentials to deliver quality and reliability.">
-    <section sx={{ backgroundColor: "#F5F9FC", paddingX: "7%", paddingY: "5%" }}>
+    <section sx={{ backgroundColor: "#F5F9FC", paddingX: "7%", paddingY: "4rem" }}>
       <Styled.h1 sx={{marginBottom:"3rem"}}>More about OpenJ9</Styled.h1>
       <div
         sx={{
           backgroundColor: "white",
-          paddingY: 5,
+          paddingY: "2rem",
           paddingX: "5%",
           borderRadius: "card"
         }}
@@ -59,7 +59,7 @@ export default () => (
         backgroundColor: "primary",
         color: "lightText",
         paddingX: "7%",
-        paddingY: "4rem"
+        paddingY: "2rem"
       }}
     >
       <Styled.h2>Our supporters</Styled.h2>
@@ -118,7 +118,7 @@ export default () => (
           gridTemplateColumns:['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)'],
           backgroundColor: "white",
           paddingX: "5%",
-          paddingY: "5%",
+          paddingY: "2rem",
           borderRadius: "card"        
         }}
       >

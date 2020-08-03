@@ -40,6 +40,7 @@ export default {
     button: "2.5rem",
     card: "0.5rem"
   },
+  // [mobile, ipad, ipad pro, desktop]
   breakpoints: ["35rem", "62.5rem", "85rem", "120rem"],
   fontSizes: [16, 18, 20, 24, 28, 36],
   space: [0, 8, 16, 24, 32, 40],

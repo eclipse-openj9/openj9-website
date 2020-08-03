@@ -33,11 +33,11 @@ export default ({data}) => {
 
   return(
   <Layout isHome={false} title="What's new with Eclipse OpenJ9" description="Find out what's in the latest release; Learn about the technology directly from our developers.">
-    <section sx={{ backgroundColor: "#F5F9FC", paddingX: "7%", paddingTop:"5%" }}>
+    <section sx={{ backgroundColor: "#F5F9FC", paddingX: "7%", paddingTop:"4rem" }}>
       <Styled.h1>What's new in the OpenJ9 project</Styled.h1>
       <div
         sx={{
-          paddingY: 5,
+          paddingY: "2rem",
           paddingX: "5%"
         }}
       >
@@ -62,8 +62,7 @@ export default ({data}) => {
           justifyContent: "space-between",
           backgroundColor: "white",
           paddingX: "5%",
-          paddingTop: "5%",
-          paddingBottom: "5%",
+          paddingY: "2rem",
           borderRadius: "card"        
         }}
       >
