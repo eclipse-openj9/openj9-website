@@ -39,8 +39,8 @@ timeout(time: 3, unit: 'HOURS') {
                     stage('Website Build') {
                         my_image.inside {
                             sh """
-                            git config --global user.email "genie-openj9@eclipse.com"
-                            git config --global user.name "genie-openj9"
+                            git config --global user.email "openj9-bot@eclipse.org"
+                            git config --global user.name "Eclipse OpenJ9 Bot"
                             git status
                             """
                             sh "npm install"
