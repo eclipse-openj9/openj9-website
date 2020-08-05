@@ -279,7 +279,7 @@ class performance extends Component {
       >
         <Styled.h2>OpenJDK 8 performance with Eclipse OpenJ9</Styled.h2>
         <Styled.p sx={{marginBottom:"0.5rem"}}>
-          OpenJDK 8 with OpenJ9 demonstrates significantly better performance than OpenJDK 8 with HotSpot.
+          OpenJDK 8 with OpenJ9 demonstrates significantly better performance than OpenJDK 8 with HotSpot
         </Styled.p>
     
         
