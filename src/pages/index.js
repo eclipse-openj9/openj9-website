@@ -112,7 +112,7 @@ export default () => (
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "space-around",
-          padding: "5% 5% 0 5%",
+          padding: "4rem 5% 0 5%",
         }}
       >
         <Card width="18rem" primary={false}>
@@ -144,7 +144,7 @@ export default () => (
         sx={{
           display: "flex",
           justifyContent: "center",
-          paddingBottom: "5%"
+          paddingBottom: "4rem"
         }}
       >
       <Link sx={{
@@ -175,7 +175,8 @@ export default () => (
           gridTemplateColumns:['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)'],
           backgroundColor:'white',
           borderRadius:'card',
-          padding:'5%',
+          paddingX:'5%',
+          paddingY: "4rem"
         }}
       >
         <div
@@ -242,7 +243,8 @@ export default () => (
         display: "grid",
         gridGap:'6rem',
         gridTemplateColumns:['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)'],
-        padding: "calc(5% + 2.5rem)"
+        padding: "calc(5% + 2.5rem)",
+        paddingY:"4rem"
       }}
     >
       <div
