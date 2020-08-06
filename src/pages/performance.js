@@ -27,6 +27,7 @@ import { jsx, Styled } from "theme-ui";
 import {Component} from "react";
 
 import PerformanceCard from "../components/performanceCard";
+import Testimonials from "../components/testimonials";
 
 class performance extends Component {
   state = {
@@ -322,8 +323,30 @@ class performance extends Component {
               width:"16rem",
               marginTop:"7rem"
               }} 
-              href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader7.md" rel="noopener noreferrer" target="_blank">Read more performance details</a>
+              href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader7.md" rel="noopener noreferrer" target="_blank">Show me performance details</a>
         </div>
+        
+        <div
+            sx={{
+                display: "grid",
+                gridGap:'3rem',
+                gridTemplateColumns:['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)'],
+                paddingTop:"4rem"
+            }}
+        >
+        
+          <Testimonials source="Vijay Sundaresan, Jared Anderson, Joshua Dettinger and Gary DeVal, Open Liberty" link="https://openliberty.io/blog/2019/10/30/faster-startup-open-liberty.html">
+            With the 19.0.0.9 version of Open Liberty and the current version of OpenJ9 JVM,
+            we managed to cut that startup time to our goal of almost exactly one second.
+          </Testimonials>
+
+          <Testimonials source="Billy Korando, developer advocate" link="https://billykorando.com/2019/05/03/5-reasons-why-you-should-consider-switching-to-eclipse-openj9/">
+            The demo, executing a simple Spring Boot Batch application,
+            isn’t a specialized use case that plays to OpenJ9’s strengths, but very much in line with the roughly 40% drop in memory consumption.
+          </Testimonials>
+        </div>
+
+      
       </section>
 
       <section
@@ -375,8 +398,16 @@ class performance extends Component {
               width:"16rem",
               marginTop:"7rem"
               }} 
-              href="https://github.com/eclipse/openj9-website/blob/master/benchmark/openjdk11-daytrader7.md" rel="noopener noreferrer" target="_blank">Read more performance details</a>
+              href="https://github.com/eclipse/openj9-website/blob/master/benchmark/openjdk11-daytrader7.md" rel="noopener noreferrer" target="_blank">Show me performance details</a>
         </div>
+
+        <div sx={{ paddingTop:"4rem" }}>
+          <Testimonials source="Patrik Duditš, Payara Enterprise" link="https://blog.payara.fish/faster-payara-micro-startup-times-with-openj9">
+            With datagrid enabled, Payara Micro with class data sharing boots in about 6 seconds,
+            so it improves startup time by almost 40%.
+          </Testimonials>
+        </div>
+
       </section>
     </Layout>
     )
