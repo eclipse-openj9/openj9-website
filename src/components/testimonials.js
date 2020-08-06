@@ -61,7 +61,6 @@ const Testimonials = ({ children, source, link }) => {
               fontStyle: "normal",
               fontSize: "1rem",
               lineHeight:"1rem",
-
               textAlign: "left",
               "::before": {
                 content: '"\\2014\\0020"',
