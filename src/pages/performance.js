@@ -334,7 +334,6 @@ class performance extends Component {
                 paddingTop:"4rem"
             }}
         >
-        
           <Testimonials source="Vijay Sundaresan, Jared Anderson, Joshua Dettinger and Gary DeVal, Open Liberty" link="https://openliberty.io/blog/2019/10/30/faster-startup-open-liberty.html">
             With the 19.0.0.9 version of Open Liberty and the current version of OpenJ9 JVM,
             we managed to cut that startup time to our goal of almost exactly one second.
@@ -345,8 +344,6 @@ class performance extends Component {
             isn’t a specialized use case that plays to OpenJ9’s strengths, but very much in line with the roughly 40% drop in memory consumption.
           </Testimonials>
         </div>
-
-      
       </section>
 
       <section
@@ -407,7 +404,6 @@ class performance extends Component {
             so it improves startup time by almost 40%.
           </Testimonials>
         </div>
-
       </section>
     </Layout>
     )

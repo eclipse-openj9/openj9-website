@@ -40,7 +40,6 @@ const Testimonials = ({ children, source, link }) => {
               display:"block",
               marginBottom:"-1.5rem",
               marginTop:"-1rem",
-
             }
           }}
         >
