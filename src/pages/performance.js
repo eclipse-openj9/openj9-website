@@ -255,6 +255,98 @@ class performance extends Component {
         },
       ]
     },
+
+    barChartJDK11QuarkusStartup:{ 
+      labels: ['OpenJ9', 'HotSpot'],
+      datasets:[
+        {
+          data:[
+            0.34,              
+            1
+          ],
+          backgroundColor:[
+            '#5DA7A3',
+            '#E58B23'
+          ]
+        }
+      ]
+    },
+
+    barChartJDK11QuarkusFootprint:{ 
+      labels: ['OpenJ9', 'HotSpot'],
+      datasets:[
+        {
+          data:[
+            0.82,              
+            1
+          ],
+          backgroundColor:[
+            '#5DA7A3',
+            '#E58B23'
+          ]
+        }
+      ]
+    },
+
+    lineChartJK11QuarkusFasterRampupInTheCloud:{ 
+      labels: [1, 12, 24, 36, 48, 60, 72, 84, 96, 108, 120],
+      datasets:[
+        {
+          label: 'OpenJ9',
+          data:[
+            2,
+            4233,
+            4355,
+            4391,
+            4347,
+            4432,
+            4468,
+            4603,
+            4621,
+            4606,
+            4657
+          ],
+          fill: false,
+          borderColor: "#5DA7A3",
+          backgroundColor:'#5DA7A3'
+        },
+        {
+          label: 'HotSpot',
+          data:[
+            1,
+            1426,
+            2318,
+            5367,
+            5609,
+            5616,
+            5601,
+            5618,
+            5571,
+            5354,
+            5639
+          ],
+          fill: false,
+          borderColor:'#E58B23',
+          backgroundColor:'#E58B23'
+        },
+      ]
+    },
+
+    barChartJK11QuarkusFootprintDuringLoad:{ 
+      labels: ['OpenJ9', 'HotSpot'],
+      datasets:[
+        {
+          data:[
+            147,              
+            178
+          ],
+          backgroundColor:[
+            '#5DA7A3',
+            '#E58B23'
+          ]
+        }
+      ]
+    },
   } 
   
   render (){
@@ -357,6 +449,59 @@ class performance extends Component {
             <p>OpenJ9 reaches peak throughput much faster than HotSpot making it especially suitable for running short-lived applications.</p>
           </PerformanceCard>
           <PerformanceCard graphData={this.state.lineChartJK11FootprintDuringLoad} heading="33% smaller footprint during load" primary={true} chartType="line" yAxis="Resident Set Size (MB)" xAxis="Time (s)"> 
+            <p>Consistent with the footprint results after startup, the OpenJ9 footprint remains much smaller than HotSpot when load is applied.</p>
+          </PerformanceCard>
+        </div>
+        <div
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <a sx={{
+              variant: "buttons.secondary",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              textDecoration: "none",
+              width:"16rem",
+              marginTop:"7rem"
+              }} 
+              href="https://github.com/eclipse/openj9-website/blob/master/benchmark/openjdk11-daytrader7.md" rel="noopener noreferrer" target="_blank">Read more performance details</a>
+        </div>
+      </section>
+
+      <section
+        sx={{
+          backgroundColor: "#F5F9FC",
+          paddingX: "7%",
+          paddingTop: "0.1rem",
+          paddingBottom: "4rem"
+        }}
+      >
+        <Styled.h2>OpenJDK 11 quarkus performance with Eclipse OpenJ9</Styled.h2>
+        <Styled.p sx={{marginBottom:"0.5rem"}}>
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever 
+        </Styled.p>
+    
+        
+        <div
+          sx={{
+            display: "flex",
+            justifyContent: "space-around",
+            flexWrap: "wrap"
+          }}
+        >
+          <PerformanceCard graphData={this.state.barChartJDK11QuarkusStartup} heading="Startup time" primary={true} chartType="bar" yAxis="Relative startup time"> 
+            <p>By using shared classes cache and AOT technology, OpenJ9 starts in roughly half the time it takes HotSpot.</p>
+          </PerformanceCard>
+          <PerformanceCard graphData={this.state.barChartJDK11QuarkusFootprint} heading="Footprint after startup" primary={true} chartType="bar" yAxis="Relative resident set size"> 
+            <p>After startup, the OpenJ9 footprint is half the size of HotSpot, which makes it ideal for cloud workloads.</p>
+          </PerformanceCard>
+          <PerformanceCard graphData={this.state.lineChartJK11QuarkusFasterRampupInTheCloud} heading="Faster ramp-up time in the cloud" primary={true} chartType="line" xAxis="Time (s)" yAxis="Throughput (pages/s)"> 
+            <p>OpenJ9 reaches peak throughput much faster than HotSpot making it especially suitable for running short-lived applications.</p>
+          </PerformanceCard>
+          <PerformanceCard graphData={this.state.barChartJK11QuarkusFootprintDuringLoad} heading="Footprint during load" primary={true} chartType="bar" yAxis="Resident Set Size (MB)" xAxis="Time (s)"> 
             <p>Consistent with the footprint results after startup, the OpenJ9 footprint remains much smaller than HotSpot when load is applied.</p>
           </PerformanceCard>
         </div>
