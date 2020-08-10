@@ -59,11 +59,11 @@ On the other hand, from the graphs it is apparent that, `-Xtune:virtualized`, an
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/quarkusStartup.png)
 
--Xmx128m
+**Chart: Heap setting "-Xmx256m"**
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/quarkusStartupXms.png)
 
--Xms128m -Xmx128m
+**Chart: Heap setting "-Xms256m -Xmx256m"**
 
 ## Memory footprint after startup
 
@@ -77,12 +77,12 @@ Finally, for Quarkus we see that the relative advantage of OpenJ9 increases when
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/quarkusfootprint.png)
 
--Xmx128m
+**Chart: Heap setting "-Xmx256m"**
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/quarkusfootprintXms.png)
 
 
--Xms128m -Xmx128m
+**Chart: Heap setting "-Xms256m -Xmx256m"**
 
 ## Memory footprint during application ramp-up
 
@@ -92,11 +92,12 @@ As with the previous metrics, the `-Xtune:virtualized` option does not appear to
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/quarkusFootprintDuringLoad.png)
 
- -xmx128m
+**Chart: Heap setting "-Xmx256m"**
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/quarkusFootprintDuringLoadXms.png)
 
- -xms128m -xmx128m
+**Chart: Heap setting "-Xms256m -Xmx256m"**
+
 
 ## Ramp-up time and peak throughput
 
@@ -113,11 +114,12 @@ Nevertheless, we think that this configuration is very well suited for short or 
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/quarkusThroughput.png)
 
- -Xmx128m
+
+**Chart: Heap setting "-Xmx256m"**
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/quarkusThroughputXms.png)
 
--Xms128m -Xmx128m
+**Chart: Heap setting "-Xms256m -Xmx256m"**
 
 ## Benchmark testing details
 
