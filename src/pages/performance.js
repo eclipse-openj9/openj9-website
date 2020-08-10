@@ -479,11 +479,10 @@ class performance extends Component {
           paddingBottom: "4rem"
         }}
       >
-        <Styled.h2>OpenJDK 11 quarkus performance with Eclipse OpenJ9</Styled.h2>
+        <Styled.h2>OpenJDK 11 performance with Quarkus and Eclipse OpenJ9</Styled.h2>
         <Styled.p sx={{marginBottom:"0.5rem"}}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever 
+          Using OpenJ9 with Quarkus instead of HotSpot makes Java even more supersonic and subatomic!
         </Styled.p>
-    
         
         <div
           sx={{
