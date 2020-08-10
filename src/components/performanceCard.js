@@ -27,25 +27,25 @@ import LineChart from "../components/lineChart";
 import BarChart from "../components/barChart";
 const PerformanceCard = ({ children, primary, graphData, heading, chartType, xAxis, yAxis }) => {
     if (chartType === "line") {
-        return (
+      return (
+          <div
+            sx={{
+              boxShadow: primary ? "cardShadow" : null,
+              borderRadius: "card",
+              backgroundColor: "primary",
+              color: "white",
+              marginY: 5,
+              marginX: 1,
+              width:"18rem",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <h5 sx={{fontSize:"1.1rem",margin:"0.5rem 1.5rem 0.5rem 1.5rem", textAlign:"center", height:"3rem",}}>{heading}</h5>
+            <LineChart lineChartData={graphData} legendPosition="bottom" xAxis={xAxis} yAxis={yAxis}/>
             <div
-              sx={{
-                boxShadow: primary ? "cardShadow" : null,
-                borderRadius: "card",
-                backgroundColor: "primary",
-                color: "white",
-                marginY: 5,
-                marginX: 1,
-                width:"18rem",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-                <h5 sx={{fontSize:"1.1rem",margin:"0.5rem 1.5rem 0.5rem 1.5rem", textAlign:"center", height:"3rem",}}>{heading}</h5>
-                 <LineChart lineChartData={graphData} legendPosition="bottom" xAxis={xAxis} yAxis={yAxis}/>
-              <div
               sx={{
                 boxShadowBottom: primary ? "cardShadow" : null,
                 borderBottomRightRadius: "card",
@@ -61,35 +61,34 @@ const PerformanceCard = ({ children, primary, graphData, heading, chartType, xAx
                 width:"100%",
                 marginBottom:"-4rem",
                 marginTop:"1rem"
- 
+
               }}
             >
               {children}
             </div>
-            </div>
-            
-          );
+          </div>
+        );
     } else {
         return (
+          <div
+            sx={{
+      
+              boxShadow: primary ? "cardShadow" : null,
+              borderRadius: "card",
+              backgroundColor: "primary",
+              color: "white",
+              marginY: 5,
+              marginX: 1,
+              width:"18rem",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <h5 sx={{fontSize:"1.1rem",margin:"0.5rem 1rem 0.5rem 1rem", textAlign:"center", height:"3rem",}}>{heading}</h5>
+            <BarChart barChartData={graphData} yAxis={yAxis}/>
             <div
-              sx={{
-        
-                boxShadow: primary ? "cardShadow" : null,
-                borderRadius: "card",
-                backgroundColor: "primary",
-                color: "white",
-                marginY: 5,
-                marginX: 1,
-                width:"18rem",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-                <h5 sx={{fontSize:"1.1rem",margin:"0.5rem 1rem 0.5rem 1rem", textAlign:"center", height:"3rem",}}>{heading}</h5>
-                <BarChart barChartData={graphData} yAxis={yAxis}/>
-              <div
               sx={{
                 boxShadowBottom: primary ? "cardShadow" : null,
                 borderBottomRightRadius: "card",
@@ -109,9 +108,8 @@ const PerformanceCard = ({ children, primary, graphData, heading, chartType, xAx
             >
               {children}
             </div>
-            </div>
-            
-          );
+          </div>  
+        );
     }
 };
 
