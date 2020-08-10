@@ -493,16 +493,16 @@ class performance extends Component {
           }}
         >
           <PerformanceCard graphData={this.state.barChartJDK11QuarkusStartup} heading="Startup time" primary={true} chartType="bar" yAxis="Relative startup time"> 
-            <p>By using shared classes cache and AOT technology, OpenJ9 starts in roughly half the time it takes HotSpot.</p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
           </PerformanceCard>
           <PerformanceCard graphData={this.state.barChartJDK11QuarkusFootprint} heading="Footprint after startup" primary={true} chartType="bar" yAxis="Relative resident set size"> 
-            <p>After startup, the OpenJ9 footprint is half the size of HotSpot, which makes it ideal for cloud workloads.</p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
           </PerformanceCard>
           <PerformanceCard graphData={this.state.lineChartJK11QuarkusFasterRampupInTheCloud} heading="Faster ramp-up time in the cloud" primary={true} chartType="line" xAxis="Time (s)" yAxis="Throughput (pages/s)"> 
-            <p>OpenJ9 reaches peak throughput much faster than HotSpot making it especially suitable for running short-lived applications.</p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
           </PerformanceCard>
           <PerformanceCard graphData={this.state.barChartJK11QuarkusFootprintDuringLoad} heading="Footprint during load" primary={true} chartType="bar" yAxis="Resident Set Size (MB)" xAxis="Time (s)"> 
-            <p>Consistent with the footprint results after startup, the OpenJ9 footprint remains much smaller than HotSpot when load is applied.</p>
+            <p>CLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
           </PerformanceCard>
         </div>
         <div
@@ -520,7 +520,7 @@ class performance extends Component {
               width:"16rem",
               marginTop:"7rem"
               }} 
-              href="https://github.com/eclipse/openj9-website/blob/master/benchmark/openjdk11-daytrader7.md" rel="noopener noreferrer" target="_blank">Read more performance details</a>
+              href="https://github.com/eclipse/openj9-website/blob/master/benchmark/quarkus.md" rel="noopener noreferrer" target="_blank">Read more performance details</a>
         </div>
       </section>
     </Layout>

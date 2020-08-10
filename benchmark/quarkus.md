@@ -57,9 +57,13 @@ However, when we take advantage of the SCC/AOT technology, the startup time redu
 
 On the other hand, from the graphs it is apparent that, `-Xtune:virtualized`, an option that we used to recommend for extracting the full start-up benefit of SCC/AOT, is no longer needed. This is due to recent changes in OpenJ9 compilation heuristics to generate AOT method bodies more aggressively during start-up phase and to compile those bodies at "cheap warm" optimization level (like `-Xtune:virtualized` does) instead of "cold".
 
-Graph 1: Start up "-Xmx128m"
+![The explanation for this graph is provided in the surrounding text.](./assets/quarkusStartup.png)
 
-Graph 3: Start up "-Xms128m -Xmx128m"
+-Xmx128m
+
+![The explanation for this graph is provided in the surrounding text.](./assets/quarkusStartupXms.png)
+
+-Xms128m -Xmx128m
 
 ## Memory footprint after startup
 
@@ -71,9 +75,14 @@ The presence of the SCC and AOT increases the footprint slightly due to the addi
 During the startup phase, OpenJ9 already generates AOT aggressively, so the addition of the `-Xtune:virtualized` option has little effect on footprint.
 Finally, for Quarkus we see that the relative advantage of OpenJ9 increases when `-Xms` is also specified on the command line.
 
-Graph 2: Footprint after start up "-Xmx128m"
+![The explanation for this graph is provided in the surrounding text.](./assets/quarkusfootprint.png)
 
-Graph 4: Footprint after start up "-Xms128m -Xmx128m"
+-Xmx128m
+
+![The explanation for this graph is provided in the surrounding text.](./assets/quarkusfootprintXms.png)
+
+
+-Xms128m -Xmx128m
 
 ## Memory footprint during application ramp-up
 
@@ -81,9 +90,13 @@ Footprint during load is arguably a more important performance metric than footp
 
 As with the previous metrics, the `-Xtune:virtualized` option does not appear to make a difference in the long run. However, it is worth noting that, in a recent change, the maximum amount of memory a compilation thread is allowed to use in the `-Xtune:virtualized` mode has been decreased from 256 MB to 16 MB resulting in a smoother memory consumption behavior, without transient spikes that can increase peak footprint.
 
-Graph 5: Footprint during load "-xmx128m"
+![The explanation for this graph is provided in the surrounding text.](./assets/quarkusFootprintDuringLoad.png)
 
-Graph 7: Footprint during load "-xms128m -xmx128m"
+ -xmx128m
+
+![The explanation for this graph is provided in the surrounding text.](./assets/quarkusFootprintDuringLoadXms.png)
+
+ -xms128m -xmx128m
 
 ## Ramp-up time and peak throughput
 
@@ -98,9 +111,13 @@ However, the recompilation process is subdued, and this makes OpenJ9 reach its p
 While both OpenJ9 with SCC/AOT and HotSpot settle for about the same peak throughput, the addition of `Xtune:virtualized` degrades peak throughput by about 10%.
 Nevertheless, we think that this configuration is very well suited for short or medium running applications where the ability to startup and ramp-up fast is more important than long term throughput.
 
-Graph 6: Ramp up "-Xmx128m"
+![The explanation for this graph is provided in the surrounding text.](./assets/quarkusThroughput.png)
 
-Graph 8: Ramp up "-Xms128m -Xmx128m"
+ -Xmx128m
+
+![The explanation for this graph is provided in the surrounding text.](./assets/quarkusThroughputXms.png)
+
+-Xms128m -Xmx128m
 
 ## Benchmark testing details
 
