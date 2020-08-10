@@ -133,8 +133,8 @@ export default ({data}) => {
                     }
               }}
               href={data.allWordpressPost.nodes[0].link} rel="noopener noreferrer" target="_blank"> {data.allWordpressPost.nodes[0].title}
+              <i sx={{marginLeft: "0.5rem"}} className="fas fa-external-link-alt fa-xs"></i>
           </a>
-          <i className="fas fa-external-link-alt fa-xs"></i>
             </Styled.h3>
             <Styled.p>
               <b>{nodes[0].date}</b>
@@ -166,8 +166,8 @@ export default ({data}) => {
                 }
               }}
               href={data.allWordpressPost.nodes[1].link} rel="noopener noreferrer" target="_blank"> {data.allWordpressPost.nodes[1].title}
+              <i sx={{marginLeft: "0.5rem"}} className="fas fa-external-link-alt fa-xs"></i>
             </a>
-            <i className="fas fa-external-link-alt fa-xs"></i>
           </Styled.h3>
           <Styled.p >
             <b>{data.allWordpressPost.nodes[1].date}</b>
