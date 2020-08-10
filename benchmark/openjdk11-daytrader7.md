@@ -92,7 +92,7 @@ As with the previous metrics, the `-Xtune:virtualized` option does not appear to
 ![The explanation for this graph is provided in the surrounding text.](./assets/footprintduringload.png)
 
 
-**Chart: Heap setting "--Xmx1G"**
+**Chart: Heap setting "-Xmx1G"**
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/footprintduringloadXms.png)
 
@@ -111,7 +111,7 @@ Nevertheless, we think that this configuration is very well suited for short or 
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/throughput.png)
 
-**Chart: Heap setting "--Xmx1G"**
+**Chart: Heap setting "-Xmx1G"**
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/throughputXms.png)
 
