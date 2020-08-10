@@ -57,9 +57,11 @@ However, when we take advantage of the SCC/AOT technology, the startup time redu
 On the other hand, from the graphs it is apparent that, `-Xtune:virtualized`, an option that we used to recommend for extracting the full start-up benefit of SCC/AOT, is no longer needed. This is due to recent changes in OpenJ9 compilation heuristics to generate AOT method bodies more aggressively during start-up phase and to compile those bodies at "cheap warm" optimization level (like `-Xtune:virtualized` does) instead of "cold".
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/startup.png)
+
 -Xmx256m
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/startupXms.png)
+
 -Xms256m -Xmx256m
 
 
@@ -73,9 +75,11 @@ The presence of the SCC and AOT increases the footprint slightly due to the addi
 During the startup phase, OpenJ9 already generates AOT aggressively, so the addition of the `-Xtune:virtualized` option has little effect on footprint.
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/footprint.png)
+
 -Xmx256m
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/footprintXms.png)
+
 -Xms256m -Xmx256m
 
 ## Memory footprint during application ramp-up
@@ -86,9 +90,11 @@ irrespective of the Java heap configuration (with or without `-Xms`).
 As with the previous metrics, the `-Xtune:virtualized` option does not appear to make a difference in the long run. However, it is worth noting that, in a recent change, the maximum amount of memory a compilation thread is allowed to use in the `-Xtune:virtualized` mode has been decreased from 256 MB to 16 MB resulting in a smoother memory consumption behavior, without transient spikes that can increase peak footprint.
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/footprintduringload.png)
+
 -Xmx1G
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/footprintduringloadXms.png)
+
 -Xms1G -Xmx1G
 
 ## Ramp-up time and peak throughput
@@ -103,9 +109,11 @@ While both OpenJ9 with SCC/AOT and HotSpot settle for about the same peak throug
 Nevertheless, we think that this configuration is very well suited for short or medium running applications where the ability to startup and ramp-up fast is more important than long term throughput.
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/throughput.png)
+
 -Xmx1G
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/throughputXms.png)
+
 -Xms1G -Xmx1G
 
 ## Benchmark testing details
