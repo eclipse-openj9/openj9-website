@@ -365,7 +365,7 @@ class performance extends Component {
           </Styled.p>
       </section>
 
-      <section
+      <section id="openjdk8"
         sx={{
           backgroundColor: "#F5F9FC",
           paddingX: "7%",
@@ -422,7 +422,7 @@ class performance extends Component {
         </div>
       </section>
 
-      <section
+      <section id="openjdk11"
         sx={{
           backgroundColor: "#F5F9FC",
           paddingX: "7%",
@@ -475,7 +475,7 @@ class performance extends Component {
         </div>
       </section>
 
-      <section
+      <section id="openjdk11quarkus"
         sx={{
           backgroundColor: "#F5F9FC",
           paddingX: "7%",
