@@ -289,20 +289,22 @@ class performance extends Component {
     },
 
     lineChartJK11QuarkusFasterRampupInTheCloud:{ 
-      labels: [1, 12, 24, 36, 48, 60, 72, 84, 96, 108, 120],
+      labels: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120],
       datasets:[
         {
           label: 'OpenJ9',
           data:[
             2,
             4233,
-            4355,
-            4391,
+            4311,
+            4307,
+            4312,
             4347,
             4432,
             4468,
-            4603,
-            4621,
+            4564,
+            4601,
+            4627,
             4606,
             4657
           ],
@@ -315,13 +317,15 @@ class performance extends Component {
           data:[
             1,
             1426,
-            2318,
-            5367,
+            1959,
+            3603,
+            5545,
             5609,
             5616,
             5601,
-            5618,
-            5571,
+            5583,
+            5619,
+            5560,
             5354,
             5639
           ],
@@ -491,17 +495,17 @@ class performance extends Component {
             flexWrap: "wrap"
           }}
         >
-          <PerformanceCard graphData={this.state.barChartJDK11QuarkusStartup} heading="Startup time" primary={true} chartType="bar" yAxis="Relative startup time"> 
+          <PerformanceCard graphData={this.state.barChartJDK11QuarkusStartup} heading="66% faster startup time" primary={true} chartType="bar" yAxis="Relative startup time"> 
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
           </PerformanceCard>
-          <PerformanceCard graphData={this.state.barChartJDK11QuarkusFootprint} heading="Footprint after startup" primary={true} chartType="bar" yAxis="Relative resident set size"> 
+          <PerformanceCard graphData={this.state.barChartJDK11QuarkusFootprint} heading="18% smaller footprint after startup" primary={true} chartType="bar" yAxis="Relative resident set size"> 
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
           </PerformanceCard>
           <PerformanceCard graphData={this.state.lineChartJK11QuarkusFasterRampupInTheCloud} heading="Faster ramp-up time in the cloud" primary={true} chartType="line" xAxis="Time (s)" yAxis="Throughput (pages/s)"> 
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
           </PerformanceCard>
-          <PerformanceCard graphData={this.state.barChartJK11QuarkusFootprintDuringLoad} heading="Footprint during load" primary={true} chartType="bar" yAxis="Resident Set Size (MB)" xAxis="Time (s)"> 
-            <p>CLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
+          <PerformanceCard graphData={this.state.barChartJK11QuarkusFootprintDuringLoad} heading="18% smaller footprint during load" primary={true} chartType="bar" yAxis="Resident Set Size (MB)" xAxis="Time (s)"> 
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
           </PerformanceCard>
         </div>
         <div
