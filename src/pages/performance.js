@@ -496,16 +496,16 @@ class performance extends Component {
           }}
         >
           <PerformanceCard graphData={this.state.barChartJDK11QuarkusStartup} heading="66% faster startup time" primary={true} chartType="bar" yAxis="Relative startup time"> 
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
+            <p>Quarkus might be supersonic, but running it with OpenJ9 instead of HotSpot reduces startup time by a further 66%.</p>
           </PerformanceCard>
           <PerformanceCard graphData={this.state.barChartJDK11QuarkusFootprint} heading="18% smaller footprint after startup" primary={true} chartType="bar" yAxis="Relative resident set size"> 
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
+            <p>The ultra-supersonic startup time comes at some tradeoff to footprint, but OpenJ9 still has an edge over HotSpot.</p>
           </PerformanceCard>
           <PerformanceCard graphData={this.state.lineChartJK11QuarkusFasterRampupInTheCloud} heading="Faster ramp-up time in the cloud" primary={true} chartType="line" xAxis="Time (s)" yAxis="Throughput (pages/s)"> 
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
+            <p>For short-lived cloud workloads running on Quarkus, OpenJ9 delivers excellent ramp-up performance compared to HotSpot.</p>
           </PerformanceCard>
           <PerformanceCard graphData={this.state.barChartJK11QuarkusFootprintDuringLoad} heading="18% smaller footprint during load" primary={true} chartType="bar" yAxis="Resident Set Size (MB)" xAxis="Time (s)"> 
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
+            <p>When ramp-up completes, as well as getting there faster, OpenJ9 still retains a smaller footprint than HotSpot.</p>
           </PerformanceCard>
         </div>
         <div
