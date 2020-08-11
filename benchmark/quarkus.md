@@ -69,7 +69,7 @@ On the other hand, from the graphs it is apparent that, `-Xtune:virtualized`, an
 
 With respect to memory consumption, the OpenJ9 VM has always been associated with a small footprint. The results of our benchmark testing are no exception, in all the configurations tested, OpenJ9 has a clear lead over Hotspot.
 
-- Footprint improvements are smaller than those recorded for [Daytrader7](./daytrader7.md), but still substantial, ranging from 18% to 37%.
+- Footprint improvements are smaller than those recorded for [Daytrader7](https://github.com/eclipse/openj9-website/blob/master/benchmark/openjdk11-daytrader7.md), but still substantial, ranging from 18% to 37%.
 
 The presence of the SCC and AOT increases the footprint slightly due to the addition of the cache and because AOT method code are usually slightly larger than the corresponding JIT compiled method bodies.
 During the startup phase, OpenJ9 already generates AOT aggressively, so the addition of the `-Xtune:virtualized` option has little effect on footprint.
