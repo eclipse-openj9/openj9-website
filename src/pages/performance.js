@@ -432,7 +432,7 @@ class performance extends Component {
       >
         <Styled.h2>OpenJDK 11 performance with Eclipse OpenJ9</Styled.h2>
         <Styled.p sx={{marginBottom:"0.5rem"}}>
-          Testing shows similar results for OpenJDK 11; OpenJ9 outperforms HotSpot on startup, ramp up, and footprint
+          Testing shows similar results for OpenJDK 11; OpenJ9 outperforms HotSpot on Liberty startup, ramp up, and footprint
         </Styled.p>
     
         

@@ -59,17 +59,17 @@ On the other hand, from the graphs it is apparent that, `-Xtune:virtualized`, an
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/quarkusStartup.png)
 
-**Chart: Heap setting "-Xmx256m"**
+**Chart: Heap setting "-Xmx128m"**
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/quarkusStartupXms.png)
 
-**Chart: Heap setting "-Xms256m -Xmx256m"**
+**Chart: Heap setting "-Xms128m -Xmx128m"**
 
 ## Memory footprint after startup
 
 With respect to memory consumption, the OpenJ9 VM has always been associated with a small footprint. The results of our benchmark testing are no exception, in all the configurations tested, OpenJ9 has a clear lead over Hotspot.
 
-- Footprint improvements are smaller, but still substantial, ranging from 18% to 37%.
+- Footprint improvements are smaller than those recorded for [Daytrader7](./daytrader7.md), but still substantial, ranging from 18% to 37%.
 
 The presence of the SCC and AOT increases the footprint slightly due to the addition of the cache and because AOT method code are usually slightly larger than the corresponding JIT compiled method bodies.
 During the startup phase, OpenJ9 already generates AOT aggressively, so the addition of the `-Xtune:virtualized` option has little effect on footprint.
@@ -77,12 +77,12 @@ Finally, for Quarkus we see that the relative advantage of OpenJ9 increases when
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/quarkusfootprint.png)
 
-**Chart: Heap setting "-Xmx256m"**
+**Chart: Heap setting "-Xmx128m"**
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/quarkusfootprintXms.png)
 
 
-**Chart: Heap setting "-Xms256m -Xmx256m"**
+**Chart: Heap setting "-Xms128m -Xmx128m"**
 
 ## Memory footprint during application ramp-up
 
@@ -92,11 +92,11 @@ As with the previous metrics, the `-Xtune:virtualized` option does not appear to
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/quarkusFootprintDuringLoad.png)
 
-**Chart: Heap setting "-Xmx256m"**
+**Chart: Heap setting "-Xmx128m"**
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/quarkusFootprintDuringLoadXms.png)
 
-**Chart: Heap setting "-Xms256m -Xmx256m"**
+**Chart: Heap setting "-Xms128m -Xmx128m"**
 
 
 ## Ramp-up time and peak throughput
@@ -115,11 +115,11 @@ Nevertheless, we think that this configuration is very well suited for short or 
 ![The explanation for this graph is provided in the surrounding text.](./assets/quarkusThroughput.png)
 
 
-**Chart: Heap setting "-Xmx256m"**
+**Chart: Heap setting "-Xmx128m"**
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/quarkusThroughputXms.png)
 
-**Chart: Heap setting "-Xms256m -Xmx256m"**
+**Chart: Heap setting "-Xms128m -Xmx128m"**
 
 ## Benchmark testing details
 
@@ -137,7 +137,7 @@ You can replicate these results by using equivalent systems and OpenJDK binary f
 For the REST+CRUD application, performance was evaluated by running it in Docker containers (Community Edition version 19.03.8), which were limited to 256 MB of memory and one CPU (`--memory=256M --cpus=1.0`).
 Data persistence was ensured by a PostgreSQL 10.5 Docker container. For throughput experiments, load was applied to the Quarkus app by using five JMeter threads.
 
-Unless otherwise specified, OpenJ9 used the default shared classes cache (SCC) size of 64 MB for the Quarkus and REST+CRUD application. All performance numbers with AOT enabled were collected with a SCC populated by a previous 'cold' run, which is not included in the measurements.
+Unless otherwise specified, OpenJ9 used the default shared classes cache (SCC) size of 64 MB. All performance numbers with AOT enabled were collected with a SCC populated by a previous 'cold' run, which is not included in the measurements.
 
 ### OpenJDK binaries
 
