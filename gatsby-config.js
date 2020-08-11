@@ -99,6 +99,7 @@ module.exports = {
         ]
       }
     },
+    `gatsby-plugin-client-side-redirect`
   ],
   pathPrefix: "/openj9",
 };
