@@ -473,57 +473,53 @@ class performance extends Component {
               }} 
               href="https://github.com/eclipse/openj9-website/blob/master/benchmark/openjdk11-daytrader7.md" rel="noopener noreferrer" target="_blank">Read more performance details</a>
         </div>
-      </section>
-
-      <section id="openjdk11quarkus"
-        sx={{
-          backgroundColor: "#F5F9FC",
-          paddingX: "7%",
-          paddingTop: "0.1rem",
-          paddingBottom: "4rem"
-        }}
-      >
-        <Styled.h2>OpenJDK 11 performance with Quarkus and Eclipse OpenJ9</Styled.h2>
-        <Styled.p sx={{marginBottom:"0.5rem"}}>
-          Using OpenJ9 with Quarkus instead of HotSpot makes Java even more supersonic and subatomic!
-        </Styled.p>
         
-        <div
+        <div id="openjdk11quarkus"
           sx={{
-            display: "flex",
-            justifyContent: "space-around",
-            flexWrap: "wrap"
+            marginTop:"4rem"
           }}
         >
-          <PerformanceCard graphData={this.state.barChartJDK11QuarkusStartup} heading="66% faster startup time" primary={true} chartType="bar" yAxis="Relative startup time"> 
-            <p>Quarkus might be supersonic, but running it with OpenJ9 instead of HotSpot reduces startup time by a further 66%.</p>
-          </PerformanceCard>
-          <PerformanceCard graphData={this.state.barChartJDK11QuarkusFootprint} heading="18% smaller footprint after startup" primary={true} chartType="bar" yAxis="Relative resident set size"> 
-            <p>The ultra-supersonic startup time comes at some tradeoff to footprint, but OpenJ9 still has an edge over HotSpot.</p>
-          </PerformanceCard>
-          <PerformanceCard graphData={this.state.lineChartJK11QuarkusFasterRampupInTheCloud} heading="Faster ramp-up time in the cloud" primary={true} chartType="line" xAxis="Time (s)" yAxis="Throughput (pages/s)"> 
-            <p>For short-lived cloud workloads running on Quarkus, OpenJ9 delivers excellent ramp-up performance compared to HotSpot.</p>
-          </PerformanceCard>
-          <PerformanceCard graphData={this.state.barChartJK11QuarkusFootprintDuringLoad} heading="18% smaller footprint during load" primary={true} chartType="bar" yAxis="Resident Set Size (MB)" xAxis="Time (s)"> 
-            <p>When ramp-up completes, as well as getting there faster, OpenJ9 still retains a smaller footprint than HotSpot.</p>
-          </PerformanceCard>
-        </div>
-        <div
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <a sx={{
-              variant: "buttons.secondary",
+          <Styled.p sx={{marginBottom:"0.5rem"}}>
+            Using OpenJ9 with Quarkus instead of HotSpot makes Java even more supersonic and subatomic!
+          </Styled.p>
+          
+          <div
+            sx={{
               display: "flex",
-              alignItems: "center",
+              justifyContent: "space-around",
+              flexWrap: "wrap"
+            }}
+          >
+            <PerformanceCard graphData={this.state.barChartJDK11QuarkusStartup} heading="66% faster startup time" primary={true} chartType="bar" yAxis="Relative startup time"> 
+              <p>Quarkus might be supersonic, but running it with OpenJ9 instead of HotSpot reduces startup time by a further 66%.</p>
+            </PerformanceCard>
+            <PerformanceCard graphData={this.state.barChartJDK11QuarkusFootprint} heading="18% smaller footprint after startup" primary={true} chartType="bar" yAxis="Relative resident set size"> 
+              <p>The ultra-supersonic startup time comes at some tradeoff to footprint, but OpenJ9 still has an edge over HotSpot.</p>
+            </PerformanceCard>
+            <PerformanceCard graphData={this.state.lineChartJK11QuarkusFasterRampupInTheCloud} heading="Faster ramp-up time in the cloud" primary={true} chartType="line" xAxis="Time (s)" yAxis="Throughput (pages/s)"> 
+              <p>For short-lived cloud workloads running on Quarkus, OpenJ9 delivers excellent ramp-up performance compared to HotSpot.</p>
+            </PerformanceCard>
+            <PerformanceCard graphData={this.state.barChartJK11QuarkusFootprintDuringLoad} heading="18% smaller footprint during load" primary={true} chartType="bar" yAxis="Resident Set Size (MB)" xAxis="Time (s)"> 
+              <p>When ramp-up completes, as well as getting there faster, OpenJ9 still retains a smaller footprint than HotSpot.</p>
+            </PerformanceCard>
+          </div>
+          <div
+            sx={{
+              display: "flex",
               justifyContent: "center",
-              textDecoration: "none",
-              width:"16rem",
-              marginTop:"7rem"
-              }} 
-              href="https://github.com/eclipse/openj9-website/blob/master/benchmark/quarkus.md" rel="noopener noreferrer" target="_blank">Read more performance details</a>
+            }}
+          >
+            <a sx={{
+                variant: "buttons.secondary",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                textDecoration: "none",
+                width:"16rem",
+                marginTop:"7rem"
+                }} 
+                href="https://github.com/eclipse/openj9-website/blob/master/benchmark/quarkus.md" rel="noopener noreferrer" target="_blank">Read more performance details</a>
+          </div>
         </div>
       </section>
     </Layout>
