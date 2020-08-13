@@ -118,7 +118,7 @@ export default ({data}) => {
             }}
         >
           <div>
-            <Styled.h3 sx={{fontSize:"1.4rem"}}>
+            <Styled.h3 sx={{fontSize:["1.25rem", "1.4rem", "1.4rem", "1.4rem"]}}>
             <a
               sx={{
                     cursor: "pointer",
@@ -149,7 +149,7 @@ export default ({data}) => {
           }}
         >
           <div>
-            <Styled.h3 sx={{fontSize:"1.4rem"}}>
+            <Styled.h3 sx={{fontSize:["1.25rem", "1.4rem", "1.4rem", "1.4rem"]}}>
               <a 
                 sx={{
 
