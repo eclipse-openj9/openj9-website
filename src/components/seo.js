@@ -47,7 +47,7 @@ const SEO = ({ title, description }) => {
       {seo.description && (
         <meta name="twitter:description" content={seo.description} />
       )}
-
+      <link href="https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
       <link rel="stylesheet" type="text/css" href="//www.eclipse.org/eclipse.org-common/themes/solstice/public/stylesheets/vendor/cookieconsent/cookieconsent.min.css" />
       <script src="//www.eclipse.org/eclipse.org-common/themes/solstice/public/javascript/vendor/cookieconsent/default.min.js"></script>
     </Helmet>

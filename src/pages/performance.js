@@ -27,6 +27,7 @@ import { jsx, Styled } from "theme-ui";
 import {Component} from "react";
 
 import PerformanceCard from "../components/performanceCard";
+import Testimonials from "../components/testimonials";
 
 class performance extends Component {
   state = {
@@ -418,8 +419,25 @@ class performance extends Component {
               width:"16rem",
               marginTop:"7rem"
               }} 
-              href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader7.md" rel="noopener noreferrer" target="_blank">Read more performance details</a>
+              href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader7.md" rel="noopener noreferrer" target="_blank">Show me performance details</a>
         </div>
+
+        <div
+            sx={{
+                display: "grid",
+                gridGap:'3rem',
+                gridTemplateColumns:['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)'],
+                paddingTop:"4rem"
+            }}
+        >
+          <Testimonials source="Eclipse Vert.x how-to guide" link="https://how-to.vertx.io/openj9-howto/">
+            Vert.x found that OpenJ9 was very efficient with respect to memory consumption, without compromising the latency.
+          </Testimonials>
+
+          <Testimonials source="AMIS technology blog" link="https://technology.amis.nl/2019/09/03/microservice-framework-startup-time-on-different-jvms-aot-and-jit/">
+            As reported on the Amis technology blog, when testing a number of JVMs, OpenJDK with OpenJ9 was the fastest to start for every framework.
+          </Testimonials>
+        </div>	 
       </section>
 
       <section id="openjdk11"
@@ -471,8 +489,25 @@ class performance extends Component {
               width:"16rem",
               marginTop:"7rem"
               }} 
-              href="https://github.com/eclipse/openj9-website/blob/master/benchmark/openjdk11-daytrader7.md" rel="noopener noreferrer" target="_blank">Read more performance details</a>
+              href="https://github.com/eclipse/openj9-website/blob/master/benchmark/openjdk11-daytrader7.md" rel="noopener noreferrer" target="_blank">Show me performance details</a>
         </div>
+
+        <div
+            sx={{
+                display: "grid",
+                gridGap:'3rem',
+                gridTemplateColumns:['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)'],
+                paddingTop:"4rem"
+            }}
+        >
+          <Testimonials source="Open Liberty blog" link="https://openliberty.io/blog/2019/10/30/faster-startup-open-liberty.html">
+            With version 19.0.0.9 of Open Liberty and OpenJ9, Open Liberty managed to cut the startup time to their goal of almost exactly one second.
+          </Testimonials>
+
+          <Testimonials source="Payara Enterprise" link="https://blog.payara.fish/faster-payara-micro-startup-times-with-openj9">
+            Payara found that with datagrid enabled, Payara Micro with class data sharing, booted in about 6 seconds, improving startup time by almost 40%.
+          </Testimonials>
+        </div>	 
         
         <div id="openjdk11quarkus"
           sx={{
@@ -518,8 +553,25 @@ class performance extends Component {
                 width:"16rem",
                 marginTop:"7rem"
                 }} 
-                href="https://github.com/eclipse/openj9-website/blob/master/benchmark/quarkus.md" rel="noopener noreferrer" target="_blank">Read more performance details</a>
+                href="https://github.com/eclipse/openj9-website/blob/master/benchmark/quarkus.md" rel="noopener noreferrer" target="_blank">Show me performance details</a>
           </div>
+
+          <div
+            sx={{
+                display: "grid",
+                gridGap:'3rem',
+                gridTemplateColumns:['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)'],
+                paddingTop:"4rem"
+            }}
+          >
+            <Testimonials source="Trendyol Tech blog" link="https://medium.com/trendyol-tech/how-trendyol-jvm-applications-consume-less-memory-in-the-production-environment-87e419dd18a0">
+              Trendyol Tech found 40% faster startup time and 73 MB less memory footprint when they ran Undertow + Rest + Couchbase Client with OpenJ9.
+            </Testimonials>
+
+            <Testimonials source="Graeme Rocher, Micronaut" link="https://twitter.com/graemerocher/status/1090204088065802240?lang=en">
+              As reported on twitter, Micronautfw startup with OpenJ9 is as fast as Node.js.
+            </Testimonials>
+          </div>	 
         </div>
       </section>
     </Layout>
