@@ -480,7 +480,7 @@ class performance extends Component {
           }}
         >
           <Styled.p sx={{marginBottom:"0.5rem"}}>
-            Using OpenJ9 with Quarkus instead of HotSpot makes Java even more supersonic and subatomic!
+            Using Quarkus with OpenJ9 instead of HotSpot makes Java even more supersonic and subatomic!
           </Styled.p>
           
           <div

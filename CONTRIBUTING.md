@@ -43,6 +43,23 @@ gatsby clean
 ## Update Latest release section
 Open `news-page-content/latestRelease.md` and edit it as required and this will automatically be converted to HTML during the build.
 
+## Redirecting page
+
+If you change the page URL, you must add a redirect to prevent broken links, especially from external sources.
+
+1. Open the `gatsby-node.js` file found at the root of the project
+2. In the redirects section, add the following code snippet:
+
+```
+createRedirect({
+    fromPath: `/old/path`,
+    toPath: `/new/path`,
+    isPermanent: true
+  });
+```
+
+Note, you need to provide only the path.
+
 
 
 
