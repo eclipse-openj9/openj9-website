@@ -29,21 +29,12 @@ const Testimonials = ({ children, source, link }) => {
         <blockquote 
           sx={{
             display: ["block", "block", "block", "grid"],
-            gridGap:'1.5rem',
+            gridGap:'0.5rem',
             gridTemplateColumns:'repeat(1, 1fr)',
-            gridTemplateRows: "1.5rem 5rem 1.5rem 1.5rem",
+            gridTemplateRows: "5rem 1.5rem 1.5rem",
             color: "#0b4237",
             boxSizing: "border-box",
-            marginBottom:"2rem",
-            "::before": {
-              fontFamily: "'Gelasio', serif",
-              fontStyle: "italic",
-              content: '"\\201c"',
-              fontSize:"3rem",
-              color:"#009578",
-              display:"block",
-              height: "3rem"
-            }
+            marginBottom:"2rem"
           }}
         >
           <p 
