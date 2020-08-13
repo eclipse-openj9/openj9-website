@@ -71,23 +71,23 @@ const Testimonials = ({ children, source, link }) => {
           </p>
 
           <div
-          sx={{
-            display: "flex",
-            justifyContent: "flex-start",
-          }}
-        >
-          <a sx={{
-              color: "black",
-              textDecoration: "none",           
-              marginTop:"2rem",
-              "&:hover": {
-                color: "#0b4237",
-                textDecoration: "none",
-                fontWeight:"bold"
-              }
-              }} 
-              href={link} rel="noopener noreferrer" target="_blank">Read the article  <i className="fas fa-external-link-alt fa-xs"></i></a>
-        </div>
+            sx={{
+              display: "flex",
+              justifyContent: "flex-start",
+            }}
+          >
+            <a sx={{
+                color: "black",
+                textDecoration: "none",           
+                marginTop:"2rem",
+                "&:hover": {
+                  color: "#0b4237",
+                  textDecoration: "none",
+                  fontWeight:"bold"
+                }
+                }} 
+                href={link} rel="noopener noreferrer" target="_blank">Read the article  <i className="fas fa-external-link-alt fa-xs"></i></a>
+          </div>
         </blockquote>        
     );
 }
