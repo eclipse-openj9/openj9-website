@@ -91,11 +91,11 @@ export default ({data}) => {
                  }
               }} dangerouslySetInnerHTML={{__html: ((data.allMarkdownRemark.edges[0].node.html))}}>
             </div>
-            
             <Button link="https://www.eclipse.org/openj9/docs/openj9_releases/" primary={false} target={true}>New release info</Button>
           </article>
         </div>
       </section>
+
       <section
         sx={{
           paddingX: "7%",
@@ -105,86 +105,80 @@ export default ({data}) => {
         }}
       >
         <Styled.h2 sx={{marginTop:"2rem"}}>Recent blogs</Styled.h2>
-      <div
-        sx={{
-          display: "grid",
-          gridGap:['3rem', '3rem', '3rem', '6rem'],
-          gridTemplateColumns:['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)'],
-        }}
-      >
-      
-        <div sx={{
+
+        <div
+          sx={{
+            display: "grid",
+            gridGap:['3rem', '3rem', '3rem', '6rem'],
+            gridTemplateColumns:['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)'],
+          }}
+        >
+          <div sx={{
+                display:'flex',
+                flexDirection:'column',
+                justifyContent:'space-between'
+              }}
+          >
+            <div>
+              <Styled.h3 sx={{fontSize:"1.4rem"}}>
+              <a
+                sx={{
+                      cursor: "pointer",
+                      color: "black",
+                      marginRight:'0.3rem',
+                      textDecoration: "none",
+                      "&:hover": {
+                        color: "#5DA7A3",
+                        textDecoration: "none"
+                      }
+                }}
+                href={data.allWordpressPost.nodes[0].link} rel="noopener noreferrer" target="_blank"> {data.allWordpressPost.nodes[0].title}
+                <i sx={{marginLeft: "0.5rem"}} className="fas fa-external-link-alt fa-xs"></i>
+              </a>
+              </Styled.h3>
+              <Styled.p>
+                <b>{nodes[0].date}</b>
+              </Styled.p>
+            </div>
+            <Styled.p dangerouslySetInnerHTML={{__html:data.allWordpressPost.nodes[0].excerpt}}/>
+          </div>
+
+          <div
+            sx={{
               display:'flex',
               flexDirection:'column',
-              justifyContent:'space-between'
+              justifyContent:'flex-start',
             }}
-        >
-          <div>
-            <Styled.h3 sx={{fontSize:"1.4rem"}}>
-            <a
-              sx={{
+          >
+            <div>
+              <Styled.h3 sx={{fontSize:"1.4rem"}}>
+                <a 
+                  sx={{
+
                     cursor: "pointer",
                     color: "black",
-                    marginRight:'0.3rem',
                     textDecoration: "none",
+                    marginRight:"0.3rem",
                     "&:hover": {
                       color: "#5DA7A3",
                       textDecoration: "none"
                     }
-              }}
-              href={data.allWordpressPost.nodes[0].link} rel="noopener noreferrer" target="_blank"> {data.allWordpressPost.nodes[0].title}
-              <i sx={{marginLeft: "0.5rem"}} className="fas fa-external-link-alt fa-xs"></i>
-          </a>
-            </Styled.h3>
-            <Styled.p>
-              <b>{nodes[0].date}</b>
-            </Styled.p>
+                  }}
+                  href={data.allWordpressPost.nodes[1].link} rel="noopener noreferrer" target="_blank"> {data.allWordpressPost.nodes[1].title}
+                  <i sx={{marginLeft: "0.5rem"}} className="fas fa-external-link-alt fa-xs"></i>
+                </a>
+              </Styled.h3>
+              <Styled.p >
+                <b>{data.allWordpressPost.nodes[1].date}</b>
+              </Styled.p>
+            </div>
+            <Styled.p dangerouslySetInnerHTML={{__html:data.allWordpressPost.nodes[1].excerpt}}/>    
           </div>
-          
-
-          <Styled.p dangerouslySetInnerHTML={{__html:data.allWordpressPost.nodes[0].excerpt}}/>
-          </div>
-        <div
-          sx={{
-            display:'flex',
-            flexDirection:'column',
-            justifyContent:'flex-start',
-          }}
-        >
-          <div>
-          <Styled.h3 sx={{fontSize:"1.4rem"}}>
-            <a 
-              sx={{
-
-                cursor: "pointer",
-                color: "black",
-                textDecoration: "none",
-                marginRight:"0.3rem",
-                "&:hover": {
-                  color: "#5DA7A3",
-                  textDecoration: "none"
-                }
-              }}
-              href={data.allWordpressPost.nodes[1].link} rel="noopener noreferrer" target="_blank"> {data.allWordpressPost.nodes[1].title}
-              <i sx={{marginLeft: "0.5rem"}} className="fas fa-external-link-alt fa-xs"></i>
-            </a>
-           
-          </Styled.h3>
-          <Styled.p >
-            <b>{data.allWordpressPost.nodes[1].date}</b>
-          </Styled.p>
-          </div>
-         
-          <Styled.p dangerouslySetInnerHTML={{__html:data.allWordpressPost.nodes[1].excerpt}}/>    
         </div>
-  
-        
-      </div>
       
-      <div sx={{display: "flex", justifyContent: "center", paddingX: "5%",}}>
-        <Button link="https://blog.openj9.org/" primary={false} target={true}>See all blogs</Button>
-      </div>
-      
+        <div sx={{display: "flex", justifyContent: "center", paddingX: "5%",}}>
+          <Button link="https://blog.openj9.org/" primary={false} target={true}>See all blogs</Button>
+        </div>
     </section>
   </Layout>
   )}

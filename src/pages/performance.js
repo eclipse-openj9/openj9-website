@@ -256,6 +256,102 @@ class performance extends Component {
         },
       ]
     },
+
+    barChartJDK11QuarkusStartup:{ 
+      labels: ['OpenJ9', 'HotSpot'],
+      datasets:[
+        {
+          data:[
+            0.34,              
+            1
+          ],
+          backgroundColor:[
+            '#5DA7A3',
+            '#E58B23'
+          ]
+        }
+      ]
+    },
+
+    barChartJDK11QuarkusFootprint:{ 
+      labels: ['OpenJ9', 'HotSpot'],
+      datasets:[
+        {
+          data:[
+            0.82,              
+            1
+          ],
+          backgroundColor:[
+            '#5DA7A3',
+            '#E58B23'
+          ]
+        }
+      ]
+    },
+
+    lineChartJK11QuarkusFasterRampupInTheCloud:{ 
+      labels: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120],
+      datasets:[
+        {
+          label: 'OpenJ9',
+          data:[
+            2,
+            4233,
+            4311,
+            4307,
+            4312,
+            4347,
+            4432,
+            4468,
+            4564,
+            4601,
+            4627,
+            4606,
+            4657
+          ],
+          fill: false,
+          borderColor: "#5DA7A3",
+          backgroundColor:'#5DA7A3'
+        },
+        {
+          label: 'HotSpot',
+          data:[
+            1,
+            1426,
+            1959,
+            3603,
+            5545,
+            5609,
+            5616,
+            5601,
+            5583,
+            5619,
+            5560,
+            5354,
+            5639
+          ],
+          fill: false,
+          borderColor:'#E58B23',
+          backgroundColor:'#E58B23'
+        },
+      ]
+    },
+
+    barChartJK11QuarkusFootprintDuringLoad:{ 
+      labels: ['OpenJ9', 'HotSpot'],
+      datasets:[
+        {
+          data:[
+            147,              
+            178
+          ],
+          backgroundColor:[
+            '#5DA7A3',
+            '#E58B23'
+          ]
+        }
+      ]
+    },
   } 
   
   render (){
@@ -270,7 +366,7 @@ class performance extends Component {
           </Styled.p>
       </section>
 
-      <section
+      <section id="openjdk8"
         sx={{
           backgroundColor: "#F5F9FC",
           paddingX: "7%",
@@ -346,7 +442,7 @@ class performance extends Component {
         </div>
       </section>
 
-      <section
+      <section id="openjdk11"
         sx={{
           backgroundColor: "#F5F9FC",
           paddingX: "7%",
@@ -356,7 +452,7 @@ class performance extends Component {
       >
         <Styled.h2>OpenJDK 11 performance with Eclipse OpenJ9</Styled.h2>
         <Styled.p sx={{marginBottom:"0.5rem"}}>
-          Testing shows similar results for OpenJDK 11; OpenJ9 outperforms HotSpot on startup, ramp up, and footprint
+          Testing shows similar results for OpenJDK 11; OpenJ9 outperforms HotSpot on Liberty startup, ramp up, and footprint
         </Styled.p>
     
         
@@ -403,6 +499,54 @@ class performance extends Component {
             With datagrid enabled, Payara Micro with class data sharing boots in about 6 seconds,
             so it improves startup time by almost 40%.
           </Testimonials>
+        </div>
+        
+        <div id="openjdk11quarkus"
+          sx={{
+            marginTop:"4rem"
+          }}
+        >
+          <Styled.p sx={{marginBottom:"0.5rem"}}>
+            Using Quarkus with OpenJ9 instead of HotSpot makes Java even more supersonic and subatomic!
+          </Styled.p>
+          
+          <div
+            sx={{
+              display: "flex",
+              justifyContent: "space-around",
+              flexWrap: "wrap"
+            }}
+          >
+            <PerformanceCard graphData={this.state.barChartJDK11QuarkusStartup} heading="66% faster startup time" primary={true} chartType="bar" yAxis="Relative startup time"> 
+              <p>Quarkus might be supersonic, but running it with OpenJ9 instead of HotSpot reduces startup time by a further 66%.</p>
+            </PerformanceCard>
+            <PerformanceCard graphData={this.state.barChartJDK11QuarkusFootprint} heading="18% smaller footprint after startup" primary={true} chartType="bar" yAxis="Relative resident set size"> 
+              <p>The ultra-supersonic startup time comes at some tradeoff to footprint, but OpenJ9 still has an edge over HotSpot.</p>
+            </PerformanceCard>
+            <PerformanceCard graphData={this.state.lineChartJK11QuarkusFasterRampupInTheCloud} heading="Faster ramp-up time in the cloud" primary={true} chartType="line" xAxis="Time (s)" yAxis="Throughput (pages/s)"> 
+              <p>For short-lived cloud workloads running on Quarkus, OpenJ9 delivers excellent ramp-up performance compared to HotSpot.</p>
+            </PerformanceCard>
+            <PerformanceCard graphData={this.state.barChartJK11QuarkusFootprintDuringLoad} heading="18% smaller footprint during load" primary={true} chartType="bar" yAxis="Resident Set Size (MB)" xAxis="Time (s)"> 
+              <p>When ramp-up completes, as well as getting there faster, OpenJ9 still retains a smaller footprint than HotSpot.</p>
+            </PerformanceCard>
+          </div>
+          <div
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <a sx={{
+                variant: "buttons.secondary",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                textDecoration: "none",
+                width:"16rem",
+                marginTop:"7rem"
+                }} 
+                href="https://github.com/eclipse/openj9-website/blob/master/benchmark/quarkus.md" rel="noopener noreferrer" target="_blank">Read more performance details</a>
+          </div>
         </div>
       </section>
     </Layout>

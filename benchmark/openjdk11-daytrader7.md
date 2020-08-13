@@ -58,6 +58,12 @@ On the other hand, from the graphs it is apparent that, `-Xtune:virtualized`, an
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/startup.png)
 
+**Chart: Heap setting "-Xmx256m"**
+
+![The explanation for this graph is provided in the surrounding text.](./assets/startupXms.png)
+
+**Chart: Heap setting "-Xms256m -Xmx256m"**
+
 
 ## Memory footprint after startup
 
@@ -70,6 +76,11 @@ During the startup phase, OpenJ9 already generates AOT aggressively, so the addi
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/footprint.png)
 
+**Chart: Heap setting "-Xmx256m"**
+
+![The explanation for this graph is provided in the surrounding text.](./assets/footprintXms.png)
+
+**Chart: Heap setting "-Xms256m -Xmx256m"**
 
 ## Memory footprint during application ramp-up
 
@@ -80,6 +91,12 @@ As with the previous metrics, the `-Xtune:virtualized` option does not appear to
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/footprintduringload.png)
 
+
+**Chart: Heap setting "-Xmx1G"**
+
+![The explanation for this graph is provided in the surrounding text.](./assets/footprintduringloadXms.png)
+
+**Chart: Heap setting "-Xms1G -Xmx1G"**
 
 ## Ramp-up time and peak throughput
 
@@ -93,6 +110,12 @@ While both OpenJ9 with SCC/AOT and HotSpot settle for about the same peak throug
 Nevertheless, we think that this configuration is very well suited for short or medium running applications where the ability to startup and ramp-up fast is more important than long term throughput.
 
 ![The explanation for this graph is provided in the surrounding text.](./assets/throughput.png)
+
+**Chart: Heap setting "-Xmx1G"**
+
+![The explanation for this graph is provided in the surrounding text.](./assets/throughputXms.png)
+
+**Chart: Heap setting "-Xms1G -Xmx1G"**
 
 ## Benchmark testing details
 
