@@ -362,8 +362,145 @@ class performance extends Component {
           <Styled.p>
             Application performance can be measured using many different metrics, including startup time,
             ramp-up time, footprint, and response time, as well as throughput. At Eclipse OpenJ9, we keep a watchful eye on all
-            of these metrics, making sensible tradeoffs and providing tuning options that allow the virtual machine (VM) to be optimized for different workloads.
+            of these metrics, making sensible tradeoffs and providing tuning options that allow the virtual machine (VM) to be
+            optimized for different workloads. We regularly test and optimize OpenJ9 performance when running the most popular 
+            Java frameworks such as Open Liberty, Quarkus, SpringBoot, and Micronaut. We're proud of our results. 
           </Styled.p>
+      </section>
+
+      <section id="openjdk11"
+        sx={{
+          backgroundColor: "#F5F9FC",
+          paddingX: "7%",
+          paddingTop: "0.1rem",
+          paddingBottom: "4rem"
+        }}
+      >
+        <Styled.h2>OpenJDK 11 performance with Eclipse OpenJ9</Styled.h2>
+        <Styled.p sx={{marginBottom:"0.5rem"}}>
+          OpenJDK 11 with OpenJ9 significantly outperforms HotSpot on Liberty startup, ramp up, and footprint.
+        </Styled.p>
+    
+        
+        <div
+          sx={{
+            display: "flex",
+            justifyContent: "space-around",
+            flexWrap: "wrap"
+          }}
+        >
+          <PerformanceCard graphData={this.state.barChartJDK11Startup} heading="51% faster startup time" primary={true} chartType="bar" yAxis="Relative startup time"> 
+            <p>By using shared classes cache and AOT technology, OpenJ9 starts in roughly half the time it takes HotSpot.</p>
+          </PerformanceCard>
+          <PerformanceCard graphData={this.state.barChartJDK11Footprint} heading="50% smaller footprint after startup" primary={true} chartType="bar" yAxis="Relative resident set size"> 
+            <p>After startup, the OpenJ9 footprint is half the size of HotSpot, which makes it ideal for cloud workloads.</p>
+          </PerformanceCard>
+          <PerformanceCard graphData={this.state.lineChartJK11FasterRampupInTheCloud} heading="Faster ramp-up time in the cloud" primary={true} chartType="line" xAxis="Time (s)" yAxis="Throughput (pages/s)"> 
+            <p>OpenJ9 reaches peak throughput much faster than HotSpot making it especially suitable for running short-lived applications.</p>
+          </PerformanceCard>
+          <PerformanceCard graphData={this.state.lineChartJK11FootprintDuringLoad} heading="33% smaller footprint during load" primary={true} chartType="line" yAxis="Resident Set Size (MB)" xAxis="Time (s)"> 
+            <p>Consistent with the footprint results after startup, the OpenJ9 footprint remains much smaller than HotSpot when load is applied.</p>
+          </PerformanceCard>
+        </div>
+        <div
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <a sx={{
+              variant: "buttons.secondary",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              textDecoration: "none",
+              width:"16rem",
+              marginTop:"7rem"
+              }} 
+              href="https://github.com/eclipse/openj9-website/blob/master/benchmark/openjdk11-daytrader7.md" rel="noopener noreferrer" target="_blank">Show me performance details</a>
+        </div>
+
+        <div
+            sx={{
+                display: "grid",
+                gridGap:'3rem',
+                gridTemplateColumns:['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)'],
+                paddingTop:"4rem"
+            }}
+        >
+          <Testimonials source="Open Liberty blog" link="https://openliberty.io/blog/2019/10/30/faster-startup-open-liberty.html">
+            With version 19.0.0.9 of Open Liberty and OpenJ9, Open Liberty managed to cut the startup time to their goal of almost exactly one second.
+          </Testimonials>
+
+          <Testimonials source="Payara Enterprise" link="https://blog.payara.fish/faster-payara-micro-startup-times-with-openj9">
+            Payara found that with datagrid enabled, Payara Micro with class data sharing, booted in about 6 seconds, improving startup time by almost 40%.
+          </Testimonials>
+        </div>	
+
+        <div id="openjdk11quarkus"
+          sx={{
+            marginTop:"4rem"
+          }}
+        >
+          <Styled.p sx={{marginBottom:"0.5rem"}}>
+          Using Quarkus with OpenJ9 instead of HotSpot makes Java even more supersonic and subatomic!
+          </Styled.p>
+          
+          <div
+            sx={{
+              display: "flex",
+              justifyContent: "space-around",
+              flexWrap: "wrap"
+            }}
+          >
+            <PerformanceCard graphData={this.state.barChartJDK11QuarkusStartup} heading="66% faster startup time" primary={true} chartType="bar" yAxis="Relative startup time"> 
+              <p>Quarkus might be supersonic, but running it with OpenJ9 instead of HotSpot reduces startup time by a further 66%.</p>
+            </PerformanceCard>
+            <PerformanceCard graphData={this.state.barChartJDK11QuarkusFootprint} heading="18% smaller footprint after startup" primary={true} chartType="bar" yAxis="Relative resident set size"> 
+              <p>The ultra-supersonic startup time comes at some tradeoff to footprint, but OpenJ9 still has an edge over HotSpot.</p>
+            </PerformanceCard>
+            <PerformanceCard graphData={this.state.lineChartJK11QuarkusFasterRampupInTheCloud} heading="Faster ramp-up time in the cloud" primary={true} chartType="line" xAxis="Time (s)" yAxis="Throughput (pages/s)"> 
+              <p>For short-lived cloud workloads running on Quarkus, OpenJ9 delivers excellent ramp-up performance compared to HotSpot.</p>
+            </PerformanceCard>
+            <PerformanceCard graphData={this.state.barChartJK11QuarkusFootprintDuringLoad} heading="18% smaller footprint during load" primary={true} chartType="bar" yAxis="Resident Set Size (MB)" xAxis="Time (s)"> 
+              <p>When ramp-up completes, as well as getting there faster, OpenJ9 still retains a smaller footprint than HotSpot.</p>
+            </PerformanceCard>
+          </div>
+          <div
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <a sx={{
+                variant: "buttons.secondary",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                textDecoration: "none",
+                width:"16rem",
+                marginTop:"7rem"
+                }} 
+                href="https://github.com/eclipse/openj9-website/blob/master/benchmark/quarkus.md" rel="noopener noreferrer" target="_blank">Show me performance details</a>
+          </div>
+
+          <div
+            sx={{
+                display: "grid",
+                gridGap:'3rem',
+                gridTemplateColumns:['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)'],
+                paddingTop:"4rem"
+            }}
+          >
+            <Testimonials source="Trendyol Tech blog" link="https://medium.com/trendyol-tech/how-trendyol-jvm-applications-consume-less-memory-in-the-production-environment-87e419dd18a0">
+              Trendyol Tech found 40% faster startup time and 73 MB less memory footprint when they ran Undertow + Rest + Couchbase Client with OpenJ9.
+            </Testimonials>
+
+            <Testimonials source="Graeme Rocher, Micronaut" link="https://twitter.com/graemerocher/status/1090204088065802240?lang=en">
+              As reported on twitter, Micronautfw startup with OpenJ9 is as fast as Node.js.
+            </Testimonials>
+          </div>	  
+        </div>
       </section>
 
       <section id="openjdk8"
@@ -376,7 +513,7 @@ class performance extends Component {
       >
         <Styled.h2>OpenJDK 8 performance with Eclipse OpenJ9</Styled.h2>
         <Styled.p sx={{marginBottom:"0.5rem"}}>
-          OpenJDK 8 with OpenJ9 demonstrates significantly better performance than OpenJDK 8 with HotSpot
+          Testing shows similar results for OpenJDK 8; OpenJ9 demonstrates significantly better performance than OpenJDK 8 with HotSpot
         </Styled.p>
     
         
@@ -438,141 +575,6 @@ class performance extends Component {
             As reported on the Amis technology blog, when testing a number of JVMs, OpenJDK with OpenJ9 was the fastest to start for every framework.
           </Testimonials>
         </div>	 
-      </section>
-
-      <section id="openjdk11"
-        sx={{
-          backgroundColor: "#F5F9FC",
-          paddingX: "7%",
-          paddingTop: "0.1rem",
-          paddingBottom: "4rem"
-        }}
-      >
-        <Styled.h2>OpenJDK 11 performance with Eclipse OpenJ9</Styled.h2>
-        <Styled.p sx={{marginBottom:"0.5rem"}}>
-          Testing shows similar results for OpenJDK 11; OpenJ9 outperforms HotSpot on Liberty startup, ramp up, and footprint
-        </Styled.p>
-    
-        
-        <div
-          sx={{
-            display: "flex",
-            justifyContent: "space-around",
-            flexWrap: "wrap"
-          }}
-        >
-          <PerformanceCard graphData={this.state.barChartJDK11Startup} heading="51% faster startup time" primary={true} chartType="bar" yAxis="Relative startup time"> 
-            <p>By using shared classes cache and AOT technology, OpenJ9 starts in roughly half the time it takes HotSpot.</p>
-          </PerformanceCard>
-          <PerformanceCard graphData={this.state.barChartJDK11Footprint} heading="50% smaller footprint after startup" primary={true} chartType="bar" yAxis="Relative resident set size"> 
-            <p>After startup, the OpenJ9 footprint is half the size of HotSpot, which makes it ideal for cloud workloads.</p>
-          </PerformanceCard>
-          <PerformanceCard graphData={this.state.lineChartJK11FasterRampupInTheCloud} heading="Faster ramp-up time in the cloud" primary={true} chartType="line" xAxis="Time (s)" yAxis="Throughput (pages/s)"> 
-            <p>OpenJ9 reaches peak throughput much faster than HotSpot making it especially suitable for running short-lived applications.</p>
-          </PerformanceCard>
-          <PerformanceCard graphData={this.state.lineChartJK11FootprintDuringLoad} heading="33% smaller footprint during load" primary={true} chartType="line" yAxis="Resident Set Size (MB)" xAxis="Time (s)"> 
-            <p>Consistent with the footprint results after startup, the OpenJ9 footprint remains much smaller than HotSpot when load is applied.</p>
-          </PerformanceCard>
-        </div>
-        <div
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <a sx={{
-              variant: "buttons.secondary",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              textDecoration: "none",
-              width:"16rem",
-              marginTop:"7rem"
-              }} 
-              href="https://github.com/eclipse/openj9-website/blob/master/benchmark/openjdk11-daytrader7.md" rel="noopener noreferrer" target="_blank">Show me performance details</a>
-        </div>
-
-        <div
-            sx={{
-                display: "grid",
-                gridGap:'3rem',
-                gridTemplateColumns:['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)'],
-                paddingTop:"4rem"
-            }}
-        >
-          <Testimonials source="Open Liberty blog" link="https://openliberty.io/blog/2019/10/30/faster-startup-open-liberty.html">
-            With version 19.0.0.9 of Open Liberty and OpenJ9, Open Liberty managed to cut the startup time to their goal of almost exactly one second.
-          </Testimonials>
-
-          <Testimonials source="Payara Enterprise" link="https://blog.payara.fish/faster-payara-micro-startup-times-with-openj9">
-            Payara found that with datagrid enabled, Payara Micro with class data sharing, booted in about 6 seconds, improving startup time by almost 40%.
-          </Testimonials>
-        </div>	 
-        
-        <div id="openjdk11quarkus"
-          sx={{
-            marginTop:"4rem"
-          }}
-        >
-          <Styled.p sx={{marginBottom:"0.5rem"}}>
-            Using Quarkus with OpenJ9 instead of HotSpot makes Java even more supersonic and subatomic!
-          </Styled.p>
-          
-          <div
-            sx={{
-              display: "flex",
-              justifyContent: "space-around",
-              flexWrap: "wrap"
-            }}
-          >
-            <PerformanceCard graphData={this.state.barChartJDK11QuarkusStartup} heading="66% faster startup time" primary={true} chartType="bar" yAxis="Relative startup time"> 
-              <p>Quarkus might be supersonic, but running it with OpenJ9 instead of HotSpot reduces startup time by a further 66%.</p>
-            </PerformanceCard>
-            <PerformanceCard graphData={this.state.barChartJDK11QuarkusFootprint} heading="18% smaller footprint after startup" primary={true} chartType="bar" yAxis="Relative resident set size"> 
-              <p>The ultra-supersonic startup time comes at some tradeoff to footprint, but OpenJ9 still has an edge over HotSpot.</p>
-            </PerformanceCard>
-            <PerformanceCard graphData={this.state.lineChartJK11QuarkusFasterRampupInTheCloud} heading="Faster ramp-up time in the cloud" primary={true} chartType="line" xAxis="Time (s)" yAxis="Throughput (pages/s)"> 
-              <p>For short-lived cloud workloads running on Quarkus, OpenJ9 delivers excellent ramp-up performance compared to HotSpot.</p>
-            </PerformanceCard>
-            <PerformanceCard graphData={this.state.barChartJK11QuarkusFootprintDuringLoad} heading="18% smaller footprint during load" primary={true} chartType="bar" yAxis="Resident Set Size (MB)" xAxis="Time (s)"> 
-              <p>When ramp-up completes, as well as getting there faster, OpenJ9 still retains a smaller footprint than HotSpot.</p>
-            </PerformanceCard>
-          </div>
-          <div
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <a sx={{
-                variant: "buttons.secondary",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                textDecoration: "none",
-                width:"16rem",
-                marginTop:"7rem"
-                }} 
-                href="https://github.com/eclipse/openj9-website/blob/master/benchmark/quarkus.md" rel="noopener noreferrer" target="_blank">Show me performance details</a>
-          </div>
-
-          <div
-            sx={{
-                display: "grid",
-                gridGap:'3rem',
-                gridTemplateColumns:['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)'],
-                paddingTop:"4rem"
-            }}
-          >
-            <Testimonials source="Trendyol Tech blog" link="https://medium.com/trendyol-tech/how-trendyol-jvm-applications-consume-less-memory-in-the-production-environment-87e419dd18a0">
-              Trendyol Tech found 40% faster startup time and 73 MB less memory footprint when they ran Undertow + Rest + Couchbase Client with OpenJ9.
-            </Testimonials>
-
-            <Testimonials source="Graeme Rocher, Micronaut" link="https://twitter.com/graemerocher/status/1090204088065802240?lang=en">
-              As reported on twitter, Micronautfw startup with OpenJ9 is as fast as Node.js.
-            </Testimonials>
-          </div>	 
-        </div>
       </section>
     </Layout>
     )
