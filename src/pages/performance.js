@@ -442,6 +442,7 @@ class performance extends Component {
             marginTop:"4rem"
           }}
         >
+          <Styled.h4>OpenJDK 11 performance with Quarkus and Eclipse OpenJ9</Styled.h4>
           <Styled.p sx={{marginBottom:"0.5rem"}}>
           Using Quarkus with OpenJ9 instead of HotSpot makes Java even more supersonic and subatomic!
           </Styled.p>
