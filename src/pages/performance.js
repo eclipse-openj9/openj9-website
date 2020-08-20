@@ -436,13 +436,17 @@ class performance extends Component {
             Payara found that with datagrid enabled, Payara Micro with class data sharing, booted in about 6 seconds, improving startup time by almost 40%.
           </Testimonials>
         </div>	
+        </section>
 
-        <div id="openjdk11quarkus"
+        <section id="openjdk11quarkus"
           sx={{
-            marginTop:"4rem"
+            backgroundColor: "#F5F9FC",
+            paddingX: "7%",
+            paddingTop: "0.1rem",
+            paddingBottom: "4rem"
           }}
         >
-          <Styled.h4>OpenJDK 11 performance with Quarkus and Eclipse OpenJ9</Styled.h4>
+          <Styled.h2>OpenJDK 11 performance with Quarkus and Eclipse OpenJ9</Styled.h2>
           <Styled.p sx={{marginBottom:"0.5rem"}}>
           Using Quarkus with OpenJ9 instead of HotSpot makes Java even more supersonic and subatomic!
           </Styled.p>
@@ -501,7 +505,6 @@ class performance extends Component {
               As reported on twitter, Micronautfw startup with OpenJ9 is as fast as Node.js.
             </Testimonials>
           </div>	  
-        </div>
       </section>
 
       <section id="openjdk8"

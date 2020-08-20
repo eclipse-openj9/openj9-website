@@ -26,6 +26,7 @@ import { jsx } from "theme-ui";
 
 const Testimonials = ({ children, source, link }) => {
     return (
+                
         <blockquote 
           sx={{
             display: ["block", "block", "block", "grid"],
@@ -48,23 +49,7 @@ const Testimonials = ({ children, source, link }) => {
             {children}
           </p>
 
-          <p 
-            sx={{
-              fontFamily: "'Gelasio', serif",
-              fontStyle: "normal",
-              fontSize: "1rem",
-              lineHeight:"1rem",
-              textAlign: "left",
-              margin:['2rem 0 2.5rem 0', '2rem 0 2.5rem 0', '2rem 0 2.5rem 0', 0],
-              "::before": {
-                content: '"\\2014\\0020"',
-              }
-            }}
-          >
-            {source}
-          </p>
-
-          <div
+          <cite
             sx={{
               display: "flex",
               justifyContent: "flex-start",
@@ -79,9 +64,9 @@ const Testimonials = ({ children, source, link }) => {
                   fontWeight:"bold"
                 }
                 }} 
-                href={link} rel="noopener noreferrer" target="_blank">Read more  <i className="fas fa-external-link-alt fa-xs"></i></a>
-          </div>
-        </blockquote>        
+                href={link} rel="noopener noreferrer" target="_blank">{source}&nbsp;<i className="fas fa-external-link-alt fa-xs"></i></a>
+          </cite>
+        </blockquote>
     );
 }
 
