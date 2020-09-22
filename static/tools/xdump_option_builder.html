@@ -178,7 +178,7 @@ function processChange(option) {
 			var execFieldElement = document.getElementById("exec");
 			var toolAsyncElement = document.getElementById("tool_async");
 			var toolWaitElement = document.getElementById("tool_wait");
-			
+
 			var rangeElement = document.getElementById("range");
 			var rangeFirstElement = document.getElementById("range_first");
 			var rangeLastElement = document.getElementById("range_last");
@@ -192,6 +192,14 @@ function processChange(option) {
 				enableInput(toolAsyncElement);
 				enableInput(toolWaitElement);
 				execFieldElement.focus();
+
+				// Tool agent is only compatible with the exit agent, so disable all the other agent inputs
+				var agentInputElements = document.getElementById("agent_input").getElementsByTagName("input");
+				for (var i = 0; i < agentInputElements.length; i++) {
+					if (agentInputElements[i].id.match(/^agent_/) != null && agentInputElements[i].id != "agent_tool" && agentInputElements[i].id != "agent_exit") {
+						disableInput(agentInputElements[i]);
+					}
+				}
 			} else {
 				// If range has not been modified, set it to the normal default of 1..0
 				if (rangeFirstElement.value == 1 && rangeLastElement.value == 1) {
@@ -201,7 +209,37 @@ function processChange(option) {
 				disableInput(execFieldElement);
 				disableInput(toolAsyncElement);
 				disableInput(toolWaitElement);
+
+				// Enable all agent inputs now that the tool agent is unchecked
+				var agentInputElements = document.getElementById("agent_input").getElementsByTagName("input");
+				for (var i = 0; i < agentInputElements.length; i++) {
+					if (agentInputElements[i].id.match(/^agent_/) != null) {
+						enableInput(agentInputElements[i]);
+					}
+				}
 			}		
+		}
+
+		// The tool agent is only compatible with the exit agent
+		if (option.value != "tool" && option.value != "exit") {
+			if (option.checked == true) {
+				// Disable tool if any agent other than exit is checked
+				disableInput(document.getElementById("agent_tool"));
+			} else {
+				// Enable tool if no other agents are checked, or only exit is checked
+				var agentInputElements = document.getElementById("agent_input").getElementsByTagName("input");
+				var enableToolAgent = true;
+				for (var i = 0; i < agentInputElements.length; i++) {
+					if (agentInputElements[i].id.match(/^agent_/) != null && agentInputElements[i].id != "agent_exit" && agentInputElements[i].checked) {
+						enableToolAgent = false;
+						break;
+					}
+				}
+
+				if (enableToolAgent) {
+					enableInput(document.getElementById("agent_tool"));
+				}			
+			}
 		}
 
 		configureRequestOptions(option.value);
@@ -273,7 +311,7 @@ function processChange(option) {
 				// Disable events that are not compatible with this event
 				disableIncompatibleEventElements(compatibleEventElementIds[option.value]);
 
-				// Enabled relevant filters
+				// Enable relevant filters
 				var filterIds = filterElementIds[option.value];
 				for (var i = 0; i < filterIds.length; i++) {
 					enableInput(document.getElementById(filterIds[i]));
@@ -313,7 +351,11 @@ function processChange(option) {
 		disableInput(document.getElementById("request_prepwalk"));
 		disableInput(document.getElementById("request_compact"));
 	} else {
-		enableInput(document.getElementById("agent_heap"));
+		// The heap agent is not compatible with the tool agent, so only enable heap if tool is not in use
+		var toolAgentElement = document.getElementById("agent_tool");
+		if (toolAgentElement.disabled || !toolAgentElement.checked) {
+			enableInput(document.getElementById("agent_heap"));
+		}
 		enableInput(document.getElementById("request_prepwalk"));
 		enableInput(document.getElementById("request_compact"));
 	}
@@ -774,7 +816,8 @@ function buildAndUpdateResult() {
 	var minimumSizeElement = document.getElementById("event_allocation_filter_size_min");
 	var maximumSizeElement = document.getElementById("event_allocation_filter_size_max");
 	if (document.getElementById("event_allocation").checked) {
-		if (minimumSizeElement.value == "" || minimumSizeElement.value < 0 || minimumSizeElement.value > maximumSizeElement.value) {
+		// Minimum must be specified, it must be greater than or equal to 0, and it must be less than the maximum
+		if (minimumSizeElement.value == "" || minimumSizeElement.value < 0 || (maximumSizeElement.value != "" && minimumSizeElement.value > maximumSizeElement.value)) {
 			resultIsGreen = false;
 			setErrorStyle(minimumSizeElement);
 			errorsHtml += "ERROR: Invalid minimum size for object allocation size filter: must be >= 0, and must be < maximum size<br>";		
@@ -782,7 +825,8 @@ function buildAndUpdateResult() {
 			unsetErrorStyle(minimumSizeElement);
 		}
 
-		if (maximumSizeElement.value == "" || maximumSizeElement.value <= 0 || minimumSizeElement.value > maximumSizeElement.value) {
+		// Maxmimum can be omitted, but if it is specified it must be greater than zero, and greater than the minimum.
+		if (maximumSizeElement.value != "" && (maximumSizeElement.value <= 0 || (minimumSizeElement.value != "" && minimumSizeElement.value > maximumSizeElement.value))) {
 			resultIsGreen = false;
 			setErrorStyle(maximumSizeElement);
 			errorsHtml += "ERROR: Invalid maximum size for object allocation size filter: must be > 0, and must be > minimum size<br>";		
