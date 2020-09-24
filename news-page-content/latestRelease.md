@@ -22,32 +22,26 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 The project website pages cannot be redistributed
 -->
 
-### Eclipse OpenJ9 version 0.21.0 released 
+### Eclipse OpenJ9 version 0.22.0 released 
 
-*20 July 2020*
+*24 September 2020*
 
-OpenJ9 version 0.21.0 supports OpenJDK version 8, 11, and 14. OpenJDK builds that contain version 0.21.0 are now available from the AdoptOpenJDK community project:
+OpenJ9 version 0.22.0 supports the new OpenJDK version 15. OpenJDK builds that contain version 0.22.0 of Eclipse OpenJ9 are now available from the AdoptOpenJDK community project:
 
-- [OpenJDK version 8](https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9)
-- [OpenJDK version 11](https://adoptopenjdk.net/releases.html?variant=openjdk11&jvmVariant=openj9)
-- [OpenJDK version 14](https://adoptopenjdk.net/releases.html?variant=openjdk14&jvmVariant=openj9)
+- [OpenJDK version 15](https://adoptopenjdk.net/releases.html?variant=openjdk15&jvmVariant=openj9)
 
-This release of OpenJ9 sees several performance enhancements: 
+OpenJDK 15 with Eclipse OpenJ9 is not a long term support (LTS) release.
 
-- If the `-Xtune:virtualized` command line option is used, the default JIT scratch memory limit is now reduced from 256 MB to 16 MB. This reduces the peak from JIT compilation activity, allowing you to size containers more easily, based on the particular application's memory usage.
+The latest builds of OpenJDK with OpenJ9 for Java 8 and 11 at the AdoptOpenJDK community are for Eclipse OpenJ9 release 0.21.0. Features mentioned in these release notes are not available in these Java 8 and 11 builds. Although it might be possible to build an OpenJDK 8 or OpenJDK 11 with OpenJ9 0.22.0, testing at the project is not complete and therefore support for any of these features is not available.
 
-- If the JIT is running in a container and no swap space is defined, the JIT dynamically adjusts its scratch memory consumption based on the amount of free physical memory available, to avoid out-of-memory (OOM) occurrences.
+To learn more about support for OpenJ9 releases, including OpenJDK levels and platform support, see [Supported environments](https://www.eclipse.org/openj9/docs/openj9_support/).
 
-- Several performance features were added to the AArch64 JIT compiler implementation that led to a throughput improvement on multiple applications of at least 20%. The most notable improvements were seen in global register allocation, recompilation (without profiling), CUDA support, concurrent scavenge GC policy, and the inlined code sequence for object allocations.
+In this release, we've introduced a new option: `-XX:[+|-]PortableSharedCache`. This option enables AOT compiled code to be generated, based on a chosen set of processor features that maximizes its portability across machines. It is currently supported only on x86. The feature is turned on by default in Docker containers and can be disabled with `-XX:-PortableSharedCache`.
 
-In this release, we've introduced two new options:
+The methods `com.ibm.lang.management.MemoryMXBean.getGCMasterThreadCpuUsed()` and `com.ibm.lang.management.MemoryMXBean.getGCSlaveThreadsCpuUsed()` are are now deprecated and will be removed in Java 16.
+You are recommended to use `com.ibm.lang.management.MemoryMXBean.getGCMainThreadCpuUsed()` and `com.ibm.lang.management.MemoryMXBean.getGCWorkerThreadsCpuUsed()` respectively.
 
-- `-XX:[+|-]HandleSIGABRT` affects the handling of the operating system signal `SIGABRT`. For compatibility with the reference implementation, set `-XX:-HandleSIGABRT`. 
+You should note that from Java 15, on AIX&reg; systems, `java.lang.System.mapLibraryName()` returns a representation of a native library in a platform-specific string with a `.so` suffix.
 
-- `-XX:[+|-]PrintFlagsFinal` outputs the values of a subset of configuration parameters in a format compatible with that produced by HotSpot. This is an initial implementation, and over time, we expect more options to be added to the output.
 
-And for your convenience, the Application Programming Interface (API) documentation that applies to OpenJ9 can now be found in the user documentation for both JDK 8 and JDK 11. The documentation includes links to Oracle API documentation for information that is not specific to OpenJ9.
-
-On macOS&reg; systems: You should note that in this release, the version information for shared libraries on macOS has been updated from 0.0.0 to 1.0.0. If an application has linked against a shared library from a previous OpenJ9 release, it needs to be re-linked against the new release. Failure to re-link causes an error `Incompatible library version`, `requires version 0.0.0`.
-
-For all the details of changes and improvements in 0.21.0, read the [Version 0.21.0 "What's New" page](https://www.eclipse.org/openj9/docs/version0.21/) and see also the [OpenJ9 Release notes](https://github.com/eclipse/openj9/blob/master/doc/release-notes/0.21/0.21.md).
+For all the details of changes and improvements in 0.22.0, read the [Version 0.22.0 "What's New" page](https://www.eclipse.org/openj9/docs/version0.22/) and see also the [OpenJ9 Release notes](https://github.com/eclipse/openj9/blob/master/doc/release-notes/0.22/0.22.md).
