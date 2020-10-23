@@ -24,7 +24,7 @@ The project website pages cannot be redistributed
 
 ### Eclipse OpenJ9 version 0.23.0 released 
 
-*20 October 2020*
+*23 October 2020*
 
 OpenJ9 version 0.23.0 supports OpenJDK version 8, 11, and 15. OpenJDK builds that contain version 0.23.0 are now available from the AdoptOpenJDK community project:
 
