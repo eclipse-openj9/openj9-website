@@ -22,26 +22,26 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 The project website pages cannot be redistributed
 -->
 
-### Eclipse OpenJ9 version 0.22.0 released 
+### Eclipse OpenJ9 version 0.23.0 released 
 
-*24 September 2020*
+*23 October 2020*
 
-OpenJ9 version 0.22.0 supports the new OpenJDK version 15. OpenJDK builds that contain version 0.22.0 of Eclipse OpenJ9 are now available from the AdoptOpenJDK community project:
+OpenJ9 version 0.23.0 supports OpenJDK version 8, 11, and 15. OpenJDK builds that contain version 0.23.0 are now available from the AdoptOpenJDK community project:
 
+- [OpenJDK version 8](https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9)
+- [OpenJDK version 11](https://adoptopenjdk.net/releases.html?variant=openjdk11&jvmVariant=openj9)
 - [OpenJDK version 15](https://adoptopenjdk.net/releases.html?variant=openjdk15&jvmVariant=openj9)
 
-OpenJDK 15 with Eclipse OpenJ9 is not a long term support (LTS) release.
-
-The latest builds of OpenJDK with OpenJ9 for Java 8 and 11 at the AdoptOpenJDK community are for Eclipse OpenJ9 release 0.21.0. Features mentioned in these release notes are not available in these Java 8 and 11 builds. Although it might be possible to build an OpenJDK 8 or OpenJDK 11 with OpenJ9 0.22.0, testing at the project is not complete and therefore support for any of these features is not available.
+This release of OpenJ9 sees several performance enhancements: 
 
 To learn more about support for OpenJ9 releases, including OpenJDK levels and platform support, see [Supported environments](https://www.eclipse.org/openj9/docs/openj9_support/).
 
-In this release, we've introduced a new option: `-XX:[+|-]PortableSharedCache`. This option enables AOT compiled code to be generated, based on a chosen set of processor features that maximizes its portability across machines. It is currently supported only on x86. The feature is turned on by default in Docker containers and can be disabled with `-XX:-PortableSharedCache`.
+In this release, we've improved the effectiveness of the option `-XX:[+|-]PortableSharedCache` by also making the AOT compiled code to be more portable across different heap sizes in compressed references mode on the X86 platform.
 
-The methods `com.ibm.lang.management.MemoryMXBean.getGCMasterThreadCpuUsed()` and `com.ibm.lang.management.MemoryMXBean.getGCSlaveThreadsCpuUsed()` are are now deprecated and will be removed in Java 16.
-You are recommended to use `com.ibm.lang.management.MemoryMXBean.getGCMainThreadCpuUsed()` and `com.ibm.lang.management.MemoryMXBean.getGCWorkerThreadsCpuUsed()` respectively.
+The option `-XX:[+|-]IdleTuningCompactOnIdle` that triggered a compaction of the Java heap during the idle state of the JVM is now deprecated. A new mechanism, which is independent of the option, has been implemented. This mechanism measures fragmentation and triggers heap compaction as needed.
 
-You should note that from Java 15, on AIX&reg; systems, `java.lang.System.mapLibraryName()` returns a representation of a native library in a platform-specific string with a `.so` suffix.
+The JITServer technology preview has been extended to Linux&reg; on IBM Power&reg; systems and Linux on IBM Z&reg; systems (64-bit only).
 
+For compatibility, the `-XX:[+|-]AlwaysPreTouch` OpenJDK HotSpot option is now supported by OpenJ9.
 
-For all the details of changes and improvements in 0.22.0, read the [Version 0.22.0 "What's New" page](https://www.eclipse.org/openj9/docs/version0.22/) and see also the [OpenJ9 Release notes](https://github.com/eclipse/openj9/blob/master/doc/release-notes/0.22/0.22.md).
+For all the details of changes and improvements in 0.23.0, read the [Version 0.23.0 "What's New" page](https://www.eclipse.org/openj9/docs/version0.23/) and see also the [OpenJ9 Release notes](https://github.com/eclipse/openj9/blob/master/doc/release-notes/0.23/0.23.md).
