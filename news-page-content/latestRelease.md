@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2017, 2020 IBM Corp. and others
+Copyright (c) 2017, 2021 IBM Corp. and others
 
 This program and the accompanying materials are made available under
 the terms of the Eclipse Public License 2.0 which accompanies this
@@ -22,26 +22,36 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 The project website pages cannot be redistributed
 -->
 
-### Eclipse OpenJ9 version 0.23.0 released 
+### Eclipse OpenJ9 version 0.24.0 released 
 
-*23 October 2020*
+*19 January 2021*
 
-OpenJ9 version 0.23.0 supports OpenJDK version 8, 11, and 15. OpenJDK builds that contain version 0.23.0 are now available from the AdoptOpenJDK community project:
+OpenJ9 version 0.24.0 supports OpenJDK version 8, 11, and 15. OpenJDK builds that contain version 0.24.0 are now available from the AdoptOpenJDK community project:
 
 - [OpenJDK version 8](https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9)
 - [OpenJDK version 11](https://adoptopenjdk.net/releases.html?variant=openjdk11&jvmVariant=openj9)
 - [OpenJDK version 15](https://adoptopenjdk.net/releases.html?variant=openjdk15&jvmVariant=openj9)
 
-This release of OpenJ9 sees several performance enhancements: 
 
 To learn more about support for OpenJ9 releases, including OpenJDK levels and platform support, see [Supported environments](https://www.eclipse.org/openj9/docs/openj9_support/).
 
-In this release, we've improved the effectiveness of the option `-XX:[+|-]PortableSharedCache` by also making the AOT compiled code to be more portable across different heap sizes in compressed references mode on the X86 platform.
+This release of OpenJ9 sees several performance enhancements: 
 
-The option `-XX:[+|-]IdleTuningCompactOnIdle` that triggered a compaction of the Java heap during the idle state of the JVM is now deprecated. A new mechanism, which is independent of the option, has been implemented. This mechanism measures fragmentation and triggers heap compaction as needed.
 
-The JITServer technology preview has been extended to Linux&reg; on IBM Power&reg; systems and Linux on IBM Z&reg; systems (64-bit only).
+For compatibility with the reference implementation, we've added support for the `JAVA_OPTIONS` environment variable. You can use this environment variable, which can be overridden by `OPENJ9_JAVA_OPTIONS`, to set command line options.
 
-For compatibility, the `-XX:[+|-]AlwaysPreTouch` OpenJDK HotSpot option is now supported by OpenJ9.
+From OpenJDK 15, the `-XX:[+|-]ShareAnonymousClasses` option enables and disables the storage of hidden classes in the shared classes cache. (In previous versions, it enables and disables the storage of VM anonymous classes in the shared classes cache. )
 
-For all the details of changes and improvements in 0.23.0, read the [Version 0.23.0 "What's New" page](https://www.eclipse.org/openj9/docs/version0.23/) and see also the [OpenJ9 Release notes](https://github.com/eclipse/openj9/blob/master/doc/release-notes/0.23/0.23.md).
+Several `jcmd` `Dump` commands can now take `request=<requests>` and `opts=<options>` parameters in addition to those already allowed.
+
+Optionally, `-Xcheck:jni` can now take an additional suboption, `abortonerror`, that provides diagnostic data when fatal JNI errors occur. 
+
+To avoid confusion with the reference implementation of the `-Xlog` option, the `-Xsyslog` option replaces the existing OpenJ9 `-Xlog` option for message logging. For compatibility with the reference implementation, a limited set of `-Xlog` suboptions are supported.
+A new option, `-XX:[+|-]LegacyXlogOption`, controls how `-Xlog` is processed when set on the command line.
+
+The `-XX:[+|-]PortableSharedCache` option is now supported on IBM Z&reg; and POWER&reg; platforms. AOT-compiled code that is generated with this option is guaranteed to be portable across IBM z10 or newer microarchitectures on IBM Z platforms and IBM POWER8&reg; or newer microarchitectures on POWER platforms.
+
+The `jextract` utility gathers relevant files following a system dump. It is important that the utility is run from the same SDK that generated the dump. From this release, if the build ID of the `jextract` utility does not match the build ID of the SDK recorded in the system dump, an exception message is generated. To force `jextract` to continue, a new option, `-r`, is introduced.
+
+
+For all the details of changes and improvements in 0.24.0, read the [Version 0.24.0 "What's New" page](https://www.eclipse.org/openj9/docs/version0.24/) and see also the [OpenJ9 Release notes](https://github.com/eclipse/openj9/blob/master/doc/release-notes/0.24/0.24.md).
