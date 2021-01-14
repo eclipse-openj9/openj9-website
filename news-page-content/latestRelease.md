@@ -35,12 +35,13 @@ OpenJ9 version 0.24.0 supports OpenJDK version 8, 11, and 15. OpenJDK builds tha
 
 To learn more about support for OpenJ9 releases, including OpenJDK levels and platform support, see [Supported environments](https://www.eclipse.org/openj9/docs/openj9_support/).
 
-This release of OpenJ9 sees several performance enhancements: 
-
-
 For compatibility with the reference implementation, we've added support for the `JAVA_OPTIONS` environment variable. You can use this environment variable, which can be overridden by `OPENJ9_JAVA_OPTIONS`, to set command line options.
 
-From OpenJDK 15, the `-XX:[+|-]ShareAnonymousClasses` option enables and disables the storage of hidden classes in the shared classes cache. (In previous versions, it enables and disables the storage of VM anonymous classes in the shared classes cache. )
+The `-XX:[+|-]PortableSharedCache` option is now supported on IBM Z&reg; and POWER&reg; platforms. AOT-compiled code that is generated with this option is guaranteed to be portable across IBM z10 or newer microarchitectures on IBM Z platforms and IBM POWER8&reg; or newer microarchitectures on POWER platforms.
+
+In earlier releases of OpenJ9, the `-XX:[+|-]ShareAnonymousClasses` option enables and disables the storage of VM anonymous classes in the shared classes cache. From OpenJ9 0.24.0 for OpenJDK 15 binaries, this option also controls the storage of hidden classes."
+
+**A number of additions and changes have been made to help you diagnose problems:**
 
 Several `jcmd` `Dump` commands can now take `request=<requests>` and `opts=<options>` parameters in addition to those already allowed.
 
@@ -49,10 +50,9 @@ Optionally, `-Xcheck:jni` can now take an additional suboption, `abortonerror`, 
 To avoid confusion with the reference implementation of the `-Xlog` option, the `-Xsyslog` option replaces the existing OpenJ9 `-Xlog` option for message logging. For compatibility with the reference implementation, a limited set of `-Xlog` suboptions are supported.
 A new option, `-XX:[+|-]LegacyXlogOption`, controls how `-Xlog` is processed when set on the command line.
 
-The `-XX:[+|-]PortableSharedCache` option is now supported on IBM Z&reg; and POWER&reg; platforms. AOT-compiled code that is generated with this option is guaranteed to be portable across IBM z10 or newer microarchitectures on IBM Z platforms and IBM POWER8&reg; or newer microarchitectures on POWER platforms.
-
 The `jextract` utility gathers relevant files following a system dump. It is important that the utility is run from the same SDK that generated the dump. From this release, if the build ID of the `jextract` utility does not match the build ID of the SDK recorded in the system dump, an exception message is generated. To force `jextract` to continue, a new option, `-r`, is introduced.
 
+___
 
 For all the details of changes and improvements in 0.24.0, read the [Version 0.24.0 "What's New" page](https://www.eclipse.org/openj9/docs/version0.24/) and see also the [OpenJ9 Release notes](https://github.com/eclipse/openj9/blob/master/doc/release-notes/0.24/0.24.md).
 
