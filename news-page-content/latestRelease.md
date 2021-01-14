@@ -55,3 +55,4 @@ The `jextract` utility gathers relevant files following a system dump. It is imp
 
 
 For all the details of changes and improvements in 0.24.0, read the [Version 0.24.0 "What's New" page](https://www.eclipse.org/openj9/docs/version0.24/) and see also the [OpenJ9 Release notes](https://github.com/eclipse/openj9/blob/master/doc/release-notes/0.24/0.24.md).
+
