@@ -26,12 +26,7 @@ The project website pages cannot be redistributed
 
 *January 2021*
 
-OpenJ9 version 0.24.0 supports OpenJDK version 8, 11, and 15. OpenJDK builds that contain version 0.24.0 are now available from the AdoptOpenJDK community project:
-
-- [OpenJDK version 8](https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9)
-- [OpenJDK version 11](https://adoptopenjdk.net/releases.html?variant=openjdk11&jvmVariant=openj9)
-- [OpenJDK version 15](https://adoptopenjdk.net/releases.html?variant=openjdk15&jvmVariant=openj9)
-
+OpenJ9 version 0.24.0 supports OpenJDK version 8, 11, and 15.
 
 To learn more about support for OpenJ9 releases, including OpenJDK levels and platform support, see [Supported environments](https://www.eclipse.org/openj9/docs/openj9_support/).
 

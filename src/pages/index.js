@@ -27,7 +27,6 @@ import Card from "../components/card";
 import openj9Circle from "../images/openj9-circle.svg";
 import openj9Logo from "../images/openj9-logo.svg";
 import circlePatternBig from "../images/circle-pattern-big.svg";
-import adoptopenJDK from "../images/adopt-open-jdk.png";
 import whiteSlackIcon from "../images/white-slack-logo.svg"
 import githubIcon from "../images/github-logo.svg";
 import {Link} from "gatsby"
@@ -92,14 +91,6 @@ export default () => (
           Optimized to run Java&trade; applications cost-effectively in the cloud, 
           Eclipse OpenJ9 is a fast and efficient JVM that delivers power and performance when you need it most.
         </Styled.p>
-        <Styled.p>
-          Grab a pre-built binary of OpenJDK with OpenJ9 from the AdoptOpenJDK community.
-        </Styled.p>
-        <Button primary={false} link="https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9" target={true}>
-          <img sx={{
-            width: "80%",
-          }}src={adoptopenJDK} alt="adoptopenJDK Logo"></img>
-        </Button>
       </div>
     </section>
     <section sx={{
