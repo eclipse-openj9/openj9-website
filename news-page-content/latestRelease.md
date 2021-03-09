@@ -22,32 +22,39 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 The project website pages cannot be redistributed
 -->
 
-### Eclipse OpenJ9 version 0.24.0 released 
+### Eclipse OpenJ9 version 0.25.0 supports JDK 16
 
-*January 2021*
+*March 2021*
 
-OpenJ9 version 0.24.0 supports OpenJDK version 8, 11, and 15.
+We're pleased to announce support for OpenJDK 16 binaries that embed OpenJ9 v0.25.0.
 
-To learn more about support for OpenJ9 releases, including OpenJDK levels and platform support, see [Supported environments](https://www.eclipse.org/openj9/docs/openj9_support/).
+The OpenJDK 16 feature release contains a long list of JEPs, which include incubators and previews that might become fully supported in the next OpenJDK 17 long term support (LTS) release (September 2021).
 
-For compatibility with the reference implementation, we've added support for the `JAVA_OPTIONS` environment variable. You can use this environment variable, which can be overridden by `OPENJ9_JAVA_OPTIONS`, to set command line options.
+The following features are available in any builds of OpenJDK 16 with OpenJ9:
 
-The `-XX:[+|-]PortableSharedCache` option is now supported on IBM Z&reg; and POWER&reg; platforms. AOT-compiled code that is generated with this option is guaranteed to be portable across IBM z10 or newer microarchitectures on IBM Z platforms and IBM POWER8&reg; or newer microarchitectures on POWER platforms.
+- [JEP 380](https://openjdk.java.net/jeps/380): Unix-domain socket channels
+- [JEP 390](https://openjdk.java.net/jeps/390): Warnings for Value-Based Classes
+- [JEP 392](https://openjdk.java.net/jeps/392): Packaging tool
+- [JEP 394](https://openjdk.java.net/jeps/394): Pattern matching for `instanceof`
+- [JEP 395](https://openjdk.java.net/jeps/395): Records
+- [JEP 396](https://openjdk.java.net/jeps/396): Strongly encapsulate JDK internals by default
+- [JEP 397](https://openjdk.java.net/jeps/397): Sealed Classes (Second Preview)
 
-In earlier releases of OpenJ9, the `-XX:[+|-]ShareAnonymousClasses` option enables and disables the storage of VM anonymous classes in the shared classes cache. From OpenJ9 0.24.0 for OpenJDK 15 binaries, this option also controls the storage of hidden classes."
+Support for further JDK 16 JEPS is underway in the OpenJ9 project.
 
-**A number of additions and changes have been made to help you diagnose problems:**
+For easier adoption and deployment, compressed and non-compressed object reference support is now combined in a single binary of OpenJDK with OpenJ9 0.25.0 rather than two distinct binaries (standard and large heap). The object reference mode is selected at run time based on the Java object heap size or by specifying the mode you want to use on the command line.  
 
-Several `jcmd` `Dump` commands can now take `request=<requests>` and `opts=<options>` parameters in addition to those already allowed.
+To learn more about the JEPS, compressed reference support, and other notable changes in this release, see the
+[OpenJ9 user documentation](./docs/version0.25/).
 
-Optionally, `-Xcheck:jni` can now take an additional suboption, `abortonerror`, that provides diagnostic data when fatal JNI errors occur. 
+#### Performance highlights
 
-To avoid confusion with the reference implementation of the `-Xlog` option, the `-Xsyslog` option replaces the existing OpenJ9 `-Xlog` option for message logging. For compatibility with the reference implementation, a limited set of `-Xlog` suboptions are supported.
-A new option, `-XX:[+|-]LegacyXlogOption`, controls how `-Xlog` is processed when set on the command line.
+Eclipse OpenJ9 v0.25.0 also contains a number of performance improvements.
 
-The `jextract` utility gathers relevant files following a system dump. It is important that the utility is run from the same SDK that generated the dump. From this release, if the build ID of the `jextract` utility does not match the build ID of the SDK recorded in the system dump, an exception message is generated. To force `jextract` to continue, a new option, `-r`, is introduced.
+- When the OpenJ9 VM is run in debug mode, startup time is improved significantly. This achievement is possible because the JIT can now generate AOT-compiled code for this mode. The AOT-compiled code is stored in the shared classes cache and is transparently accessible to an application that uses the cache at startup.
 
-___
+- Throughput performance improvements of 10-20% are seen on **AArch64** platforms due to the addition of inlined write barrier support.
 
-For all the details of changes and improvements in 0.24.0, read the [Version 0.24.0 "What's New" page](https://www.eclipse.org/openj9/docs/version0.24/) and see also the [OpenJ9 Release notes](https://github.com/eclipse/openj9/blob/master/doc/release-notes/0.24/0.24.md).
+- On OpenJDK 11 and later releases, improvements are made for `String` performance by fixing a JIT issue that enables an optimization for accelerating `String` concatenations.  
 
+This release also provides serviceability improvements for the JIT compiler. Diagnostic data is improved for JIT-compiled methods that result in unhandled exceptions, whether these exceptions come from compilation threads or application threads.
