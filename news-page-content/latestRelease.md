@@ -22,34 +22,23 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 The project website pages cannot be redistributed
 -->
 
-### Eclipse OpenJ9 version 0.25.0 supports JDK 16
+### Eclipse OpenJ9 version 0.26.0 released
 
-*March 2021*
+*April 2021*
 
-We're pleased to announce support for OpenJDK 16 binaries that embed OpenJ9 v0.25.0.
+We're pleased to announce the availability of Eclipse OpenJ9 v0.26.0.
 
-The OpenJDK 16 feature release contains a long list of JEPs, which include incubators and previews that might become fully supported in the next OpenJDK 17 long term support (LTS) release (September 2021).
+It's been little more than a month since our last release, which supported the OpenJDK 16
+feature release. We can confirm that the following features first announced in OpenJ9 v0.25.0 are now available in OpenJ9 v0.26.0 for OpenJDK 8 and 11:
 
-The following features are available in any builds of OpenJDK 16 with OpenJ9:
+- For easier adoption and deployment, compressed and non-compressed object reference support is now combined in a single binary of OpenJDK with OpenJ9 0.26.0 rather than two distinct binaries (standard and large heap). The object reference mode is selected at run time based on the Java object heap size or by specifying the mode you want to use on the command line.  
+- Improved hardware acceleration is implemented for AIX systems that contain the Nest accelerator (NX) co-processor by using the <tt>zlibNX</tt> library.
 
-- [JEP 380](https://openjdk.java.net/jeps/380): Unix-domain socket channels
-- [JEP 390](https://openjdk.java.net/jeps/390): Warnings for Value-Based Classes
-- [JEP 392](https://openjdk.java.net/jeps/392): Packaging tool
-- [JEP 394](https://openjdk.java.net/jeps/394): Pattern matching for `instanceof`
-- [JEP 395](https://openjdk.java.net/jeps/395): Records
-- [JEP 396](https://openjdk.java.net/jeps/396): Strongly encapsulate JDK internals by default
-- [JEP 397](https://openjdk.java.net/jeps/397): Sealed Classes (Second Preview)
-
-Support for further JDK 16 JEPS is underway in the OpenJ9 project.
-
-For easier adoption and deployment, compressed and non-compressed object reference support is now combined in a single binary of OpenJDK with OpenJ9 0.25.0 rather than two distinct binaries (standard and large heap). The object reference mode is selected at run time based on the Java object heap size or by specifying the mode you want to use on the command line.  
-
-To learn more about the JEPS, compressed reference support, and other notable changes in this release, see the
-[OpenJ9 user documentation](./docs/version0.25/).
+<br/>
 
 #### Performance highlights
 
-Eclipse OpenJ9 v0.25.0 also contains a number of performance improvements.
+Eclipse OpenJ9 v0.26.0 also contains a number of performance improvements.
 
 - When the OpenJ9 VM is run in debug mode, startup time is improved significantly. This achievement is possible because the JIT can now generate AOT-compiled code for this mode. The AOT-compiled code is stored in the shared classes cache and is transparently accessible to an application that uses the cache at startup.
 
@@ -57,4 +46,4 @@ Eclipse OpenJ9 v0.25.0 also contains a number of performance improvements.
 
 - On OpenJDK 11 and later releases, improvements are made for `String` performance by fixing a JIT issue that enables an optimization for accelerating `String` concatenations.  
 
-This release also provides serviceability improvements for the JIT compiler. Diagnostic data is improved for JIT-compiled methods that result in unhandled exceptions, whether these exceptions come from compilation threads or application threads.
+To read more about the changes for v0.25.0 and v.0.26.0, see the [OpenJ9 user documentation](docs/openj9_releases/).
