@@ -17,7 +17,7 @@ The OpenJ9 website is built with [Gatsby.js](https://www.gatsbyjs.org/). See the
 - **Install Node dependencies** Clone the website Git repo and install the dependencies with the following commands:
 
   ```bash
-    git clone https://github.com/eclipse/openj9-website.git
+    git clone https://github.com/eclipse-openj9/openj9-website.git
     cd website
 
     npm install

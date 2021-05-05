@@ -202,7 +202,7 @@ export default () => (
             request new features, or report any difficulties you are having. 
           </Styled.p>
           
-          <Button primary={false} target={true} widthChanged={false} link="https://github.com/eclipse/openj9/issues">
+          <Button primary={false} target={true} widthChanged={false} link="https://github.com/eclipse-openj9/openj9/issues">
             See OpenJ9 issues
             <img sx={{
             width: "10%",
@@ -251,7 +251,7 @@ export default () => (
           If you are interested in JVM development, we'd love to hear your ideas and help you collaborate with us on the code base.
           There are other ways you can contribute too, such as working on our website and docs. Be a part of the project and share in our success! 
         </Styled.p >
-        <Button primary={true} target={true} link="https://github.com/eclipse/openj9/blob/master/CONTRIBUTING.md">
+        <Button primary={true} target={true} link="https://github.com/eclipse-openj9/openj9/blob/master/CONTRIBUTING.md">
           Contributor Guide
         </Button>
       </div>
