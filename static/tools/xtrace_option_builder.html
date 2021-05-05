@@ -459,7 +459,7 @@ function processChange(option) {
 			// Remove any whitespace
 			var fixedSpec = specs[i].replace(/\s/g,'');
 
-			// Fix case if necessary (see https://github.com/eclipse/openj9/issues/1254)
+			// Fix case if necessary (see https://github.com/eclipse-openj9/openj9/issues/1254)
 			fixedSpec = fixTracepointIdCase(fixedSpec);
 
 			result += fixedSpec + ",";

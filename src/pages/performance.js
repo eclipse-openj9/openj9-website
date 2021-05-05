@@ -417,7 +417,7 @@ class performance extends Component {
               width:"16rem",
               marginTop:"7rem"
               }} 
-              href="https://github.com/eclipse/openj9-website/blob/master/benchmark/openjdk11-daytrader7.md" rel="noopener noreferrer" target="_blank">Show me performance details</a>
+              href="https://github.com/eclipse-openj9/openj9-website/blob/master/benchmark/openjdk11-daytrader7.md" rel="noopener noreferrer" target="_blank">Show me performance details</a>
         </div>
 
         <div
@@ -486,7 +486,7 @@ class performance extends Component {
                 width:"16rem",
                 marginTop:"7rem"
                 }} 
-                href="https://github.com/eclipse/openj9-website/blob/master/benchmark/quarkus.md" rel="noopener noreferrer" target="_blank">Show me performance details</a>
+                href="https://github.com/eclipse-openj9/openj9-website/blob/master/benchmark/quarkus.md" rel="noopener noreferrer" target="_blank">Show me performance details</a>
           </div>
 
           <div
@@ -560,7 +560,7 @@ class performance extends Component {
               width:"16rem",
               marginTop:"7rem"
               }} 
-              href="https://github.com/eclipse/openj9-website/blob/master/benchmark/daytrader7.md" rel="noopener noreferrer" target="_blank">Show me performance details</a>
+              href="https://github.com/eclipse-openj9/openj9-website/blob/master/benchmark/daytrader7.md" rel="noopener noreferrer" target="_blank">Show me performance details</a>
         </div>
 
         <div

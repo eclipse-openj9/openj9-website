@@ -26,7 +26,7 @@ The project website pages cannot be redistributed
 
 This repository contains the source files for the [Eclipse OpenJ9 website](http://www.eclipse.org/openj9). The website uses the [React.js](https://reactjs.org/) javascript library and is built with the [Gatsby](https://www.gatsbyjs.org/) static-site generator.
 
-If you would like to contribute to the OpenJ9 project, please start by reading the general [Contribution guidelines](https://github.com/eclipse/openj9/blob/master/CONTRIBUTING.md) in the OpenJ9 repository. Information to help you contribute to the OpenJ9 website is covered in the [Contribution guidelines](CONTRIBUTING.md) in this repository.
+If you would like to contribute to the OpenJ9 project, please start by reading the general [Contribution guidelines](https://github.com/eclipse-openj9/openj9/blob/master/CONTRIBUTING.md) in the OpenJ9 repository. Information to help you contribute to the OpenJ9 website is covered in the [Contribution guidelines](CONTRIBUTING.md) in this repository.
 
 Changes merged into the master branch are automatically built and deployed to the Eclipse git website repository master branch.
 
