@@ -30,7 +30,7 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
 # Add Jenkins user with ID 1001 to match ubuntu hosts. This prevents permission problems.
 # Do not verify git.eclipse.org. I cannot get ssh-keyscan to return anything.
 RUN groupadd -r jenkins \
-&& useradd -rm -u 1001 -g jenkins jenkins \
+&& useradd -rm -u 1000 -g jenkins jenkins \
 && mkdir -p /home/jenkins/.ssh \
 && echo "Host git.eclipse.org*\n\tStrictHostKeyChecking no\n" > /home/jenkins/.ssh/config \
 && chown -R jenkins:jenkins /home/jenkins
