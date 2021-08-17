@@ -22,28 +22,25 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 The project website pages cannot be redistributed
 -->
 
-### Eclipse OpenJ9 version 0.26.0 released
+### Eclipse OpenJ9 version 0.27.0 released
 
-*April 2021*
+*July 2021*
 
-We're pleased to announce the availability of Eclipse OpenJ9 v0.26.0.
+We're pleased to announce the availability of Eclipse OpenJ9 v0.27.0.
 
-It's been little more than a month since our last release, which supported the OpenJDK 16
-feature release. We can confirm that the following features first announced in OpenJ9 v0.25.0 are now available in OpenJ9 v0.26.0 for OpenJDK 8 and 11:
+This release supports OpenJDK version 8, 11, and 16. For more information about supported platforms and OpenJDK versions, see [Supported environments](https://www.eclipse.org/openj9/docs/openj9_support/).
 
-- For easier adoption and deployment, compressed and non-compressed object reference support is now combined in a single binary of OpenJDK with OpenJ9 0.26.0 rather than two distinct binaries (standard and large heap). The object reference mode is selected at run time based on the Java object heap size or by specifying the mode you want to use on the command line.  
-- Improved hardware acceleration is implemented for AIX systems that contain the Nest accelerator (NX) co-processor by using the <tt>zlibNX</tt> library.
+In this release, the following new options are added and enabled by default to improve performance:
+- `-XX:[+|-]AdaptiveGCThreading` dynamically adjusts the garbage collection thread count to reduce collection pause times.
+- `-Xgc:dynamicBreadthFirstScanOrdering` enables a new scan mode to improve performance of the `balanced` garbage collection policy.
 
-<br/>
+Existing option `-XX:[+|-]GlobalLockReservation` (AIX and Linux on Power systems only), which improves the performance of locking and unlocking of Java&trade; objects, is now also enabled by default.
 
-#### Performance highlights
+To read more about these and other changes, see the [OpenJ9 user documentation](docs/openj9_releases/).
 
-Eclipse OpenJ9 v0.26.0 also contains a number of performance improvements.
+#### Other performance highlights ####
 
-- When the OpenJ9 VM is run in debug mode, startup time is improved significantly. This achievement is possible because the JIT can now generate AOT-compiled code for this mode. The AOT-compiled code is stored in the shared classes cache and is transparently accessible to an application that uses the cache at startup.
-
-- Throughput performance improvements of 10-20% are seen on **AArch64** platforms due to the addition of inlined write barrier support.
-
-- On OpenJDK 11 and later releases, improvements are made for `String` performance by fixing a JIT issue that enables an optimization for accelerating `String` concatenations.  
-
-To read more about the changes for v0.25.0 and v.0.26.0, see the [OpenJ9 user documentation](docs/openj9_releases/).
+- The performance of method invocation via reflection is improved by reducing stack walking overhead related to access checking associated with that API.
+- The JIT compiler includes several incremental throughput improvements related to the warm hotness level and loop handling.
+- On AArch64, the JIT compiler provides incremental performance improvements for applications generally, including: reducing Java synchronization overhead, improving array access performance in loops, and increased virtual and JNI method dispatch performance.
+- New POWER10 hardware features are exploited to improve application path length and the performance of various array and byte operations.
