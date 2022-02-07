@@ -28,7 +28,7 @@ We're pleased to announce the availability of Eclipse OpenJ9 v0.30.0.
 
 - The 0.30.0 release supports OpenJDK 8, 11 and 17. For more information about supported platforms and OpenJDK versions, see [Supported environments](https://www.eclipse.org/openj9/docs/openj9_support/).
 
-- In this release, users should remove obsolete shared cache files created by older releases, ignored options are listed in the javacore, and a new option `-XX:[+|-]EnsureHashed` is added.
+- In this release, users should remove obsolete shared cache files created by older releases, heap resizing is redesigned for the balanced GC policy, ignored options are listed in the javacore, and a new option `-XX:[+|-]EnsureHashed` is added.
 
 - There is a known problem creating system core files on macOS 12.
 
