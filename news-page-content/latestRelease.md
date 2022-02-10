@@ -22,6 +22,17 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 The project website pages cannot be redistributed
 -->
 
+### Eclipse OpenJ9 version 0.30.1 released
+
+We're pleased to announce the availability of Eclipse OpenJ9 v0.30.1.
+
+- The 0.30.1 release supports OpenJDK 8, 11 and 17. For more information about supported platforms and OpenJDK versions, see [Supported environments](https://www.eclipse.org/openj9/docs/openj9_support/).
+
+- The problem creating system core files on macOS 12 is resolved.
+
+- To read more about these and other changes, see the [OpenJ9 user documentation](docs/openj9_releases/).
+
+
 ### Eclipse OpenJ9 version 0.30.0 released
 
 We're pleased to announce the availability of Eclipse OpenJ9 v0.30.0.
