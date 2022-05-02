@@ -28,7 +28,7 @@ April 2022
 We're pleased to announce the availability of Eclipse OpenJ9 v0.32.0.
 
 This release supports OpenJDK version 8, 11, 17, and 18. For more information about supported platforms and OpenJDK versions,
-see [Supported environments](docs/openj9_support/).
+see [Supported environments](https://www.eclipse.org/openj9/docs/openj9_support/).
 
 This release includes an early access build for Apple Silicon (AArch64) macOS. You can use this build for evaluation purposes;
 it is not yet suitable for use in production environments.
@@ -41,9 +41,9 @@ direct byte buffers, is now the same as the maximum heap size. Previously, the l
 - You can now use the `SharedClassStatistics` API to get the name, path, and directory of a shared classes cache.
 Depending on the operating system, you can also get the number of attached VMs for a non-persistent cache.
 This information is available through the following new methods: `cacheDir()`, `cacheName()`, `cachePath()`, and `numberAttached()`.
-For more information, see the [API documentation](docs/api-overview/).
+For more information, see the [API documentation](https://www.eclipse.org/openj9/docs/api-overview/).
 
-To read more about these and other changes, see the [OpenJ9 user documentation](docs/openj9_releases/).
+To read more about these and other changes, see the [OpenJ9 user documentation](https://www.eclipse.org/openj9/docs/openj9_releases/).
 
 #### Other performance highlights include exploitation of the new IBM&reg; z16&trade; hardware platform, for example:
 
