@@ -1214,9 +1214,14 @@ function copyLinkToClipboard() {
 		if (inputElement.type == "checkbox") {
 			if (inputElement.checked) {
 				serializedForm += inputElement.id + "=1&";
-			} else if (inputElement.id == "event_systhrow" || inputElement.id.lastIndexOf("request_") == 0) {
-				// These specific checkboxes can be checked automatically if certain other
-				// options are checked, so if they're unchecked we need to make note.
+			} else if (
+				inputElement.id == "event_systhrow" ||
+				inputElement.id == "wrap_in_quotes" ||
+				inputElement.id.lastIndexOf("request_") == 0
+			) {
+				// These specific checkboxes are either checked by default, or can be
+				// checked automatically if certain other options are checked, so if
+				// they're unchecked we need to make note.
 				serializedForm += inputElement.id + "=0&";
 			}			
 		}
