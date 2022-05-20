@@ -1007,7 +1007,7 @@ function buildAndUpdateResult() {
 	} else {
 		unsetErrorStyle(dumpFileTextElement);
 	}
-	
+
 	// SYSTDUMP data set name checks
 	var datasetTextElement = document.getElementById("dsn_text");
 	if (!datasetTextElement.disabled && datasetTextElement.value != "") {
@@ -1018,26 +1018,25 @@ function buildAndUpdateResult() {
 		} else {
 			unsetErrorStyle(datasetTextElement);
 		}
-		
-		if (dumpFileTextElement.value != "") {
-			var ok = false;
-			for (var i = 0; i < agentsThatDumpAFileIds.length; i++) {
-				if (agentsThatDumpAFileIds[i] != "agent_system" && document.getElementById(agentsThatDumpAFileIds[i]).checked) {
-					ok = true;
-				}				
-			}
-			if (!ok) {
-				resultIsGreen = false;
-				setErrorStyle(datasetTextElement);
-				setErrorStyle(dumpFileTextElement);
-				errorsHtml += "ERROR: File and data set patterns cannot both be specified when only system dumps are being generated.<br>";
-			}
-		}
 
 		if (containsReservedChars(datasetTextElement.value)) {
 			warningsHtml += "WARNING: Data set pattern contains a character that is disallowed on some platforms<br>";		
 		}		
 	} else {
+		unsetErrorStyle(datasetTextElement);
+	}
+	
+	// Check whether patterns have been specified for both dump filename and SYSTDUMP data set
+	if (
+		!dumpFileTextElement.disabled && dumpFileTextElement.value != "" &&
+		!datasetTextElement.disabled && datasetTextElement.value != ""
+	) {
+		resultIsGreen = false;
+		setErrorStyle(dumpFileTextElement);
+		setErrorStyle(datasetTextElement);
+		errorsHtml += "ERROR: File and data set patterns cannot both be specified in a single Xdump option. Please create a separate Xdump option for each dump type.<br>";
+	} else {
+		unsetErrorStyle(dumpFileTextElement);
 		unsetErrorStyle(datasetTextElement);
 	}
 
