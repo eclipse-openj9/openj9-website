@@ -39,7 +39,7 @@ Other updates in this release include the following:
 - JITServer supports the use of OpenSSL 3.0.x for encrypting network traffic
 - JITServer supports caching of AOT compiled methods at the server
 - JITServer supports exporting of custom performance metrics to monitoring agents, such as Prometheus
-- Supports control groups (cgroups) v2 to match the gradual transition of the Linux&reg; operating systems from cgroups v1 to v2 as their default choice
+- OpenJ9 supports control groups (cgroups) v2 to match the gradual transition of the Linux&reg; operating systems from cgroups v1 to v2 as their default choice
 
 To read more about these and other changes, see the [OpenJ9 user documentation](https://www.eclipse.org/openj9/docs/openj9_releases/).
 
