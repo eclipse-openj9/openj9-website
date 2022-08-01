@@ -22,10 +22,11 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 The project website pages cannot be redistributed
 -->
 
-### Eclipse OpenJ9 version 0.32.0 released
-April 2022
+### Eclipse OpenJ9 version 0.33.0 released
 
-We're pleased to announce the availability of Eclipse OpenJ9 v0.32.0.
+July 2022
+
+We're pleased to announce the availability of Eclipse OpenJ9 v0.33.0.
 
 This release supports OpenJDK version 8, 11, 17, and 18. For more information about supported platforms and OpenJDK versions,
 see [Supported environments](https://www.eclipse.org/openj9/docs/openj9_support/).
@@ -35,17 +36,15 @@ it is not yet suitable for use in production environments.
 
 Other updates in this release include the following:
 
-- The JITServer technology feature is now fully supported on Linux for IBM Z&reg; (64-bit)
-- In Java 11 and later, the default value of the `-XX:MaxDirectMemorySize` option, which limits the amount of heap memory that is used for
-direct byte buffers, is now the same as the maximum heap size. Previously, the limit was 87.5% of the maximum heap size.
-- You can now use the `SharedClassStatistics` API to get the name, path, and directory of a shared classes cache.
-Depending on the operating system, you can also get the number of attached VMs for a non-persistent cache.
-This information is available through the following new methods: `cacheDir()`, `cacheName()`, `cachePath()`, and `numberAttached()`.
-For more information, see the [API documentation](https://www.eclipse.org/openj9/docs/api-overview/).
+- JITServer supports the use of OpenSSL 3.0.x for encrypting network traffic
+- JITServer supports caching of AOT compiled methods at the server
+- JITServer supports exporting of custom performance metrics to monitoring agents, such as Prometheus
+- Supports control groups (cgroups) v2 to match the gradual transition of the Linux&reg; operating systems from cgroups v1 to v2 as their default choice
 
 To read more about these and other changes, see the [OpenJ9 user documentation](https://www.eclipse.org/openj9/docs/openj9_releases/).
 
-#### Other performance highlights include exploitation of the new IBM&reg; z16&trade; hardware platform, for example:
+#### Performance highlights include:
 
-- External decimal conversion acceleration with the Vector Packed Decimal Facility in the data access accelerator library
-- Acceleration of the `Integer.toString()`, `Long.toString()`, and `BigDecimal.toString()` methods
+- Elliptic curve (EC) algorithms are mapped to using the OpenSSL routines from the OpenJDK JCE provider leading to large improvements in some microbenchmarks (2-3x faster) across platforms.
+- The performance of `String` methods is improved through better inlining/optimization in the JIT compiler.
+- The recycling of Garbage Collection (GC) thread local heap copy buffers is improved for the `balanced` GC policy.
