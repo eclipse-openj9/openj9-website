@@ -319,7 +319,7 @@ function parseTriggerParam(key, value) {
 					// id = URI encoded value
 					element.value = decodeURIComponent(triggerValue);
 				}
-				if (element.type == "radio") {
+				if (element.type == "number") {
 					// id = value
 					element.value = triggerValue;
 				}
