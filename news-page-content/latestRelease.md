@@ -24,7 +24,7 @@ The project website pages cannot be redistributed
 
 ### Eclipse OpenJ9 version 0.33.0 released
 
-July 2022
+August 2022
 
 We're pleased to announce the availability of Eclipse OpenJ9 v0.33.0.
 
