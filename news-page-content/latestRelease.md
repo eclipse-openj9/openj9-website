@@ -22,11 +22,11 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 The project website pages cannot be redistributed
 -->
 
-### Eclipse OpenJ9 version 0.33.0 released
+### Eclipse OpenJ9 version 0.33.x released
 
 August 2022
 
-We're pleased to announce the availability of Eclipse OpenJ9 v0.33.0.
+We're pleased to announce the availability of Eclipse OpenJ9 v0.33.x.
 
 This release supports OpenJDK version 8, 11, 17, and 18. For more information about supported platforms and OpenJDK versions,
 see [Supported environments](https://www.eclipse.org/openj9/docs/openj9_support/).
