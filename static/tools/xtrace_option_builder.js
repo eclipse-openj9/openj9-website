@@ -203,6 +203,22 @@ function parseTracepointParam(key, value) {
 						continue; // Go to the next parameter
 					}
 				}
+				if (element.type == "checkbox") {
+					// id = 0|1 (unchecked|checked)
+					switch (tracepointValue) {
+						case "0":
+							element.checked = false;
+							break;
+
+						case "1":
+							element.checked = true;
+							break;
+
+						default:
+							console.log("ERROR: Invalid value for checkbox element \"" + element.id + "\": " + value);
+							continue; // Go to the next parameter
+					}
+				}
 				break;
 		}
 		processChange(element);
@@ -508,6 +524,31 @@ function processChange(option) {
 		disableInput(document.getElementById("disable_predefined"));
 	}
 
+	// Enable/disable the tracepoint destination field
+	if (option.id != null && option.name.indexOf("tp_trace_") != -1) {
+		var regexArray = option.name.match(/tp_trace_(\d+)/)
+		var tracepointIndex = regexArray[1];
+		if (option.checked) {
+			enableInput(document.getElementById("tp_dest_select_" + tracepointIndex));
+		} else {
+			disableInput(document.getElementById("tp_dest_select_" + tracepointIndex));
+		}
+	}
+	
+	// If there is no method tracepoint with tracing enabled, disable all method arguments checkboxes
+	// Returns true if a method trace spec has been added, false otherwise
+	var shouldDisable = !isMethodTracepointEnabledForTracing() && !isAllTracepointEnabledForTracing();
+	for (var i = 0; i < methodCounter; i++) {
+		methodArgsCheckbox = document.getElementById("meth_args_" + i)
+		if (methodArgsCheckbox != null) {
+			if (shouldDisable) {
+				disableInput(methodArgsCheckbox);
+			} else {
+				enableInput(methodArgsCheckbox);
+			}
+		}
+	}	
+
 	// Enable the sleeptime field if a thread sleep action is selected
 	if (isThreadSleepActionSelected()) {
 		enableInput(document.getElementById("sleep_time"));
@@ -537,14 +578,14 @@ function processChange(option) {
 				if (option.id.indexOf("trig_tp_act_") != -1) {
 				// This is a tracepoint ID trigger
 				var triggerTracepointId = document.getElementById("trig_tp_tpnid_" + triggerIndex).value;
-				if (!isIdTracepointEnabled(triggerTracepointId) && !isAllTracepointEnabled()) {
+				if (!isIdTracepointEnabledForTracing(triggerTracepointId) && !isAllTracepointEnabledForTracing()) {
 					addTracepoint("id", null);
 					var newTracepointElement = document.getElementById("tp_id_" + (tracepointCounter - 1));
 					newTracepointElement.value = triggerTracepointId;
 				}
 			} else {
 				// This is a method trigger
-				if (!isMethodTracepointEnabled() && !isAllTracepointEnabled()) {
+				if (!isMethodTracepointEnabledForTracing() && !isAllTracepointEnabledForTracing()) {
 					addTracepoint("component", "mt");
 				}
 			}
@@ -589,7 +630,7 @@ function checkOutputForms() {
 
 	for (var i = 0; i < tracepointCounter; i++) {
 		var destinationSelectElement = document.getElementById("tp_dest_select_" + i)
-		if (destinationSelectElement != null) {
+		if (destinationSelectElement != null && !destinationSelectElement.disabled) {
 			var destination = getSelectedElement(destinationSelectElement).value;
 			switch (getSelectedElement(destinationSelectElement).value) {
 				case "minimal":
@@ -667,8 +708,9 @@ function addTracepoint(type, defaultComponent) {
 
 	if (type == "id") {
 		newTracepoint.innerHTML +=
-			'<label for="tp_id_' + tracepointCounter + '">Tracepoint <a href="https://www.ibm.com/support/knowledgecenter/en/SSYKE2_8.0.0/com.ibm.java.lnx.80.doc/diag/tools/trace_tracepoint.html#trace_tracepoint">ID</a>: </label>' +
-			'<input type="text" id="tp_id_' + tracepointCounter + '" name="tp_id_' + tracepointCounter + '" size="10" value="">';
+			'<label for="tp_id_' + tracepointCounter + '">Tracepoint <a href="https://www.ibm.com/support/knowledgecenter/en/SSYKE2_8.0.0/com.ibm.java.lnx.80.doc/diag/tools/trace_tracepoint.html#trace_tracepoint">ID</a>:&nbsp;</label>' +
+			'<input type="text" id="tp_id_' + tracepointCounter + '" name="tp_id_' + tracepointCounter + '" size="10" value="">' +
+			'&nbsp;&nbsp;';
 	}
 
 	if (type == "component") {
@@ -744,8 +786,24 @@ function addTracepoint(type, defaultComponent) {
 			'        <option id="tp_group_option_nativemethods_'   + tracepointCounter + '" value="nativemethods"   >Native methods</option>' +
 			'        <option id="tp_group_option_staticmethods_'   + tracepointCounter + '" value="staticmethods"   >Static methods</option>' +
 			'    </select>' +
-			'</input>';
+			'</input>' +
+			'&nbsp;&nbsp;';
 	}
+
+	// Trace option
+	newTracepoint.innerHTML +=
+		'<span title="Enable tracepoint tracing">' +
+		'<input type="checkbox" id="tp_trace_' + tracepointCounter + '" name="tp_trace_' + tracepointCounter + '" value="tp_trace_' + tracepointCounter + '" checked>' +
+		'<label for="tp_trace_' + tracepointCounter + '" title="Enable tracepoint tracing">&nbsp;Trace</a></label>' +
+		'</span>' +
+		'&nbsp;&nbsp;';
+
+	// Count option
+	newTracepoint.innerHTML +=
+		'<span title="Enable tracepoint counting">' +
+		'<input type="checkbox" id="tp_count_' + tracepointCounter + '" name="tp_count_' + tracepointCounter + '" value="tp_count_' + tracepointCounter + '">' +
+		'<label for="tp_count_' + tracepointCounter + '">&nbsp;<a href="https://www.eclipse.org/openj9/docs/xtrace/#count-tracepoint">Count</a></label>' +
+		'</span>';
 
 	tracepointList.appendChild(newTracepoint);
 	
@@ -826,6 +884,14 @@ function addTracepoint(type, defaultComponent) {
 		processChange(document.getElementById("tp_comp_select_" + tracepointCounter));
 	}
 
+	// Event listener for Trace checkbox
+	var traceCheckboxElement = document.getElementById("tp_trace_" + tracepointCounter)
+	traceCheckboxElement.addEventListener('change', processChange.bind(null, traceCheckboxElement));	
+
+	// Event listener for Count checkbox
+	var countCheckboxElement = document.getElementById("tp_count_" + tracepointCounter)
+	countCheckboxElement.addEventListener('change', processChange.bind(null, countCheckboxElement));
+
 	tracepointCounter++;
 	processChange("none");
 }
@@ -838,7 +904,7 @@ function removeTracepoint(tracepointIndex) {
 
 function addMethod() {
 	// If no method trace tracepoint is enabled, add one
-	if (!isMethodTracepointEnabled() && !isAllTracepointEnabled()) {
+	if (!isMethodTracepointEnabledForTracing() && !isAllTracepointEnabledForTracing()) {
 		addTracepoint("component", "mt");
 	}
 
@@ -848,11 +914,13 @@ function addMethod() {
 	newMethod.innerHTML =
 		'<a href="#" title="Remove method" class="remove" id="remove_method_' + methodCounter + '">&#x274C</a>' +
 		'&nbsp;&nbsp;' +
-		'<label for="meth_text_' + methodCounter + '">Method: </label>' +
+		'<label for="meth_text_' + methodCounter + '">Method:&nbsp;</label>' +
 		'<input type="text" id="meth_text_' + methodCounter + '" name="meth_text_' + methodCounter + '" size="25" value="">' +
 		'&nbsp;&nbsp;' +
+		'<span title="This option will only work for interpreted methods. Use a JIT exclude if necessary.">' +
 		'<input type="checkbox" id="meth_args_' + methodCounter + '" name="meth_args_' + methodCounter + '" value="meth_args_' + methodCounter + '" checked>' +
-		'<label for="meth_args_' + methodCounter + '" title="This option will only work for interpreted methods. Use a JIT exclude if necessary.">Trace arguments and return values</label>';
+		'<label for="meth_args_' + methodCounter + '">&nbsp;Trace arguments and return values</label>' +
+		'</span>';
 
 	var methodList = document.getElementById("method_input");
 	methodList.appendChild(newMethod);
@@ -906,10 +974,10 @@ function addTrigger(type) {
 	if (type == "method") {
 		// method{<methodspec>[,<entryAction>[,<exitAction>[,<delayCount>[,<matchcount>]]]]}
 		newTrigger.innerHTML +=
-			'<label for="trig_meth_spec_' + triggerCounter + '">Method: </label>' +
+			'<label for="trig_meth_spec_' + triggerCounter + '">Method:&nbsp;</label>' +
 			'<input type="text" id="trig_meth_spec_' + triggerCounter +'" name="trig_meth_spec_1" size="25" value="">' +
 			'&nbsp;&nbsp;' +
-			'<label for="trig_meth_ent_' + triggerCounter + '">Entry: </label>' +
+			'<label for="trig_meth_ent_' + triggerCounter + '">Entry:&nbsp;</label>' +
 			'<select id="trig_meth_ent_' + triggerCounter + '">' +
 			'    <option id="trig_meth_ent_none_'        + triggerCounter +'" value="none"        >No action</option>' +
 			'    <option id="trig_meth_ent_javadump_'    + triggerCounter +'" value="javadump"    >Javacore</option>' +
@@ -926,7 +994,7 @@ function addTrigger(type) {
 			'    <option id="trig_meth_ent_abort_'       + triggerCounter +'" value="abort"       >Abort</option>' +
 			'</select>' +
 			'&nbsp;&nbsp;' +
-			'<label for="trig_meth_ex_' + triggerCounter + '">Exit: </label>' +
+			'<label for="trig_meth_ex_' + triggerCounter + '">Exit:&nbsp;</label>' +
 			'<select id="trig_meth_ex_' + triggerCounter + '">' +
 			'    <option id="trig_meth_ex_none_'        + triggerCounter +'" value="none"        >No action</option>' +
 			'    <option id="trig_meth_ex_javadump_'    + triggerCounter +'" value="javadump"    >Javacore</option>' +
@@ -948,7 +1016,7 @@ function addTrigger(type) {
 	if (type == "tracepoint") {
 		// tpnid{<tpnid>|<tpnidRange>,<action>[,<delayCount>[,<matchcount>]]}
 		newTrigger.innerHTML +=
-			'<label for "trig_tp_tpnid_' + tracepointCounter + '">Tracepoint <a href="https://www.ibm.com/support/knowledgecenter/en/SSYKE2_8.0.0/com.ibm.java.lnx.80.doc/diag/tools/trace_tracepoint.html#trace_tracepoint">ID</a>: </label>' +
+			'<label for "trig_tp_tpnid_' + tracepointCounter + '">Tracepoint <a href="https://www.ibm.com/support/knowledgecenter/en/SSYKE2_8.0.0/com.ibm.java.lnx.80.doc/diag/tools/trace_tracepoint.html#trace_tracepoint">ID</a>:&nbsp;</label>' +
 			'<input type="text" id="trig_tp_tpnid_'        + triggerCounter +'" name="trig_tp_tpnid_1" size="10" value="">' +
 			'&nbsp;&nbsp;' +
 			'<select id="trig_tp_act_' + triggerCounter + '">' +
@@ -972,7 +1040,7 @@ function addTrigger(type) {
 	if (type == "group") {
 		// group{<groupname>,<action>[,<delayCount>[,<matchcount>]]}
 		newTrigger.innerHTML +=
-			'<label for "trig_grp_name_' + tracepointCounter + '">Tracepoint group: </label>' +
+			'<label for "trig_grp_name_' + tracepointCounter + '">Tracepoint group:&nbsp;</label>' +
 			'<select id="trig_grp_name_' + triggerCounter + '">' +
 			'    <option id="trig_grp_name_gclogger_'        + triggerCounter + '" value="gclogger"        >GC Logger</option>' +
 			'    <option id="trig_grp_name_nlsmessage_'      + triggerCounter + '" value="nlsmessage"      >NLS Messages</option>' +
@@ -1006,10 +1074,10 @@ function addTrigger(type) {
 
 	// Add delay and match/limit fields
 	newTrigger.innerHTML +=
-		'<label for "trig_delay_' + triggerCounter + '">Delay: </label>' +
+		'<label for "trig_delay_' + triggerCounter + '">Delay:&nbsp;</label>' +
 		'<input type="number" id="trig_delay_' + triggerCounter + '" min="0" max="9999" value="0" size="4">' +
 		'&nbsp;&nbsp;' +
-		'<label for "trig_match_' + triggerCounter + '">Limit: </label>' +
+		'<label for "trig_match_' + triggerCounter + '">Limit:&nbsp;</label>' +
 		'<input type="number" id="trig_match_' + triggerCounter + '" min="0" max="9999" value="0" size="4">';
 
 	triggerList.appendChild(newTrigger);
@@ -1296,6 +1364,20 @@ function isMethodTracepointEnabled() {
 	return false;
 }
 
+// Returns true if a "methods" component tracepoint is enabled, with trace checkbox enabled
+function isMethodTracepointEnabledForTracing() {
+	for (var i = 0; i < tracepointCounter; i++) {
+		var methodsComponentOption = document.getElementById("tp_comp_mt_" + i);
+		var traceCheckbox = document.getElementById("tp_trace_" + i);
+		if (methodsComponentOption != null && methodsComponentOption.selected
+			&& traceCheckbox != null && traceCheckbox.checked		
+		) {
+			return true;
+		}
+	}
+	return false;
+}
+
 // Returns true if an "all" component tracepoint is enabled
 function isAllTracepointEnabled() {
 	for (var i = 0; i < tracepointCounter; i++) {
@@ -1307,11 +1389,31 @@ function isAllTracepointEnabled() {
 	return false;
 }
 
-// Returns true if a tracepoint including the specified tracepoint ID is enabled, false otherwise
-function isIdTracepointEnabled(specifiedId) {
+// Returns true if an "all" component tracepoint is enabled, with trace checkbox enabled
+function isAllTracepointEnabledForTracing() {
 	for (var i = 0; i < tracepointCounter; i++) {
-		tracepointIdElement = document.getElementById("tp_id_" + i);
+		var allComponentsOption = document.getElementById("tp_comp_all_" + i);
+		var traceCheckbox = document.getElementById("tp_trace_" + i);
+		if (allComponentsOption != null && allComponentsOption.selected
+			&& traceCheckbox != null && traceCheckbox.checked
+		) {
+			return true;
+		}
+	}
+	return false;
+}
+
+// Returns true if a tracepoint including the specified tracepoint ID is enabled, with trace checkbox enabled, false otherwise
+function isIdTracepointEnabledForTracing(specifiedId) {
+	for (var i = 0; i < tracepointCounter; i++) {
+		var tracepointIdElement = document.getElementById("tp_id_" + i);
 		if (tracepointIdElement != null) {
+			// If tracing is not enabled skip to the next tracepoint
+			var traceCheckbox = document.getElementById("tp_trace_" + i);
+			if (traceCheckbox == null || !traceCheckbox.checked) {
+				continue;
+			}
+			
 			// Simple case
 			if (tracepointIdElement.value.indexOf(specifiedId) != -1) {
 				return true;
@@ -1700,13 +1802,54 @@ function buildAndUpdateResult() {
 		errorsHtml += "ERROR: No tracepoints/methods/triggers have been specified<br>";
 	}
 
-	// Check that the mt tracepoint is enabled if a jstacktrace method trigger action is enabled
-	if (   isMethodJStackTraceActionSelected()
+	// Check validity of tracepoint IDs
+	for (var i = 0; i < tracepointCounter; i++) {
+		var tracepointIdElement = document.getElementById("tp_id_" + i);
+		if (tracepointIdElement != null) {
+			var invalidSpecs = findInvalidTracepointSpecs(tracepointIdElement.value);
+			if (invalidSpecs != "") {
+				resultIsGreen = false;
+				setErrorStyle(tracepointIdElement);
+				errorsHtml += invalidSpecs;
+			} else {
+				unsetErrorStyle(tracepointIdElement);
+			}
+		}
+	}
+
+	// Check that all tracepoints have either trace or count enabled
+	for (var i = 0; i < tracepointCounter; i++) {
+		var traceCheckboxElement = document.getElementById("tp_trace_" + i);
+		var countCheckboxElement = document.getElementById("tp_count_" + i);
+		if (traceCheckboxElement != null && countCheckboxElement != null) {
+			if (!traceCheckboxElement.checked && !countCheckboxElement.checked) {
+				resultIsGreen = false;
+				setErrorStyle(traceCheckboxElement);
+				setErrorStyle(countCheckboxElement);
+				errorsHtml += "ERROR: Trace and/or Count must be enabled for each tracepoint<br>";
+			} else {
+				unsetErrorStyle(traceCheckboxElement);
+				unsetErrorStyle(countCheckboxElement);
+			}
+		}
+	}
+
+	// Check that the mt tracepoint is enabled if a method has been specified
+	if (   isMethodOptionEnabled()
 		&& !isMethodTracepointEnabled()
 		&& !isAllTracepointEnabled() )
 	{
 		resultIsGreen = false;
-		errorsHtml += "ERROR: A jstacktrace method trigger action has been enabled but the \"Methods\" tracepoint has not been enabled. Stacks will not be traced.<br>";
+		errorsHtml += "ERROR: A method has been specified but the \"Methods\" tracepoint has not been enabled. Methods will not be traced or counted.<br>";
+	}
+
+	// Check that the mt tracepoint is enabled if a jstacktrace method trigger action is enabled
+	if (   isMethodJStackTraceActionSelected()
+		&& !isMethodTracepointEnabledForTracing()
+		&& !isAllTracepointEnabledForTracing() )
+	{
+		resultIsGreen = false;
+		errorsHtml += "ERROR: A jstacktrace method trigger action has been enabled but the \"Methods\" tracepoint has not been enabled for tracing. Stacks will not be traced.<br>";
 	}
 
 	// Check that a method trace or jstacktrace method trigger action is defined if an mt tracepoint is enabled
@@ -1715,7 +1858,7 @@ function buildAndUpdateResult() {
 		&& !isMethodJStackTraceActionSelected() )
 	{
 		resultIsGreen = false;
-		errorsHtml += "ERROR: \"Methods\" component tracepoint is enabled but no methods have been specified for tracing, and no jstacktrace method trigger actions have been enabled<br>";
+		errorsHtml += "ERROR: \"Methods\" component tracepoint is enabled but no methods have been specified, and no jstacktrace method trigger actions have been enabled<br>";
 	}
 
 	// Method option checks
@@ -1737,7 +1880,8 @@ function buildAndUpdateResult() {
 			
 			// Check whether argument and return value tracing is enabled.
 			// The warning includes an example JIT exclude option.
-			if (document.getElementById("meth_args_" + i).checked) {
+			var argTracingCheckbox = document.getElementById("meth_args_" + i);
+			if (!argTracingCheckbox.disabled && argTracingCheckbox.checked) {
 				argTracingEnabled = true;
 				var methodSpecValue = methodSpecElement.value;
 
@@ -1764,21 +1908,6 @@ function buildAndUpdateResult() {
 			warningsHtml += "WARNING: Arguments and return values will only be traced for interpreted methods. Use this JIT exclude option if necessary: <span style=\"white-space: nowrap\">\"" + jitExcludeOption + "\"</span><br>";
 		} else {
 			warningsHtml += "WARNING: Arguments and return values will only be traced for interpreted methods. Use a JIT exclude option if necessary.<br>";
-		}
-	}
-
-	// Check validity of tracepoint IDs
-	for (var i = 0; i < tracepointCounter; i++) {
-		var tracepointIdElement = document.getElementById("tp_id_" + i);
-		if (tracepointIdElement != null) {
-			var invalidSpecs = findInvalidTracepointSpecs(tracepointIdElement.value);
-			if (invalidSpecs != "") {
-				resultIsGreen = false;
-				setErrorStyle(tracepointIdElement);
-				errorsHtml += invalidSpecs;
-			} else {
-				unsetErrorStyle(tracepointIdElement);
-			}
 		}
 	}
 
@@ -1827,7 +1956,7 @@ function buildAndUpdateResult() {
 				resultIsGreen = false;
 				setErrorStyle(tracepointIdElement);
 				errorsHtml += findInvalidTracepointSpecs(tracepointIdElement.value);
-			} else if (tracepointActionElement.value == "jstacktrace" && !isIdTracepointEnabled(tracepointIdElement.value)) {
+			} else if (tracepointActionElement.value == "jstacktrace" && !isIdTracepointEnabledForTracing(tracepointIdElement.value)) {
 				resultIsGreen = false;
 				setErrorStyle(tracepointIdElement);
 				errorsHtml += "ERROR: A jstacktrace tracepoint trigger action has been enabled but the specified tracepoint ID is not being traced. Stacks will not be traced.<br>";
@@ -1845,7 +1974,7 @@ function buildAndUpdateResult() {
 		}
 
 		// Check validity of delay value
-		var delayElement = document.getElementById("trig_delay_" + triggerCounter);
+		var delayElement = document.getElementById("trig_delay_" + i);
 		if (delayElement != null) {
 			if (delayElement.value < 0) {
 				resultIsGreen = false;
@@ -1857,7 +1986,7 @@ function buildAndUpdateResult() {
 		}
 
 		// Check validity of limit/match value
-		var matchElement = document.getElementById("trig_match_" + triggerCounter);
+		var matchElement = document.getElementById("trig_match_" + i);
 		if (matchElement != null) {
 			if (matchElement.value < 0) {
 				resultIsGreen = false;
@@ -2047,7 +2176,7 @@ function getTracepointResultString() {
 	// and add them to a comma-separated string
 	var destinationStrings = {};
 	var destinationCount = {};
-	var tracepointString = "";
+	var countString = "";
 	for (var i = 0; i < tracepointCounter; i++) {
 		var tracepointListElement = document.getElementById("tracepoint_" + i);
 
@@ -2065,33 +2194,47 @@ function getTracepointResultString() {
 				case "id":
 					// [!]<tracepoint_id>[,<tracepoint_id>]
 					var tracepointId = document.getElementById("tp_id_" + i).value;
-					destinationStrings[destination] += tracepointId + ",";
+
+					if (document.getElementById("tp_trace_" + i).checked) {
+						destinationStrings[destination] += tracepointId + ",";
+					}
+
+					if (document.getElementById("tp_count_" + i).checked) {
+						countString += tracepointId + ",";
+					}
+
 					break;
 
 				case "component":
 					// [!]<component>[{<group>}] or [!]<component>[{<type>}]
 					var component = getSelectedElement(document.getElementById("tp_comp_select_" + i)).value;
-					destinationStrings[destination] += component;
+					var tracepointSpec = component;
 
 					var level = getSelectedElement(document.getElementById("tp_level_select_" + i)).value;
 					if (level != 9) {
-						destinationStrings[destination] += "{L" + level + "}";
+						tracepointSpec += "{L" + level + "}";
 					}
 
 					if (document.getElementById("tp_type_" + i).checked) {
 						var type = getSelectedElement(document.getElementById("tp_type_select_" + i)).value;
 						if (type != "all") {
-							destinationStrings[destination] += "{" + type + "}";
+							tracepointSpec += "{" + type + "}";
 						}
-						destinationStrings[destination] += ",";
 					}
 
 					if (document.getElementById("tp_group_" + i).checked) {
 						var group = getSelectedElement(document.getElementById("tp_group_select_" + i)).value;
 						if (group != "all") {
-							destinationStrings[destination] += "{" + group + "}";
+							tracepointSpec += "{" + group + "}";
 						}
-						destinationStrings[destination] += ",";
+					}
+
+					if (document.getElementById("tp_trace_" + i).checked) {
+						destinationStrings[destination] += tracepointSpec + ",";
+					}
+
+					if (document.getElementById("tp_count_" + i).checked) {
+						countString += tracepointSpec + ",";
 					}
 
 					break;
@@ -2101,14 +2244,26 @@ function getTracepointResultString() {
 
 	// Combine the tracepoint strings for each destination
 	// And add curly braces if necessary
+	var tracepointString = "";
 	for (var destination in destinationStrings) {
-		tracepointString += destination + "=";
-		destinationStrings[destination] = removeFinalCommaIfPresent(destinationStrings[destination]);
-		if (destinationCount[destination] > 1 || destinationStrings[destination].indexOf(",") != -1) {
-			tracepointString += "{" + destinationStrings[destination] + "},";
-		} else {
-			tracepointString += destinationStrings[destination] + ",";
+		if (destinationStrings[destination] != "") {
+			tracepointString += destination + "=";
+			destinationStrings[destination] = removeFinalCommaIfPresent(destinationStrings[destination]);
+			if (destinationCount[destination] > 1 || destinationStrings[destination].indexOf(",") != -1) {
+				tracepointString += "{" + destinationStrings[destination] + "},";
+			} else {
+				tracepointString += destinationStrings[destination] + ",";
+			}
 		}
+	}
+
+	// Add the count string, adding curly braces if necessary
+	if (countString != "") {
+		countString = removeFinalCommaIfPresent(countString);
+		if (countString.indexOf(",") != -1) {
+			countString = "{" + countString + "}";
+		}
+		tracepointString += "count=" + countString;
 	}
 
 	return removeFinalCommaIfPresent(tracepointString);
@@ -2426,14 +2581,22 @@ function containsReservedChars(string) {
 function setErrorStyle(inputElement) {
 	// Only set the error style if this element doesn't have focus.
 	if (document.activeElement != inputElement) {
-		inputElement.style.borderColor = "red";
-		inputElement.style.borderStyle = "solid";
+		if (inputElement.type == "checkbox") {
+			inputElement.style.outline = "2px solid red";
+		} else {
+			inputElement.style.borderColor = "red";
+			inputElement.style.borderStyle = "solid";
+		}
 	}
 }
 
 function unsetErrorStyle(inputElement) {
-	inputElement.style.borderColor = "";
-	inputElement.style.borderStyle = "";
+	if (inputElement.type == "checkbox") {
+		inputElement.style.outline = "";
+	} else {
+		inputElement.style.borderColor = "";
+		inputElement.style.borderStyle = "";
+	}
 }
 
 function escapeHTML(text) {
@@ -2522,6 +2685,15 @@ function copyLinkToClipboard() {
 					if (tracepointFormElements[j].type == "radio" && tracepointFormElements[j].checked) {
 						// id = 1 (checked) (unchecked radio options are not needed)
 						serializedTracepoint += elementId + "=1&";
+					}
+					if (tracepointFormElements[j].type == "checkbox") {
+						// id = 0|1 (unchecked|checked)
+						serializedTracepoint += elementId + "=";
+						if (tracepointFormElements[j].checked) {
+							serializedTracepoint += "1&";
+						} else {
+							serializedTracepoint += "0&";
+						}
 					}
 					break;
 			}

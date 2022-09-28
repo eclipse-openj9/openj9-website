@@ -40,6 +40,7 @@ button.add {
 }
 
 label {
+	display: inline-block;
 	vertical-align: middle;
 }
 
@@ -74,7 +75,6 @@ label[data-disabled=false] {
 
 td {
 	vertical-align: middle;
-	height: 20px">
 }
 
 ul {
@@ -186,10 +186,10 @@ The project website pages cannot be redistributed
 		<td>
 			<button type="button" class="add" id="button_add_trigger_group" title="Add group trigger">Group</button>
 		</td>
-		<td id="trace_initially_disabled_td">
+		<td id="trace_initially_disabled_td" title="Trace can be started with a trigger, e.g. when entering a specific method">
 			&nbsp;
-			<input type="checkbox" id="trace_initially_disabled" name="trace_initially_disabled" value="trace_initially_disabled" title="Trace can be started with a trigger, e.g. when entering a specific method">
-			<label for="trace_initially_disabled" title="Trace can be started with a trigger, e.g. when entering a specific method">Trace initially stopped</label>
+			<input type="checkbox" id="trace_initially_disabled" name="trace_initially_disabled" value="trace_initially_disabled">
+			<label for="trace_initially_disabled">Trace initially stopped</label>
 		</td>
 		<td title="Length of time to sleep for the &quot;thread sleep&quot; action">
 			&nbsp;
