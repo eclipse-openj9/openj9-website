@@ -35,7 +35,7 @@ import Button from "../components/button";
 export default () => (
   <Layout isHome={false} title="The Eclipse OpenJ9 story" description="With a rich heritage, OpenJ9 has the credentials to deliver quality and reliability.">
     <section sx={{ backgroundColor: "#F5F9FC", paddingX: "7%", paddingY: "4rem" }}>
-      <Styled.h1 sx={{marginBottom:"3rem"}}>More about OpenJ9</Styled.h1>
+      <Styled.h1 sx={{marginBottom:"3rem"}}>More about Eclipse OpenJ9</Styled.h1>
       <div
         sx={{
           backgroundColor: "white",
@@ -46,7 +46,7 @@ export default () => (
       >
         <Styled.h2>Our story</Styled.h2>
         <Styled.p>
-          Eclipse OpenJ9 is a high performance, scalable, Java virtual machine (JVM) implementation that represents hundreds 
+          Eclipse OpenJ9&trade; is a high performance, scalable, Java virtual machine (JVM) implementation that represents hundreds 
           of person-years of effort. Contributed to the Eclipse project by IBM, the OpenJ9 JVM underpins the IBM SDK, Java 
           Technology Edition product that is a core component of many IBM Enterprise software products. Continued development 
           of OpenJ9 at the Eclipse foundation ensures wider collaboration, fresh innovation, and the opportunity to influence 

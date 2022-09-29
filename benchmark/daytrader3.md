@@ -26,7 +26,7 @@ The project website pages cannot be redistributed
 
 ***Performance is not just throughput!***
 
-Many different metrics exist to measure the performance of an application including startup time, ramp up time, footprint, response time, as well as throughput. At Eclipse OpenJ9, we keep a watchful eye on all of these metrics, making sensible tradeoffs and providing tuning options that allow the JVM to be optimized for different workloads.
+Many different metrics exist to measure the performance of an application including startup time, ramp up time, footprint, response time, as well as throughput. At Eclipse OpenJ9&trade;, we keep a watchful eye on all of these metrics, making sensible tradeoffs and providing tuning options that allow the JVM to be optimized for different workloads.
 
 To showcase our performance pedigree we set about measuring the strengths of OpenJDK 9 with Eclipse OpenJ9 compared to an OpenJDK 9 with Hotspot. We chose the DayTrader 3 application because it is meaningful to measure different performance metrics, unlike many microbenchmarks that focus almost exclusively on throughput. The metrics we focused on include startup time, the JVM footprint size during the experiment, and of course, throughput.
 

@@ -24,7 +24,7 @@ The project website pages cannot be redistributed
 
 # OpenJDK 8 performance with Eclipse OpenJ9
 
-**Benchmark testing demonstrates significantly better performance for OpenJDK 8 when using the Eclipse OpenJ9 VM, than with the Hotspot VM - just as for OpenJDK 9.**
+**Benchmark testing demonstrates significantly better performance for OpenJDK 8 when using the Eclipse OpenJ9&trade; VM, than with the Hotspot VM - just as for OpenJDK 9.**
 
 Many different metrics exist to measure the performance of an application including startup time, ramp up time, footprint, response time, as well as throughput. At Eclipse OpenJ9, we keep a watchful eye on all of these metrics, making sensible tradeoffs and providing tuning options that allow the virtual machine (VM) to be optimized for different workloads.
 

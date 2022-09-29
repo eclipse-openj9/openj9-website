@@ -1,7 +1,7 @@
 # OpenJDK 11 performance on Quarkus with Eclipse OpenJ9
 
 
-**When we compared the results of running OpenJDK 11 on Quarkus with either the OpenJ9 VM or the HotSpot VM, OpenJ9 started faster with a smaller footprint.**
+**When we compared the results of running OpenJDK 11 on Quarkus with either the Eclipse OpenJ9&trade; VM or the HotSpot VM, OpenJ9 started faster with a smaller footprint.**
 
 We recorded the following results with the REST+CRUD benchmark application:
 

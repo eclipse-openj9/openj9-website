@@ -361,7 +361,7 @@ class performance extends Component {
         <Styled.h1 sx={{marginBottom:"1rem"}}>Performance Overview</Styled.h1>
           <Styled.p>
             Application performance can be measured using many different metrics, including startup time,
-            ramp-up time, footprint, and response time, as well as throughput. At Eclipse OpenJ9, we keep a watchful eye on all
+            ramp-up time, footprint, and response time, as well as throughput. At Eclipse OpenJ9&trade;, we keep a watchful eye on all
             of these metrics, making sensible tradeoffs and providing tuning options that allow the virtual machine (VM) to be
             optimized for different workloads. We regularly test and optimize OpenJ9 performance when running the most popular 
             Java frameworks such as Open Liberty, Quarkus, SpringBoot, and Micronaut. We're proud of our results. 
