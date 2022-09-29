@@ -89,7 +89,7 @@ export default () => (
         <Styled.h1>Unleash the power of Java</Styled.h1>
         <Styled.p>
           Optimized to run Java&trade; applications cost-effectively in the cloud, 
-          Eclipse OpenJ9 is a fast and efficient JVM that delivers power and performance when you need it most.
+          Eclipse OpenJ9&trade; is a fast and efficient JVM that delivers power and performance when you need it most.
         </Styled.p>
       </div>
     </section>

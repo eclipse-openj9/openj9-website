@@ -34,7 +34,7 @@ export default ({data}) => {
   return(
   <Layout isHome={false} title="What's new with Eclipse OpenJ9" description="Find out what's in the latest release; Learn about the technology directly from our developers.">
     <section sx={{ backgroundColor: "#F5F9FC", paddingX: "7%", paddingTop:"4rem" }}>
-      <Styled.h1>What's new in the OpenJ9 project</Styled.h1>
+      <Styled.h1>What's new in the Eclipse OpenJ9 project</Styled.h1>
       <div
         sx={{
           paddingY: "2rem",
@@ -43,7 +43,7 @@ export default ({data}) => {
       >
         <Styled.p>
           Find out what's happening at the project. Read about the highlights of our latest release.
-          Catch the latest blog posts from our blog site; get top tips or deep dives about key features of OpenJ9 or simply read about experiences of working in the community.
+          Catch the latest blog posts from our blog site; get top tips or deep dives about key features of Eclipse OpenJ9&trade; or simply read about experiences of working in the community.
         </Styled.p>
       </div>
     </section>

@@ -1,6 +1,6 @@
-# OpenJ9 Development
+# Eclipse OpenJ9 Development
 
-The OpenJ9 website is built with [Gatsby.js](https://www.gatsbyjs.org/). See the Gatsby [quick start guide](https://www.gatsbyjs.org/docs/quick-start) for the basics.
+The Eclipse OpenJ9&trade; website is built with [Gatsby.js](https://www.gatsbyjs.org/). See the Gatsby [quick start guide](https://www.gatsbyjs.org/docs/quick-start) for the basics.
 
 ## Prerequisites
 

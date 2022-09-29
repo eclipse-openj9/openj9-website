@@ -1,6 +1,6 @@
 # OpenJDK 11 performance with Eclipse OpenJ9
 
-**Our benchmark results suggest that running an application on OpenJ9 instead of HotSpot delivers reductions in footprint and startup time without sacrificing throughput.**
+**Our benchmark results suggest that running an application on Eclipse OpenJ9&trade; instead of HotSpot delivers reductions in footprint and startup time without sacrificing throughput.**
 
 To evaluate the performance characteristics of OpenJ9 we used the DayTrader7 benchmark, which produced the following results:
 
