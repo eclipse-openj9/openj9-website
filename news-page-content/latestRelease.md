@@ -22,29 +22,24 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 The project website pages cannot be redistributed
 -->
 
-### Eclipse OpenJ9 version 0.33.x released
+### Eclipse OpenJ9 version 0.35.0 released
 
-August 2022
+October 2022
 
-We're pleased to announce the availability of Eclipse OpenJ9 v0.33.x.
+We're pleased to announce the availability of Eclipse OpenJ9&trade; v0.35.0.
 
-This release supports OpenJDK version 8, 11, 17, and 18. For more information about supported platforms and OpenJDK versions,
+This release supports OpenJDK version 8, 11, and 17. For more information about supported platforms and OpenJDK versions,
 see [Supported environments](https://www.eclipse.org/openj9/docs/openj9_support/).
 
-This release includes an early access build for Apple Silicon (AArch64) macOS. You can use this build for evaluation purposes;
-it is not yet suitable for use in production environments.
+Apple silicon macOS&reg; is now a fully supported, production-ready target for OpenJDK 11 and later.
 
 Other updates in this release include the following:
 
-- JITServer supports the use of OpenSSL 3.0.x for encrypting network traffic
-- JITServer supports caching of AOT compiled methods at the server
-- JITServer supports exporting of custom performance metrics to monitoring agents, such as Prometheus
-- OpenJ9 supports control groups (cgroups) v2 to match the gradual transition of the Linux&reg; operating systems from cgroups v1 to v2 as their default choice
+- Java dump files contain more information about waiting threads
+- New `user2` event added for taking system dump files with exclusive access without overriding the `user` event
+- New `-XX:[+|-]PerfTool` option added for enabling or disabling the JIT support for the `perf` tool without affecting the existing `-Xjit` options
+- `-XX:+EnsureHashed:java/lang/Class,java/lang/Thread` is added to the list of default options in the `options.default` file for pre-hashing `Class` and `Thread` objects from the start and hence, improving performance
+- New options, `-XX:JITServerMetricsSSLKey` and `-XX:JITServerMetricsSSLCert`, added for encrypting the custom metrics with SSL or TLS
+- `-XX:[+|-]JITServerLocalSyncCompiles` is now enabled in most cases to reduce the latency of the compilations that are performed synchronously. It is disabled when you specify [`-Xjit:count=0`](xjit.md#count) and in a few advanced use cases such as running the JVM in debug mode.
 
 To read more about these and other changes, see the [OpenJ9 user documentation](https://www.eclipse.org/openj9/docs/openj9_releases/).
-
-#### Performance highlights include:
-
-- Elliptic curve (EC) algorithms are mapped to using the OpenSSL routines from the OpenJDK JCE provider leading to large improvements in some microbenchmarks (2-3x faster) across platforms.
-- The performance of `String` methods is improved through better inlining/optimization in the JIT compiler.
-- The recycling of Garbage Collection (GC) thread local heap copy buffers is improved for the `balanced` GC policy.
