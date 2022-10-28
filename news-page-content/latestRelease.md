@@ -31,8 +31,6 @@ We're pleased to announce the availability of Eclipse OpenJ9&trade; v0.35.0.
 This release supports OpenJDK version 8, 11, and 17. For more information about supported platforms and OpenJDK versions,
 see [Supported environments](https://www.eclipse.org/openj9/docs/openj9_support/).
 
-Apple silicon macOS&reg; is now a fully supported, production-ready target for OpenJDK 11 and later.
-
 Other updates in this release include the following:
 
 - Java dump files contain more information about waiting threads
