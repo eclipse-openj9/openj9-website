@@ -22,22 +22,17 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 The project website pages cannot be redistributed
 -->
 
-### Eclipse OpenJ9 version 0.35.0 released
+### Eclipse OpenJ9 version 0.37.0 released
 
-October 2022
+January 2023
 
-We're pleased to announce the availability of Eclipse OpenJ9&trade; v0.35.0.
+We're pleased to announce the availability of Eclipse OpenJ9&trade; v0.36.0.
 
 This release supports OpenJDK version 8, 11, and 17. For more information about supported platforms and OpenJDK versions,
 see [Supported environments](https://www.eclipse.org/openj9/docs/openj9_support/).
 
 Other updates in this release include the following:
 
-- Java dump files contain more information about waiting threads
-- New `user2` event added for taking system dump files with exclusive access without overriding the `user` event
-- New `-XX:[+|-]PerfTool` option added for enabling or disabling the JIT support for the `perf` tool without affecting the existing `-Xjit` options
-- `-XX:+EnsureHashed:java/lang/Class,java/lang/Thread` is added to the list of default options in the `options.default` file for pre-hashing `Class` and `Thread` objects from the start and hence, improving performance
-- New options, `-XX:JITServerMetricsSSLKey` and `-XX:JITServerMetricsSSLCert`, added for encrypting the custom metrics with SSL or TLS
-- `-XX:[+|-]JITServerLocalSyncCompiles` is now enabled in most cases to reduce the latency of the compilations that are performed synchronously. It is disabled when you specify [`-Xjit:count=0`](xjit.md#count) and in a few advanced use cases such as running the JVM in debug mode.
+- The shared classes cache default directory is modified
 
 To read more about these and other changes, see the [OpenJ9 user documentation](https://www.eclipse.org/openj9/docs/openj9_releases/).
