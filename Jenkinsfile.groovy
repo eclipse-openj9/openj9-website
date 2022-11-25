@@ -20,9 +20,9 @@
  * SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
  *******************************************************************************/
 
-REPO = 'ssh://genie.openj9@git.eclipse.org:29418/www.eclipse.org/openj9.git'
+REPO = 'github.com/eclipse-openj9/openj9-website-publish'
 BRANCH = (params.BRANCH) ?: 'staging'
-SSH_CREDENTIAL_ID = 'git.eclipse.org-bot-ssh'
+CREDENTIAL_ID = 'github-bot'
 
 timeout(time: 3, unit: 'HOURS') {
     timestamps {
@@ -40,13 +40,13 @@ timeout(time: 3, unit: 'HOURS') {
                         my_image.inside {
                             sh """
                             git config user.email "openj9-bot@eclipse.org"
-                            git config user.name "Eclipse OpenJ9 Bot"
+                            git config user.name "genie-openj9"
                             git status
                             """
                             sh "npm install"
                             stage('Website Deploy') {
-                                sshagent(credentials:["${SSH_CREDENTIAL_ID}"]) {
-                                    sh "REPO=${REPO} BRANCH=${BRANCH} npm run deploy"
+                                withCredentials([usernamePassword(credentialsId: CREDENTIAL_ID, usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                                    sh "REPO=https://${USERNAME}:${PASSWORD}@${REPO} BRANCH=${BRANCH} npm run deploy"
                                 }
                             }
                         }
