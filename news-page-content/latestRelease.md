@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2017, 2022 IBM Corp. and others
+Copyright (c) 2017, 2023 IBM Corp. and others
 
 This program and the accompanying materials are made available under
 the terms of the Eclipse Public License 2.0 which accompanies this
@@ -15,7 +15,7 @@ Exception [1] and GNU General Public License, version 2 with the
 OpenJDK Assembly Exception [2].
 
 [1] https://www.gnu.org/software/classpath/license.html
-[2] http://openjdk.java.net/legal/assembly-exception.html
+[2] https://openjdk.org/legal/assembly-exception.html
 
 SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
 
@@ -30,6 +30,8 @@ We're pleased to announce the availability of Eclipse OpenJ9&trade; v0.35.0.
 
 This release supports OpenJDK version 8, 11, and 17. For more information about supported platforms and OpenJDK versions,
 see [Supported environments](https://www.eclipse.org/openj9/docs/openj9_support/).
+
+Apple silicon macOS&reg; is now a fully supported, production-ready target for OpenJDK 11 and later.
 
 Other updates in this release include the following:
 
