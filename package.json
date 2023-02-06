@@ -7,7 +7,7 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "deploy": "gatsby clean && gatsby build --prefix-paths && gh-pages -b $BRANCH -r $REPO -d public",
+    "deploy": "gatsby clean && gatsby build --prefix-paths && git clone $REPO -b $BRANCH website && (cp -R website/docs public/ || echo \"no docs dir\") && gh-pages -b $BRANCH -r $REPO -d public",
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
