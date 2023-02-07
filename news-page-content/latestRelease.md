@@ -22,24 +22,24 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 The project website pages cannot be redistributed
 -->
 
-### Eclipse OpenJ9 version 0.35.0 released
+### Eclipse OpenJ9 version 0.36.x released
 
-October 2022
+February 2023
+ 
+We're pleased to announce the availability of Eclipse OpenJ9&trade; v0.36.x.
+ 
+OpenJ9 release 0.36.0 supports OpenJDK version 8 and 17. Release 0.36.1 supports OpenJDK 11. 
 
-We're pleased to announce the availability of Eclipse OpenJ9&trade; v0.35.0.
-
-This release supports OpenJDK version 8, 11, and 17. For more information about supported platforms and OpenJDK versions,
+For more information about supported platforms and OpenJDK versions,
 see [Supported environments](https://www.eclipse.org/openj9/docs/openj9_support/).
-
-Apple silicon macOS&reg; is now a fully supported, production-ready target for OpenJDK 11 and later.
 
 Other updates in this release include the following:
 
-- Java dump files contain more information about waiting threads
-- New `user2` event added for taking system dump files with exclusive access without overriding the `user` event
-- New `-XX:[+|-]PerfTool` option added for enabling or disabling the JIT support for the `perf` tool without affecting the existing `-Xjit` options
-- `-XX:+EnsureHashed:java/lang/Class,java/lang/Thread` is added to the list of default options in the `options.default` file for pre-hashing `Class` and `Thread` objects from the start and hence, improving performance
-- New options, `-XX:JITServerMetricsSSLKey` and `-XX:JITServerMetricsSSLCert`, added for encrypting the custom metrics with SSL or TLS
-- `-XX:[+|-]JITServerLocalSyncCompiles` is now enabled in most cases to reduce the latency of the compilations that are performed synchronously. It is disabled when you specify [`-Xjit:count=0`](xjit.md#count) and in a few advanced use cases such as running the JVM in debug mode.
+- On operating systems other than Windows&trade; and z/OS&reg;, the default shared classes cache directory in the user's home directory is changed from `javasharedresources` to `.cache/javasharedresources`.
+- New `-XX:[+|-]MergeCompilerOptions` option is added to enable or disable the merging of multiple `-Xjit` or `-Xaot` options into a single `-Xjit` or `-Xaot` option.
+- If a client JVM does not indicate a specific JITServer AOT cache it wants to use with the `-XX:JITServerAOTCacheName=<cache_name>` option, the `default` JITServer AOT cache is used instead of a nameless cache.
+- New `-XX:JITServerAOTmx` option is added to specify the maximum amount of memory that all AOT cache instances combined can use at the JITServer server.
+- New `-XX:[+|-]JITServerAOTCachePersistence` option is added to specify whether the JITServer server periodically saves its AOT caches to files. Other JITServer instances can then load these caches the first time that a client requests a particular cache.
+- New `-XX:JITServerAOTCacheDir` option is added to specify the directory for saving or loading the JITServer AOT cache files.
 
 To read more about these and other changes, see the [OpenJ9 user documentation](https://www.eclipse.org/openj9/docs/openj9_releases/).
