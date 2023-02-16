@@ -28,7 +28,7 @@ This repository contains the source files for the [Eclipse OpenJ9&trade; website
 
 If you would like to contribute to the OpenJ9 project, please start by reading the general [Contribution guidelines](https://github.com/eclipse-openj9/openj9/blob/master/CONTRIBUTING.md) in the OpenJ9 repository. Information to help you contribute to the OpenJ9 website is covered in the [Contribution guidelines](CONTRIBUTING.md) in this repository.
 
-Changes merged into the master branch are automatically built and deployed to the Eclipse git website repository master branch.
+Changes merged into the master branch are automatically built and deployed to https://github.com/eclipse-openj9/openj9-website-publish in the main branch.
 
 ## Previewing pull requests (approved users only)
 
@@ -39,10 +39,11 @@ To run the job, add the following trigger comment into a pull request:
 Jenkins website stage
 ```
 
-Staging site: http://staging.eclipse.org/openj9
+Staging site: https://eclipse-openj9.github.io/openj9-website-publish/
+The old staging site staging.eclipse.org/openj9 redirects to there.
 
 #### Please Note
-The staging website is based on the staging branch of the Eclipse repository. Because there is only one staging branch, the staging website shows only the last PR job that ran.
+The staging website is based on the staging branch of https://github.com/eclipse-openj9/openj9-website-publish. Because there is only one staging branch, the staging website shows only the last PR job that ran.
 You can view the [build history](https://ci.eclipse.org/openj9/job/Build_Website/) on the build page (left hand column) to see which PR ran last. Each run is annotated with the link to the PR as well as the PR title.
 Also note that it can take a few minutes for the contents of the staging website to refresh.
 
