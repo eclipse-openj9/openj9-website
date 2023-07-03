@@ -37,6 +37,10 @@ input {
 	vertical-align: middle;
 }
 
+input[type=checkbox] {
+	margin: 2px 2px 2px 0px;
+}
+
 input[type=button] {
 	font-size: 8pt;
 	height:22px;
@@ -47,18 +51,20 @@ input[type=button] {
 input[type=text] {
 	padding: 2px 2px;
 	box-sizing: border-box;
+	margin: 2px 0px 0px 0px;
 }
 
 input[type=number] {
 	width: 70px;
 	padding: 2px 2px;
 	box-sizing: border-box;
+	margin: 2px 0px 0px 0px;
 }
 
 select {
 	padding: 2px 2px;
-	box-sizing: border-box;
 	vertical-align: middle;
+	margin: 2px 0px 0px 0px;
 }
 
 li {
@@ -286,50 +292,52 @@ ul {
 				<label for="agent_tool">Run a shell command:</label><br> 
 				<input style="width: 558px" type="text" id="exec" name="exec" size="71" value="" disabled>
 				<div style="padding: 4px 0px;">
-					<input type="button" data-target="exec" data-token="%Y"    id="exec_button_year4"  disabled style="width:55px"
+					<input type="button" data-target="exec" data-token="%Y"       id="exec_button_year4"   disabled style="width:50px"
 						value="Year (4)" title="Year (4 digits) e.g. 2017">
-					<input type="button" data-target="exec" data-token="%y"    id="exec_button_year2"  disabled style="width:55px"
+					<input type="button" data-target="exec" data-token="%y"       id="exec_button_year2"   disabled style="width:50px"
 						value="Year (2)" title="Year (2 digits) e.g. 17">
-					<input type="button" data-target="exec" data-token="%m"    id="exec_button_month"  disabled style="width:48px"
+					<input type="button" data-target="exec" data-token="%m"       id="exec_button_month"   disabled style="width:43px"
 						value="Month" title="Month (2 digits) e.g. 08">
-					<input type="button" data-target="exec" data-token="%d"    id="exec_button_day"    disabled style="width:34px"
+					<input type="button" data-target="exec" data-token="%d"       id="exec_button_day"     disabled style="width:31px"
 						value="Day" title="Day of month (2 digits) e.g. 26">
-					<input type="button" data-target="exec" data-token="%H"    id="exec_button_hour"   disabled style="width:38px;"
+					<input type="button" data-target="exec" data-token="%H"       id="exec_button_hour"    disabled style="width:35px;"
 						value="Hour" title="Hour of day (2 digits) e.g. 05">
-					<input type="button" data-target="exec" data-token="%M"    id="exec_button_minute" disabled style="width:34px"
+					<input type="button" data-target="exec" data-token="%M"       id="exec_button_minute"  disabled style="width:30px"
 						value="Min" title="Minute of hour (2 digits) e.g. 47">
-					<input type="button" data-target="exec" data-token="%S"    id="exec_button_second" disabled style="width:34px"
+					<input type="button" data-target="exec" data-token="%S"       id="exec_button_second"  disabled style="width:30px"
 						value="Sec" title="Second of minute (2 digits) e.g. 35">	
-					<input type="button" data-target="exec" data-token="%pid"  id="exec_button_pid"    disabled style="width:33px"
-						value="PID" title="JVM Process ID e.g. 27491">
-					<input type="button" data-target="exec" data-token="%job" id="exec_button_jobname" disabled style="width:65px"
-						value="Job Name" title="Job Name (z/OS only)">	
+					<input type="button" data-target="exec" data-token="%sysname" id="exec_button_sysname" disabled style="width:61px"
+						value="SYSNAME" title="SYSNAME system parameter (z/OS only)">
+					<input type="button" data-target="exec" data-token="%job"     id="exec_button_jobname" disabled style="width:59px"
+						value="Job Name" title="Job Name (z/OS only)">
 					
 					&nbsp;
 					<input type="checkbox" id="tool_async" name="tool_async" value="ASYNC" title="If checked, the JVM will continue without waiting for the command to complete" disabled>
-					<label for="tool_async" data-disabled="true" title="Run asynchronously. If checked, the JVM will continue without waiting for the command to complete">Asyncronous</label>
+					<label for="tool_async" data-disabled="true" title="Run asynchronously. If checked, the JVM will continue without waiting for the command to complete">Asynchronous</label>
 				</div>
 				<div>
-					<input type="button" data-target="exec" data-token="%uid"  id="exec_button_uname"       disabled style="width:50px"
+					<input type="button" data-target="exec" data-token="%uid"  id="exec_button_uname"       disabled style="width:47px"
 						value="Uname" title="User name e.g. jbloggs">
-					<input type="button" data-target="exec" data-token="%seq"  id="exec_button_dumpcounter" disabled style="width:45px"
+					<input type="button" data-target="exec" data-token="%seq"  id="exec_button_dumpcounter" disabled style="width:41px"
 						value="Count" title="Dump Counter e.g. 0004">
-					<input type="button" data-target="exec" data-token="%tick" id="exec_button_mscounter"   disabled style="width:43px"
+					<input type="button" data-target="exec" data-token="%tick" id="exec_button_mscounter"   disabled style="width:38px"
 						value="Ticks" title="Millisecond counter e.g. 638349">
-					<input type="button" data-target="exec" data-token="%last" id="exec_button_lastdump"    disabled style="width:70px"
+					<input type="button" data-target="exec" data-token="%last" id="exec_button_lastdump"    disabled style="width:63px"
 						value="Last Dump" title="Last dump name">
-					<input type="button" data-target="exec" data-token="%home" id="exec_button_javahome"    disabled style="width:70px"
+					<input type="button" data-target="exec" data-token="%home" id="exec_button_javahome"    disabled style="width:65px"
 						value="Java Home" title="Java Home e.g. /home/jbloggs/java">
-					<input type="button" data-target="exec" data-token="%asid" id="exec_button_asid"        disabled style="width:45px"
+					<input type="button" data-target="exec" data-token="%pid"  id="exec_button_pid"         disabled style="width:29px"
+						value="PID" title="JVM Process ID e.g. 27491">
+					<input type="button" data-target="exec" data-token="%asid" id="exec_button_asid"        disabled style="width:36px"
 						value="ASID" title="Address Space ID (z/OS only)">
-					<input type="button" data-target="exec" data-token="&DS" id="exec_button_ds"            disabled style="width:30px"
+					<input type="button" data-target="exec" data-token="&DS" id="exec_button_ds"            disabled style="width:26px"
 						value="DS" title="Dump Section (64-bit z/OS only)">
-					<input type="button" data-target="exec" data-token="%jobid" id="exec_button_jobid"      disabled style="width:48px"
+					<input type="button" data-target="exec" data-token="%jobid" id="exec_button_jobid"      disabled style="width:43px"
 						value="Job ID" title="Job ID (z/OS only)">
 					
 					&nbsp;
 					<label for="tool_wait" data-disabled="true" title="Time to wait after executing the command, in milliseconds">Wait: </label>
-					<input type="number" id="tool_wait" name="tool_wait" style="width:70px" min="0" value="0" disabled title="Time to wait after executing the command, in milliseconds">
+					<input type="number" id="tool_wait" name="tool_wait" style="width:75px" min="0" value="0" disabled title="Time to wait after executing the command, in milliseconds">
 				</div>
 			</li>
 			<hr>
@@ -390,41 +398,43 @@ ul {
 			</li>
 			<li>
 				<div style="padding: 4px 0px;">
-					<input type="button" data-token="%Y"    id="file_button_year4"  disabled style="width:55px"
+					<input type="button" data-token="%Y"                   id="file_button_year4"   disabled style="width:50px"
 						value="Year (4)" title="Year (4 digits) e.g. 2017">
-					<input type="button" data-token="%y"    id="file_button_year2"  disabled style="width:55px"
+					<input type="button" data-token="%y"                   id="file_button_year2"   disabled style="width:50px"
 						value="Year (2)" title="Year (2 digits) e.g. 17">
-					<input type="button" data-token="%m"    id="file_button_month"  disabled style="width:48px"
+					<input type="button" data-token="%m"                   id="file_button_month"   disabled style="width:43px"
 						value="Month" title="Month (2 digits) e.g. 08">
-					<input type="button" data-token="%d"    id="file_button_day"    disabled style="width:34px"
+					<input type="button" data-token="%d"                   id="file_button_day"     disabled style="width:31px"
 						value="Day" title="Day of month (2 digits) e.g. 26">
-					<input type="button" data-token="%H"    id="file_button_hour"   disabled style="width:38px"
+					<input type="button" data-token="%H"                    id="file_button_hour"   disabled style="width:35px;"
 						value="Hour" title="Hour of day (2 digits) e.g. 05">
-					<input type="button" data-token="%M"    id="file_button_minute" disabled style="width:34px"
+					<input type="button" data-token="%M"                   id="file_button_minute"  disabled style="width:30px"
 						value="Min" title="Minute of hour (2 digits) e.g. 47">
-					<input type="button" data-token="%S"    id="file_button_second" disabled style="width:34px"
+					<input type="button" data-token="%S"                   id="file_button_second"  disabled style="width:30px"
 						value="Sec" title="Second of minute (2 digits) e.g. 35">	
-					<input type="button" data-token="%pid"  id="file_button_pid"    disabled style="width:33px"
-						value="PID" title="JVM Process ID e.g. 27491">
-					<input type="button" data-token="%job" id="file_button_jobname" disabled style="width:65px"
-						value="Job Name" title="Job Name (z/OS only)">	
+					<input type="button" data-token="%sysname"             id="file_button_sysname" disabled style="width:61px"
+						value="SYSNAME" title="SYSNAME system parameter (z/OS only)">
+					<input type="button" data-token="%job"                 id="file_button_jobname" disabled style="width:59px"
+						value="Job Name" title="Job Name (z/OS only)">
 				</div>
 				<div>
-					<input type="button" data-token="%uid"  id="file_button_uname"       disabled style="width:50px"
+					<input type="button" data-token="%uid"                 id="file_button_uname"       disabled style="width:47px"
 						value="Uname" title="User name e.g. jbloggs">
-					<input type="button" data-token="%seq"  id="file_button_dumpcounter" disabled style="width:45px"
+					<input type="button" data-token="%seq"                 id="file_button_dumpcounter" disabled style="width:41px"
 						value="Count" title="Dump Counter e.g. 0004">
-					<input type="button" data-token="%tick" id="file_button_mscounter"   disabled style="width:43px"
+					<input type="button" data-token="%tick"                id="file_button_mscounter"   disabled style="width:38px"
 						value="Ticks" title="Millisecond counter e.g. 638349">
-					<input type="button" data-token="%last" id="file_button_lastdump"    disabled style="width:70px"
+					<input type="button" data-token="%last"                id="file_button_lastdump"    disabled style="width:63px"
 						value="Last Dump" title="Last dump name">
-					<input type="button" data-token="%home" id="file_button_javahome"    disabled style="width:70px"
+					<input type="button" data-token="%home"                id="file_button_javahome"    disabled style="width:65px"
 						value="Java Home" title="Java Home e.g. /home/jbloggs/java">
-					<input type="button" data-token="%asid" id="file_button_asid"        disabled style="width:45px"
+					<input type="button" data-token="%pid"                 id="file_button_pid"         disabled style="width:29px"
+						value="PID" title="JVM Process ID e.g. 27491">
+					<input type="button" data-token="%asid"                id="file_button_asid"        disabled style="width:36px"
 						value="ASID" title="Address Space ID (z/OS only)">
-					<input type="button" data-token="&DS" id="file_button_ds"            disabled style="width:30px"
+					<input type="button" data-token="&DS"                  id="file_button_ds"          disabled style="width:26px"
 						value="DS" title="Dump Section (64-bit z/OS only)">
-					<input type="button" data-token="%jobid" id="file_button_jobid"      disabled style="width:48px"
+					<input type="button" data-token="%jobid"               id="file_button_jobid"       disabled style="width:43px"
 						value="Job ID" title="Job ID (z/OS only)">
 				</div>
 			</li>
