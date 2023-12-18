@@ -25,7 +25,7 @@
     "gatsby-remark-external-links": "0.0.4",
     "gatsby-source-filesystem": "^2.1.48",
     "gatsby-source-wordpress": "^3.1.60",
-    "gatsby-transformer-remark": "^2.6.50",
+    "gatsby-transformer-remark": "^2.16.1",
     "react": "^16.12.0",
     "react-chartjs-2": "^2.9.0",
     "react-dom": "^16.12.0",
