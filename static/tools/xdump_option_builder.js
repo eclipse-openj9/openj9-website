@@ -396,27 +396,41 @@ function processChange(option) {
 		enableInput(document.getElementById("request_compact"));
 	}
 
-	// Enable/disable file text field
+	// File pattern and data set pattern fields. Rules:
+	//   1. Only system dumps are compatible with the data set pattern field
+	//   2. File pattern and data set pattern cannot be specified at the same time
+	var dsnTextElement = document.getElementById("dsn_text");
 	var fileTextElement = document.getElementById("file_text");
-	var enableTokenButtons = false;
-	if (fileCompatibleAgentChecked()) {
-		enableInput(fileTextElement);
-		enableTokenButtons = true;
+
+	// Enable or disable the data set pattern field
+	var systemAgentElement = document.getElementById("agent_system");
+	if (systemAgentElement.checked) {
+		if (fileTextElement.value != "") {
+			// File pattern field takes precedence if it contains any text
+			disableInput(dsnTextElement);
+		} else {
+			enableInput(dsnTextElement);
+		}
+	} else {
+		enableDsnIncompatibleAgents();
+		disableInput(dsnTextElement);
+	}
+
+	// Enable or disable the file pattern field
+	if (fileCompatibleAgentEnabledAndChecked()) {
+		if (!dsnTextElement.disabled && dsnTextElement.value != "") {
+			disableDsnIncompatibleAgents();
+			disableInput(fileTextElement);
+		} else {
+			enableDsnIncompatibleAgents();
+			enableInput(fileTextElement);
+		}
 	} else {
 		disableInput(fileTextElement);
 	}
 
-	// Enable/disable dsn text field
-	var dsnTextElement = document.getElementById("dsn_text");
-	if (document.getElementById("agent_system").checked) {
-		enableInput(dsnTextElement);
-		enableTokenButtons = true;
-	} else {
-		disableInput(dsnTextElement);
-	}
-	
 	// Enable/disable file/dsn token buttons
-	if (enableTokenButtons) { 
+	if (!dsnTextElement.disabled || !fileTextElement.disabled) {
 		enableDumpNameTokenButtons();
 	} else {
 		disableDumpNameTokenButtons();
@@ -508,12 +522,29 @@ function heapIncompatibleEventChecked() {
 	return false;
 }
 
-function fileCompatibleAgentChecked() {
+function fileCompatibleAgentEnabledAndChecked() {
 	for (var i = 0; i < agentsThatDumpAFileIds.length; i++) {
-		if (document.getElementById(agentsThatDumpAFileIds[i]).checked) {
+		var agentElement = document.getElementById(agentsThatDumpAFileIds[i]);
+		if (!agentElement.disabled && agentElement.checked) {
 			return true;
 		}
-	}	
+	}
+}
+
+function disableDsnIncompatibleAgents() {
+	for (var i = 0; i < agentsThatDumpAFileIds.length; i++) {
+		if (agentsThatDumpAFileIds[i] != "agent_system") {
+			disableInput(document.getElementById(agentsThatDumpAFileIds[i]));
+		}
+	}
+}
+
+function enableDsnIncompatibleAgents() {
+	for (var i = 0; i < agentsThatDumpAFileIds.length; i++) {
+		if (agentsThatDumpAFileIds[i] != "agent_system") {
+			enableInput(document.getElementById(agentsThatDumpAFileIds[i]));
+		}
+	}
 }
 
 function disableIncompatibleEventElements(compatibleEventElementIds) {
@@ -1023,20 +1054,6 @@ function buildAndUpdateResult() {
 			warningsHtml += "WARNING: Data set pattern contains a character that is disallowed on some platforms<br>";		
 		}		
 	} else {
-		unsetErrorStyle(datasetTextElement);
-	}
-	
-	// Check whether patterns have been specified for both dump filename and SYSTDUMP data set
-	if (
-		!dumpFileTextElement.disabled && dumpFileTextElement.value != "" &&
-		!datasetTextElement.disabled && datasetTextElement.value != ""
-	) {
-		resultIsGreen = false;
-		setErrorStyle(dumpFileTextElement);
-		setErrorStyle(datasetTextElement);
-		errorsHtml += "ERROR: File and data set patterns cannot both be specified in a single Xdump option. Please create a separate Xdump option for each dump type.<br>";
-	} else {
-		unsetErrorStyle(dumpFileTextElement);
 		unsetErrorStyle(datasetTextElement);
 	}
 
